@@ -37,3 +37,6 @@ next-env.d.ts
 
 # webstorm config files
 .idea/
+
+# chrome extension pem keys
+extension.*
