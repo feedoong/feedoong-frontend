@@ -45,6 +45,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
           <link
             rel="stylesheet"
             as="style"
