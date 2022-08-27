@@ -44,7 +44,15 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+          <link
+            rel="stylesheet"
+            as="style"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/variable/pretendardvariable.css"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
