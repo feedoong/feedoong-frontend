@@ -1,17 +1,8 @@
-import React from "react";
-
-import * as S from './MyPage.style';
+import React from 'react'
+import { MyPageView } from 'components/views/MyPage/MyPageView'
 
 const MyPage = () => {
-  return(
-  <S.Container>
-    <S.Contents>
-      <S.Title>내 정보</S.Title>
-      <S.BorderLine />
-      <S.BorderLine />
-    </S.Contents>
-  </S.Container>
-  )
+  return <MyPageView />
 }
 
-export default MyPage;
+export default MyPage
