@@ -5,6 +5,8 @@ import { RecoilRoot } from 'recoil'
 
 import 'styles/reset.css'
 import 'styles/font.css'
+// import { TopNav } from 'components/common/TopNav'
+import { Nav } from 'components/common/Nav'
 
 const queryClient = new QueryClient()
 
@@ -13,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
+          <Nav />
           <Component {...pageProps} />
         </RecoilRoot>
       </QueryClientProvider>
