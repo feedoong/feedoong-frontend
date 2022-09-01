@@ -45,7 +45,7 @@ export const TopNav = ({ openSideBar }: any) => {
       <MenuButton onClick={openSideBar}>
         <div style={{ marginRight: '10px' }}>
           <Image
-            src={'/next-assets/close-icon.png'}
+            src={'/next-assets/menu-icon.png'}
             alt="close-icon"
             width="12"
             height="12"

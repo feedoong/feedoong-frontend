@@ -9,20 +9,29 @@ type MenuItemProps = {
 
 const MenuItemWrap = styled.div`
   padding: 12px 40px;
+  display: flex;
+  align-items: center;
+`
+
+const MenuButton = styled.button`
   font-size: 14px;
   font-weight: 600;
   color: #8c8c8c;
   display: flex;
-  align-items: center;
+  border: 0;
+  background: none;
+  cursor: pointer;
 `
 
 export const MenuItem = ({ iconUrl, title }: MenuItemProps) => {
   return (
     <MenuItemWrap>
-      <div style={{ marginRight: '10px' }}>
-        <Image src={iconUrl} width="14" height="14" alt="menu_icon" />
-      </div>
-      {title}
+      <MenuButton>
+        <div style={{ marginRight: '10px' }}>
+          <Image src={iconUrl} width="14" height="14" alt="menu_icon" />
+        </div>
+        {title}
+      </MenuButton>
     </MenuItemWrap>
   )
 }

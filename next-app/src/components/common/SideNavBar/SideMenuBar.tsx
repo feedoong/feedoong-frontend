@@ -57,21 +57,21 @@ export const SideMenuBar = ({ closeSideBar }: any) => {
         <div>
           <MenuItem
             title="내가 등록한 채널"
-            iconUrl="/next-assets/close-icon.png"
+            iconUrl="/next-assets/rss-icon.png"
           />
           <MenuItem
             title="내가 저장한 게시물"
-            iconUrl="/next-assets/close-icon.png"
+            iconUrl="/next-assets/bookmark-icon.png"
           />
         </div>
         <div>
           <MenuItem
             title="의견 남기기"
-            iconUrl="/next-assets/close-icon.png"
+            iconUrl="/next-assets/mail-icon.png"
           />
           <MenuItem
             title="피둥을 소개합니다"
-            iconUrl="/next-assets/close-icon.png"
+            iconUrl="/next-assets/diamond-icon.png"
           />
         </div>
       </MenuSection>
