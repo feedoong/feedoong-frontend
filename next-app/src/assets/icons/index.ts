@@ -3,6 +3,10 @@ import DotsVertical from './dots_vertical.svg'
 import CardViewIcon from './card_view.svg'
 import GridViewIcon from './grid_view.svg'
 import Bookmark from './bookmark.svg'
+import BlingBling from './bling_icon.svg'
+import Cancel from './cancel_icon.svg'
+import MailIcon from './mail_icon.svg'
+import RSSIcon from './rss_icon.svg'
 
 export const Icons = {
   NaverIcon,
@@ -10,6 +14,10 @@ export const Icons = {
   CardViewIcon,
   GridViewIcon,
   Bookmark,
+  BlingBling,
+  Cancel,
+  MailIcon,
+  RSSIcon
 }
 
 export default Icons

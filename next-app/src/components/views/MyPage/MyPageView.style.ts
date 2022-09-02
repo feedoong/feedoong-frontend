@@ -3,8 +3,6 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  /* display: flex;
-  justify-content: center; */
   background-color: #212322;
 `
 
@@ -12,7 +10,6 @@ export const Contents = styled.div`
   width: 626px;
   margin: 0 auto;
   padding-top: 120px;
-  /* border: 1px solid red; */
 `
 
 export const PageTitle = styled.p`
@@ -46,6 +43,7 @@ export const Button = styled.button`
   border-radius: 30px;
   font-size: 16px;
   font-weight: 400;
+  cursor: pointer;
   &:first-child {
     margin-right: 10px;
   }

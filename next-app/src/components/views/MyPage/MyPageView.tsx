@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { InfoRow } from './InfoRow'
+import { InfoRow } from './ InfoRow/InfoRow'
 import * as S from './MyPageView.style'
 
 export const MyPageView = () => {

@@ -6,7 +6,7 @@ import { RecoilRoot } from 'recoil'
 import 'styles/reset.css'
 import 'styles/font.css'
 // import { TopNav } from 'components/common/TopNav'
-import { Nav } from 'components/common/Nav'
+import { Nav } from 'components/common/Nav/Nav'
 
 const queryClient = new QueryClient()
 
