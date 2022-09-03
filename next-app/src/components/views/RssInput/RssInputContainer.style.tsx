@@ -1,0 +1,41 @@
+import styled from 'styled-components'
+import { colors } from 'styles/colors'
+import { getTypographyStyles } from 'styles/fonts'
+
+export const Container = styled.div`
+  background-color: ${colors.gray200};
+`
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const InputWrapper = styled.div`
+  width: 472px;
+  margin: 40px 0;
+  padding: 13px 20px;
+  border-radius: 100px;
+  background-color: ${colors.white};
+`
+
+export const Input = styled.input`
+  all: unset;
+  width: 100%;
+
+  ::placeholder {
+    ${getTypographyStyles('Headline3_M')};
+    color: ${colors.gray500};
+  }
+`
+
+export const AddButton = styled.div`
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${colors.gray500};
+`

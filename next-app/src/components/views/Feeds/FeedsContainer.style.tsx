@@ -4,6 +4,11 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const FeedWrapper = styled.div`
   padding: 20px;
   max-width: 626px;
   border-radius: 4px;

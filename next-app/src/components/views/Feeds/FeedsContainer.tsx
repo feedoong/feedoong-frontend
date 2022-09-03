@@ -6,28 +6,30 @@ import * as S from './FeedsContainer.style'
 const FeedsContainer = () => {
   return (
     <S.Container>
-      <S.Header>
-        <S.Title>홈 피드</S.Title>
-        <S.SelectViewType>
-          <S.ViewType
-            alt="카드 뷰"
-            src={Icons.CardViewIcon}
-            width={16}
-            height={16}
-          />
-          <S.ViewType
-            alt="그리드 뷰"
-            src={Icons.GridViewIcon}
-            width={16}
-            height={16}
-          />
-        </S.SelectViewType>
-      </S.Header>
-      <S.CardContainer>
-        <Card />
-        <Card />
-        <Card />
-      </S.CardContainer>
+      <S.FeedWrapper>
+        <S.Header>
+          <S.Title>홈 피드</S.Title>
+          <S.SelectViewType>
+            <S.ViewType
+              alt="카드 뷰"
+              src={Icons.CardViewIcon}
+              width={16}
+              height={16}
+            />
+            <S.ViewType
+              alt="그리드 뷰"
+              src={Icons.GridViewIcon}
+              width={16}
+              height={16}
+            />
+          </S.SelectViewType>
+        </S.Header>
+        <S.CardContainer>
+          <Card />
+          <Card />
+          <Card />
+        </S.CardContainer>
+      </S.FeedWrapper>
     </S.Container>
   )
 }
