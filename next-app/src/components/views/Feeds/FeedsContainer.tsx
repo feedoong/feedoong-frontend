@@ -51,10 +51,10 @@ const FeedsContainer = () => {
             />
           </S.SelectViewType>
         </S.Header>
-        <S.CardContainer>
-          <Card />
-          <Card />
-          <Card />
+        <S.CardContainer type={selectedViewType}>
+          <Card type={selectedViewType} />
+          <Card type={selectedViewType} />
+          <Card type={selectedViewType} />
         </S.CardContainer>
       </S.FeedWrapper>
     </S.Container>

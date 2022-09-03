@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
@@ -42,8 +42,21 @@ export const ViewType = styled(Image)<{ isSelected: boolean }>`
   cursor: pointer;
 `
 
-export const CardContainer = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+const CardLayout: {
+  [type in 'card' | 'grid']: FlattenSimpleInterpolation
+} = {
+  card: css`
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  `,
+  grid: css`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  `,
+}
+
+export const CardContainer = styled.ul<{ type?: 'card' | 'grid' }>`
+  ${({ type = 'card' }) => CardLayout[type]}
 `
