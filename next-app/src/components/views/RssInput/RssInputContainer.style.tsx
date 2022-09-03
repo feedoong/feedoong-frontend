@@ -12,12 +12,18 @@ export const Wrapper = styled.div`
   align-items: center;
 `
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div<{ isValid?: boolean }>`
   width: 472px;
   margin: 40px 0;
   padding: 13px 20px;
+  border: ${({ isValid = true }) => !isValid && `1px solid ${colors.error}`};
   border-radius: 100px;
   background-color: ${colors.white};
+
+  &:focus-within {
+    border: 1px solid
+      ${({ isValid = true }) => (isValid ? colors.black : colors.error)};
+  }
 `
 
 export const Input = styled.input`
