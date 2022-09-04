@@ -7,6 +7,7 @@ import BlingBling from './bling_icon.svg'
 import Cancel from './cancel_icon.svg'
 import MailIcon from './mail_icon.svg'
 import RSSIcon from './rss_icon.svg'
+import MenuIcon from './menu-icon.svg'
 
 export const Icons = {
   NaverIcon,
@@ -17,7 +18,8 @@ export const Icons = {
   BlingBling,
   Cancel,
   MailIcon,
-  RSSIcon
+  RSSIcon,
+  MenuIcon
 }
 
 export default Icons

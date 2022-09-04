@@ -45,5 +45,6 @@ export const Button = styled.button`
   background: ${colors.gray800};
   padding: 14px 40px;
   border-radius: 30px;
+  border: 0;
   cursor: pointer;
 `

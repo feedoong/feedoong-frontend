@@ -6,9 +6,6 @@ export const InfoRowWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
-  &:nth-child(4) {
-    margin-bottom: 60px;
-  }
 `
 export const InfoTitle = styled.span`
   font-size: 20px;

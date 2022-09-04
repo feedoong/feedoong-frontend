@@ -10,7 +10,9 @@ const MyPageContainer = () => {
         <S.PageTitle>내 정보</S.PageTitle>
         <S.BorderLine />
         <InfoRow title="로그인 계정" value="hong@gmail.com" />
-        <InfoRow title="이름" value="홍길동" />
+        <div style={{ marginBottom: '60px' }}>
+          <InfoRow title="이름" value="홍길동" />
+        </div>
         <S.BorderLine />
         <S.ButtonWrap>
           <S.Button>회원 탈퇴</S.Button>
@@ -21,4 +23,4 @@ const MyPageContainer = () => {
   )
 }
 
-export default MyPageContainer;
+export default MyPageContainer
