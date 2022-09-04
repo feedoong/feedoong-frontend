@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { colors } from 'styles/colors'
+import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const TopNavContainer = styled.div`
   position: fixed;
-  z-index: 10;
+  z-index: ${Z_INDEX.navBar};
   width: 100%;
   height: 60px;
   padding: 18px 40px;

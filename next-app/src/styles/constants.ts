@@ -1,3 +1,3 @@
-export const zIndex = {
-  level_1: 5,
+export const Z_INDEX = {
+  navBar: 1000
 }

@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { colors } from 'styles/colors'
+import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
 
 const showUp = keyframes`
@@ -22,7 +23,7 @@ const showOut = keyframes`
 
 export const SideMenuBarContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
-  z-index: 10;
+  z-index: ${Z_INDEX.navBar};
   background-color: ${colors.gray100};
   width: 300px;
   height: 100%;
