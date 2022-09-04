@@ -4,8 +4,11 @@ import { useRouter } from 'next/router'
 
 import * as S from './TopNavBar.style'
 
+interface Props {
+  openSideBar: () => void
+}
 
-export const TopNavBar = ({ openSideBar }: any) => {
+export const TopNavBar = ({ openSideBar }: Props) => {
   const router = useRouter()
   return (
     <S.TopNavContainer>

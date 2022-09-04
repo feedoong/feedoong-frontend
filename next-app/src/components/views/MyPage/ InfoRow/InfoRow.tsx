@@ -1,13 +1,15 @@
 import React from 'react'
 import * as S from './InfoRow.style'
 
+interface Props {
+  title: string
+  value: string
+}
+
 export const InfoRow = ({
   title,
   value,
-}: {
-  title: string
-  value: string
-}): JSX.Element => {
+}: Props): JSX.Element => {
   return (
     <S.InfoRowWrap>
       <S.InfoTitle>{title}</S.InfoTitle>

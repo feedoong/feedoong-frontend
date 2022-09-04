@@ -5,7 +5,11 @@ import { MenuItem } from './MenuItem/MenuItem'
 
 import * as S from './SideMenuBar.style'
 
-export const SideMenuBar = ({ closeSideBar }: any) => {
+interface Props {
+  closeSideBar: () => void
+}
+
+export const SideMenuBar = ({ closeSideBar }: Props) => {
   return (
     <S.SideMenuBarContainer>
       <S.CloseSection>
