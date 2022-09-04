@@ -7,11 +7,12 @@ import * as S from './SideMenuBar.style'
 
 interface Props {
   closeSideBar: () => void
+  isOpen: boolean
 }
 
-export const SideMenuBar = ({ closeSideBar }: Props) => {
+export const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
   return (
-    <S.SideMenuBarContainer>
+    <S.SideMenuBarContainer isOpen={isOpen}>
       <S.CloseSection>
         <S.CloseButton onClick={closeSideBar}>
           닫기

@@ -8,9 +8,10 @@ export const Nav = () => {
   return (
     <>
       <TopNavBar openSideBar={() => setShowSideBar(true)} />
-      {showSideBar && (
-        <SideMenuBar closeSideBar={() => setShowSideBar(false)} />
-      )}
+      <SideMenuBar
+        closeSideBar={() => setShowSideBar(false)}
+        isOpen={showSideBar}
+      />
     </>
   )
 }

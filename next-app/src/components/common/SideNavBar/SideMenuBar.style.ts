@@ -1,13 +1,33 @@
-import styled from "styled-components"
-import { colors } from "styles/colors"
-import { getTypographyStyles } from "styles/fonts"
+import styled, { keyframes } from 'styled-components'
+import { colors } from 'styles/colors'
+import { getTypographyStyles } from 'styles/fonts'
 
-export const SideMenuBarContainer = styled.div`
+const showUp = keyframes`
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+`
+
+const showOut = keyframes`
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+`
+
+export const SideMenuBarContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
   z-index: 10;
   background-color: ${colors.gray100};
   width: 300px;
   height: 100%;
+  transform: translateX(-100%);
+  animation: 0.7s ${(props) => (props.isOpen ? showUp : showOut)} forwards;
 `
 
 export const CloseSection = styled.section`
