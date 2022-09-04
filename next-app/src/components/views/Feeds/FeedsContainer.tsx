@@ -11,8 +11,6 @@ const FeedsContainer = () => {
   >('home')
   const [selectedViewType, setSelectedViewType] = useState<CardType>('card')
 
-  console.log(selectedViewType)
-
   return (
     <S.Container>
       <S.FeedWrapper>
@@ -32,10 +30,13 @@ const FeedsContainer = () => {
             </S.Title>
           </S.TitleWrapper>
           <S.SelectViewType>
-            {/* TODO: svg 색상 바뀌도록 속성 지정 */}
             <S.ViewType
               alt="카드 뷰"
-              src={Icons.CardViewIcon}
+              src={
+                selectedViewType === 'card'
+                  ? Icons.CardViewIcon
+                  : Icons.CardViewIconDeactive
+              }
               isSelected={selectedViewType === 'card'}
               onClick={() => setSelectedViewType('card')}
               width={16}
@@ -43,7 +44,11 @@ const FeedsContainer = () => {
             />
             <S.ViewType
               alt="그리드 뷰"
-              src={Icons.GridViewIcon}
+              src={
+                selectedViewType === 'grid'
+                  ? Icons.GridViewIcon
+                  : Icons.GridViewIconDeactive
+              }
               isSelected={selectedViewType === 'grid'}
               onClick={() => setSelectedViewType('grid')}
               width={16}
