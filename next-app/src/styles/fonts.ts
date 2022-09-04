@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css, createGlobalStyle } from 'styled-components'
 
 const PRETENDARD_FONT_FAMILY =
   "Pretendard Variable, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif"
@@ -62,3 +62,11 @@ export const getTypographyStyles = (
     font-family: ${PRETENDARD_FONT_FAMILY};
   `
 }
+
+export default createGlobalStyle `
+  @font-face {
+    font-family: 'CWDangamAsac-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff')
+      format('woff');
+  }
+`
