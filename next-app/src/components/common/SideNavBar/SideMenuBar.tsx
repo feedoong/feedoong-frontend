@@ -10,7 +10,7 @@ interface Props {
   isOpen: boolean
 }
 
-export const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
+const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
   return (
     <S.SideMenuBarContainer isOpen={isOpen}>
       <S.CloseSection>
@@ -35,3 +35,5 @@ export const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
     </S.SideMenuBarContainer>
   )
 }
+
+export default SideMenuBar

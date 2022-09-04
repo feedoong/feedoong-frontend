@@ -6,7 +6,7 @@ interface Props {
   value: string
 }
 
-export const InfoRow = ({ title, value }: Props) => {
+const InfoRow = ({ title, value }: Props) => {
   return (
     <S.InfoRowWrap>
       <S.InfoTitle>{title}</S.InfoTitle>
@@ -14,3 +14,5 @@ export const InfoRow = ({ title, value }: Props) => {
     </S.InfoRowWrap>
   )
 }
+
+export default InfoRow

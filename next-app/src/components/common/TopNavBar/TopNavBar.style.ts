@@ -34,7 +34,7 @@ export const Feedoong = styled.span`
 
 export const MyPageButton = styled.div`
   ${getTypographyStyles('Body1_B')};
-
+  
   display: flex;
   align-items: center;
   color: ${colors.white};

@@ -8,7 +8,7 @@ interface Props {
   title: string
 }
 
-export const MenuItem = ({ iconUrl, title }: Props) => {
+const MenuItem = ({ iconUrl, title }: Props) => {
   return (
     <S.MenuItemWrap>
       <S.MenuButton>
@@ -20,3 +20,5 @@ export const MenuItem = ({ iconUrl, title }: Props) => {
     </S.MenuItemWrap>
   )
 }
+
+export default MenuItem

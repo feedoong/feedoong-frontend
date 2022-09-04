@@ -9,7 +9,7 @@ interface Props {
   openSideBar: () => void
 }
 
-export const TopNavBar = ({ openSideBar }: Props) => {
+const TopNavBar = ({ openSideBar }: Props) => {
   const router = useRouter()
   return (
     <S.TopNavContainer>
@@ -41,3 +41,5 @@ export const TopNavBar = ({ openSideBar }: Props) => {
     </S.TopNavContainer>
   )
 }
+
+export default TopNavBar

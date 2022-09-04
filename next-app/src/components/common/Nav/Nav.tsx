@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-import { TopNavBar } from '../TopNavBar/TopNavBar'
-import { SideMenuBar } from '../SideNavBar/SideMenuBar'
+import TopNavBar from '../TopNavBar'
+import SideMenuBar from '../SideNavBar'
 
-export const Nav = () => {
+const Nav = () => {
   const [showSideBar, setShowSideBar] = useState(false)
   return (
     <>
@@ -15,3 +15,5 @@ export const Nav = () => {
     </>
   )
 }
+
+export default Nav
