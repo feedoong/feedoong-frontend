@@ -6,10 +6,7 @@ interface Props {
   value: string
 }
 
-export const InfoRow = ({
-  title,
-  value,
-}: Props): JSX.Element => {
+export const InfoRow = ({ title, value }: Props) => {
   return (
     <S.InfoRowWrap>
       <S.InfoTitle>{title}</S.InfoTitle>

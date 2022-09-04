@@ -1,8 +1,8 @@
 import React from 'react'
-import { MyPageView } from 'components/views/MyPage/MyPageView'
+import MyPageContainer from 'components/views/MyPage/MyPageContainer'
 
 const MyPage = () => {
-  return <MyPageView />
+  return <MyPageContainer />
 }
 
 export default MyPage

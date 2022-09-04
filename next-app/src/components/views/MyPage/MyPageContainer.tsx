@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { InfoRow } from './ InfoRow/InfoRow'
-import * as S from './MyPageView.style'
+import { InfoRow } from './InfoRow/InfoRow'
+import * as S from './MyPageContainer.style'
 
-export const MyPageView = () => {
+const MyPageContainer = () => {
   return (
     <S.Container>
       <S.Contents>
@@ -20,3 +20,5 @@ export const MyPageView = () => {
     </S.Container>
   )
 }
+
+export default MyPageContainer;
