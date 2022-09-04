@@ -4,6 +4,7 @@ import CardViewIcon from './card_view.svg'
 import GridViewIcon from './grid_view.svg'
 import Bookmark from './bookmark.svg'
 import Add from './add.svg'
+import Cancel from './cancel.svg'
 
 export const Icons = {
   NaverIcon,
@@ -12,6 +13,7 @@ export const Icons = {
   GridViewIcon,
   Bookmark,
   Add,
+  Cancel,
 }
 
 export default Icons

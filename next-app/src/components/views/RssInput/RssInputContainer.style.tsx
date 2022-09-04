@@ -13,7 +13,10 @@ export const Wrapper = styled.div`
 `
 
 export const InputWrapper = styled.div<{ isValid?: boolean }>`
+  display: flex;
+  justify-content: space-between;
   width: 472px;
+  height: 48px;
   margin: 40px 0;
   padding: 13px 20px;
   border: ${({ isValid = true }) => !isValid && `1px solid ${colors.error}`};
@@ -36,12 +39,15 @@ export const Input = styled.input`
   }
 `
 
-export const AddButton = styled.div`
+export const AddButton = styled.button<{ isValid?: boolean }>`
+  all: unset;
   border-radius: 50%;
   width: 48px;
   height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.gray500};
+  background-color: ${({ isValid }) =>
+    isValid === true ? colors.black : colors.gray500};
+  cursor: pointer;
 `

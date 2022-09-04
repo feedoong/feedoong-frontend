@@ -1,8 +1,10 @@
 import CardType from './CardType'
 import GridType from './GridType'
 
+export type CardType = 'card' | 'grid'
+
 interface Props {
-  type?: 'card' | 'grid'
+  type?: CardType
 }
 
 const Card = ({ type = 'card' }: Props) => {
