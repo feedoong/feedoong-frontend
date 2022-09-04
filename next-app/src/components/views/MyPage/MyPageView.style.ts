@@ -1,9 +1,11 @@
 import styled from 'styled-components'
+import { colors } from 'styles/colors'
+import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #212322;
+  background-color: ${colors.gray900};
 `
 
 export const Contents = styled.div`
@@ -13,38 +15,35 @@ export const Contents = styled.div`
 `
 
 export const PageTitle = styled.p`
-  color: white;
-  font-size: 24px;
-  font-weight: 600;
+  ${getTypographyStyles('Headline2_B')};
+
+  color: ${colors.white};
   margin-bottom: 20px;
 `
 
 export const BorderLine = styled.div`
-  border: 1px solid #424242;
+  border: 1px solid ${colors.gray800};
   margin-bottom: 40px;
 `
 
 export const InfoTitle = styled.span`
   font-size: 20px;
   font-weight: 500;
-  color: #8c8c8c;
+  color: ${colors.gray600};
 `
 
 export const ButtonWrap = styled.div`
+  gap: 10px;
   display: flex;
   justify-content: center;
 `
 
 export const Button = styled.button`
-  color: white;
+  ${getTypographyStyles('Headline4_M')}
+
+  color: ${colors.white};
+  background: ${colors.gray800};
   padding: 14px 40px;
-  background: #424242;
-  border: 1px solid #424242;
   border-radius: 30px;
-  font-size: 16px;
-  font-weight: 400;
   cursor: pointer;
-  &:first-child {
-    margin-right: 10px;
-  }
 `

@@ -1,15 +1,14 @@
 import React from 'react'
 import Image from 'next/image'
 
-import * as S from './MenuItem.style';
+import * as S from './MenuItem.style'
 
-export const MenuItem = ({
-  iconUrl,
-  title,
-}: {
+interface Props {
   iconUrl: string
   title: string
-}) => {
+}
+
+export const MenuItem = ({ iconUrl, title }: Props) => {
   return (
     <S.MenuItemWrap>
       <S.MenuButton>

@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import { colors } from "styles/colors"
+import { getTypographyStyles } from "styles/fonts"
 
 export const MenuItemWrap = styled.div`
   padding: 12px 40px;
@@ -7,9 +9,9 @@ export const MenuItemWrap = styled.div`
 `
 
 export const MenuButton = styled.button`
-  font-size: 14px;
-  font-weight: 600;
-  color: #8c8c8c;
+  ${getTypographyStyles('Body1_B')};
+  
+  color: ${colors.gray600};
   display: flex;
   border: 0;
   background: none;

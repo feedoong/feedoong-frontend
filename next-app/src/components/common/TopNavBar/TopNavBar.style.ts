@@ -1,22 +1,25 @@
 import styled from "styled-components"
+import { colors } from "styles/colors"
+import { getTypographyStyles } from "styles/fonts"
 
 export const TopNavContainer = styled.div`
-  width: 100%;
   position: fixed;
+  z-index: 10;
+  width: 100%;
   height: 60px;
   padding: 18px 40px;
-  background-color: #212322;
+  background-color: ${colors.gray900};
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
 
 export const MenuButton = styled.button`
+  ${getTypographyStyles('Headline4_B')}
+
+  color: ${colors.white};
   border: 0;
   background: none;
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
   display: flex;
   cursor: pointer;
 `
@@ -24,14 +27,14 @@ export const MenuButton = styled.button`
 export const Feedoong = styled.span`
   font-size: 20px;
   font-weight: 700;
-  color: white;
+  color: ${colors.white};
 `
 
 export const MyPageButton = styled.div`
+  ${getTypographyStyles('Body1_B')};
+
   display: flex;
   align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
+  color: ${colors.white};
   cursor: pointer;
 `
