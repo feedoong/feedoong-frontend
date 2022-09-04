@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Icons from 'assets/icons'
-import { MenuItem } from './MenuItem/MenuItem'
+import MenuItem from './MenuItem'
 
 import * as S from './SideMenuBar.style'
 
@@ -29,7 +29,7 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
         </div>
         <div>
           <MenuItem title="의견 남기기" iconUrl={Icons.MailIcon} />
-          <MenuItem title="피둥을 소개합니다" iconUrl={Icons.BlingBling} />
+          <MenuItem title="피둥을 소개합니다" iconUrl={Icons.Sparkles} />
         </div>
       </S.MenuSection>
     </S.SideMenuBarContainer>
