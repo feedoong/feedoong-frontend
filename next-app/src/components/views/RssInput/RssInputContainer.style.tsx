@@ -3,6 +3,11 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 40px 0;
   background-color: ${colors.gray200};
 `
 
@@ -17,7 +22,7 @@ export const InputWrapper = styled.div<{ isValid?: boolean }>`
   justify-content: space-between;
   width: 472px;
   height: 48px;
-  margin: 40px 0;
+
   padding: 13px 20px;
   border: ${({ isValid = true }) => !isValid && `1px solid ${colors.error}`};
   border-radius: 100px;
@@ -50,4 +55,15 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
   background-color: ${({ isValid }) =>
     isValid === true ? colors.black : colors.gray500};
   cursor: pointer;
+`
+
+export const Error = styled.div`
+  ${getTypographyStyles('Body2_M')};
+
+  padding-right: 48px;
+  color: ${colors.error};
+`
+
+export const UnderLine = styled.span`
+  text-decoration: underline;
 `

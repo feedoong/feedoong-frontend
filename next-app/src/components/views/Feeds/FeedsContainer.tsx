@@ -11,6 +11,9 @@ const FeedsContainer = () => {
   >('home')
   const [selectedViewType, setSelectedViewType] = useState<CardType>('card')
 
+  const isCardView = selectedViewType === 'card'
+  const isGridView = selectedViewType === 'grid'
+
   return (
     <S.Container>
       <S.FeedWrapper>
@@ -32,24 +35,16 @@ const FeedsContainer = () => {
           <S.SelectViewType>
             <S.ViewType
               alt="카드 뷰"
-              src={
-                selectedViewType === 'card'
-                  ? Icons.CardViewIcon
-                  : Icons.CardViewIconDeactive
-              }
-              isSelected={selectedViewType === 'card'}
+              src={Icons[isCardView ? 'CardViewIcon' : 'CardViewIconDeactive']}
+              isSelected={isCardView}
               onClick={() => setSelectedViewType('card')}
               width={16}
               height={16}
             />
             <S.ViewType
               alt="그리드 뷰"
-              src={
-                selectedViewType === 'grid'
-                  ? Icons.GridViewIcon
-                  : Icons.GridViewIconDeactive
-              }
-              isSelected={selectedViewType === 'grid'}
+              src={Icons[isGridView ? 'GridViewIcon' : 'GridViewIconDeactive']}
+              isSelected={isGridView}
               onClick={() => setSelectedViewType('grid')}
               width={16}
               height={16}
