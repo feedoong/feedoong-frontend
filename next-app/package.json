@@ -22,6 +22,8 @@
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@types/styled-components": "^5.1.26",
+    "@yarnpkg/pnpify": "^4.0.0-rc.18",
+    "@yarnpkg/sdks": "^3.0.0-rc.18",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "prettier": "^2.7.1",
