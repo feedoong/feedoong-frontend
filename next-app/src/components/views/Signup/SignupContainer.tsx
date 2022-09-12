@@ -1,8 +1,15 @@
 import Image from 'next/image'
 import * as S from './SignupContainer.style'
 import Icons from 'assets/icons'
+import { useRouter } from 'next/router'
 
 const SignUpContainer = () => {
+  const router = useRouter()
+
+  const handleSignupButton = () => {
+    router.push('https://api.feedoong.io/v1/auth/login')
+  }
+
   return (
     <S.Wrapper>
       <S.Title>인사이트가 피둥피둥</S.Title>
@@ -12,7 +19,7 @@ const SignUpContainer = () => {
         크롬 새탭에서 바로 시작하세요!
       </S.Subtitle>
       <S.GoogleLoginButton>
-        <S.ButtonContentsWrapper>
+        <S.ButtonContentsWrapper onClick={handleSignupButton}>
           <Image
             src={Icons.GoogleIcon}
             width={16}
