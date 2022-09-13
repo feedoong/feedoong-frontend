@@ -26,6 +26,18 @@ function PostContainer() {
         <Card />
         <Card />
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </S.CardContainer>
     </S.Container>
   )

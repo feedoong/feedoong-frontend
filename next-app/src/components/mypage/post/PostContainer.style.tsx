@@ -4,7 +4,7 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
-  padding: 20px;
+  width: 100%;
   max-width: 626px;
   border-radius: 4px;
 `
