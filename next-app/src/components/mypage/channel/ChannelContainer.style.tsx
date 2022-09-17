@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
@@ -29,8 +29,14 @@ export const ViewType = styled(Image)`
   cursor: pointer;
 `
 
-export const CardContainer = styled.ul`
+export const CardContainer = styled.ul<{ isCard?: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ isCard }) => isCard && 'column'};
   gap: 20px;
+
+  ${({ isCard }) =>
+    !isCard &&
+    css`
+      flex-wrap: wrap;
+    `}
 `
