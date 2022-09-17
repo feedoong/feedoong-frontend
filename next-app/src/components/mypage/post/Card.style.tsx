@@ -4,12 +4,13 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
-  background-color: ${colors.gray100};
+  width: 100%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   border-radius: 20px;
+  background-color: ${colors.gray100};
 `
 
 export const OptionButton = styled(Image)`
