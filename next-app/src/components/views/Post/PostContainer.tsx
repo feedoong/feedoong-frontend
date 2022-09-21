@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
+import Grid from 'components/views/Post/Grid'
+import Card from 'components/views/Post/Card'
 import Icons from 'assets/icons'
-import Grid from './Grid'
-import Card from './Card'
-import * as S from './PostContainer.style'
+import * as S from 'components/views/Post/PostContainer.style'
+
+type TViewTypes = 'card' | 'grid'
 
 function PostContainer() {
-  const [isCard, setIsCard] = useState(true)
-  const handleOption = (value: boolean) => setIsCard(value)
+  const [viewType, setViewType] = useState<TViewTypes>('card')
+  const handleOption = (value: TViewTypes) => setViewType(value)
 
   return (
     <S.Container>
@@ -19,19 +21,19 @@ function PostContainer() {
             src={Icons.CardViewIcon}
             width={16}
             height={16}
-            onClick={() => handleOption(true)}
+            onClick={() => handleOption('card')}
           />
           <S.ViewType
             alt="그리드 뷰"
             src={Icons.GridViewIcon}
             width={16}
             height={16}
-            onClick={() => handleOption(false)}
+            onClick={() => handleOption('grid')}
           />
         </S.SelectViewType>
       </S.Header>
       <CardContainer>
-        {isCard && (
+        {viewType === 'card' && (
           <>
             <Card />
             <Card />
@@ -39,7 +41,7 @@ function PostContainer() {
           </>
         )}
 
-        {!isCard && (
+        {viewType === 'grid' && (
           <>
             <Grid />
             <Grid />
