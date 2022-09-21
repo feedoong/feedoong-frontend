@@ -1,6 +1,6 @@
 import Icons from 'assets/icons'
 import * as S from './Card.style'
-import { colors } from 'styles/colors'
+import * as CS from 'components/common/Card/Card.style'
 
 const Card = () => {
   return (
@@ -9,8 +9,8 @@ const Card = () => {
         <S.LeftContainer>
           <S.ImageContainer />
           <S.BodyWrapper>
-            <S.Title>홍길동의 IT이야기</S.Title>
-            <S.Contents>{`https://medium.com/myrealtrip-product/`}</S.Contents>
+            <CS.Title>홍길동의 IT이야기</CS.Title>
+            <CS.Contents>{`https://medium.com/myrealtrip-product/`}</CS.Contents>
           </S.BodyWrapper>
         </S.LeftContainer>
 

@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { getTypographyStyles } from 'styles/fonts'
+import { colors } from 'styles/colors'
 
 export const Container = styled.div`
   width: 300px;
-  height: 310px;
+  height: 300px;
   border-radius: 20px;
   background-color: #f5f5f5;
 `
@@ -16,7 +17,7 @@ export const ImageContainer = styled.div`
 `
 
 export const Contents = styled.div`
-  height: calc(310px - 160px);
+  height: calc(310px - 100px);
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -29,10 +30,12 @@ export const ContentTop = styled.div`
   justify-content: space-between;
 
   .left {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #8c8c8c;
+    width: 230px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: ${colors.gray600};
   }
 
   .left .date {

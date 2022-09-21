@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Channel from 'components/mypage/channel'
+import Channel from 'components/views/Channel'
 import Layout from 'components/common/Layout'
 
 const MyChannel: NextPage = () => {
