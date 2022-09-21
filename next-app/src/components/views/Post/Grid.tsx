@@ -1,6 +1,6 @@
 import Icons from 'assets/icons'
 import * as CS from 'components/common/Card/Card.style'
-import * as GS from 'components/views/Post/Grid.style'
+import * as GS from 'components/common/Gird/Grid.style'
 
 const Grid = () => {
   return (
@@ -8,7 +8,7 @@ const Grid = () => {
       <GS.ImageContainer />
       <GS.Contents>
         <GS.ContentTop>
-          <div className="left">
+          <div className="news">
             https://medium.com/myrealtrip-product/asdfasdfdsfgads
           </div>
           <div className="right">

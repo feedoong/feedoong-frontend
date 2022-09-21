@@ -1,17 +1,17 @@
 import Icons from 'assets/icons'
-import * as S from './Card.style'
+import * as S from 'components/common/Card/Card.style'
 import * as CS from 'components/common/Card/Card.style'
 
 const Card = () => {
   return (
-    <S.Container>
-      <S.Body>
+    <S.PostContainer>
+      <S.PostBody>
         <S.LeftContainer>
           <S.ImageContainer />
-          <S.BodyWrapper>
+          <S.PostBodyWrapper>
             <CS.Title>홍길동의 IT이야기</CS.Title>
             <CS.Contents>{`https://medium.com/myrealtrip-product/`}</CS.Contents>
-          </S.BodyWrapper>
+          </S.PostBodyWrapper>
         </S.LeftContainer>
 
         <S.OptionButton
@@ -20,8 +20,8 @@ const Card = () => {
           width={16}
           height={16}
         />
-      </S.Body>
-    </S.Container>
+      </S.PostBody>
+    </S.PostContainer>
   )
 }
 
