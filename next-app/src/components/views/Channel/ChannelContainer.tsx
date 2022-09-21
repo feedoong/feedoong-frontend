@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Card from 'components/common/Card'
 import Grid from 'components/common/Gird'
 import Icons from 'assets/icons'
-import * as S from './ChannelContainer.style'
+import * as S from 'components/views/Channel/ChannelContainer.style'
 
 function ChannelContainer() {
   const [isCard, setIsCard] = useState(true)
