@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { getTypographyStyles } from 'styles/fonts'
+import { colors } from 'styles/colors'
 
 export const Container = styled.div`
   width: 300px;
@@ -41,6 +42,15 @@ export const ContentTop = styled.div`
 
   .left .date {
     ${getTypographyStyles('Body2_M')}
+  }
+
+  .news {
+    width: 230px;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: ${colors.gray600};
   }
 `
 
