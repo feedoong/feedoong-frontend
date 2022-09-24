@@ -11,6 +11,7 @@ interface Props {
 
 const TopNavBar = ({ openSideBar }: Props) => {
   const router = useRouter()
+
   return (
     <S.TopNavContainer>
       <S.MenuButton onClick={openSideBar}>
@@ -25,7 +26,7 @@ const TopNavBar = ({ openSideBar }: Props) => {
         </div>
         MENU
       </S.MenuButton>
-      <S.Feedoong>Feedoong</S.Feedoong>
+      <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
       <S.MyPageButton onClick={() => router.push('/myPage')}>
         <div
           style={{

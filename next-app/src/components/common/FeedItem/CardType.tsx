@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import Icons from 'assets/icons'
-import * as S from './Card.style'
 import { colors } from 'styles/colors'
+import * as S from './FeedItem.style'
+import { Container } from './CardType.style'
 
-const Card = () => {
+const CardType = () => {
   return (
-    <S.Container>
+    <Container>
       <S.Header>
         <S.PostMeta>
           <Image
@@ -48,8 +49,8 @@ const Card = () => {
         <S.ReadStatus>읽음</S.ReadStatus>
         <S.Bookmark alt="북마크" src={Icons.Bookmark} width={16} height={16} />
       </S.Footer>
-    </S.Container>
+    </Container>
   )
 }
 
-export default Card
+export default CardType

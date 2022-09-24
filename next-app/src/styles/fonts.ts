@@ -14,6 +14,11 @@ export const TYPOGRAPHY_STYLES = {
     lineHeight: 26,
     fontWeight: 600,
   },
+  Headline3_M: {
+    fontSize: 16,
+    lineHeight: 26,
+    fontWeight: 400,
+  },
   Headline4_B: {
     fontSize: 16,
     lineHeight: 26,
