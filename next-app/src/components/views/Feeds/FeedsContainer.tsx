@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import Card from 'components/common/Card'
-import type { CardType } from 'components/common/Card/Card'
+import type { FeedType } from 'components/common/Card/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
 
@@ -9,7 +9,7 @@ const FeedsContainer = () => {
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
   >('home')
-  const [selectedViewType, setSelectedViewType] = useState<CardType>('card')
+  const [selectedViewType, setSelectedViewType] = useState<FeedType>('card')
 
   const isCardView = selectedViewType === 'card'
   const isGridView = selectedViewType === 'grid'

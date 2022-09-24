@@ -1,14 +1,14 @@
 import CardType from './CardType'
 import GridType from './GridType'
 
-export type CardType = 'card' | 'grid'
+export type FeedType = 'card' | 'grid'
 
 interface Props {
-  type?: CardType
+  type?: FeedType
 }
 
-const Card = ({ type = 'card' }: Props) => {
+const FeedItem = ({ type = 'card' }: Props) => {
   return type === 'card' ? <CardType /> : <GridType />
 }
 
-export default Card
+export default FeedItem

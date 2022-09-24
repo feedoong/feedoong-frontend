@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
-import * as S from './Card.style'
+import * as S from './FeedItem.style'
 import { Container } from './CardType.style'
 
 const CardType = () => {
