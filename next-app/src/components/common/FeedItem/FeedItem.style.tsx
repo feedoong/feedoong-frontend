@@ -72,3 +72,36 @@ export const ReadStatus = styled.span`
 export const Bookmark = styled(Image)`
   cursor: pointer;
 `
+
+export const PostContainer = styled.div`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 20px;
+  background-color: ${colors.gray100};
+`
+
+export const PostBody = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const PostBodyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
+export const LeftContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
+export const ImageContainer = styled.div`
+  min-width: 80px;
+  height: 80px;
+  background-color: ${colors.gray300};
+  border-radius: 10px;
+`
