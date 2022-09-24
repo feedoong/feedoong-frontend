@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
@@ -31,11 +32,12 @@ export const Feedoong = styled.span`
   font-family: 'CWDangamAsac-Bold';
   line-height: 24px;
   color: ${colors.white};
+  cursor: pointer;
 `
 
 export const MyPageButton = styled.div`
   ${getTypographyStyles('Body1_B')};
-  
+
   display: flex;
   align-items: center;
   color: ${colors.white};

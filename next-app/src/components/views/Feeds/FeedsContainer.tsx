@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import Card from 'components/common/Card'
-import type { FeedType } from 'components/common/Card/FeedItem'
+import Card from 'components/common/FeedItem'
+import type { FeedType } from 'components/common/FeedItem/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
 
