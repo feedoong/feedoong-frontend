@@ -5,6 +5,7 @@ import GridViewIcon from './grid_view.svg'
 import CardViewIconDeactive from './card_view-deactive.svg'
 import GridViewIconDeactive from './grid_view-deactive.svg'
 import Bookmark from './bookmark.svg'
+import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
 import CancelCircle from './cancel.svg'
 import Sparkles from './Sparkles.svg'
@@ -21,6 +22,7 @@ export const Icons = {
   GridViewIcon,
   GridViewIconDeactive,
   Bookmark,
+  GoogleIcon,
   Add,
   Sparkles,
   CancelCircle,

@@ -4,6 +4,11 @@ const PRETENDARD_FONT_FAMILY =
   "Pretendard Variable, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif"
 
 export const TYPOGRAPHY_STYLES = {
+  Headline1_B: {
+    fontSize: 24,
+    lineHeight: 34,
+    fontWeight: 600,
+  },
   Headline2_B: {
     fontSize: 24,
     lineHeight: 34,
