@@ -4,16 +4,16 @@ import CardViewIcon from './card_view.svg'
 import GridViewIcon from './grid_view.svg'
 import CardViewIconDeactive from './card_view-deactive.svg'
 import GridViewIconDeactive from './grid_view-deactive.svg'
-import Bookmark from './bookmark.svg'
 import Logo from './Feedoong.svg'
 import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
 import CancelCircle from './cancel.svg'
-import Sparkles from './Sparkles.svg'
-import Cancel from './cancel_icon.svg'
-import MailIcon from './mail_icon.svg'
-import RSSIcon from './rss_icon.svg'
-import MenuIcon from './menu-icon.svg'
+import Close from './close.svg'
+import Menu from './menu_icon.svg'
+import Folder from './folder.svg'
+import Star from './star.svg'
+import SpeechBubble from './speechBubble.svg'
+import Thunder from './Thunder.svg'
 
 export const Icons = {
   NaverIcon,
@@ -22,16 +22,16 @@ export const Icons = {
   CardViewIconDeactive,
   GridViewIcon,
   GridViewIconDeactive,
-  Bookmark,
   Logo,
   GoogleIcon,
   Add,
-  Sparkles,
   CancelCircle,
-  Cancel,
-  MailIcon,
-  RSSIcon,
-  MenuIcon,
+  Close,
+  Menu,
+  Folder,
+  Star,
+  SpeechBubble,
+  Thunder
 }
 
 export default Icons

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
+import Image from 'next/image'
 
 export const TopNavContainer = styled.div`
   position: fixed;
@@ -23,8 +24,15 @@ export const MenuButton = styled.button`
   border: 0;
   background: none;
   display: flex;
+  align-items: center;
   cursor: pointer;
 `
+
+export const ImageWrapper = styled.div`
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+` 
 
 export const Feedoong = styled.span`
   font-size: 20px;
