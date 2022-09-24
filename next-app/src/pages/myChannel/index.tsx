@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import MyChannelView from 'components/views/Channel'
+import MyChannelView from 'components/views/MyChannel'
 
 const MyChannel: NextPage = () => {
   return <MyChannelView />

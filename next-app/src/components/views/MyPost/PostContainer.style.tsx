@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
@@ -7,6 +7,8 @@ export const Container = styled.div`
   width: 100%;
   max-width: 626px;
   border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 40px;
 `
 
 export const Header = styled.div`
@@ -26,12 +28,19 @@ export const SelectViewType = styled.div`
   gap: 8px;
 `
 
-export const ViewType = styled(Image)`
+export const ViewType = styled(Image)<{ isSelected: boolean }>`
+  color: ${({ isSelected }) => (isSelected ? colors.gray900 : colors.gray400)};
   cursor: pointer;
 `
 
-export const CardContainer = styled.ul`
+export const CardContainer = styled.ul<{ isCard?: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ isCard }) => isCard && 'column'};
   gap: 20px;
+
+  ${({ isCard }) =>
+    !isCard &&
+    css`
+      flex-wrap: wrap;
+    `}
 `

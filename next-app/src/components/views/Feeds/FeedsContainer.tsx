@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import Card from 'components/common/FeedItem'
+import FeedItem from 'components/common/FeedItem'
 import type { FeedType } from 'components/common/FeedItem/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
@@ -52,9 +52,9 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          <Card type={selectedViewType} />
-          <Card type={selectedViewType} />
-          <Card type={selectedViewType} />
+          <FeedItem type={selectedViewType} />
+          <FeedItem type={selectedViewType} />
+          <FeedItem type={selectedViewType} />
         </S.CardContainer>
       </S.FeedWrapper>
     </S.Container>
