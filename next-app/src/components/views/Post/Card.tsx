@@ -1,6 +1,6 @@
 import Icons from 'assets/icons'
-import * as S from 'components/common/Card/Card.style'
-import * as CS from 'components/common/Card/Card.style'
+import * as S from 'components/common/FeedItem/FeedItem.style'
+import * as CS from 'components/common/FeedItem/FeedItem.style'
 
 const Card = () => {
   return (

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Card from 'components/common/Card'
-import Grid from 'components/common/Gird'
+import Card from 'components/common/FeedItem'
+import Grid from 'components/common/Grid'
 import Icons from 'assets/icons'
 import * as S from 'components/views/Channel/ChannelContainer.style'
 

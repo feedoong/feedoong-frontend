@@ -10,4 +10,5 @@ export const colors = {
   gray700: '#646464',
   gray800: '#424242',
   gray900: '#212322',
+  error: '#E14942',
 }

@@ -1,6 +1,6 @@
 import Icons from 'assets/icons'
-import * as CS from 'components/common/Card/Card.style'
-import * as GS from 'components/common/Gird/Grid.style'
+import * as CS from 'components/common/FeedItem/FeedItem.style'
+import * as GS from 'components/common/Grid/Grid.style'
 
 const Grid = () => {
   return (

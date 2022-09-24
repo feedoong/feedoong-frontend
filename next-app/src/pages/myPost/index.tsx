@@ -1,13 +1,8 @@
 import type { NextPage } from 'next'
-import Post from 'components/views/Post'
-import Layout from 'components/common/Layout'
+import MyPostView from 'components/views/Post'
 
 const MyChannel: NextPage = () => {
-  return (
-    <Layout>
-      <Post />
-    </Layout>
-  )
+  return <MyPostView />
 }
 
 export default MyChannel

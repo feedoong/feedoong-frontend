@@ -1,13 +1,8 @@
 import type { NextPage } from 'next'
-import Channel from 'components/views/Channel'
-import Layout from 'components/common/Layout'
+import MyChannelView from 'components/views/Channel'
 
 const MyChannel: NextPage = () => {
-  return (
-    <Layout>
-      <Channel />
-    </Layout>
-  )
+  return <MyChannelView />
 }
 
 export default MyChannel
