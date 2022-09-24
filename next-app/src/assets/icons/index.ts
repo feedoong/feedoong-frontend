@@ -6,7 +6,12 @@ import CardViewIconDeactive from './card_view-deactive.svg'
 import GridViewIconDeactive from './grid_view-deactive.svg'
 import Bookmark from './bookmark.svg'
 import Add from './add.svg'
-import Cancel from './cancel.svg'
+import CancelCircle from './cancel.svg'
+import Sparkles from './Sparkles.svg'
+import Cancel from './cancel_icon.svg'
+import MailIcon from './mail_icon.svg'
+import RSSIcon from './rss_icon.svg'
+import MenuIcon from './menu-icon.svg'
 
 export const Icons = {
   NaverIcon,
@@ -17,7 +22,12 @@ export const Icons = {
   GridViewIconDeactive,
   Bookmark,
   Add,
+  Sparkles,
+  CancelCircle,
   Cancel,
+  MailIcon,
+  RSSIcon,
+  MenuIcon,
 }
 
 export default Icons

@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
         {selectedValue && (
           <Image
             alt="삭제 버튼"
-            src={Icons.Cancel}
+            src={Icons.CancelCircle}
             width={24}
             height={24}
             onClick={clearValue}
