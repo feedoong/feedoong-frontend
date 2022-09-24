@@ -12,7 +12,7 @@ const MenuItem = ({ iconUrl, title }: Props) => {
   return (
     <S.MenuItemWrap>
       <S.MenuButton>
-        <div style={{ marginRight: '10px' }}>
+        <div style={{ marginRight: '8px' }}>
           <Image src={iconUrl} width="14" height="14" alt="menu_icon" />
         </div>
         {title}
