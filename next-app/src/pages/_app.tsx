@@ -1,10 +1,12 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RecoilRoot } from 'recoil'
 
 import 'styles/reset.css'
 import 'styles/font.css'
+
+import Layout from 'components/common/Layout'
 
 const queryClient = new QueryClient()
 
@@ -13,8 +15,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </RecoilRoot>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </>
   )
