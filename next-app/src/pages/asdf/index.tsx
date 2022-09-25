@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import SignUpContainerView from 'components/views/SignUp/SignUpContainer'
+import SignUpContainerView from 'components/views/aaaa/SignUpContainer'
 
 const SignUp: NextPage = () => {
   return (
