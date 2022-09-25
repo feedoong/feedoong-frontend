@@ -41,3 +41,14 @@ next-env.d.ts
 
 # chrome extension pem keys
 extension.*
+
+#yarn
+.yarn/*
+.yarn/install-state.gz
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.yarn/install-state.gz
