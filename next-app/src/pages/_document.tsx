@@ -53,8 +53,8 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <div id="modal" />
           <Main />
+          <div id="dialog" />
           <NextScript />
         </body>
       </Html>
