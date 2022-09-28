@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 
 import * as S from './TopNavBar.style'
 import Icons from 'assets/icons'
+import { useRecoilValue } from 'recoil'
+import profile from 'store/atoms/profile'
 
 interface Props {
   openSideBar: () => void
@@ -11,6 +13,7 @@ interface Props {
 
 const TopNavBar = ({ openSideBar }: Props) => {
   const router = useRouter()
+  const { name, profileImageUrl } = useRecoilValue(profile)
 
   return (
     <S.TopNavContainer>
@@ -27,17 +30,14 @@ const TopNavBar = ({ openSideBar }: Props) => {
         MENU
       </S.MenuButton>
       <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
-      <S.MyPageButton onClick={() => router.push('/myPage')}>
-        <div
-          style={{
-            width: '24px',
-            height: '24px',
-            borderRadius: '50%',
-            backgroundColor: 'pink',
-            marginRight: '8px',
-          }}
-        ></div>
-        홍길동
+      <S.MyPageButton onClick={() => router.push('/mypage/account')}>
+        <S.UserImage
+          width={24}
+          height={24}
+          alt="프로필 사진"
+          src={profileImageUrl}
+        />
+        {name}
       </S.MyPageButton>
     </S.TopNavContainer>
   )

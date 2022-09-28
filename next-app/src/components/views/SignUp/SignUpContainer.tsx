@@ -7,7 +7,9 @@ const SignUpContainer = () => {
   const router = useRouter()
 
   const handleSignUpButton = () => {
-    router.push('https://api.feedoong.io/v1/auth/login')
+    router.push(
+      `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=http://localhost:3000/oauth&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`
+    )
   }
 
   return (
