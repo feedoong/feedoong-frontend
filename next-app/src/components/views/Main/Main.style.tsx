@@ -1,0 +1,61 @@
+import styled from 'styled-components'
+import { getTypographyStyles } from 'styles/fonts'
+import { colors } from 'styles/colors'
+
+export const Wrapper = styled.div`
+  margin: 100px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+`
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+`
+
+export const ContentsWrapper = styled.div`
+  margin: 0 180px;
+  width: 100%;
+  height: 400px;
+  /* border: 1px solid blue; */
+`
+export const Contents = styled.div`
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  gap: 80px;
+`
+
+export const ImageWrapper = styled.div`
+  width: 550px;
+  height: 100%;
+  border-radius: 12px;
+  background-color: ${colors.gray200};
+`
+export const BoardWrapper = styled.div`
+  width: 550px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`
+
+export const Title = styled.h1`
+  margin: 11px 0 20px 0;
+  font-size: 32px;
+  font-weight: 700;
+
+  color: ${colors.gray700};
+`
+export const Text = styled.div`
+  color: ${colors.gray500};
+
+  span {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+  }
+`
