@@ -7,7 +7,7 @@ import * as S from './SideMenuBar.style'
 
 interface Props {
   closeSideBar: () => void
-  isOpen: boolean
+  isOpen: boolean | null;
 }
 
 const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
