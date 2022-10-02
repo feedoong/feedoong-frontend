@@ -10,26 +10,16 @@ export const TYPOGRAPHY_STYLES = {
     fontWeight: 600,
   },
   Headline2_B: {
-    fontSize: 24,
-    lineHeight: 34,
-    fontWeight: 600,
-  },
-  Headline3_B: {
     fontSize: 20,
     lineHeight: 26,
     fontWeight: 600,
   },
-  Headline3_M: {
-    fontSize: 16,
-    lineHeight: 26,
-    fontWeight: 400,
-  },
-  Headline4_B: {
+  Headline3_B: {
     fontSize: 16,
     lineHeight: 26,
     fontWeight: 600,
   },
-  Headline4_M: {
+  Headline3_M: {
     fontSize: 16,
     lineHeight: 26,
     fontWeight: 400,
