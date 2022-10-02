@@ -11,7 +11,7 @@ export const Container = styled.div`
 `
 
 export const FeedWrapper = styled.div`
-  padding: 20px;
+  margin: 40px 20px;
   max-width: 626px;
   border-radius: 4px;
 `

@@ -1,5 +1,13 @@
 import { css } from 'styled-components'
 
+export const ellipsis = (lineLimit: number = 2) => css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: ${lineLimit};
+  -webkit-box-orient: vertical;
+`
+
 const PRETENDARD_FONT_FAMILY =
   "Pretendard Variable, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif"
 

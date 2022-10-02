@@ -25,12 +25,12 @@ const FeedsContainer = () => {
             >
               홈 피드
             </S.Title>
-            <S.Title
+            {/* <S.Title
               isSelected={selectedCategory === 'recommended'}
               onClick={() => setSelectedCategory('recommended')}
             >
               추천 채널
-            </S.Title>
+            </S.Title> */}
           </S.TitleWrapper>
           <S.SelectViewType>
             <S.ViewType

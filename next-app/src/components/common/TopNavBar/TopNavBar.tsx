@@ -31,12 +31,14 @@ const TopNavBar = ({ openSideBar }: Props) => {
       </S.MenuButton>
       <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
       <S.MyPageButton onClick={() => router.push('/mypage/account')}>
-        <S.UserImage
-          width={24}
-          height={24}
-          alt="프로필 사진"
-          src={profileImageUrl}
-        />
+        {profileImageUrl && (
+          <S.UserImage
+            width={24}
+            height={24}
+            alt="프로필 사진"
+            src={profileImageUrl}
+          />
+        )}
         {name}
       </S.MyPageButton>
     </S.TopNavContainer>

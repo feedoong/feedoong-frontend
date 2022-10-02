@@ -6,8 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    loader: 'akamai',
-    path: '',
+    domains: ['lh3.googleusercontent.com'],
   },
 }
 
