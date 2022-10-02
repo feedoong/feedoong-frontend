@@ -27,7 +27,7 @@ const TopNavBar = ({ openSideBar }: Props) => {
         MENU
       </S.MenuButton>
       <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
-      <S.MyPageButton onClick={() => router.push('/myPage')}>
+      <S.MyPageButton onClick={() => router.push('/mypage/account')}>
         <div
           style={{
             width: '24px',

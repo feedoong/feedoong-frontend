@@ -4,6 +4,7 @@ import CardViewIcon from './card_view.svg'
 import GridViewIcon from './grid_view.svg'
 import CardViewIconDeactive from './card_view-deactive.svg'
 import GridViewIconDeactive from './grid_view-deactive.svg'
+import Bookmark from './bookmark.svg'
 import Logo from './Feedoong.svg'
 import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
@@ -22,6 +23,7 @@ export const Icons = {
   CardViewIconDeactive,
   GridViewIcon,
   GridViewIconDeactive,
+  Bookmark,
   Logo,
   GoogleIcon,
   Add,
@@ -31,7 +33,7 @@ export const Icons = {
   Folder,
   Star,
   SpeechBubble,
-  Thunder
+  Thunder,
 }
 
 export default Icons

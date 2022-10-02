@@ -1,51 +1,34 @@
-import React, { ReactNode } from 'react'
+import React, { Children, ReactNode, forwardRef } from 'react'
 import Portal from 'pages/portal'
+import { DialogTitle } from './DialogTitle'
+import { DialogContent } from './ DialogContent'
 
 import * as S from './Dialog.style'
+import { DialogActions } from './DialogActions'
 
 interface Props {
+  isOpen: boolean
+  children: ReactNode
   width?: string
-  title: string | string[]
-  content?: ReactNode
-  cancelButtonLabel?: string
-  rightButtonName?: string
-  rightButtonBackgroundColor?: string
-  onCancel: () => void
-  onConfirm: () => void
 }
 
-const Dialog = ({
-  title,
-  width,
-  content,
-  cancelButtonLabel,
-  rightButtonName,
-  rightButtonBackgroundColor,
-  onCancel,
-  onConfirm,
-}: Props) => {
-  return (
+const Dialog = forwardRef<HTMLDivElement, Props>(function Dialog(
+  { isOpen, children, width },
+  ref
+) {
+  return isOpen ? (
     <Portal selector="#dialog">
       <S.Background>
-        <S.DialogWrapper width={width}>
-          <S.Title>{title}</S.Title>
-          <S.Content>{content}</S.Content>
-
-          <S.ButtonWrapper>
-            <S.LeftButton onClick={onCancel}>
-              {cancelButtonLabel || '취소'}
-            </S.LeftButton>
-            <S.RightButton
-              onClick={onConfirm}
-              background={rightButtonBackgroundColor}
-            >
-              {rightButtonName || '확인'}
-            </S.RightButton>
-          </S.ButtonWrapper>
-        </S.DialogWrapper>
+        <S.DialogContainer width={width} ref={ref}>
+          {children}
+        </S.DialogContainer>
       </S.Background>
     </Portal>
-  )
-}
+  ) : null
+})
 
-export default Dialog
+export default Object.assign(Dialog, {
+  Title: DialogTitle,
+  Content: DialogContent,
+  Actions: DialogActions,
+})
