@@ -11,4 +11,6 @@ export const colors = {
   gray800: '#424242',
   gray900: '#212322',
   error: '#E14942',
+  /** @description figma 용어 통일 필요 */
+  primary: '#3872E0',
 }
