@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
+import Image from 'next/image'
 
 export const TopNavContainer = styled.div`
   position: fixed;
@@ -42,4 +43,11 @@ export const MyPageButton = styled.div`
   align-items: center;
   color: ${colors.white};
   cursor: pointer;
+  gap: 8px;
+`
+
+export const UserImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 `

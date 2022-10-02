@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  padding-top: 60px;
+export const Container = styled.div<{ isSignUpPage: boolean }>`
+  ${({ isSignUpPage }) => !isSignUpPage && 'padding-top: 60px'}
 `
