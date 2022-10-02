@@ -8,6 +8,7 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  experimental: { images: { allowFutureImage: true } },
 }
 
 module.exports = nextConfig

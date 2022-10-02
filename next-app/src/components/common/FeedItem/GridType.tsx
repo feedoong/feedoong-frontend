@@ -6,6 +6,7 @@ import * as S from './FeedItem.style'
 import { Container, GridTypeWrapper, Title } from './GridType.style'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
+import Divider from '../Divider'
 
 const GridType = () => {
   return (
@@ -20,6 +21,7 @@ const GridType = () => {
         <S.Body>
           <Title>제주 온 태국인 관광객 60% ‘입국 불허’…이탈자도 늘어</Title>
         </S.Body>
+        <Divider />
         <S.Footer>
           <S.PostMeta>
             <Image
