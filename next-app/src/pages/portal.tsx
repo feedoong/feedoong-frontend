@@ -13,7 +13,6 @@ const Portal = ({ children, selector }: Props) => {
   const isSSR = typeof window === 'undefined'
 
   const targetDOM = !isSSR && document.querySelector(selector)
-  // const targetDOM = typeof window !== 'undefined' && document.querySelector(selector)
   return !!targetDOM ? ReactDOM.createPortal(children, targetDOM) : null
 }
 

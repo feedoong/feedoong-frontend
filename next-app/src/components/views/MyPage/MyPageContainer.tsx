@@ -36,7 +36,7 @@ const MyPageContainer = () => {
             <button onClick={() => setIsOpenDeleteAccountModal(false)}>
               취소
             </button>
-            <button className="nagative">회원탈퇴</button>
+            <button className="secondary">회원탈퇴</button>
           </Dialog.Actions>
         </Dialog>
       }

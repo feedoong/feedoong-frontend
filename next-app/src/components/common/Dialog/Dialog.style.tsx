@@ -61,7 +61,7 @@ export const ActionContainer = styled.div`
     color: ${colors.white};
   }
 
-  .nagative {
+  .secondary {
     background-color: ${colors.error};
     color: ${colors.white};
   }
