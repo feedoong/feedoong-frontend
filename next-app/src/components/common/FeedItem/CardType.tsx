@@ -10,12 +10,21 @@ import Flex from '../Flex'
 import Divider from '../Divider'
 
 import * as S from './FeedItem.style'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { likeItem } from 'services/feeds'
 
 interface Props {
   item: Item
 }
 
 const CardType = ({ item }: Props) => {
+  const client = useQueryClient()
+  const { mutate: handleLike } = useMutation(['likeItem', item.id], likeItem, {
+    onSuccess: () => {
+      client.invalidateQueries(['feeds'])
+    },
+  })
+
   return (
     <Container>
       <S.Body>
@@ -50,6 +59,7 @@ const CardType = ({ item }: Props) => {
             src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
             width={16}
             height={16}
+            onClick={() => handleLike(String(item.id))}
           />
         </Flex>
       </S.Footer>
