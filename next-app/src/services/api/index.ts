@@ -2,13 +2,16 @@ import Axios, { AxiosResponse } from 'axios'
 import humps from 'humps'
 
 import { getApiEndpoint } from 'envs'
+import Cookies from 'js-cookie'
 
 const { camelizeKeys } = humps
 
 const api = Axios.create({
   baseURL: `${getApiEndpoint()}`,
   validateStatus: (status) => status >= 200 && status < 400,
-  withCredentials: true,
+  headers: {
+    Authorization: `Bearer ${Cookies.get('token')}`,
+  },
 })
 
 api.interceptors.response.use(
