@@ -18,7 +18,7 @@ export const TopNavContainer = styled.div`
 `
 
 export const MenuButton = styled.button`
-  ${getTypographyStyles('Headline4_B')}
+  ${getTypographyStyles('Body1_B')}
 
   color: ${colors.white};
   border: 0;
@@ -50,4 +50,11 @@ export const MyPageButton = styled.div`
   align-items: center;
   color: ${colors.white};
   cursor: pointer;
+  gap: 8px;
+`
+
+export const UserImage = styled(Image)`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 `

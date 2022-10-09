@@ -1,19 +1,24 @@
-import CardTypeDefault from './CardType'
-import GridTypeDefault from './GridType'
+import CardType from './CardType'
+import GridType from './GridType'
+import SimpleType from './SimpleType'
 
-export type FeedType = 'card' | 'grid'
+export type FeedType = 'card' | 'grid' | 'simple'
 
 interface Props {
   type?: FeedType
-  CardTypeItem?: () => JSX.Element
-  GridTypeItem?: () => JSX.Element
 }
 
-const FeedItem = ({ type = 'card', CardTypeItem, GridTypeItem }: Props) => {
-  const CardType = CardTypeItem ?? CardTypeDefault
-  const GridType = GridTypeItem ?? GridTypeDefault
-
-  return type === 'card' ? <CardType /> : <GridType />
+const FeedItem = ({ type = 'card' }: Props) => {
+  if (type === 'card') {
+    return <CardType />
+  }
+  if (type === 'grid') {
+    return <GridType />
+  }
+  if (type === 'simple') {
+    return <SimpleType />
+  }
+  return null
 }
 
 export default FeedItem

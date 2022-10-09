@@ -5,6 +5,7 @@ import GridViewIcon from './grid_view.svg'
 import CardViewIconDeactive from './card_view-deactive.svg'
 import GridViewIconDeactive from './grid_view-deactive.svg'
 import Bookmark from './bookmark.svg'
+import BookmarkDeactive from './bookmark-deactive.svg'
 import Logo from './Feedoong.svg'
 import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
@@ -15,6 +16,11 @@ import Folder from './folder.svg'
 import Star from './star.svg'
 import SpeechBubble from './speechBubble.svg'
 import Thunder from './Thunder.svg'
+import Cancel from './cancel_icon.svg'
+import MailIcon from './mail_icon.svg'
+import RSSIcon from './rss_icon.svg'
+import MenuIcon from './menu-icon.svg'
+import Link from './link.svg'
 
 export const Icons = {
   NaverIcon,
@@ -24,6 +30,7 @@ export const Icons = {
   GridViewIcon,
   GridViewIconDeactive,
   Bookmark,
+  BookmarkDeactive,
   Logo,
   GoogleIcon,
   Add,
@@ -34,6 +41,11 @@ export const Icons = {
   Star,
   SpeechBubble,
   Thunder,
+  Cancel,
+  MailIcon,
+  RSSIcon,
+  MenuIcon,
+  Link,
 }
 
 export default Icons
