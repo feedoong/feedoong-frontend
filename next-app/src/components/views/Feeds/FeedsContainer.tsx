@@ -1,10 +1,14 @@
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import FeedItem from 'components/common/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
+import { getFeeds } from 'services/feeds'
 
 const FeedsContainer = () => {
+  const { data, isLoading } = useQuery(['feeds'], getFeeds)
+
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
   >('home')
@@ -12,7 +16,6 @@ const FeedsContainer = () => {
     'card'
   )
 
-  const isCardView = selectedViewType === 'card'
   const isGridView = selectedViewType === 'grid'
 
   return (
@@ -26,18 +29,12 @@ const FeedsContainer = () => {
             >
               홈 피드
             </S.Title>
-            {/* <S.Title
-              isSelected={selectedCategory === 'recommended'}
-              onClick={() => setSelectedCategory('recommended')}
-            >
-              추천 채널
-            </S.Title> */}
           </S.TitleWrapper>
           <S.SelectViewType>
             <S.ViewType
               alt="카드 뷰"
-              src={Icons[isCardView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              isSelected={isCardView}
+              src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
+              isSelected={!isGridView}
               onClick={() => setSelectedViewType('card')}
               width={16}
               height={16}
@@ -53,9 +50,17 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          <FeedItem type={selectedViewType} />
-          <FeedItem type={selectedViewType} />
-          <FeedItem type={selectedViewType} />
+          {isLoading
+            ? '로딩 스피너'
+            : data?.items.map((item) => {
+                return (
+                  <FeedItem
+                    key={item.itemId}
+                    type={selectedViewType}
+                    item={item}
+                  />
+                )
+              })}
         </S.CardContainer>
       </S.FeedWrapper>
     </S.Container>

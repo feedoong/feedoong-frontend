@@ -1,5 +1,5 @@
-import React, { Children, ReactNode, forwardRef } from 'react'
-import Portal from 'pages/portal'
+import React, { type ReactNode, forwardRef } from 'react'
+import Portal from 'components/common/Portal'
 import { DialogTitle } from './DialogTitle'
 import { DialogContent } from './ DialogContent'
 

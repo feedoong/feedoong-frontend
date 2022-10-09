@@ -3,8 +3,13 @@ import Image from 'next/future/image'
 import { Container, Title, Url } from './SimpleType.style'
 import Icons from 'assets/icons'
 import Flex from '../Flex'
+import type { Item } from 'types/feeds'
 
-const SimpleType = () => {
+interface Props {
+  item?: Item // TODO: 값 채우기
+}
+
+const SimpleType = ({ item }: Props) => {
   return (
     <Container>
       <Flex justify="between">

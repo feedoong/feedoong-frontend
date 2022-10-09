@@ -2,13 +2,22 @@ import Image from 'next/image'
 
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
-import * as S from './FeedItem.style'
+import type { Item } from 'types/feeds'
+
+import { getFormatDate } from 'utils'
+
 import { Container, GridTypeWrapper, Title } from './GridType.style'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
 
-const GridType = () => {
+import * as S from './FeedItem.style'
+
+interface Props {
+  item: Item
+}
+
+const GridType = ({ item }: Props) => {
   return (
     <Container>
       <div
@@ -19,7 +28,7 @@ const GridType = () => {
       />
       <GridTypeWrapper>
         <S.Body>
-          <Title>제주 온 태국인 관광객 60% ‘입국 불허’…이탈자도 늘어</Title>
+          <Title>{item.title}</Title>
         </S.Body>
         <Divider />
         <S.Footer>
@@ -31,7 +40,7 @@ const GridType = () => {
               height={20}
             />
             <S.Author>네이버 뉴스</S.Author>
-            <S.Date>2022.08.21</S.Date>
+            <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
           </S.PostMeta>
           <Flex gap={12}>
             <S.CopyLinkButton
@@ -39,11 +48,11 @@ const GridType = () => {
               src={Icons.Link}
               width={16}
               height={16}
-              onClick={() => copyToClipboard('url')}
+              onClick={() => copyToClipboard(item.link)}
             />
             <S.Bookmark
               alt="북마크"
-              src={Icons.BookmarkDeactive}
+              src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
               width={16}
               height={16}
             />

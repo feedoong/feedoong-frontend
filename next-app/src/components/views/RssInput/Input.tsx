@@ -2,10 +2,10 @@ import { forwardRef, type ChangeEvent } from 'react'
 import Image from 'next/image'
 
 import Icons from 'assets/icons'
-import useControlled from './hooks/useControlled'
+import { useControlled } from './hooks'
 import * as S from './RssInputContainer.style'
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string
   defaultValue?: string
   isValid?: boolean
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ value, defaultValue, isValid, onChange }, forwardedRef) => {
+  ({ value, defaultValue, isValid, onChange, ...rest }, forwardedRef) => {
     const [selectedValue, setSelectedValue] = useControlled<string | undefined>(
       {
         controlled: value,
@@ -34,9 +34,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
     return (
       <S.InputWrapper isValid={isValid}>
         <S.Input
+          {...rest}
           ref={forwardedRef}
-          type="text"
-          placeholder="URL을 추가해서 피드로 모아보세요!"
           onChange={_onChange}
           value={selectedValue}
         />
