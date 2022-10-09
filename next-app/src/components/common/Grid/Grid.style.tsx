@@ -1,4 +1,6 @@
+import Image from 'next/future/image'
 import styled from 'styled-components'
+
 import { getTypographyStyles } from 'styles/fonts'
 import { colors } from 'styles/colors'
 
@@ -62,4 +64,8 @@ export const ContentFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+export const OptionButton = styled(Image)`
+  cursor: pointer;
 `

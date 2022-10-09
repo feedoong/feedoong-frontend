@@ -22,7 +22,7 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.h2`
-  ${getTypographyStyles('Headline4_M')}
+  ${getTypographyStyles('Headline3_M')}
   color: ${colors.gray400};
   text-align: center;
 `
@@ -40,7 +40,7 @@ export const ButtonContentsWrapper = styled.div`
   gap: 10px;
 
   p {
-    ${getTypographyStyles('Headline4_B')}
+    ${getTypographyStyles('Headline3_B')}
   }
 `
 

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Icons from 'assets/icons'
+
 import * as S from 'components/common/FeedItem/FeedItem.style'
 import * as GS from 'components/common/Grid/Grid.style'
 
@@ -20,7 +21,7 @@ const Grid = () => {
             <span className="date">2022.08.22</span>
           </div>
           <div className="right">
-            <S.OptionButton
+            <GS.OptionButton
               alt="옵션 버튼"
               src={Icons.DotsVertical}
               width={16}

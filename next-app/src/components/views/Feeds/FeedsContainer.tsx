@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import FeedItem from 'components/common/FeedItem'
-import type { FeedType } from 'components/common/FeedItem/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
 
@@ -9,7 +8,9 @@ const FeedsContainer = () => {
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
   >('home')
-  const [selectedViewType, setSelectedViewType] = useState<FeedType>('card')
+  const [selectedViewType, setSelectedViewType] = useState<'card' | 'grid'>(
+    'card'
+  )
 
   const isCardView = selectedViewType === 'card'
   const isGridView = selectedViewType === 'grid'
@@ -25,12 +26,12 @@ const FeedsContainer = () => {
             >
               홈 피드
             </S.Title>
-            <S.Title
+            {/* <S.Title
               isSelected={selectedCategory === 'recommended'}
               onClick={() => setSelectedCategory('recommended')}
             >
               추천 채널
-            </S.Title>
+            </S.Title> */}
           </S.TitleWrapper>
           <S.SelectViewType>
             <S.ViewType

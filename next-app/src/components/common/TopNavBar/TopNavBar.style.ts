@@ -18,7 +18,7 @@ export const TopNavContainer = styled.div`
 `
 
 export const MenuButton = styled.button`
-  ${getTypographyStyles('Headline4_B')}
+  ${getTypographyStyles('Body1_B')}
 
   color: ${colors.white};
   border: 0;
