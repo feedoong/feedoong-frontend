@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@tanstack/react-query", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
             ["@tanstack/react-query-devtools", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
+            ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/node", "npm:18.7.9"],\
             ["@types/react", "npm:18.0.17"],\
@@ -45,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.27.2"],\
             ["eslint", "npm:8.22.0"],\
             ["eslint-config-next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:12.2.5"],\
+            ["humps", "npm:2.0.1"],\
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:12.2.5"],\
             ["prettier", "npm:2.7.1"],\
@@ -716,6 +718,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-http-cache-semantics-npm-4.0.1-90863c7a3e-1048aacf62.zip/node_modules/@types/http-cache-semantics/",\
           "packageDependencies": [\
             ["@types/http-cache-semantics", "npm:4.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/humps", [\
+        ["npm:2.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-humps-npm-2.0.2-018f2ca1c8-db2ca91423.zip/node_modules/@types/humps/",\
+          "packageDependencies": [\
+            ["@types/humps", "npm:2.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2341,6 +2352,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["feedoong-frontend", "workspace:."],\
             ["@tanstack/react-query", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
             ["@tanstack/react-query-devtools", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
+            ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/node", "npm:18.7.9"],\
             ["@types/react", "npm:18.0.17"],\
@@ -2351,6 +2363,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.27.2"],\
             ["eslint", "npm:8.22.0"],\
             ["eslint-config-next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:12.2.5"],\
+            ["humps", "npm:2.0.1"],\
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:12.2.5"],\
             ["prettier", "npm:2.7.1"],\
@@ -2766,6 +2779,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["http2-wrapper", "npm:1.0.3"],\
             ["quick-lru", "npm:5.1.1"],\
             ["resolve-alpn", "npm:1.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["humps", [\
+        ["npm:2.0.1", {\
+          "packageLocation": "./.yarn/cache/humps-npm-2.0.1-268b3f430d-7d5a674cfc.zip/node_modules/humps/",\
+          "packageDependencies": [\
+            ["humps", "npm:2.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
