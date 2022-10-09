@@ -14,6 +14,4 @@ const query = new URLSearchParams({
   scope,
 })
 
-console.log(query.toString())
-
 export const googleAuthUrl = `${hostname}?${query.toString()}`
