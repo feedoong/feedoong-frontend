@@ -7,7 +7,7 @@ export interface Item {
   description: string
   guid: string
   isLiked: boolean
-  itemId: number
+  id: number
   link: string
   publishedAt: string // 2022-10-09T18:11:18.497Z
   title: string
@@ -29,4 +29,9 @@ export interface SubmitRssUrlResponse {
   channelId: 0
   createdAt: string // 2022-10-09T18:11:18.492Z
   link: string
+}
+
+export interface LikeItemResponse {
+  isLiked: boolean
+  itemId: number
 }

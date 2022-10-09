@@ -1,6 +1,7 @@
 import api from 'services/api'
 import type {
   Feed,
+  LikeItemResponse,
   PreviewResponse,
   SubmitRssUrlParams,
   SubmitRssUrlResponse,
@@ -24,4 +25,13 @@ export const submitRssUrl = (params: Partial<SubmitRssUrlParams>) => {
   return api.post<SubmitRssUrlParams, SubmitRssUrlResponse>(`/channels`, {
     ...params,
   })
+}
+
+export const likeItem = (id: string) => {
+  return api.post<null, LikeItemResponse>(`/likes/${id}`)
+}
+
+// likeItem 두번 호출하면 그냥 취소 되는 듯
+export const unlikeItem = (id: string) => {
+  return api.delete<null, null>(`/likes/${id}`)
 }
