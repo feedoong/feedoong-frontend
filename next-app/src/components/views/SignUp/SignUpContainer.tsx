@@ -1,15 +1,15 @@
 import Image from 'next/image'
-import * as S from './SignUpContainer.style'
-import Icons from 'assets/icons'
 import { useRouter } from 'next/router'
+
+import { googleAuthUrl } from './SignUpContainer.utils'
+import Icons from 'assets/icons'
+import * as S from './SignUpContainer.style'
 
 const SignUpContainer = () => {
   const router = useRouter()
 
-  const handleSignUpButton = () => {
-    router.push(
-      `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=http://localhost:3000/oauth&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`
-    )
+  const signUp = () => {
+    router.push(googleAuthUrl)
   }
 
   return (
@@ -21,7 +21,7 @@ const SignUpContainer = () => {
         크롬 새탭에서 바로 시작하세요!
       </S.Subtitle>
       <S.GoogleLoginButton>
-        <S.ButtonContentsWrapper onClick={handleSignUpButton}>
+        <S.ButtonContentsWrapper onClick={signUp}>
           <Image
             src={Icons.GoogleIcon}
             width={16}

@@ -545,6 +545,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/humps@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@types/humps@npm:2.0.2"
+  checksum: db2ca91423eb2b59a2d18a1dbbdd67eabc9862205dd93284b2a1f61ba4e289851879542816398bc3e86298409987b5c48b0ede05d3b4c998a0b0adaeb862f95e
+  languageName: node
+  linkType: hard
+
 "@types/js-cookie@npm:^3":
   version: 3.0.2
   resolution: "@types/js-cookie@npm:3.0.2"
@@ -1821,6 +1828,7 @@ __metadata:
   dependencies:
     "@tanstack/react-query": ^4.6.0
     "@tanstack/react-query-devtools": ^4.6.0
+    "@types/humps": ^2.0.2
     "@types/js-cookie": ^3
     "@types/node": 18.7.9
     "@types/react": 18.0.17
@@ -1831,6 +1839,7 @@ __metadata:
     axios: ^0.27.2
     eslint: 8.22.0
     eslint-config-next: 12.2.5
+    humps: ^2.0.1
     js-cookie: ^3.0.1
     next: 12.2.5
     prettier: ^2.7.1
@@ -2190,6 +2199,13 @@ __metadata:
     quick-lru: ^5.1.1
     resolve-alpn: ^1.0.0
   checksum: 74160b862ec699e3f859739101ff592d52ce1cb207b7950295bf7962e4aa1597ef709b4292c673bece9c9b300efad0559fc86c71b1409c7a1e02b7229456003e
+  languageName: node
+  linkType: hard
+
+"humps@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "humps@npm:2.0.1"
+  checksum: 7d5a674cfca2f34c04562f6fd0d129b4c43a5caf85fcc1c9eacf5d0729554c9375db362c4232519b37369c94dd2560d85f96ad4091a8fbf4af4e625ab5214a30
   languageName: node
   linkType: hard
 

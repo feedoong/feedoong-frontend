@@ -1,34 +1,23 @@
-import qs from 'query-string'
 import { useRouter } from 'next/router'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import Cookies from 'js-cookie'
-import { ApiResponseData } from 'types/common'
 import { useSetRecoilState } from 'recoil'
-import profile from 'store/atoms/profile'
+import { useQuery } from '@tanstack/react-query'
+import qs from 'query-string'
+import Cookies from 'js-cookie'
+import humps from 'humps'
 
-interface SignUpResponse {
-  accessToken: string
-  name: string
-  profileImageUrl: string
-}
+import profile from 'store/atoms/profile'
+import { submitAccessToken } from 'services/auth'
 
 const Oauth = () => {
   const router = useRouter()
-  const { fragmentIdentifier } = qs.parseUrl(router.asPath, {
-    parseFragmentIdentifier: true,
-  })
-  const token = fragmentIdentifier?.split('&')[0].split('=')[1]
+
   const setProfile = useSetRecoilState(profile)
 
-  const { data } = useQuery(
+  useQuery(
     ['/signup'],
-    () =>
-      axios.post(
-        `https://api.feedoong.io/v1/auth/login/google?accessToken=${token}`
-      ),
+    () => submitAccessToken(parseAccessToken(router.asPath)),
     {
-      onSuccess: ({ data: response }: ApiResponseData<SignUpResponse>) => {
+      onSuccess: (response) => {
         Cookies.set('token', response.accessToken, {
           expires: 7,
           secure: true,
@@ -40,6 +29,10 @@ const Oauth = () => {
         })
         router.replace('/')
       },
+      onError: () => {
+        alert('로그인에 실패했습니다. 다시 시도해주세요.')
+        router.replace('/')
+      },
     }
   )
 
@@ -47,3 +40,21 @@ const Oauth = () => {
 }
 
 export default Oauth
+
+const parseAccessToken = (asPath: string) => {
+  const { fragmentIdentifier } = qs.parseUrl(asPath, {
+    parseFragmentIdentifier: true,
+  })
+  if (!fragmentIdentifier) {
+    throw new Error('No fragment identifier')
+  }
+  const query = humps.camelizeKeys(qs.parse(fragmentIdentifier)) as {
+    accessToken: string
+    authuser: string
+    expiresIn: string
+    prompt: string
+    scope: string
+    tokenType: string
+  }
+  return query.accessToken
+}
