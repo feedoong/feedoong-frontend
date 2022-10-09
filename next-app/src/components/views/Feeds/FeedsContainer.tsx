@@ -50,9 +50,17 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          <FeedItem type={selectedViewType} />
-          <FeedItem type={selectedViewType} />
-          <FeedItem type={selectedViewType} />
+          {isLoading
+            ? '로딩 스피너'
+            : data?.items.map((item) => {
+                return (
+                  <FeedItem
+                    key={item.itemId}
+                    type={selectedViewType}
+                    item={item}
+                  />
+                )
+              })}
         </S.CardContainer>
       </S.FeedWrapper>
     </S.Container>

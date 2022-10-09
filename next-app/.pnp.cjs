@@ -44,6 +44,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.20"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.20"],\
             ["axios", "npm:0.27.2"],\
+            ["dayjs", "npm:1.11.5"],\
             ["eslint", "npm:8.22.0"],\
             ["eslint-config-next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:12.2.5"],\
             ["humps", "npm:2.0.1"],\
@@ -1640,6 +1641,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["dayjs", [\
+        ["npm:1.11.5", {\
+          "packageLocation": "./.yarn/cache/dayjs-npm-1.11.5-a825142dc5-e3bbaa7b48.zip/node_modules/dayjs/",\
+          "packageDependencies": [\
+            ["dayjs", "npm:1.11.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["debug", [\
         ["npm:2.6.9", {\
           "packageLocation": "./.yarn/cache/debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip/node_modules/debug/",\
@@ -2361,6 +2371,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.20"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.20"],\
             ["axios", "npm:0.27.2"],\
+            ["dayjs", "npm:1.11.5"],\
             ["eslint", "npm:8.22.0"],\
             ["eslint-config-next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:12.2.5"],\
             ["humps", "npm:2.0.1"],\

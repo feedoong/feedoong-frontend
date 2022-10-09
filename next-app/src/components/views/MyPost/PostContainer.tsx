@@ -1,12 +1,15 @@
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import FeedItem from 'components/common/FeedItem/FeedItem'
-import type { FeedType } from 'components/common/FeedItem/FeedItem'
-
-import Icons from 'assets/icons'
 import * as S from 'components/views/MyPost/PostContainer.style'
+import { getFeeds } from 'services/feeds'
+import Icons from 'assets/icons'
 
 function PostContainer() {
+  // TODO: 내가 등록한 포스트를 가져오는 API를 만들어야 합니다.
+  const { data, isLoading } = useQuery(['feeds'], getFeeds)
+
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
   >('home')
@@ -14,7 +17,6 @@ function PostContainer() {
     'card'
   )
 
-  const isCardView = selectedViewType === 'card'
   const isGridView = selectedViewType === 'grid'
 
   return (
@@ -28,18 +30,12 @@ function PostContainer() {
             >
               내가 저장한 게시물
             </S.Title>
-            {/* <S.Title
-              isSelected={selectedCategory === 'recommended'}
-              onClick={() => setSelectedCategory('recommended')}
-            >
-              추천 채널
-            </S.Title> */}
           </S.TitleWrapper>
           <S.SelectViewType>
             <S.ViewType
               alt="카드 뷰"
-              src={Icons[isCardView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              isSelected={isCardView}
+              src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
+              isSelected={!isGridView}
               onClick={() => setSelectedViewType('card')}
               width={16}
               height={16}
@@ -55,9 +51,17 @@ function PostContainer() {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          <FeedItem type={selectedViewType} />
-          <FeedItem type={selectedViewType} />
-          <FeedItem type={selectedViewType} />
+          {isLoading
+            ? '로딩 스피너'
+            : data?.items.map((item) => {
+                return (
+                  <FeedItem
+                    key={item.itemId}
+                    type={selectedViewType}
+                    item={item}
+                  />
+                )
+              })}
         </S.CardContainer>
       </S.FeedWrapper>
     </S.Container>

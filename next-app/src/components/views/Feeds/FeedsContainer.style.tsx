@@ -60,5 +60,7 @@ const CardLayout: {
 }
 
 export const CardContainer = styled.ul<{ type?: 'card' | 'grid' }>`
+  min-width: 626px;
+
   ${({ type = 'card' }) => CardLayout[type]}
 `
