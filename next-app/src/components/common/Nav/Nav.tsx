@@ -4,7 +4,8 @@ import TopNavBar from '../TopNavBar'
 import SideMenuBar from '../SideNavBar'
 
 const Nav = () => {
-  const [showSideBar, setShowSideBar] = useState(false)
+  const [showSideBar, setShowSideBar] = useState<boolean | null>(null)
+
   return (
     <>
       <TopNavBar openSideBar={() => setShowSideBar(true)} />

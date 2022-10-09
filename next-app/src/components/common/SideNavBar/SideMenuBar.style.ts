@@ -21,14 +21,15 @@ const showOut = keyframes`
   }
 `
 
-export const SideMenuBarContainer = styled.div<{ isOpen: boolean }>`
+export const SideMenuBarContainer = styled.div<{ isOpen: boolean | null }>`
   position: fixed;
   z-index: ${Z_INDEX.navBar};
   background-color: ${colors.gray100};
   width: 300px;
   height: 100%;
   transform: translateX(-100%);
-  animation: 0.7s ${(props) => (props.isOpen ? showUp : showOut)} forwards;
+  animation: 0.7s ${({ isOpen }) => (isOpen ? showUp : showOut)} forwards;
+  display: ${({ isOpen }) => isOpen === null && 'none'};
 `
 
 export const CloseSection = styled.section`

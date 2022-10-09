@@ -18,15 +18,15 @@ const TopNavBar = ({ openSideBar }: Props) => {
   return (
     <S.TopNavContainer>
       <S.MenuButton onClick={openSideBar}>
-        <div style={{ marginRight: '10px' }}>
+        <S.ImageWrapper>
           <Image
             priority
-            src={Icons.MenuIcon}
+            src={Icons.Menu}
             alt="close-icon"
-            width="12"
-            height="12"
+            width="18.4"
+            height="16.4"
           />
-        </div>
+        </S.ImageWrapper>
         MENU
       </S.MenuButton>
       <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>

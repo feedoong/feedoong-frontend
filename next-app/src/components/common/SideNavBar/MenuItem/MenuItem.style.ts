@@ -3,7 +3,7 @@ import { colors } from "styles/colors"
 import { getTypographyStyles } from "styles/fonts"
 
 export const MenuItemWrap = styled.div`
-  padding: 12px 40px;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
 `

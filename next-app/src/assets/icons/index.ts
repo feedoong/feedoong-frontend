@@ -10,7 +10,12 @@ import Logo from './Feedoong.svg'
 import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
 import CancelCircle from './cancel.svg'
-import Sparkles from './Sparkles.svg'
+import Close from './close.svg'
+import Menu from './menu_icon.svg'
+import Folder from './folder.svg'
+import Star from './star.svg'
+import SpeechBubble from './speechBubble.svg'
+import Thunder from './Thunder.svg'
 import Cancel from './cancel_icon.svg'
 import MailIcon from './mail_icon.svg'
 import RSSIcon from './rss_icon.svg'
@@ -29,8 +34,13 @@ export const Icons = {
   Logo,
   GoogleIcon,
   Add,
-  Sparkles,
   CancelCircle,
+  Close,
+  Menu,
+  Folder,
+  Star,
+  SpeechBubble,
+  Thunder,
   Cancel,
   MailIcon,
   RSSIcon,
