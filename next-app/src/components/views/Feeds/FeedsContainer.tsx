@@ -54,11 +54,7 @@ const FeedsContainer = () => {
             ? '로딩 스피너'
             : data?.items.map((item) => {
                 return (
-                  <FeedItem
-                    key={item.itemId}
-                    type={selectedViewType}
-                    item={item}
-                  />
+                  <FeedItem key={item.id} type={selectedViewType} item={item} />
                 )
               })}
         </S.CardContainer>

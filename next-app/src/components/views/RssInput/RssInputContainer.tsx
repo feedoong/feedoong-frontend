@@ -9,11 +9,15 @@ import { useRssInput } from './hooks'
 import * as S from './RssInputContainer.style'
 
 const RssInputContainer = () => {
-  const { url, onSubmit, handleInput } = useRssInput()
+  const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput()
 
   return (
     <S.Container>
-      <form onSubmit={onSubmit}>
+      <form
+        onSubmit={(e) =>
+          (!isPreviewLoading || isRssUrlValid(url)) && onSubmit(e)
+        }
+      >
         <Flex justify="center" align="center">
           <Input
             name="url"
@@ -25,7 +29,7 @@ const RssInputContainer = () => {
           <S.AddButton
             type="submit"
             isValid={isRssUrlValid(url)}
-            onClick={console.log}
+            disabled={isPreviewLoading || !isRssUrlValid(url)}
           >
             <Image alt="add 버튼" src={Icons.Add} width={20} height={20} />
           </S.AddButton>

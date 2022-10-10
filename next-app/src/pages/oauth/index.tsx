@@ -7,6 +7,7 @@ import humps from 'humps'
 
 import profile from 'store/atoms/profile'
 import { submitAccessToken } from 'services/auth'
+import api from 'services/api'
 
 const Oauth = () => {
   const router = useRouter()
@@ -23,6 +24,9 @@ const Oauth = () => {
           secure: true,
           sameSite: 'lax',
         })
+        api.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${response.accessToken}`
         setProfile({
           name: response.name,
           profileImageUrl: response.profileImageUrl,
