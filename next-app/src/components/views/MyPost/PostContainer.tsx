@@ -3,12 +3,12 @@ import { useQuery } from '@tanstack/react-query'
 
 import FeedItem from 'components/common/FeedItem/FeedItem'
 import * as S from 'components/views/MyPost/PostContainer.style'
-import { getFeeds } from 'services/feeds'
+import { getLikedItems } from 'services/feeds'
 import Icons from 'assets/icons'
+import { cacheKeys } from 'services/cacheKeys'
 
 function PostContainer() {
-  // TODO: 내가 등록한 포스트를 가져오는 API를 만들어야 합니다.
-  const { data, isLoading } = useQuery(['feeds'], getFeeds)
+  const { data, isLoading } = useQuery(cacheKeys.likedItems, getLikedItems)
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
@@ -55,11 +55,7 @@ function PostContainer() {
             ? '로딩 스피너'
             : data?.items.map((item) => {
                 return (
-                  <FeedItem
-                    key={item.itemId}
-                    type={selectedViewType}
-                    item={item}
-                  />
+                  <FeedItem key={item.id} type={selectedViewType} item={item} />
                 )
               })}
         </S.CardContainer>

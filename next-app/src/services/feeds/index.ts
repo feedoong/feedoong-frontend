@@ -35,3 +35,7 @@ export const likeItem = (id: string) => {
 export const unlikeItem = (id: string) => {
   return api.delete<null, null>(`/likes/${id}`)
 }
+
+export const getLikedItems = () => {
+  return api.get<null, Feed>(`/items/liked`)
+}

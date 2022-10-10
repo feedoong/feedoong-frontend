@@ -1,15 +1,16 @@
 import Image from 'next/future/image'
 
-import { Container, Title, Url } from './SimpleType.style'
+import { Container, Title, Url } from './SubscriptionType.style'
 import Icons from 'assets/icons'
+import type { Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
-import type { Item } from 'types/feeds'
+import Anchor from '../Anchor'
 
 interface Props {
-  item?: Item // TODO: 값 채우기
+  item?: Subscription
 }
 
-const SimpleType = ({ item }: Props) => {
+const SubscriptionType = ({ item }: Props) => {
   return (
     <Container>
       <Flex justify="between">
@@ -20,10 +21,9 @@ const SimpleType = ({ item }: Props) => {
             width={20}
             height={20}
           />
-          <Title>
-            내가 등록한 채널 타이틀은 최대 1줄까지 노출 가능, 1줄이 넘어가면 말
-            줄임표 적용을 해주세요.
-          </Title>
+          <Anchor href={item?.url} target="_blank">
+            <Title>{item?.title}</Title>
+          </Anchor>
         </Flex>
         <Image
           alt="옵션 메뉴"
@@ -33,9 +33,11 @@ const SimpleType = ({ item }: Props) => {
           style={{ cursor: 'pointer' }}
         />
       </Flex>
-      <Url>{`https://medium.com/myrealtrip-product/`}</Url>
+      <Anchor href={item?.url} target="_blank">
+        <Url>{item?.url}</Url>
+      </Anchor>
     </Container>
   )
 }
 
-export default SimpleType
+export default SubscriptionType

@@ -7,6 +7,7 @@ export interface Item {
   description: string
   guid: string
   isLiked: boolean
+  isViewed: boolean
   id: number
   link: string
   publishedAt: string // 2022-10-09T18:11:18.497Z

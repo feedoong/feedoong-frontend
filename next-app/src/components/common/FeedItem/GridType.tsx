@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
-
+import { likeItem } from 'services/feeds'
 import { getFormatDate } from 'utils'
 
 import { Container, GridTypeWrapper, Title } from './GridType.style'
@@ -18,6 +19,14 @@ interface Props {
 }
 
 const GridType = ({ item }: Props) => {
+  const client = useQueryClient()
+  const { mutate: handleLike } = useMutation(['likeItem', item.id], likeItem, {
+    onSuccess: () => {
+      client.invalidateQueries(['feeds'])
+      client.invalidateQueries(['likedItems'])
+    },
+  })
+
   return (
     <Container>
       <div
@@ -55,6 +64,7 @@ const GridType = ({ item }: Props) => {
               src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
               width={16}
               height={16}
+              onClick={() => handleLike(String(item.id))}
             />
           </Flex>
         </S.Footer>

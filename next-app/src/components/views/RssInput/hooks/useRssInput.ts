@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
 import { isRssUrlValid } from '../RssInputContainer.utils'
+import { cacheKeys } from 'services/cacheKeys'
 
 const useRssInput = () => {
   const client = useQueryClient()
@@ -18,7 +19,7 @@ const useRssInput = () => {
   })
 
   const { data, isLoading: isPreviewLoading } = useQuery(
-    ['channels', 'preview', url],
+    cacheKeys.preview(url),
     () => checkUrlAsRss(url!),
     {
       enabled: !!isRssUrlValid(url),

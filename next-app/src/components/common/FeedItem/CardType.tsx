@@ -12,6 +12,7 @@ import Divider from '../Divider'
 import * as S from './FeedItem.style'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { likeItem } from 'services/feeds'
+import Anchor from '../Anchor'
 
 interface Props {
   item: Item
@@ -22,6 +23,7 @@ const CardType = ({ item }: Props) => {
   const { mutate: handleLike } = useMutation(['likeItem', item.id], likeItem, {
     onSuccess: () => {
       client.invalidateQueries(['feeds'])
+      client.invalidateQueries(['likedItems'])
     },
   })
 
@@ -29,8 +31,12 @@ const CardType = ({ item }: Props) => {
     <Container>
       <S.Body>
         <S.BodyWrapper>
-          <Title>{item.title}</Title>
-          <S.Contents>{item.description}</S.Contents>
+          <Anchor href={item.link} target="_blank">
+            <Title>{item.title}</Title>
+          </Anchor>
+          <Anchor href={item.link} target="_blank">
+            <S.Contents>{item.description}</S.Contents>
+          </Anchor>
         </S.BodyWrapper>
         <S.ThumbnailEmpty />
       </S.Body>
