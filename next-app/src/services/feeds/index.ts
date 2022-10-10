@@ -5,6 +5,7 @@ import type {
   PreviewResponse,
   SubmitRssUrlParams,
   SubmitRssUrlResponse,
+  SubmitViewedItem,
 } from 'types/feeds'
 
 export const getFeeds = () => {
@@ -38,4 +39,8 @@ export const unlikeItem = (id: string) => {
 
 export const getLikedItems = () => {
   return api.get<null, Feed>(`/items/liked`)
+}
+
+export const submitViewedItem = (id: number) => {
+  return api.post<null, SubmitViewedItem>(`/items/view/${id}`)
 }

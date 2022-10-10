@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
-import { likeItem } from 'services/feeds'
+import { likeItem, submitViewedItem } from 'services/feeds'
 import { getFormatDate } from 'utils'
 
 import { Container, GridTypeWrapper, Title } from './GridType.style'
@@ -13,6 +13,8 @@ import Flex from '../Flex'
 import Divider from '../Divider'
 
 import * as S from './FeedItem.style'
+import Anchor from '../Anchor'
+import { cacheKeys } from 'services/cacheKeys'
 
 interface Props {
   item: Item
@@ -26,6 +28,10 @@ const GridType = ({ item }: Props) => {
       client.invalidateQueries(['likedItems'])
     },
   })
+  const { mutate: handleRead } = useMutation(
+    cacheKeys.viewItem(item.id),
+    submitViewedItem
+  )
 
   return (
     <Container>
@@ -37,7 +43,13 @@ const GridType = ({ item }: Props) => {
       />
       <GridTypeWrapper>
         <S.Body>
-          <Title>{item.title}</Title>
+          <Anchor
+            href={item.link}
+            target="_blank"
+            onClick={() => handleRead(item.id)}
+          >
+            <Title>{item.title}</Title>
+          </Anchor>
         </S.Body>
         <Divider />
         <S.Footer>

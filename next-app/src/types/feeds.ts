@@ -36,3 +36,8 @@ export interface LikeItemResponse {
   isLiked: boolean
   itemId: number
 }
+
+export interface SubmitViewedItem {
+  id: number
+  isViewed: boolean
+}

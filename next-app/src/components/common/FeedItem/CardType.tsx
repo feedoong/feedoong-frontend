@@ -11,8 +11,9 @@ import Divider from '../Divider'
 
 import * as S from './FeedItem.style'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { likeItem } from 'services/feeds'
+import { likeItem, submitViewedItem } from 'services/feeds'
 import Anchor from '../Anchor'
+import { cacheKeys } from 'services/cacheKeys'
 
 interface Props {
   item: Item
@@ -20,21 +21,37 @@ interface Props {
 
 const CardType = ({ item }: Props) => {
   const client = useQueryClient()
-  const { mutate: handleLike } = useMutation(['likeItem', item.id], likeItem, {
-    onSuccess: () => {
-      client.invalidateQueries(['feeds'])
-      client.invalidateQueries(['likedItems'])
-    },
-  })
+  const { mutate: handleLike } = useMutation(
+    cacheKeys.likeItem(item.id),
+    likeItem,
+    {
+      onSuccess: () => {
+        client.invalidateQueries(['feeds'])
+        client.invalidateQueries(['likedItems'])
+      },
+    }
+  )
+  const { mutate: handleRead } = useMutation(
+    cacheKeys.viewItem(item.id),
+    submitViewedItem
+  )
 
   return (
     <Container>
       <S.Body>
         <S.BodyWrapper>
-          <Anchor href={item.link} target="_blank">
+          <Anchor
+            href={item.link}
+            target="_blank"
+            onClick={() => handleRead(item.id)}
+          >
             <Title>{item.title}</Title>
           </Anchor>
-          <Anchor href={item.link} target="_blank">
+          <Anchor
+            href={item.link}
+            target="_blank"
+            onClick={() => handleRead(item.id)}
+          >
             <S.Contents>{item.description}</S.Contents>
           </Anchor>
         </S.BodyWrapper>
