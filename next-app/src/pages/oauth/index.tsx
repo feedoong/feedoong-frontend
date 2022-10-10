@@ -7,6 +7,8 @@ import humps from 'humps'
 
 import profile from 'store/atoms/profile'
 import { submitAccessToken } from 'services/auth'
+import api from 'services/api'
+import { cacheKeys } from 'services/cacheKeys'
 
 const Oauth = () => {
   const router = useRouter()
@@ -14,7 +16,7 @@ const Oauth = () => {
   const setProfile = useSetRecoilState(profile)
 
   useQuery(
-    ['/signup'],
+    cacheKeys.signup,
     () => submitAccessToken(parseAccessToken(router.asPath)),
     {
       onSuccess: (response) => {
@@ -23,6 +25,9 @@ const Oauth = () => {
           secure: true,
           sameSite: 'lax',
         })
+        api.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${response.accessToken}`
         setProfile({
           name: response.name,
           profileImageUrl: response.profileImageUrl,

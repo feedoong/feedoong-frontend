@@ -1,10 +1,9 @@
 import { type ChangeEvent, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
 
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
-import type { ErrorResponse } from 'types/common'
 import { isRssUrlValid } from '../RssInputContainer.utils'
+import { cacheKeys } from 'services/cacheKeys'
 
 const useRssInput = () => {
   const client = useQueryClient()
@@ -15,16 +14,12 @@ const useRssInput = () => {
     onSuccess: () => {
       setUrl(undefined)
       client.invalidateQueries(['feeds'])
-    },
-    onError: (err: AxiosError<ErrorResponse>) => {
-      err.response?.data.exceptions.forEach((exception) => {
-        alert(exception)
-      })
+      alert('Successfully added feed')
     },
   })
 
-  const { data } = useQuery(
-    ['channels', 'preview', url],
+  const { data, isLoading: isPreviewLoading } = useQuery(
+    cacheKeys.preview(url),
     () => checkUrlAsRss(url!),
     {
       enabled: !!isRssUrlValid(url),
@@ -51,6 +46,7 @@ const useRssInput = () => {
     url,
     onSubmit,
     handleInput,
+    isPreviewLoading,
   }
 }
 

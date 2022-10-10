@@ -5,6 +5,7 @@ import type {
   PreviewResponse,
   SubmitRssUrlParams,
   SubmitRssUrlResponse,
+  SubmitViewedItem,
 } from 'types/feeds'
 
 export const getFeeds = () => {
@@ -34,4 +35,12 @@ export const likeItem = (id: string) => {
 // likeItem 두번 호출하면 그냥 취소 되는 듯
 export const unlikeItem = (id: string) => {
   return api.delete<null, null>(`/likes/${id}`)
+}
+
+export const getLikedItems = () => {
+  return api.get<null, Feed>(`/items/liked`)
+}
+
+export const submitViewedItem = (id: number) => {
+  return api.post<null, SubmitViewedItem>(`/items/view/${id}`)
 }

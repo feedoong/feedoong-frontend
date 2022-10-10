@@ -1,13 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+
 import Icons from 'assets/icons'
 import MenuItem from './MenuItem'
 
 import * as S from './SideMenuBar.style'
+import Anchor from 'components/common/Anchor'
 
 interface Props {
   closeSideBar: () => void
-  isOpen: boolean | null;
+  isOpen: boolean | null
 }
 
 const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
@@ -24,8 +27,16 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
 
       <S.MenuSection>
         <div>
-          <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
-          <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
+          <Link href="/mypage/channels" passHref>
+            <Anchor onClick={closeSideBar}>
+              <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
+            </Anchor>
+          </Link>
+          <Link href="/mypage/posts" passHref>
+            <Anchor onClick={closeSideBar}>
+              <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
+            </Anchor>
+          </Link>
         </div>
         <div>
           <MenuItem title="의견 남기기" iconUrl={Icons.SpeechBubble} />

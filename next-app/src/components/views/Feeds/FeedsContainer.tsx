@@ -5,9 +5,10 @@ import FeedItem from 'components/common/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
 import { getFeeds } from 'services/feeds'
+import { cacheKeys } from 'services/cacheKeys'
 
 const FeedsContainer = () => {
-  const { data, isLoading } = useQuery(['feeds'], getFeeds)
+  const { data, isLoading } = useQuery(cacheKeys.feeds, getFeeds)
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
@@ -54,11 +55,7 @@ const FeedsContainer = () => {
             ? '로딩 스피너'
             : data?.items.map((item) => {
                 return (
-                  <FeedItem
-                    key={item.itemId}
-                    type={selectedViewType}
-                    item={item}
-                  />
+                  <FeedItem key={item.id} type={selectedViewType} item={item} />
                 )
               })}
         </S.CardContainer>

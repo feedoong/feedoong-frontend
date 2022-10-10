@@ -10,6 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 3px;
   border-radius: 20px;
+  width: 100%;
 `
 
 export const Title = styled.h2`
