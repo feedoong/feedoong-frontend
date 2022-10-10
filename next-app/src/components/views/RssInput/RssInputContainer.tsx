@@ -7,12 +7,16 @@ import Input from './Input'
 import { isRssUrlValid } from './RssInputContainer.utils'
 import { useRssInput } from './hooks'
 import * as S from './RssInputContainer.style'
+import Toast from 'components/common/Toast'
 
 const RssInputContainer = () => {
   const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput()
 
   return (
     <S.Container>
+      <button onClick={() => Toast.show({ content: '테스트 해봅니다.'})}>
+        토스트
+      </button>
       <form
         onSubmit={(e) =>
           (!isPreviewLoading || isRssUrlValid(url)) && onSubmit(e)

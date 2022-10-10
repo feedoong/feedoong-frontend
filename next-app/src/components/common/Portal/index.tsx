@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom'
 import { ReactNode } from 'react'
+import { isServer } from 'utils'
 
 interface Props {
   children: ReactNode
@@ -10,9 +11,8 @@ const Portal = ({ children, selector }: Props) => {
   if (!children) {
     throw Error('children must be provided')
   }
-  const isSSR = typeof window === 'undefined'
 
-  const targetDOM = !isSSR && document.querySelector(selector)
+  const targetDOM = !isServer() && document.querySelector(selector)
   return !!targetDOM ? ReactDOM.createPortal(children, targetDOM) : null
 }
 
