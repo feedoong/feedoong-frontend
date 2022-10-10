@@ -13,3 +13,13 @@ export const getApiEndpoint = () => {
       return 'https://api.feedoong.io/v1'
   }
 }
+
+export const getDomainName = () => {
+  switch (getAppEnv()) {
+    case 'production':
+      return 'https://feedoong.io'
+    case 'development':
+    default:
+      return 'http://localhost:3000'
+  }
+}
