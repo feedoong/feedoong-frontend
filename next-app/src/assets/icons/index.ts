@@ -15,7 +15,7 @@ import Menu from './menu_icon.svg'
 import Folder from './folder.svg'
 import Star from './star.svg'
 import SpeechBubble from './speechBubble.svg'
-import Thunder from './tasdfhunder.svg'
+import Thunder from './thunder.svg'
 import Link from './link.svg'
 
 export const Icons = {
