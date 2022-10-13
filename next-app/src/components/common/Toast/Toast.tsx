@@ -1,37 +1,30 @@
 import React from 'react'
 import * as S from './Toast.style'
 import Icons from 'assets/icons'
+import Flex from '../Flex'
 
 export type ToastProps = {
   type?: 'basic' | 'error'
-  isOpen?: boolean
   content: string
   duration?: number
-  position?: { right?: number; left?: number; top?: number; bottom?: number }
-  afterClose?: () => void
+  position?: 'bottom' | 'top'
 }
 
-export type ToastActions = {
-  show: any
-}
-
-const Toast = ({
+export const ToastElement = ({
   type = 'basic',
-  isOpen,
   content,
-  duration,
-  position,
-  afterClose,
+  duration = 2000,
+  position = 'bottom',
 }: ToastProps) => {
   return (
-    <S.ToastWrapper type={type}>
-      <S.ToastIcon
-        src={type === 'basic' ? Icons.ToastBasic : Icons.ToastError}
-        alt="Toast_icon"
-      />
-      <p>{content}</p>
-    </S.ToastWrapper>
+    <Flex justify="center">
+      <S.ToastWrapper type={type} position={position} duration={duration}>
+        <S.ToastIcon
+          src={type === 'basic' ? Icons.ToastBasic : Icons.ToastError}
+          alt="Toast_icon"
+        />
+        <p>{content}</p>
+      </S.ToastWrapper>
+    </Flex>
   )
 }
-
-export default Toast

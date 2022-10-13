@@ -23,7 +23,6 @@ export type ImperativeHandler = {
 }
 
 export const renderImperatively = (element: TargetElement) => {
-  console.log('renderImperativly')
   const Wrapper = forwardRef<ImperativeHandler>(function Wrapper(_, ref) {
     const [elementToRender, setElementToRender] = useState(element)
     const [visible, setVisible] = useState(false)
@@ -39,7 +38,6 @@ export const renderImperatively = (element: TargetElement) => {
     }, [visible])
 
     const onClose = () => {
-      console.log('onClose')
       closeRef.current = true
       setVisible(false)
       elementToRender.props.onClose?.()
@@ -71,8 +69,6 @@ export const renderImperatively = (element: TargetElement) => {
   const wrapperRef = React.createRef<ImperativeHandler>()
   const unmount = renderToBody(<Wrapper ref={wrapperRef} />)
 
-  console.log(<Wrapper ref={wrapperRef} />)
-  console.log({ ref: wrapperRef.current })
   return {
     close: () => {
       wrapperRef.current?.close()
@@ -84,15 +80,12 @@ export const renderImperatively = (element: TargetElement) => {
 }
 
 const renderToBody = (element: ReactElement) => {
-  console.log('renderToBody')
-  // const container = document.createElement('div')
-  // document.body.appendChild(container)
-  const container = document.querySelector('#toast')!
+  const container = document.createElement('div')
+  document.body.appendChild(container)
   const unmount = () => {
-    console.log('unmount')
     const unmountResult = customUnmount(container)
-    if (!!unmountResult && container) {
-      // container.parentNode.removeChild(container)
+    if (!!unmountResult && container.parentNode) {
+      container.parentNode.removeChild(container)
     }
   }
 
@@ -100,17 +93,13 @@ const renderToBody = (element: ReactElement) => {
   return unmount
 }
 
-const MARK = '__antd_mobile_root__'
+const MARK = 'toast'
 type ContainerType = (Element | DocumentFragment) & { [MARK]?: Root }
 
 const fullClone = { ...ReactDOM }
 
 const customRender = (node: ReactElement, container: ContainerType) => {
-  console.log('customRender', node)
-  // toggleWarning(true)
   const root = container[MARK] || fullClone.createRoot(container)
-  // toggleWarning(false)
-  console.log({ root })
   root.render(node)
   container[MARK] = root
 }
@@ -118,7 +107,6 @@ const customRender = (node: ReactElement, container: ContainerType) => {
 async function customUnmount(container: ContainerType) {
   // Delay to unmount to avoid React 18 sync warning
   return Promise.resolve().then(() => {
-    console.log({ container })
     container[MARK]?.unmount()
     delete container[MARK]
   })

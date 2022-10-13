@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import Toast, { ToastProps } from './Toast'
+import { ToastProps, ToastElement } from './Toast'
 import { renderImperatively, type ImperativeHandler } from './utils'
 
 let currentHandler: ImperativeHandler | null = null
@@ -10,16 +10,15 @@ export type ToastHandler = {
 }
 
 const ToastInner = (props: ToastProps & { onClose?: () => void }) => (
-  <Toast {...props} />
+  <ToastElement {...props} />
 )
 
-const defaultProps = {
-  duration: 1000,
-  position: {},
+const defaultProps: Partial<ToastProps> = {
+  duration: 3000,
+  position: 'bottom',
 }
 
 export const show = (toastProps: ToastProps) => {
-  console.log('show', toastProps)
   const props = {
     ...defaultProps,
     ...toastProps,
@@ -35,16 +34,12 @@ export const show = (toastProps: ToastProps) => {
   )
 
   if (currentHandler) {
-    console.log('111')
     currentHandler.replace(element)
   } else {
-    console.log('toastInner', element)
     currentHandler = renderImperatively(element)
-    console.log(2222, {currentHandler})
   }
 
   if (currentTimeout) {
-    console.log({ currentTimeout})
     window.clearTimeout(currentTimeout)
   }
 
@@ -58,7 +53,6 @@ export const show = (toastProps: ToastProps) => {
 }
 
 export const clear = () => {
-  console.log('clear')
   currentHandler?.close()
   currentHandler = null
 }
