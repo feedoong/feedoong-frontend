@@ -19,6 +19,8 @@ import Thunder from './thunder.svg'
 import Link from './link.svg'
 import ToastError from './toast_error.svg'
 import ToastBasic from './toast_basic.svg'
+import RightArrow from './right_arrow.svg'
+import LeftArrow from './left_arrow.svg'
 
 export const Icons = {
   NaverIcon,
@@ -41,7 +43,9 @@ export const Icons = {
   Thunder,
   Link,
   ToastBasic,
-  ToastError
+  ToastError,
+  RightArrow,
+  LeftArrow
 }
 
 export default Icons
