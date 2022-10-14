@@ -5,13 +5,31 @@ import Image from 'next/future/image'
 
 const basicFadeOut = keyframes`
   0% {
+    opacity: 1;
     background-color: rgba(33, 35, 34, 0.7);
   }
   70% {
+    opacity: 1;
     background-color: rgba(33, 35, 34, 0.7);
   }
   100% {
+    opacity: 0;
     background-color: rgba(33, 35, 34, 0);
+  }
+`
+
+const errorFadeOut = keyframes`
+  0% {
+    opacity: 1;
+    background-color: rgba(225, 73, 66, 0.3);
+  }
+  70% {
+    opacity: 1;
+    background-color: rgba(225, 73, 66, 0.3);
+  }
+  100% {
+    opacity: 0;
+    background-color: rgba(225, 73, 66, 0);
   }
 `
 
@@ -34,7 +52,7 @@ export const ToastWrapper = styled.div<{
   align-items: center;
   position: absolute;
   bottom: 50px;
-  animation-name: ${basicFadeOut};
+  animation-name: ${({ type }) => type === 'basic'? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};
   animation-fill-mode: forwards;
 

@@ -14,7 +14,7 @@ const ToastInner = (props: ToastProps & { onClose?: () => void }) => (
 )
 
 const defaultProps: Partial<ToastProps> = {
-  duration: 3000,
+  duration: 2000,
   position: 'bottom',
 }
 
