@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Paging from 'components/common/Paging'
@@ -9,17 +9,18 @@ import { cacheKeys } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
 
 function ChannelContainer() {
-  const [totalPage, setTotalPage] = useState(15);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [page, setPage] = useState(3)
+  const [totalPage, setTotalPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
-    cacheKeys.subscriptions,
-    getSubscriptions
+    [cacheKeys.subscriptions, { page: currentPage }],
+    () => getSubscriptions(currentPage)
   )
 
-  const movePage = (page: number) => {
-    setCurrentPage(page)
-  }
+  useEffect(() => {
+    if (data?.totalCount) {
+      setTotalPage(Math.ceil(data.totalCount / 10))
+    }
+  }, [data?.totalCount])
 
   return (
     <S.Container>
@@ -33,8 +34,12 @@ function ChannelContainer() {
               return <FeedItem key={item.id} type="subscription" item={item} />
             })}
       </Flex>
-      <Flex style={{ width: '100%', padding: '44px 0'}} justify="center" >
-      <Paging totalPage={totalPage} currentPage={currentPage} movePage={(page: number) => movePage(page)} />
+      <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
+        <Paging
+          totalPage={totalPage}
+          currentPage={currentPage}
+          movePage={(page: number) => setCurrentPage(page)}
+        />
       </Flex>
     </S.Container>
   )
