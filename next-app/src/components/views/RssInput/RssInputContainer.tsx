@@ -7,7 +7,6 @@ import Input from './Input'
 import { isRssUrlValid } from './RssInputContainer.utils'
 import { useRssInput } from './hooks'
 import * as S from './RssInputContainer.style'
-import Toast from 'components/common/Toast'
 
 const RssInputContainer = () => {
   const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput()
