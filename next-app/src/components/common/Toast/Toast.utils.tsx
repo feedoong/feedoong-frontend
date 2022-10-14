@@ -10,7 +10,6 @@ import React, {
 } from 'react'
 
 export type ImperativeProps = {
-  visible?: boolean
   onClose?: () => void
   afterClose?: () => void
 }
@@ -25,21 +24,17 @@ export type ImperativeHandler = {
 export const renderImperatively = (element: TargetElement) => {
   const Wrapper = forwardRef<ImperativeHandler>(function Wrapper(_, ref) {
     const [elementToRender, setElementToRender] = useState(element)
-    const [visible, setVisible] = useState(false)
     const closeRef = useRef(false)
     const keyRef = useRef(0)
 
     useEffect(() => {
-      if (!closeRef.current) {
-        setVisible(true)
-      } else {
+      if (closeRef.current) {
         afterClose()
       }
-    }, [visible])
+    }, [])
 
     const onClose = () => {
       closeRef.current = true
-      setVisible(false)
       elementToRender.props.onClose?.()
     }
 
@@ -60,7 +55,6 @@ export const renderImperatively = (element: TargetElement) => {
     return React.cloneElement(elementToRender, {
       ...elementToRender.props,
       key: keyRef.current,
-      visible,
       onClose,
       afterClose,
     })

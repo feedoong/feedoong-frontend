@@ -14,6 +14,9 @@ const RssInputContainer = () => {
 
   return (
     <S.Container>
+        <button onClick={() => Toast.show({ content: '테스트 해봅니다.'})}>
+        토스트
+      </button>
       <form
         onSubmit={(e) =>
           (!isPreviewLoading || isRssUrlValid(url)) && onSubmit(e)
