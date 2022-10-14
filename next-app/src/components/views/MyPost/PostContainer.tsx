@@ -8,7 +8,9 @@ import Icons from 'assets/icons'
 import { cacheKeys } from 'services/cacheKeys'
 
 function PostContainer() {
-  const { data, isLoading } = useQuery(cacheKeys.likedItems, getLikedItems)
+  const [totalPage, setTotalPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1)
+  const { data, isLoading } = useQuery([cacheKeys.likedItems, { page: currentPage}], getLikedItems)
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
