@@ -5,7 +5,7 @@ pipeline {
         GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
         GIT_AUTHOR = sh (script: 'git --no-pager show -s --format=%an $GIT_COMMIT', returnStdout: true).trim()
         SLACK_MESSAGE = """\n\n:github: *Repo*: `${env.GIT_REPO_NAME}`\n
-:git: *Branch*: `develop`\n
+:git: *Branch*: `dev`\n
 :hammer: *Build Number:* `${env.BUILD_NUMBER}`\n
 :man-raising-hand: *Author:*  `${env.GIT_AUTHOR}`\n
 :point_right: ${env.BUILD_URL}"""
