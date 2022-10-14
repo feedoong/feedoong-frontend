@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   totalPage: number
   currentPage: number
@@ -9,38 +7,36 @@ interface Props {
 const usePageInfo = ({ totalPage, currentPage, displayedPageRange }: Props) => {
   let total_page = totalPage
   let current_page = currentPage
-  let has_previous_page = currentPage > 1
-  let previous_page = currentPage - 1;
-  let has_next_page = totalPage > 0 && currentPage !== totalPage
-  let next_page = currentPage + 1
-  let first_page = Math.max(1, current_page - Math.floor(displayedPageRange / 2))
-  let last_page = Math.min(totalPage, currentPage + Math.floor(displayedPageRange / 2))
+  let hasPreviousPage = currentPage > 1
+  let previousPage = currentPage - 1;
+  let hasNextPage = totalPage > 0 && currentPage !== totalPage
+  let nextPage = currentPage + 1
+  let firstPage = Math.max(1, current_page - Math.floor(displayedPageRange / 2))
+  let lastPage = Math.min(totalPage, currentPage + Math.floor(displayedPageRange / 2))
 
-  if (last_page - first_page + 1 < displayedPageRange) {
+  if (lastPage - firstPage + 1 < displayedPageRange) {
     if (currentPage < total_page / 2) {
-      last_page = Math.min(total_page, last_page + (displayedPageRange - (last_page - first_page)))
+      lastPage = Math.min(total_page, lastPage + (displayedPageRange - (lastPage - firstPage)))
     } else {
-      first_page = Math.max(1, first_page - (displayedPageRange - (last_page - first_page)))
+      firstPage = Math.max(1, firstPage - (displayedPageRange - (lastPage - firstPage)))
     }
   }
 
-  if (last_page - first_page + 1 > displayedPageRange) {
+  if (lastPage - firstPage + 1 > displayedPageRange) {
     if (current_page > total_page / 2) {
-      first_page++;
+      firstPage++;
     } else {
-      last_page--;
+      lastPage--;
     }
   }
 
   return {
-    total_page: total_page,
-    current_page: current_page,
-    has_previous_page: has_previous_page,
-    previous_page: previous_page,
-    has_next_page: has_next_page,
-    next_page: next_page,
-    first_page: first_page,
-    last_page: last_page
+    hasPreviousPage: hasPreviousPage,
+    previousPage: previousPage,
+    hasNextPage: hasNextPage,
+    nextPage: nextPage,
+    firstPage: firstPage,
+    lastPage: lastPage
   }
 }
 

@@ -3,43 +3,37 @@ import Page from './Page'
 import Flex from '../Flex'
 import Icons from 'assets/icons'
 import usePageInfo from './hooks/usePageInfo'
-import * as S from './Paging.style'
-
 
 interface Props {
   totalPage: number
   currentPage: number
-  movePage: () => void
+  movePage: (page: number) => void
   displayedPageRange?: number
 }
 
 const Paging = ({ totalPage, currentPage, movePage, displayedPageRange = 9 }: Props) => {
   const {
-    total_page, 
-    current_page, 
-    has_previous_page, 
-    previous_page, 
-    has_next_page, 
-    next_page, 
-    first_page, 
-    last_page
+    hasPreviousPage, 
+    previousPage, 
+    hasNextPage, 
+    nextPage, 
+    firstPage, 
+    lastPage
   } = usePageInfo({ totalPage, currentPage, displayedPageRange, })
 
-  const isPrevPageVisible = (has_previous_page: boolean) => {
-    if (!has_previous_page) return false;
+  const isPrevPageVisible = (hasPreviousPage: boolean) => {
+    if (!hasPreviousPage) return false;
     return true;
   }
 
-  const isNextPageVisible = (has_next_page: boolean) => {
-    if (!has_next_page) return false;
+  const isNextPageVisible = (hasNextPage: boolean) => {
+    if (!hasNextPage) return false;
     return true;
   }
 
   const buildPages = () => {
     const pages = [];
-    // const { currentPage, movePage } = this.props;
-    // const pageInfo = this.makePageInfo();
-    for (let i = first_page; i <= last_page; i++) {
+    for (let i = firstPage; i <= lastPage; i++) {
       pages.push(
         <Page
           key={i} 
@@ -51,25 +45,25 @@ const Paging = ({ totalPage, currentPage, movePage, displayedPageRange = 9 }: Pr
       );
     }
 
-    isPrevPageVisible(has_previous_page) &&
+    isPrevPageVisible(hasPreviousPage) &&
       pages.unshift(
         <Page
-          key={'prev' + previous_page}
-          pageNumber={previous_page}
+          key={'prev' + previousPage}
+          pageNumber={previousPage}
           onClick={movePage}
           image={Icons.LeftArrow}
-          disabled={!has_previous_page}
+          disabled={!hasPreviousPage}
         />
       );
 
-    isNextPageVisible(has_next_page) &&
+    isNextPageVisible(hasNextPage) &&
       pages.push(
         <Page
-          key={'next' + next_page}
-          pageNumber={next_page}
+          key={'next' + nextPage}
+          pageNumber={nextPage}
           onClick={movePage}
           image={Icons.RightArrow}
-          disabled={!has_next_page}
+          disabled={!hasNextPage}
         />
       );
 

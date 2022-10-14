@@ -9,12 +9,17 @@ import { cacheKeys } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
 
 function ChannelContainer() {
-  const [totalPage, setTotalPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(5);
+  const [totalPage, setTotalPage] = useState(15);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(3)
   const { data, isLoading } = useQuery(
     cacheKeys.subscriptions,
     getSubscriptions
   )
+
+  const movePage = (page: number) => {
+    setCurrentPage(page)
+  }
 
   return (
     <S.Container>
@@ -29,7 +34,7 @@ function ChannelContainer() {
             })}
       </Flex>
       <Flex style={{ width: '100%', padding: '44px 0'}} justify="center" >
-      <Paging totalPage={totalPage} currentPage={currentPage} movePage={() => console.log('ss')} />
+      <Paging totalPage={totalPage} currentPage={currentPage} movePage={(page: number) => movePage(page)} />
       </Flex>
     </S.Container>
   )
