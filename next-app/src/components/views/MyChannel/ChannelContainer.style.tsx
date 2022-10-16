@@ -1,5 +1,7 @@
 import Image from 'next/image'
-import styled, { css } from 'styled-components'
+import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'=
+
+import type { FeedType } from 'components/common/FeedItem/FeedItem'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
