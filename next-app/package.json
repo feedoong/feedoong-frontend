@@ -6,13 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy": "next build && next start",
     "lint": "next lint",
     "build:extentsion": "next build && next export && mv out/_next out/next && sed -i '' -e 's/\\/_next/\\.\\/next/g' out/**.html && mv out/index.html mv out/popup-test.html ../extension && rsync -va --delete-after out/next/ ../extension/next/ && rm -rf out && rsync -va --delete-after ./src/assets ../extension/"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.6.0",
     "@tanstack/react-query-devtools": "^4.6.0",
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.5",
+    "humps": "^2.0.1",
+    "js-cookie": "^3.0.1",
     "next": "12.2.5",
+    "query-string": "^7.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "^18.2.0",
@@ -20,6 +26,8 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
+    "@types/humps": "^2.0.2",
+    "@types/js-cookie": "^3",
     "@types/node": "18.7.9",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",

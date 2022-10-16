@@ -39,7 +39,7 @@ export const ButtonWrap = styled.div`
 `
 
 export const Button = styled.button`
-  ${getTypographyStyles('Headline4_M')}
+  ${getTypographyStyles('Headline3_M')}
 
   color: ${colors.white};
   background: ${colors.gray800};

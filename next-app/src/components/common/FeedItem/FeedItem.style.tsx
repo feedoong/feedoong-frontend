@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import styled from 'styled-components'
 import { colors } from 'styles/colors'
-import { getTypographyStyles } from 'styles/fonts'
+import { ellipsis, getTypographyStyles } from 'styles/fonts'
 
-export const Header = styled.div`
+export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   color: ${colors.gray600};
@@ -26,7 +26,7 @@ export const Date = styled.span`
   margin-left: 2px;
 `
 
-export const OptionButton = styled(Image)`
+export const CopyLinkButton = styled(Image)`
   cursor: pointer;
 `
 
@@ -41,26 +41,11 @@ export const BodyWrapper = styled.div`
   gap: 8px;
 `
 
-export const Title = styled.h2`
-  ${getTypographyStyles('Headline3_B')}
-
-  color: ${colors.gray800};
-`
-
 export const Contents = styled.p`
   ${getTypographyStyles('Body1_M')}
+  ${ellipsis(2)}
 
-  color: ${colors.gray800};
-  white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-`
-
-export const Footer = styled.footer`
-  display: flex;
-  justify-content: space-between;
+  color: ${colors.gray600};
 `
 
 export const ReadStatus = styled.span`
@@ -101,6 +86,13 @@ export const LeftContainer = styled.div`
 
 export const ImageContainer = styled.div`
   min-width: 80px;
+  height: 80px;
+  background-color: ${colors.gray300};
+  border-radius: 10px;
+`
+
+export const ThumbnailEmpty = styled.div`
+  min-width: '80px';
   height: 80px;
   background-color: ${colors.gray300};
   border-radius: 10px;

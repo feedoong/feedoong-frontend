@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: 100vh;
   background: ${colors.gray900};
 `
 
@@ -22,12 +22,13 @@ export const Title = styled.h1`
 `
 
 export const Subtitle = styled.h2`
-  ${getTypographyStyles('Headline4_M')}
+  ${getTypographyStyles('Headline3_M')}
   color: ${colors.gray400};
   text-align: center;
 `
 
 export const GoogleLoginButton = styled.button`
+  all: unset;
   margin: 40px 0;
   padding: 14px 40px;
   border-radius: 30px;
@@ -40,7 +41,7 @@ export const ButtonContentsWrapper = styled.div`
   gap: 10px;
 
   p {
-    ${getTypographyStyles('Headline4_B')}
+    ${getTypographyStyles('Headline3_B')}
   }
 `
 

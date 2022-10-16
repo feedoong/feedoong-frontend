@@ -1,19 +1,32 @@
-import CardTypeDefault from './CardType'
-import GridTypeDefault from './GridType'
+import type { Item } from 'types/feeds'
+import type { Subscription } from 'types/subscriptions'
+import CardType from './CardType'
+import GridType from './GridType'
+import SubscriptionType from './SubscriptionType'
 
-export type FeedType = 'card' | 'grid'
+export type FeedType = 'card' | 'grid' | 'subscription'
 
-interface Props {
-  type?: FeedType
-  CardTypeItem?: () => JSX.Element
-  GridTypeItem?: () => JSX.Element
-}
+type Props =
+  | {
+      type: Omit<FeedType, 'subscription'>
+      item: Item
+    }
+  | {
+      type: 'subscription'
+      item: Subscription
+    }
 
-const FeedItem = ({ type = 'card', CardTypeItem, GridTypeItem }: Props) => {
-  const CardType = CardTypeItem ?? CardTypeDefault
-  const GridType = GridTypeItem ?? GridTypeDefault
-
-  return type === 'card' ? <CardType /> : <GridType />
+const FeedItem = ({ type = 'card', item }: Props) => {
+  if (type === 'card') {
+    return <CardType item={item as Item} />
+  }
+  if (type === 'grid') {
+    return <GridType item={item as Item} />
+  }
+  if (type === 'subscription') {
+    return <SubscriptionType item={item as Subscription} />
+  }
+  return null
 }
 
 export default FeedItem

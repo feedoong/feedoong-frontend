@@ -1,11 +1,38 @@
 import Image from 'next/image'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
-import * as S from './FeedItem.style'
-import { Container, GridTypeWrapper } from './GridType.style'
+import type { Item } from 'types/feeds'
+import { likeItem, submitViewedItem } from 'services/feeds'
+import { getFormatDate } from 'utils'
 
-const GridType = () => {
+import { Container, GridTypeWrapper, Title } from './GridType.style'
+import { copyToClipboard } from './FeedItem.utils'
+import Flex from '../Flex'
+import Divider from '../Divider'
+
+import * as S from './FeedItem.style'
+import Anchor from '../Anchor'
+import { cacheKeys } from 'services/cacheKeys'
+
+interface Props {
+  item: Item
+}
+
+const GridType = ({ item }: Props) => {
+  const client = useQueryClient()
+  const { mutate: handleLike } = useMutation(['likeItem', item.id], likeItem, {
+    onSuccess: () => {
+      client.invalidateQueries(['feeds'])
+      client.invalidateQueries(['likedItems'])
+    },
+  })
+  const { mutate: handleRead } = useMutation(
+    cacheKeys.viewItem(item.id),
+    submitViewedItem
+  )
+
   return (
     <Container>
       <div
@@ -15,7 +42,17 @@ const GridType = () => {
         }}
       />
       <GridTypeWrapper>
-        <S.Header>
+        <S.Body>
+          <Anchor
+            href={item.link}
+            target="_blank"
+            onClick={() => handleRead(item.id)}
+          >
+            <Title>{item.title}</Title>
+          </Anchor>
+        </S.Body>
+        <Divider />
+        <S.Footer>
           <S.PostMeta>
             <Image
               alt="네이버 로고"
@@ -24,26 +61,24 @@ const GridType = () => {
               height={20}
             />
             <S.Author>네이버 뉴스</S.Author>
-            <S.Date>2022.08.21</S.Date>
+            <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
           </S.PostMeta>
-          <S.OptionButton
-            alt="옵션 버튼"
-            src={Icons.DotsVertical}
-            width={16}
-            height={16}
-          />
-        </S.Header>
-        <S.Body>
-          <S.Title>제주 온 태국인 관광객 60% ‘입국 불허’…이탈자도 늘어</S.Title>
-        </S.Body>
-        <S.Footer>
-          <S.ReadStatus>읽음</S.ReadStatus>
-          <S.Bookmark
-            alt="북마크"
-            src={Icons.Bookmark}
-            width={16}
-            height={16}
-          />
+          <Flex gap={12}>
+            <S.CopyLinkButton
+              alt="링크 복사"
+              src={Icons.Link}
+              width={16}
+              height={16}
+              onClick={() => copyToClipboard(item.link)}
+            />
+            <S.Bookmark
+              alt="북마크"
+              src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
+              width={16}
+              height={16}
+              onClick={() => handleLike(String(item.id))}
+            />
+          </Flex>
         </S.Footer>
       </GridTypeWrapper>
     </Container>

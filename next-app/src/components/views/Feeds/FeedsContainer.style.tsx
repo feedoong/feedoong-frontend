@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 
-import type { FeedType } from 'components/common/FeedItem/FeedItem'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
@@ -11,7 +10,7 @@ export const Container = styled.div`
 `
 
 export const FeedWrapper = styled.div`
-  padding: 20px;
+  margin: 40px 20px;
   max-width: 626px;
   border-radius: 4px;
 `
@@ -27,10 +26,11 @@ export const TitleWrapper = styled.div`
   gap: 20px;
 `
 
-export const Title = styled.h1<{ isSelected: boolean }>`
+export const Title = styled.h1<{ isSelected?: boolean }>`
   ${getTypographyStyles('Headline2_B')}
 
-  color: ${({ isSelected }) => (isSelected ? colors.gray900 : colors.gray400)};
+  color: ${({ isSelected = true }) =>
+    isSelected ? colors.gray900 : colors.gray400};
   cursor: pointer;
 `
 
@@ -45,7 +45,7 @@ export const ViewType = styled(Image)<{ isSelected: boolean }>`
 `
 
 const CardLayout: {
-  [type in FeedType]: FlattenSimpleInterpolation
+  [type in 'card' | 'grid']: FlattenSimpleInterpolation
 } = {
   card: css`
     display: flex;
@@ -59,6 +59,8 @@ const CardLayout: {
   `,
 }
 
-export const CardContainer = styled.ul<{ type?: FeedType }>`
+export const CardContainer = styled.ul<{ type?: 'card' | 'grid' }>`
+  min-width: 626px;
+
   ${({ type = 'card' }) => CardLayout[type]}
 `
