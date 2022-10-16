@@ -1,8 +1,7 @@
 import Image from 'next/image'
-import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
-import type { FeedType } from 'components/common/FeedItem/FeedItem'
 
 export const Container = styled.div`
   width: 100%;
