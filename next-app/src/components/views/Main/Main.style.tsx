@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { getTypographyStyles } from 'styles/fonts'
 import { colors } from 'styles/colors'
 
 export const Wrapper = styled.div`
@@ -14,18 +13,12 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
 `
 
-export const ContentsWrapper = styled.div`
-  margin: 0 180px;
-  width: 100%;
-  height: 400px;
-  /* border: 1px solid blue; */
-`
 export const Contents = styled.div`
+  height: 400px;
+  margin: 0 180px;
   display: flex;
-  height: 100%;
   justify-content: center;
   gap: 80px;
 `
@@ -40,7 +33,8 @@ export const BoardWrapper = styled.div`
   width: 550px;
   height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `
 
 export const Title = styled.h1`
