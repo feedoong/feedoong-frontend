@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Paging from 'components/common/Paging'
@@ -10,18 +10,13 @@ import { getSubscriptions } from 'services/subscriptions'
 
 function ChannelContainer() {
   const ITEMS_PER_PAGE = 10
-  const [totalPage, setTotalPage] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
     [cacheKeys.subscriptions, { page: currentPage }],
     () => getSubscriptions(currentPage)
   )
 
-  useEffect(() => {
-    if (data?.totalCount) {
-      setTotalPage(Math.ceil(data.totalCount / ITEMS_PER_PAGE))
-    }
-  }, [data?.totalCount])
+  const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   return (
     <S.Container>

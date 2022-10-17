@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
@@ -11,7 +11,6 @@ import Paging from 'components/common/Paging'
 
 function PostContainer() {
   const ITEMS_PER_PAGE = 10
-  const [totalPage, setTotalPage] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
     [cacheKeys.likedItems, { page: currentPage }],
@@ -25,13 +24,8 @@ function PostContainer() {
     'card'
   )
 
-  useEffect(() => {
-    if (data?.totalCount) {
-      setTotalPage(Math.ceil(data.totalCount / ITEMS_PER_PAGE))
-    }
-  }, [data?.totalCount])
-
   const isGridView = selectedViewType === 'grid'
+  const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   return (
     <S.Container>
