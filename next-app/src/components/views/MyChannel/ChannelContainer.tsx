@@ -9,6 +9,7 @@ import { cacheKeys } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
 
 function ChannelContainer() {
+  const ITEMS_PER_PAGE = 10
   const [totalPage, setTotalPage] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
@@ -18,7 +19,7 @@ function ChannelContainer() {
 
   useEffect(() => {
     if (data?.totalCount) {
-      setTotalPage(Math.ceil(data.totalCount / 10))
+      setTotalPage(Math.ceil(data.totalCount / ITEMS_PER_PAGE))
     }
   }, [data?.totalCount])
 

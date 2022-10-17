@@ -39,7 +39,7 @@ export const unlikeItem = (id: string) => {
 
 export const getLikedItems = (page: number) => {
   return api.get<null, Feed>(`/items/liked`, {
-    params: { page }
+    params: { page },
   })
 }
 
