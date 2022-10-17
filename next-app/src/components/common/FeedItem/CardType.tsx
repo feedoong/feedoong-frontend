@@ -14,6 +14,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { likeItem, submitViewedItem } from 'services/feeds'
 import Anchor from '../Anchor'
 import { cacheKeys } from 'services/cacheKeys'
+import Toast from '../Toast'
 
 interface Props {
   item: Item
@@ -25,9 +26,14 @@ const CardType = ({ item }: Props) => {
     cacheKeys.likeItem(item.id),
     likeItem,
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         client.invalidateQueries(['feeds'])
         client.invalidateQueries(['likedItems'])
+        let toastMessage = '게시물이 저장되었습니다.'
+        if (!data.isLiked) {
+          toastMessage = '게시물 저장이 해제되었습니다.'
+        }
+        Toast.show({ content: toastMessage })
       },
     }
   )
