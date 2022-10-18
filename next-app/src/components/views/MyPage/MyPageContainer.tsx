@@ -1,22 +1,30 @@
 import React, { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 
 import InfoRow from './InfoRow'
 import Dialog from 'components/common/Dialog'
 import * as S from './MyPageContainer.style'
 import profile from 'store/atoms/profile'
+import Cookies from 'js-cookie'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
-  const { name } = useRecoilValue(profile)
+  const { name, email } = useRecoilValue(profile)
+  const resetProfile = useResetRecoilState(profile)
+
+  const logoutAction = () => {
+    Cookies.remove('token')
+    resetProfile()
+    window.location.href = '/'
+  }
 
   return (
     <S.Container>
       <S.Contents>
         <S.PageTitle>내 정보</S.PageTitle>
         <S.BorderLine />
-        <InfoRow title="로그인 계정" value="hong@gmail.com" />
+        <InfoRow title="로그인 계정" value={email} />
         <div style={{ marginBottom: '60px' }}>
           <InfoRow title="이름" value={name} />
         </div>
@@ -25,7 +33,7 @@ const MyPageContainer = () => {
           <S.Button onClick={() => setIsOpenDeleteAccountModal(true)}>
             회원 탈퇴
           </S.Button>
-          <S.Button>로그아웃</S.Button>
+          <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
         </S.ButtonWrap>
       </S.Contents>
       <Dialog isOpen={isOpenDeleteAccountModal}>

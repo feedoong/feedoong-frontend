@@ -32,7 +32,7 @@ export const ImageWrapper = styled.div`
   margin-right: 10px;
   display: flex;
   align-items: center;
-` 
+`
 
 export const Feedoong = styled.span`
   font-size: 20px;
@@ -57,4 +57,10 @@ export const UserImage = styled(Image)`
   width: 24px;
   height: 24px;
   border-radius: 50%;
+`
+
+export const GoToSignUpButton = styled.span`
+  ${getTypographyStyles('Body1_B')};
+  color: ${colors.white};
+  cursor: pointer;
 `

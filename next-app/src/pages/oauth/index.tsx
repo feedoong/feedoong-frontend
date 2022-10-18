@@ -31,6 +31,7 @@ const Oauth = () => {
         setProfile({
           name: response.name,
           profileImageUrl: response.profileImageUrl,
+          email: response.email,
         })
         router.replace('/')
       },

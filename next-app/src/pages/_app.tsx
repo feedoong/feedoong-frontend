@@ -9,6 +9,7 @@ import 'styles/font.css'
 
 import Layout from 'components/common/Layout'
 import type { ErrorResponse } from 'types/common'
+import TokenLoader from 'components/common/Loader'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <Layout>
+            <TokenLoader />
             <Component {...pageProps} />
           </Layout>
         </RecoilRoot>

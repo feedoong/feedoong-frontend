@@ -4,6 +4,7 @@ export interface SignUpResponse {
   accessToken: string
   name: string
   profileImageUrl: string
+  email: string
 }
 
 export const submitAccessToken = (token: string) => {
