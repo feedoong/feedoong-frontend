@@ -3,19 +3,25 @@ import { useRecoilValue } from 'recoil'
 import { useSetRecoilState } from 'recoil'
 import Cookies from 'js-cookie'
 
+import { deleteAccount } from 'services/account'
+
 import InfoRow from './InfoRow'
 import Dialog from 'components/common/Dialog'
 import profile from 'store/atoms/profile'
 import * as S from './MyPageContainer.style'
-
+import { useMutation } from '@tanstack/react-query'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
   const { name } = useRecoilValue(profile)
   const setProfile = useSetRecoilState(profile)
-
-  const deleteAccount = () => {}
+  const { mutate } = useMutation(['secession'], deleteAccount, {
+    onSuccess: () => {
+      logOut()
+      alert('Successfully delete account')
+    },
+  })
 
   const logOut = () => {
     Cookies.remove('token')
@@ -55,7 +61,13 @@ const MyPageContainer = () => {
           <button onClick={() => setIsOpenDeleteAccountModal(false)}>
             취소
           </button>
-          <button className="secondary" onClick={deleteAccount}>
+          <button
+            className="secondary"
+            onClick={() => {
+              setIsOpenDeleteAccountModal(false)
+              mutate()
+            }}
+          >
             회원탈퇴
           </button>
         </Dialog.Actions>
