@@ -1,15 +1,29 @@
 import React, { useState } from 'react'
 import { useRecoilValue } from 'recoil'
+import { useSetRecoilState } from 'recoil'
+import Cookies from 'js-cookie'
 
 import InfoRow from './InfoRow'
 import Dialog from 'components/common/Dialog'
-import * as S from './MyPageContainer.style'
 import profile from 'store/atoms/profile'
+import * as S from './MyPageContainer.style'
+
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
   const { name } = useRecoilValue(profile)
+  const setProfile = useSetRecoilState(profile)
+
+  const deleteAccount = () => {}
+
+  const logOut = () => {
+    Cookies.remove('token')
+    setProfile({
+      name: '',
+      profileImageUrl: '',
+    })
+  }
 
   return (
     <S.Container>
@@ -25,7 +39,7 @@ const MyPageContainer = () => {
           <S.Button onClick={() => setIsOpenDeleteAccountModal(true)}>
             회원 탈퇴
           </S.Button>
-          <S.Button>로그아웃</S.Button>
+          <S.Button onClick={logOut}>로그아웃</S.Button>
         </S.ButtonWrap>
       </S.Contents>
 
@@ -41,7 +55,9 @@ const MyPageContainer = () => {
           <button onClick={() => setIsOpenDeleteAccountModal(false)}>
             취소
           </button>
-          <button className="secondary">회원탈퇴</button>
+          <button className="secondary" onClick={deleteAccount}>
+            회원탈퇴
+          </button>
         </Dialog.Actions>
       </Dialog>
     </S.Container>
