@@ -7,7 +7,7 @@ export interface SignUpResponse {
 }
 
 export const submitAccessToken = (token: string) => {
-  return api.post<null, SignUpResponse>(`/auth/login/google`, null, {
+  return api.post<null, SignUpResponse>(`/users/login/google`, null, {
     params: { accessToken: token },
   })
 }

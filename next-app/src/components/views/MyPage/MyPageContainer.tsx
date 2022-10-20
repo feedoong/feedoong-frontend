@@ -28,6 +28,7 @@ const MyPageContainer = () => {
           <S.Button>로그아웃</S.Button>
         </S.ButtonWrap>
       </S.Contents>
+
       <Dialog isOpen={isOpenDeleteAccountModal}>
         <Dialog.Title>정말 탈퇴하시겠습니까?</Dialog.Title>
         <Dialog.Content>
