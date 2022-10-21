@@ -20,8 +20,8 @@ const SignUpContainer = () => {
         <br />
         크롬 새탭에서 바로 시작하세요!
       </S.Subtitle>
-      <S.GoogleLoginButton>
-        <S.ButtonContentsWrapper onClick={signUp}>
+      <S.GoogleLoginButton onClick={signUp}>
+        <S.ButtonContentsWrapper>
           <Image
             src={Icons.GoogleIcon}
             width={16}

@@ -19,7 +19,6 @@ export const checkUrlAsRss = (url: string) => {
 }
 
 export const submitRssUrl = (params: Partial<SubmitRssUrlParams>) => {
-  console.log({ params })
   if (!params.url || !params.feedUrl) {
     throw new Error('url and feedUrl are required')
   }

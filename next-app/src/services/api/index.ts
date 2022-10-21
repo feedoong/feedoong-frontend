@@ -9,7 +9,7 @@ const { camelizeKeys } = humps
 const token = Cookies.get('token')
 
 const api = Axios.create({
-  baseURL: `${getApiEndpoint()}`,
+  baseURL: getApiEndpoint(),
   validateStatus: (status) => status >= 200 && status < 400,
   headers: {
     ...(token && { Authorization: `Bearer ${token}` }),

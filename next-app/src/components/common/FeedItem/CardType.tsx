@@ -1,20 +1,20 @@
 import Image from 'next/image'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import type { Item } from 'types/feeds'
 import Icons from 'assets/icons'
 import { getFormatDate } from 'utils'
+import { likeItem, submitViewedItem } from 'services/feeds'
 
 import { Container, Title } from './CardType.style'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
+import Anchor from '../Anchor'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import Toast from '../Toast'
 
 import * as S from './FeedItem.style'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { likeItem, submitViewedItem } from 'services/feeds'
-import Anchor from '../Anchor'
-import { cacheKeys } from 'services/cacheKeys'
-import Toast from '../Toast'
 
 interface Props {
   item: Item
@@ -23,12 +23,12 @@ interface Props {
 const CardType = ({ item }: Props) => {
   const client = useQueryClient()
   const { mutate: handleLike } = useMutation(
-    cacheKeys.likeItem(item.id),
+    CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
       onSuccess: (data) => {
-        client.invalidateQueries(['feeds'])
-        client.invalidateQueries(['likedItems'])
+        client.invalidateQueries(CACHE_KEYS.feeds)
+        client.invalidateQueries(CACHE_KEYS.likedItems)
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
           toastMessage = '게시물 저장이 해제되었습니다.'
@@ -38,7 +38,7 @@ const CardType = ({ item }: Props) => {
     }
   )
   const { mutate: handleRead } = useMutation(
-    cacheKeys.viewItem(item.id),
+    CACHE_KEYS.viewItem(item.id),
     submitViewedItem
   )
 

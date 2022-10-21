@@ -1,22 +1,19 @@
 import { useRouter } from 'next/router'
-import { useSetRecoilState } from 'recoil'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import qs from 'query-string'
 import Cookies from 'js-cookie'
 import humps from 'humps'
 
-import profile from 'store/atoms/profile'
 import { submitAccessToken } from 'services/auth'
 import api from 'services/api'
-import { cacheKeys } from 'services/cacheKeys'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 const Oauth = () => {
   const router = useRouter()
-
-  const setProfile = useSetRecoilState(profile)
+  const client = useQueryClient()
 
   useQuery(
-    cacheKeys.signup,
+    CACHE_KEYS.signup,
     () => submitAccessToken(parseAccessToken(router.asPath)),
     {
       onSuccess: (response) => {
@@ -28,10 +25,8 @@ const Oauth = () => {
         api.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${response.accessToken}`
-        setProfile({
-          name: response.name,
-          profileImageUrl: response.profileImageUrl,
-        })
+
+        client.setQueryData(CACHE_KEYS.me, response)
         router.replace('/')
       },
       onError: () => {

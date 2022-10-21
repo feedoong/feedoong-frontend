@@ -5,14 +5,14 @@ import Paging from 'components/common/Paging'
 import FeedItem from 'components/common/FeedItem'
 import Flex from 'components/common/Flex'
 import * as S from 'components/views/MyChannel/ChannelContainer.style'
-import { cacheKeys } from 'services/cacheKeys'
+import { CACHE_KEYS } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
 
 function ChannelContainer() {
   const ITEMS_PER_PAGE = 10
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
-    [cacheKeys.subscriptions, { page: currentPage }],
+    [CACHE_KEYS.subscriptions, { page: currentPage }],
     () => getSubscriptions(currentPage)
   )
 
