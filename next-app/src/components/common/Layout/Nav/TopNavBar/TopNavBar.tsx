@@ -1,11 +1,13 @@
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useQuery } from '@tanstack/react-query'
 
 import * as S from './TopNavBar.style'
 import Icons from 'assets/icons'
-import { useRecoilValue } from 'recoil'
-import profile from 'store/atoms/profile'
+
+import { getUserInfo, type UserProfile } from 'services/auth'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 interface Props {
   openSideBar: () => void
@@ -13,7 +15,13 @@ interface Props {
 
 const TopNavBar = ({ openSideBar }: Props) => {
   const router = useRouter()
-  const { name, profileImageUrl } = useRecoilValue(profile)
+  const { data: userProfile } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo
+  )
+
+  const name = userProfile?.name
+  const profileImageUrl = userProfile?.profileImageUrl
 
   return (
     <S.TopNavContainer>

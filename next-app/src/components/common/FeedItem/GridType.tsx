@@ -14,7 +14,7 @@ import Divider from '../Divider'
 
 import * as S from './FeedItem.style'
 import Anchor from '../Anchor'
-import { cacheKeys } from 'services/cacheKeys'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 interface Props {
   item: Item
@@ -22,14 +22,18 @@ interface Props {
 
 const GridType = ({ item }: Props) => {
   const client = useQueryClient()
-  const { mutate: handleLike } = useMutation(['likeItem', item.id], likeItem, {
-    onSuccess: () => {
-      client.invalidateQueries(['feeds'])
-      client.invalidateQueries(['likedItems'])
-    },
-  })
+  const { mutate: handleLike } = useMutation(
+    CACHE_KEYS.likeItem(item.id),
+    likeItem,
+    {
+      onSuccess: () => {
+        client.invalidateQueries(CACHE_KEYS.feeds)
+        client.invalidateQueries(CACHE_KEYS.likedItems)
+      },
+    }
+  )
   const { mutate: handleRead } = useMutation(
-    cacheKeys.viewItem(item.id),
+    CACHE_KEYS.viewItem(item.id),
     submitViewedItem
   )
 

@@ -1,22 +1,33 @@
 import React, { useState } from 'react'
-import { useRecoilValue, useResetRecoilState } from 'recoil'
-
-import InfoRow from './InfoRow'
-import Dialog from 'components/common/Dialog'
-import * as S from './MyPageContainer.style'
-import profile from 'store/atoms/profile'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
+
+import Dialog from 'components/common/Dialog'
+import { getUserInfo, UserProfile } from 'services/auth'
+
+import { CACHE_KEYS } from 'services/cacheKeys'
+import InfoRow from './InfoRow'
+
+import * as S from './MyPageContainer.style'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
-  const { name, email } = useRecoilValue(profile)
-  const resetProfile = useResetRecoilState(profile)
+
+  const client = useQueryClient()
+  const { data: userProfile, isLoading } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo
+  )
 
   const logoutAction = () => {
     Cookies.remove('token')
-    resetProfile()
+    client.invalidateQueries(CACHE_KEYS.me)
     window.location.href = '/'
+  }
+
+  if (isLoading || !userProfile) {
+    return
   }
 
   return (
@@ -24,9 +35,9 @@ const MyPageContainer = () => {
       <S.Contents>
         <S.PageTitle>내 정보</S.PageTitle>
         <S.BorderLine />
-        <InfoRow title="로그인 계정" value={email} />
+        <InfoRow title="로그인 계정" value={userProfile.email} />
         <div style={{ marginBottom: '60px' }}>
-          <InfoRow title="이름" value={name} />
+          <InfoRow title="이름" value={userProfile.name} />
         </div>
         <S.BorderLine />
         <S.ButtonWrap>

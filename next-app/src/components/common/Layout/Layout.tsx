@@ -10,10 +10,11 @@ interface Props {
 const Layout = ({ children }: Props) => {
   const router = useRouter()
   const isSignUpPage = useMemo(() => router.pathname === '/signup', [router])
+  const isOauthPage = useMemo(() => router.pathname === '/oauth', [router])
 
   return (
     <>
-      {!isSignUpPage && <Nav />}
+      {!(isSignUpPage || isOauthPage) && <Nav />}
       <Container isSignUpPage={isSignUpPage}>
         <main>{children}</main>
       </Container>

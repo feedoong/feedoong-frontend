@@ -6,14 +6,14 @@ import FeedItem from 'components/common/FeedItem/FeedItem'
 import * as S from 'components/views/MyPost/PostContainer.style'
 import Icons from 'assets/icons'
 import { getLikedItems } from 'services/feeds'
-import { cacheKeys } from 'services/cacheKeys'
+import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 
 function PostContainer() {
   const ITEMS_PER_PAGE = 10
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
-    [cacheKeys.likedItems, { page: currentPage }],
+    [CACHE_KEYS.likedItems, { page: currentPage }],
     () => getLikedItems(currentPage)
   )
 
