@@ -17,7 +17,7 @@ export const getApiEndpoint = () => {
 export const getDomainName = () => {
   switch (getAppEnv()) {
     case 'production':
-      return 'https://feedoong.io'
+      return 'https://dev.feedoong.io' // TODO: 추후 프로덕션 도메인으로 변경
     case 'development':
     default:
       return 'http://localhost:3000'
