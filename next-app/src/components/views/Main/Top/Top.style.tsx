@@ -23,7 +23,7 @@ export const Title = styled.h1`
 export const Subtitle = styled.h2`
   color: ${colors.gray400};
   text-align: center;
-  ${getTypographyStyles('Headline4_M')}
+  ${getTypographyStyles('Headline3_M')}
 `
 
 export const GoogleLoginButton = styled.button`
@@ -33,5 +33,5 @@ export const GoogleLoginButton = styled.button`
   background: ${colors.white};
   cursor: pointer;
 
-  ${getTypographyStyles('Headline4_B')}
+  ${getTypographyStyles('Headline3_B')}
 `
