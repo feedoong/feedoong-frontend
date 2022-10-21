@@ -17,6 +17,10 @@ import Star from './star.svg'
 import SpeechBubble from './speechBubble.svg'
 import Thunder from './thunder.svg'
 import Link from './link.svg'
+import ToastError from './toast_error.svg'
+import ToastBasic from './toast_basic.svg'
+import RightArrow from './right_arrow.svg'
+import LeftArrow from './left_arrow.svg'
 
 export const Icons = {
   NaverIcon,
@@ -38,6 +42,10 @@ export const Icons = {
   SpeechBubble,
   Thunder,
   Link,
+  ToastBasic,
+  ToastError,
+  RightArrow,
+  LeftArrow
 }
 
 export default Icons

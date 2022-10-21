@@ -1,14 +1,21 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
+import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
 import * as S from 'components/views/MyPost/PostContainer.style'
-import { getLikedItems } from 'services/feeds'
 import Icons from 'assets/icons'
+import { getLikedItems } from 'services/feeds'
 import { cacheKeys } from 'services/cacheKeys'
+import Paging from 'components/common/Paging'
 
 function PostContainer() {
-  const { data, isLoading } = useQuery(cacheKeys.likedItems, getLikedItems)
+  const ITEMS_PER_PAGE = 10
+  const [currentPage, setCurrentPage] = useState(1)
+  const { data, isLoading } = useQuery(
+    [cacheKeys.likedItems, { page: currentPage }],
+    () => getLikedItems(currentPage)
+  )
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
@@ -18,6 +25,7 @@ function PostContainer() {
   )
 
   const isGridView = selectedViewType === 'grid'
+  const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   return (
     <S.Container>
@@ -60,6 +68,13 @@ function PostContainer() {
               })}
         </S.CardContainer>
       </S.FeedWrapper>
+      <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
+        <Paging
+          totalPage={totalPage}
+          currentPage={currentPage}
+          movePage={(page: number) => setCurrentPage(page)}
+        />
+      </Flex>
     </S.Container>
   )
 }

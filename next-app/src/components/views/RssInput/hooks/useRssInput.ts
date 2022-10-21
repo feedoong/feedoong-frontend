@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
 import { isRssUrlValid } from '../RssInputContainer.utils'
 import { cacheKeys } from 'services/cacheKeys'
+import Toast from 'components/common/Toast'
 
 const useRssInput = () => {
   const client = useQueryClient()
@@ -14,7 +15,7 @@ const useRssInput = () => {
     onSuccess: () => {
       setUrl(undefined)
       client.invalidateQueries(['feeds'])
-      alert('Successfully added feed')
+      Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
     },
   })
 

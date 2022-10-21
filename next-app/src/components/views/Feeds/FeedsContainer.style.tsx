@@ -6,7 +6,9 @@ import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  align-items: center;
 `
 
 export const FeedWrapper = styled.div`

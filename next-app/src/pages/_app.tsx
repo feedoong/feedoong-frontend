@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
       refetchOnMount: false,
 
       onError: (err: unknown) => {
-        ;(err as AxiosError<ErrorResponse>).response?.data.exceptions.forEach(
+        ;(err as AxiosError<ErrorResponse>).response?.data?.exceptions.forEach(
           (exception) => {
             alert(exception)
           }
