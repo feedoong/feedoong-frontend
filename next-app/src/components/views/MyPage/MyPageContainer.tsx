@@ -27,7 +27,7 @@ const MyPageContainer = () => {
   }
 
   if (isLoading || !userProfile) {
-    return
+    return null
   }
 
   return (
