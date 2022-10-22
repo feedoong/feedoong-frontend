@@ -13,6 +13,10 @@ export const PostMeta = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+
+  img {
+    border-radius: 50%;
+  }
 `
 
 export const Author = styled.span`
