@@ -42,9 +42,11 @@ export const CloseSection = styled.section`
 `
 
 export const CloseButton = styled.button`
+  all: unset;
   ${getTypographyStyles('Body1_B')};
 
   display: flex;
+  gap: 10px;
   border: 0;
   color: ${colors.gray600};
   cursor: pointer;

@@ -19,9 +19,7 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
       <S.CloseSection>
         <S.CloseButton onClick={closeSideBar}>
           닫기
-          <div style={{ marginLeft: '10px' }}>
-            <Image src={Icons.Close} alt="close-icon" width="12" height="12" />
-          </div>
+          <Image src={Icons.Close} alt="close-icon" width="12" height="12" />
         </S.CloseButton>
       </S.CloseSection>
 
