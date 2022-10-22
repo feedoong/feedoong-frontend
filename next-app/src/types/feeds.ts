@@ -4,6 +4,7 @@ export interface Feed {
 }
 
 export interface Item {
+  imageUrl: string // 해당 게시물에 대한 이미지 (아직 존재하지 않는 값)
   description: string
   guid: string
   isLiked: boolean
@@ -12,6 +13,8 @@ export interface Item {
   link: string
   publishedAt: string // 2022-10-09T18:11:18.497Z
   title: string
+  channelImageUrl: string
+  channelTitle: string
 }
 
 export interface PreviewResponse {

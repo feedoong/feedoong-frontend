@@ -66,16 +66,16 @@ const CardType = ({ item }: Props) => {
       <Divider />
       <S.Footer>
         <S.PostMeta>
-          <Image
-            alt="네이버 로고"
-            src={Icons.NaverIcon}
+          <img
+            alt="채널 로고"
+            src={item.channelImageUrl}
             width={20}
             height={20}
           />
-          <S.Author>네이버 뉴스</S.Author>
+          <S.Author>{item.channelTitle}</S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
-        <Flex gap={12}>
+        <Flex gap={12} align="center">
           <S.CopyLinkButton
             alt="링크 복사"
             src={Icons.Link}

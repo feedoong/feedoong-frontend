@@ -15,11 +15,12 @@ const SubscriptionType = ({ item }: Props) => {
     <Container>
       <Flex justify="between">
         <Flex align="center" gap={8}>
-          <Image
-            alt="네이버 로고"
-            src={Icons.NaverIcon}
+          <img
+            alt="채널 로고"
+            src={item?.imageUrl}
             width={20}
             height={20}
+            style={{ borderRadius: '50%' }}
           />
           <Anchor href={item?.url} target="_blank">
             <Title>{item?.title}</Title>
@@ -34,7 +35,7 @@ const SubscriptionType = ({ item }: Props) => {
         />
       </Flex>
       <Anchor href={item?.url} target="_blank">
-        <Url>{item?.url}</Url>
+        <Url>{item?.description}</Url>
       </Anchor>
     </Container>
   )

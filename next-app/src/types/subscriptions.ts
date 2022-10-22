@@ -4,6 +4,7 @@ export interface Subscription {
   id: number
   title: string
   url: string
+  imageUrl: string
 }
 
 export interface Subscriptions {
