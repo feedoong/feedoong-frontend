@@ -20,6 +20,7 @@ import Divider from '../Divider'
 import * as S from './FeedItem.style'
 import Anchor from '../Anchor'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import { Feed } from 'types/feeds'
 
 interface Props {
   item: Item
@@ -32,8 +33,19 @@ const GridType = ({ item, currentPage }: Props) => {
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
-      onSuccess: () => {
-        client.invalidateQueries(CACHE_KEYS.feeds, { exact: true })
+      onSuccess: (data) => {
+        client.setQueryData<Feed>(CACHE_KEYS.feeds, (prev) => {
+          if (prev) {
+            return {
+              ...prev,
+              items: prev.items.map((item) => {
+                return item.id === data.itemId
+                  ? { ...item, isLiked: data.isLiked }
+                  : item
+              }),
+            }
+          }
+        })
         client.invalidateQueries([CACHE_KEYS.likedItems, { page: currentPage }])
       },
     }

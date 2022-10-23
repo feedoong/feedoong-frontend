@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import type { Item } from 'types/feeds'
+import type { Feed, Item } from 'types/feeds'
 import Icons from 'assets/icons'
 import { getFormatDate } from 'utils'
 import { likeItem, submitViewedItem } from 'services/feeds'
@@ -36,7 +36,18 @@ const CardType = ({ item, currentPage }: Props) => {
     likeItem,
     {
       onSuccess: (data) => {
-        client.invalidateQueries(CACHE_KEYS.feeds, { exact: true })
+        client.setQueryData<Feed>(CACHE_KEYS.feeds, (prev) => {
+          if (prev) {
+            return {
+              ...prev,
+              items: prev.items.map((item) => {
+                return item.id === data.itemId
+                  ? { ...item, isLiked: data.isLiked }
+                  : item
+              }),
+            }
+          }
+        })
         client.invalidateQueries([CACHE_KEYS.likedItems, { page: currentPage }])
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
