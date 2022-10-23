@@ -21,6 +21,7 @@ import ToastError from './toast_error.svg'
 import ToastBasic from './toast_basic.svg'
 import RightArrow from './right_arrow.svg'
 import LeftArrow from './left_arrow.svg'
+import Account from './account.png'
 
 export const Icons = {
   NaverIcon,
@@ -45,7 +46,8 @@ export const Icons = {
   ToastBasic,
   ToastError,
   RightArrow,
-  LeftArrow
+  LeftArrow,
+  Account: Account.src,
 }
 
 export default Icons

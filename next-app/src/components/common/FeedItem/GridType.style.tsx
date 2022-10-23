@@ -28,5 +28,7 @@ export const Title = styled.h2<{ isImageExist: boolean }>`
 export const Description = styled.div`
   ${getTypographyStyles('Body1_M')}
   ${ellipsis(5)}
+  
   color: ${colors.gray600};
+  word-break: break-all;
 `

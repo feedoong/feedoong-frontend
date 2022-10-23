@@ -11,13 +11,12 @@ import * as S from './RssInputContainer.style'
 const RssInputContainer = () => {
   const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput()
 
+  console.log({ url })
+
+  const isSubmitEnabled = !isPreviewLoading || isRssUrlValid(url)
   return (
     <S.Container>
-      <form
-        onSubmit={(e) =>
-          (!isPreviewLoading || isRssUrlValid(url)) && onSubmit(e)
-        }
-      >
+      <form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
         <Flex justify="center" align="center">
           <Input
             name="url"
@@ -25,6 +24,7 @@ const RssInputContainer = () => {
             isValid={isRssUrlValid(url)}
             onChange={handleInput}
             value={url}
+            onKeyUp={(e) => e.key === 'Enter' && isSubmitEnabled && onSubmit(e)}
           />
           <S.AddButton
             type="submit"

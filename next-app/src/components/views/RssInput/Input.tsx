@@ -31,8 +31,9 @@ const Input = forwardRef<HTMLInputElement, Props>(
       setSelectedValue('')
     }
 
+    console.log(forwardedRef?.current?.value)
     return (
-      <S.InputWrapper isValid={isValid}>
+      <S.InputWrapper isValid={isValid === null ? undefined : isValid}>
         <S.Input
           {...rest}
           ref={forwardedRef}

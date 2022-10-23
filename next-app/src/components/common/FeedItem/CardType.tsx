@@ -68,7 +68,7 @@ const CardType = ({ item }: Props) => {
         <S.PostMeta>
           <img
             alt="채널 로고"
-            src={item.channelImageUrl}
+            src={item.channelImageUrl ?? Icons.Account}
             width={20}
             height={20}
           />

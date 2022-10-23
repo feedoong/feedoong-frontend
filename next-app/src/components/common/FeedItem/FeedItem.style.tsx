@@ -50,6 +50,7 @@ export const Contents = styled.p`
   ${ellipsis(2)}
 
   color: ${colors.gray600};
+  word-break: break-all;
 `
 
 export const ReadStatus = styled.span`
