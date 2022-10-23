@@ -12,7 +12,8 @@ const useControlled = <T>({
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = useRef(controlled !== undefined)
   const [valueState, setValue] = useState(defaultProp)
-  const value = isControlled ? controlled : valueState
+  const value = isControlled !== undefined ? controlled : valueState
+  console.log({ isControlled, controlled, valueState, value })
 
   const setValueIfUncontrolled = useCallback((newValue: T) => {
     if (!isControlled) {

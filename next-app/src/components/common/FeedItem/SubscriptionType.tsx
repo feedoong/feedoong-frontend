@@ -17,7 +17,7 @@ const SubscriptionType = ({ item }: Props) => {
         <Flex align="center" gap={8}>
           <img
             alt="채널 로고"
-            src={item?.imageUrl}
+            src={item?.imageUrl ?? Icons.Account}
             width={20}
             height={20}
             style={{ borderRadius: '50%' }}
