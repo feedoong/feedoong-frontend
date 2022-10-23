@@ -63,7 +63,12 @@ function PostContainer() {
             ? '로딩 스피너'
             : data?.items.map((item) => {
                 return (
-                  <FeedItem key={item.id} type={selectedViewType} item={item} />
+                  <FeedItem
+                    key={item.id}
+                    type={selectedViewType}
+                    item={item}
+                    currentPage={currentPage}
+                  />
                 )
               })}
         </S.CardContainer>

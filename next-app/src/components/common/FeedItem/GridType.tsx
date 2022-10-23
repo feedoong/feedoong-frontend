@@ -23,17 +23,18 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 
 interface Props {
   item: Item
+  currentPage: number
 }
 
-const GridType = ({ item }: Props) => {
+const GridType = ({ item, currentPage }: Props) => {
   const client = useQueryClient()
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
       onSuccess: () => {
-        client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries(CACHE_KEYS.feeds, { exact: true })
+        client.invalidateQueries([CACHE_KEYS.likedItems, { page: currentPage }])
       },
     }
   )

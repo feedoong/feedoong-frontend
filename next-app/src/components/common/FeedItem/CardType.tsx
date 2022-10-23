@@ -15,20 +15,29 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from '../Toast'
 
 import * as S from './FeedItem.style'
+import { memo } from 'react'
 
 interface Props {
   item: Item
+  currentPage: number
 }
 
-const CardType = ({ item }: Props) => {
+/**
+ * TODO: 북마크 상태 변경 시 깜빡임 문제
+ * @param item
+ * @param currentPage
+ * @constructor
+ */
+
+const CardType = ({ item, currentPage }: Props) => {
   const client = useQueryClient()
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
       onSuccess: (data) => {
-        client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries(CACHE_KEYS.feeds, { exact: true })
+        client.invalidateQueries([CACHE_KEYS.likedItems, { page: currentPage }])
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
           toastMessage = '게시물 저장이 해제되었습니다.'
@@ -96,4 +105,4 @@ const CardType = ({ item }: Props) => {
   )
 }
 
-export default CardType
+export default memo(CardType)
