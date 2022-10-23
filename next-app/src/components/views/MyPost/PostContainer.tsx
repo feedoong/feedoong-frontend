@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
@@ -10,11 +10,17 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 
 function PostContainer() {
+  const client = useQueryClient()
   const ITEMS_PER_PAGE = 10
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
     [CACHE_KEYS.likedItems, { page: currentPage }],
-    () => getLikedItems(currentPage)
+    () => {
+      return getLikedItems(currentPage)
+    },
+    {
+      refetchOnMount: true,
+    }
   )
 
   const [selectedCategory, setSelectedCategory] = useState<
