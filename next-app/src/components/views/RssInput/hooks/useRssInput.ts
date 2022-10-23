@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from 'react'
+import { type ChangeEvent, useState, RefObject } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
@@ -7,14 +7,24 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from 'components/common/Toast'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 
-const useRssInput = () => {
+interface Props {
+  inputRef: RefObject<HTMLInputElement>
+}
+
+const useRssInput = ({ inputRef }: Props) => {
   const client = useQueryClient()
 
   const [url, setUrl] = useState<string>()
 
   const { mutate } = useMutation(['/channels'], submitRssUrl, {
     onSuccess: () => {
+      // TODO: null과 undefined와 ""를 구분해야 한다.
       setUrl(undefined)
+      if (inputRef.current) {
+        inputRef.current.removeAttribute('value')
+        console.log(inputRef.current)
+      }
+      // FIXME: 캐시 만료가 안됨
       client.invalidateQueries(CACHE_KEYS.feeds)
       Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
     },

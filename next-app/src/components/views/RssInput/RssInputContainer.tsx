@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRef } from 'react'
 
 import Icons from 'assets/icons'
 import Flex from 'components/common/Flex'
@@ -9,7 +10,10 @@ import { useRssInput } from './hooks'
 import * as S from './RssInputContainer.style'
 
 const RssInputContainer = () => {
-  const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput({
+    inputRef,
+  })
 
   console.log({ url })
 
@@ -19,6 +23,7 @@ const RssInputContainer = () => {
       <form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
         <Flex justify="center" align="center">
           <Input
+            ref={inputRef}
             name="url"
             placeholder="URL을 추가해서 피드로 모아보세요!"
             isValid={isRssUrlValid(url)}
