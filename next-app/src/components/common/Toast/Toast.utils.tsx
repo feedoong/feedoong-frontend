@@ -35,6 +35,7 @@ export const renderImperatively = (element: TargetElement) => {
 
     const onClose = () => {
       closeRef.current = true
+      unmount()
       elementToRender.props.onClose?.()
     }
 
@@ -76,6 +77,7 @@ export const renderImperatively = (element: TargetElement) => {
 const renderToBody = (element: ReactElement) => {
   const container = document.createElement('div')
   document.body.appendChild(container)
+
   const unmount = () => {
     const unmountResult = customUnmount(container)
     if (!!unmountResult && container.parentNode) {
@@ -84,6 +86,7 @@ const renderToBody = (element: ReactElement) => {
   }
 
   customRender(element, container)
+
   return unmount
 }
 
