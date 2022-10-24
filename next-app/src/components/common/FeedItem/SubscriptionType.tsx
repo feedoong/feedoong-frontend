@@ -8,14 +8,30 @@ import Anchor from '../Anchor'
 import Popover from '../Popover'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from './FeedItem.utils'
-
-console.log({ Popover })
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { deleteSubscription } from 'services/subscriptions'
+import Toast from '../Toast'
 
 interface Props {
   item?: Subscription
 }
 
 const SubscriptionType = ({ item }: Props) => {
+  const client = useQueryClient()
+  const { mutate } = useMutation(
+    CACHE_KEYS.subscription(item?.id ?? 0),
+    () => deleteSubscription(item?.id ?? 0),
+    {
+      onSuccess: () => {
+        Toast.show({ content: '구독이 해제되었습니다.' })
+        client.invalidateQueries({
+          predicate: ({ queryKey }) => queryKey[0] === CACHE_KEYS.subscriptions,
+        })
+      },
+    }
+  )
+
   return (
     <Container>
       <Flex justify="between">
@@ -48,6 +64,7 @@ const SubscriptionType = ({ item }: Props) => {
                 링크 복사
               </Popover.Item>
               <Popover.Item
+                onClick={() => mutate()}
                 color={colors.error}
                 icon={
                   <Image
