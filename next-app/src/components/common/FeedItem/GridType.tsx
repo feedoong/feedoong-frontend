@@ -88,7 +88,7 @@ const GridType = ({ item, currentPage }: Props) => {
                 width={20}
                 height={20}
               />
-              <S.Author>{item.channelTitle}</S.Author>
+              <S.Author isGridType>{item.channelTitle}</S.Author>
               <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
             </S.PostMeta>
             <Flex gap={12} align="center">

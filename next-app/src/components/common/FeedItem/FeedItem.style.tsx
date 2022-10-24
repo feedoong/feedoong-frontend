@@ -19,8 +19,17 @@ export const PostMeta = styled.div`
   }
 `
 
-export const Author = styled.span`
+export const Author = styled.span<{ isGridType?: boolean }>`
   ${getTypographyStyles('Body2_B')}
+  ${(props) =>
+    props.isGridType &&
+    `
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 120px;
+  `}
 `
 
 export const Date = styled.span`
