@@ -5,6 +5,7 @@ import Icons from 'assets/icons'
 import type { Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
 import Anchor from '../Anchor'
+import Popover from '../Popover'
 
 interface Props {
   item?: Subscription
@@ -26,13 +27,26 @@ const SubscriptionType = ({ item }: Props) => {
             <Title>{item?.title}</Title>
           </Anchor>
         </Flex>
-        <Image
-          alt="옵션 메뉴"
-          src={Icons.DotsVertical}
-          width={16}
-          height={16}
-          style={{ cursor: 'pointer' }}
-        />
+        <Popover
+          render={({ close, labelId, descriptionId }) => (
+            <div style={{ width: 'max-content', background: 'black' }}>
+              <h3 id={labelId}>Create new app</h3>
+              <p id={descriptionId}>Keep the name short!</p>
+              <input placeholder="Name" />
+              <button onClick={close}>Create</button>
+            </div>
+          )}
+        >
+          <span>
+            <Image
+              alt="옵션 메뉴"
+              src={Icons.DotsVertical}
+              width={16}
+              height={16}
+              style={{ cursor: 'pointer' }}
+            />
+          </span>
+        </Popover>
       </Flex>
       <Anchor href={item?.url} target="_blank">
         <Url>{item?.description}</Url>
