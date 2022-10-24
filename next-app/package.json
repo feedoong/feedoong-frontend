@@ -11,6 +11,7 @@
     "build:extentsion": "next build && next export && mv out/_next out/next && sed -i '' -e 's/\\/_next/\\.\\/next/g' out/**.html && mv out/index.html mv out/popup-test.html ../extension && rsync -va --delete-after out/next/ ../extension/next/ && rm -rf out && rsync -va --delete-after ./src/assets ../extension/"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^1.0.0",
     "@tanstack/react-query": "^4.6.0",
     "@tanstack/react-query-devtools": "^4.6.0",
     "axios": "^0.27.2",
