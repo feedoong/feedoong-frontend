@@ -11,16 +11,23 @@ import InfoRow from './InfoRow'
 import * as S from './MyPageContainer.style'
 import { useMutation } from '@tanstack/react-query'
 import { deleteAccount } from 'services/account'
+import Toast from 'components/common/Toast'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
 
-  const { mutate: deleteAccountAction } = useMutation(['deleteAccount'], deleteAccount, {
-    onSuccess: () => {
-      alert('Successfully delete account')
-    },
-  })
+  const { mutate: deleteAccountAction } = useMutation(
+    ['deleteAccount'],
+    deleteAccount,
+    {
+      onSuccess: () => {
+        Toast.show({ content: 'Successfully delete account' })
+        Cookies.remove('token')
+        window.location.href = '/'
+      },
+    }
+  )
 
   const client = useQueryClient()
   const { data: userProfile, isLoading } = useQuery<UserProfile>(

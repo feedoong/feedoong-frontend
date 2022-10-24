@@ -13,7 +13,7 @@ const useControlled = <T>({
   const { current: isControlled } = useRef(controlled !== undefined)
   const [valueState, setValue] = useState(defaultProp)
   const value = isControlled !== undefined ? controlled : valueState
-  console.log({ isControlled, controlled, valueState, value })
+  // console.log({ isControlled, controlled, valueState, value })
 
   const setValueIfUncontrolled = useCallback((newValue: T) => {
     if (!isControlled) {
