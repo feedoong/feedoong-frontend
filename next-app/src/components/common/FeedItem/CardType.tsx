@@ -28,7 +28,9 @@ const CardType = ({ item }: Props) => {
     {
       onSuccess: (data) => {
         client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries({
+          predicate: ({ queryKey }) => queryKey[0] === CACHE_KEYS.likedItems,
+        })
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
           toastMessage = '게시물 저장이 해제되었습니다.'
