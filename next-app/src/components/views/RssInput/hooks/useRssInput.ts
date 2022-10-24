@@ -22,7 +22,6 @@ const useRssInput = ({ inputRef }: Props) => {
       setUrl(undefined)
       if (inputRef.current) {
         inputRef.current.removeAttribute('value')
-        // console.log(inputRef.current)
       }
       // FIXME: 캐시 만료가 안됨
       client.invalidateQueries(CACHE_KEYS.feeds)

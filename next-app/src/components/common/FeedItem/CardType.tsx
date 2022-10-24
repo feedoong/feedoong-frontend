@@ -27,10 +27,9 @@ const CardType = ({ item }: Props) => {
     likeItem,
     {
       onSuccess: (data) => {
+        // TODO: 캐시 무효화 로직 확인 ex. predicate
         client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries({
-          predicate: ({ queryKey }) => queryKey[0] === CACHE_KEYS.likedItems,
-        })
+        client.invalidateQueries(CACHE_KEYS.likedItems)
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
           toastMessage = '게시물 저장이 해제되었습니다.'
