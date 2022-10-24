@@ -41,7 +41,7 @@ export const ToastWrapper = styled.div<{
   ${getTypographyStyles('Body2_M')};
 
   width: 500px;
-  height: 40px;
+  min-height: 40px;
   border-radius: 10px;
   padding: 12px 16px;
   background: ${({ type }) =>
