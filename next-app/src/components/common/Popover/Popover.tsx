@@ -14,6 +14,8 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react-dom-interactions'
 import { mergeRefs } from 'react-merge-refs'
+import PopoverLayout from './PopoverLayout'
+import PopoverItem from './PopoverItem'
 
 interface Props {
   render: (data: {
@@ -89,4 +91,7 @@ const Popover = ({ children, render, placement }: Props) => {
   )
 }
 
-export default Popover
+export default Object.assign(Popover, {
+  Item: PopoverItem,
+  Layout: PopoverLayout,
+})
