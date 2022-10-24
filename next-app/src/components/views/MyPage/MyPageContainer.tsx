@@ -9,10 +9,25 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import InfoRow from './InfoRow'
 
 import * as S from './MyPageContainer.style'
+import { useMutation } from '@tanstack/react-query'
+import { deleteAccount } from 'services/account'
+import Toast from 'components/common/Toast'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
+
+  const { mutate: deleteAccountAction } = useMutation(
+    ['deleteAccount'],
+    deleteAccount,
+    {
+      onSuccess: () => {
+        Toast.show({ content: 'Successfully delete account' })
+        Cookies.remove('token')
+        window.location.href = '/'
+      },
+    }
+  )
 
   const client = useQueryClient()
   const { data: userProfile, isLoading } = useQuery<UserProfile>(
@@ -59,7 +74,15 @@ const MyPageContainer = () => {
           <button onClick={() => setIsOpenDeleteAccountModal(false)}>
             취소
           </button>
-          <button className="secondary">회원탈퇴</button>
+          <button
+            className="secondary"
+            onClick={() => {
+              deleteAccountAction()
+              setIsOpenDeleteAccountModal(false)
+            }}
+          >
+            회원탈퇴
+          </button>
         </Dialog.Actions>
       </Dialog>
     </S.Container>

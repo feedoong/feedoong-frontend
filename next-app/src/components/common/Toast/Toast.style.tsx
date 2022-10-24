@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import Image from 'next/future/image'
@@ -41,7 +41,7 @@ export const ToastWrapper = styled.div<{
   ${getTypographyStyles('Body2_M')};
 
   width: 500px;
-  height: 40px;
+  min-height: 40px;
   border-radius: 10px;
   padding: 12px 16px;
   background: ${({ type }) =>
@@ -50,11 +50,25 @@ export const ToastWrapper = styled.div<{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 50px;
-  animation-name: ${({ type }) => type === 'basic'? basicFadeOut : errorFadeOut};
+  position: fixed;
+  /* bottom: 50px; */
+  /* bottom: ${({ position }) => (position === 'bottom' ? '50px' : '100px')}; */
+  animation-name: ${({ type }) =>
+    type === 'basic' ? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};
   animation-fill-mode: forwards;
+
+  ${({ position }) =>
+    position === 'bottom' &&
+    css`
+      bottom: 50px;
+    `}
+
+  ${({ position }) =>
+    position === 'top' &&
+    css`
+      top: 150px;
+    `}
 
   p {
     color: ${({ type }) => (type === 'basic' ? colors.white : colors.error)};
