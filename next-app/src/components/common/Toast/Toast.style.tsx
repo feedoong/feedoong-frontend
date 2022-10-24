@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import Image from 'next/future/image'
@@ -51,10 +51,24 @@ export const ToastWrapper = styled.div<{
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 50px;
-  animation-name: ${({ type }) => type === 'basic'? basicFadeOut : errorFadeOut};
+  /* bottom: 50px; */
+  /* bottom: ${({ position }) => (position === 'bottom' ? '50px' : '100px')}; */
+  animation-name: ${({ type }) =>
+    type === 'basic' ? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};
   animation-fill-mode: forwards;
+
+  ${({ position }) =>
+    position === 'bottom' &&
+    css`
+      bottom: 50px;
+    `}
+
+  ${({ position }) =>
+    position === 'top' &&
+    css`
+      top: 150px;
+    `}
 
   p {
     color: ${({ type }) => (type === 'basic' ? colors.white : colors.error)};
