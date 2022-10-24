@@ -50,7 +50,7 @@ export const ToastWrapper = styled.div<{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   animation-name: ${({ type }) => type === 'basic'? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};
