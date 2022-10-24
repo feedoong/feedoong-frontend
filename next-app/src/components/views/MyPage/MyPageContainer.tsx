@@ -9,13 +9,18 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import InfoRow from './InfoRow'
 
 import * as S from './MyPageContainer.style'
-import profile from 'store/atoms/profile'
 import { useMutation } from '@tanstack/react-query'
 import { deleteAccount } from 'services/account'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
+
+  const { mutate: deleteAccountAction } = useMutation(['deleteAccount'], deleteAccount, {
+    onSuccess: () => {
+      alert('Successfully delete account')
+    },
+  })
 
   const client = useQueryClient()
   const { data: userProfile, isLoading } = useQuery<UserProfile>(
@@ -32,12 +37,6 @@ const MyPageContainer = () => {
   if (isLoading || !userProfile) {
     return null
   }
-  const { name } = useRecoilValue(profile)
-  const { mutate } = useMutation(['deleteAccount'], deleteAccount, {
-    onSuccess: () => {
-      alert('Successfully delete account')
-    }
-  })
 
   return (
     <S.Container>
@@ -68,13 +67,14 @@ const MyPageContainer = () => {
           <button onClick={() => setIsOpenDeleteAccountModal(false)}>
             취소
           </button>
-          <button 
-          className="secondary" 
-          onClick={() => {
-            mutate();
-            setIsOpenDeleteAccountModal(false);
-            }}>
-              회원탈퇴
+          <button
+            className="secondary"
+            onClick={() => {
+              deleteAccountAction()
+              setIsOpenDeleteAccountModal(false)
+            }}
+          >
+            회원탈퇴
           </button>
         </Dialog.Actions>
       </Dialog>
