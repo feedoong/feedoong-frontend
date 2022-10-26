@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 
 import { colors } from 'styles/colors'

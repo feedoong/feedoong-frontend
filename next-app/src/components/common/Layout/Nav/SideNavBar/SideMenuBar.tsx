@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import Link from 'next/link'
 
 import Icons from 'assets/icons'
@@ -25,12 +25,12 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
 
       <S.MenuSection>
         <div>
-          <Link href="/mypage/channels" passHref>
+          <Link href="/mypage/channels" passHref legacyBehavior>
             <Anchor onClick={closeSideBar}>
               <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
             </Anchor>
           </Link>
-          <Link href="/mypage/posts" passHref>
+          <Link href="/mypage/posts" passHref legacyBehavior>
             <Anchor onClick={closeSideBar}>
               <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
             </Anchor>
@@ -42,7 +42,7 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
         </div>
       </S.MenuSection>
     </S.SideMenuBarContainer>
-  )
+  );
 }
 
 export default SideMenuBar
