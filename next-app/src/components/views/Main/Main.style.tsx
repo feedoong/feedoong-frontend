@@ -3,7 +3,6 @@ import { colors } from 'styles/colors'
 
 export const Wrapper = styled.div`
   margin: 100px 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +15,7 @@ export const Container = styled.div`
 `
 
 export const Contents = styled.div`
+  width: 100%;
   height: 400px;
   margin: 0 180px;
   display: flex;
