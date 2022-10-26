@@ -3,7 +3,6 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Wrapper = styled.div`
-  width: 100vw;
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -31,6 +30,7 @@ export const GoogleLoginButton = styled.button`
   padding: 14px 50px;
   border-radius: 30px;
   background: ${colors.white};
+  border: 0px;
   cursor: pointer;
 
   ${getTypographyStyles('Headline3_B')}
