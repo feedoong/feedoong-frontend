@@ -1544,7 +1544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:latest":
+"eslint-config-next@npm:^13.0.0":
   version: 13.0.0
   resolution: "eslint-config-next@npm:13.0.0"
   dependencies:
@@ -1882,14 +1882,14 @@ __metadata:
     axios: ^0.27.2
     dayjs: ^1.11.5
     eslint: 8.22.0
-    eslint-config-next: latest
+    eslint-config-next: ^13.0.0
     humps: ^2.0.1
     js-cookie: ^3.0.1
-    next: latest
+    next: ^13.0.0
     prettier: ^2.7.1
     query-string: ^7.1.1
-    react: latest
-    react-dom: latest
+    react: ^18.2.0
+    react-dom: ^18.2.0
     react-is: ^18.2.0
     recoil: ^0.7.5
     styled-components: ^5.3.5
@@ -2742,7 +2742,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:latest":
+"next@npm:^13.0.0":
   version: 13.0.0
   resolution: "next@npm:13.0.0"
   dependencies:
@@ -3104,7 +3104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:latest":
+"react-dom@npm:^18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -3130,7 +3130,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:latest":
+"react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
