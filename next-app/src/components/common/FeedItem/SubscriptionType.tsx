@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import Image from 'next/future/image'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+=======
+import Image from "next/image";
+>>>>>>> @{-1}
 
 import Icons from 'assets/icons'
 import type { Subscription } from 'types/subscriptions'

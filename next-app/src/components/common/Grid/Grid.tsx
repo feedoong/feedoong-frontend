@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import Icons from 'assets/icons'
 
 import * as S from 'components/common/FeedItem/FeedItem.style'
