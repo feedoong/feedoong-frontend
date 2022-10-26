@@ -1,9 +1,8 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 export const TopNavContainer = styled.div`
   position: fixed;

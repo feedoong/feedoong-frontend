@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
-import Image from 'next/future/image'
+import Image from "next/image";
 
 const basicFadeOut = keyframes`
   0% {

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Icons from 'assets/icons'

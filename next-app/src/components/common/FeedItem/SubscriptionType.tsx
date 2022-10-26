@@ -1,4 +1,4 @@
-import Image from 'next/future/image'
+import Image from "next/image";
 
 import { Container, Title, Url } from './SubscriptionType.style'
 import Icons from 'assets/icons'
