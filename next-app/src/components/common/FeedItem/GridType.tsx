@@ -31,6 +31,7 @@ const GridType = ({ item }: Props) => {
     likeItem,
     {
       onSuccess: () => {
+        // TODO: 캐시 무효화 로직 확인 ex. predicate
         client.invalidateQueries(CACHE_KEYS.feeds)
         client.invalidateQueries(CACHE_KEYS.likedItems)
       },
