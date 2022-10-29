@@ -10,20 +10,18 @@ type Props =
   | {
       type: Omit<FeedType, 'subscription'>
       item: Item
-      currentPage?: number
     }
   | {
       type: 'subscription'
       item: Subscription
-      currentPage?: number
     }
 
-const FeedItem = ({ type = 'card', item, currentPage = 1 }: Props) => {
+const FeedItem = ({ type = 'card', item }: Props) => {
   if (type === 'card') {
-    return <CardType item={item as Item} currentPage={currentPage} />
+    return <CardType item={item as Item} />
   }
   if (type === 'grid') {
-    return <GridType item={item as Item} currentPage={currentPage} />
+    return <GridType item={item as Item} />
   }
   if (type === 'subscription') {
     return <SubscriptionType item={item as Subscription} />

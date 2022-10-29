@@ -19,23 +19,28 @@ import Divider from '../Divider'
 import * as S from './FeedItem.style'
 import Anchor from '../Anchor'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { Feed } from 'types/feeds'
 
 interface Props {
   item: Item
-  currentPage: number
 }
 
-const GridType = ({ item, currentPage }: Props) => {
+const GridType = ({ item }: Props) => {
   const client = useQueryClient()
+
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
       onSuccess: () => {
-        // TODO: 캐시 무효화 로직 확인 ex. predicate
         client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries({
+          predicate: ({ queryKey }) => {
+            if (Array.isArray(queryKey) && queryKey[0].includes('likedItems')) {
+              return true
+            }
+            return false
+          },
+        })
       },
     }
   )

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
@@ -9,17 +9,14 @@ import { getLikedItems } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 
+import { ITEMS_PER_PAGE } from './PostContainer.const'
+
 function PostContainer() {
-  const client = useQueryClient()
-  const ITEMS_PER_PAGE = 10
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
     [CACHE_KEYS.likedItems, { page: currentPage }],
     () => {
       return getLikedItems(currentPage)
-    },
-    {
-      refetchOnMount: true,
     }
   )
 
@@ -69,12 +66,7 @@ function PostContainer() {
             ? '로딩 스피너'
             : data?.items.map((item) => {
                 return (
-                  <FeedItem
-                    key={item.id}
-                    type={selectedViewType}
-                    item={item}
-                    currentPage={currentPage}
-                  />
+                  <FeedItem key={item.id} type={selectedViewType} item={item} />
                 )
               })}
         </S.CardContainer>

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import type { Feed, Item } from 'types/feeds'
+import type { Item } from 'types/feeds'
 import Icons from 'assets/icons'
 import { getFormatDate } from 'utils'
 import { likeItem, submitViewedItem } from 'services/feeds'
@@ -14,30 +14,35 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from '../Toast'
 
 import * as S from './FeedItem.style'
-import { memo } from 'react'
 
 interface Props {
   item: Item
-  currentPage: number
 }
 
 /**
  * TODO: 북마크 상태 변경 시 깜빡임 문제
  * @param item
- * @param currentPage
  * @constructor
  */
 
-const CardType = ({ item, currentPage }: Props) => {
+const CardType = ({ item }: Props) => {
   const client = useQueryClient()
+
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
-      onSuccess: (data) => {
-        // TODO: 캐시 무효화 로직 확인 ex. predicate
+      onSuccess: async (data) => {
         client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries({
+          predicate: ({ queryHash }) => {
+            if (queryHash.includes('likedItems')) {
+              return true
+            }
+            return false
+          },
+        })
+
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
           toastMessage = '게시물 저장이 해제되었습니다.'
@@ -105,4 +110,4 @@ const CardType = ({ item, currentPage }: Props) => {
   )
 }
 
-export default memo(CardType)
+export default CardType
