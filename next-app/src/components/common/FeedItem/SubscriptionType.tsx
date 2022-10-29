@@ -50,6 +50,7 @@ const SubscriptionType = ({ item }: Props) => {
           </Anchor>
         </Flex>
         <Popover
+          placement="bottom-start"
           render={() => (
             <Popover.Layout>
               <Popover.Item
