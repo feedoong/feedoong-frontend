@@ -9,8 +9,6 @@ import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Loading from 'components/common/Loading'
 
-let page = 1 // TODO: 서버에서 내려주는 값 생기면 교체
-
 const FeedsContainer = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery(
@@ -18,7 +16,7 @@ const FeedsContainer = () => {
       ({ pageParam = 1 }) => getFeeds(pageParam),
       {
         getNextPageParam: (lastPage) =>
-          lastPage.items.length === 10 ? page : undefined,
+          lastPage.items.length === 10 ? lastPage.next : undefined,
       }
     )
   const { ref, inView } = useInView()
@@ -33,8 +31,6 @@ const FeedsContainer = () => {
   useEffect(() => {
     if (inView) {
       fetchNextPage()
-      // TODO: 서버에서 내려주는 값 생기면 교체
-      page++
     }
   }, [inView, fetchNextPage])
 
