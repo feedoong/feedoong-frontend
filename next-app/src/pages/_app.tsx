@@ -17,7 +17,6 @@ const queryClient = new QueryClient({
       retryOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-      refetchOnMount: false,
 
       onError: (err: unknown) => {
         ;(err as AxiosError<ErrorResponse>).response?.data?.exceptions.forEach(

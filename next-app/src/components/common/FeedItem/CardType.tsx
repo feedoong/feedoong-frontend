@@ -19,16 +19,30 @@ interface Props {
   item: Item
 }
 
+/**
+ * TODO: 북마크 상태 변경 시 깜빡임 문제
+ * @param item
+ * @constructor
+ */
+
 const CardType = ({ item }: Props) => {
   const client = useQueryClient()
+
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
-      onSuccess: (data) => {
-        // TODO: 캐시 무효화 로직 확인 ex. predicate
+      onSuccess: async (data) => {
         client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries({
+          predicate: ({ queryHash }) => {
+            if (queryHash.includes('likedItems')) {
+              return true
+            }
+            return false
+          },
+        })
+
         let toastMessage = '게시물이 저장되었습니다.'
         if (!data.isLiked) {
           toastMessage = '게시물 저장이 해제되었습니다.'
