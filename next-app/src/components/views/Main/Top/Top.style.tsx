@@ -27,9 +27,12 @@ export const Subtitle = styled.h2`
 `
 
 export const GoogleLoginButton = styled.button`
+  all: unset;
+
   margin: 40px 0;
   padding: 14px 50px;
   border-radius: 30px;
+  border: 0;
   background: ${colors.white};
   cursor: pointer;
 

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image'
 import { useRef } from 'react'
 
 import Icons from 'assets/icons'
@@ -15,12 +15,10 @@ const RssInputContainer = () => {
     inputRef,
   })
 
-  // console.log({ url })
-
   const isSubmitEnabled = !isPreviewLoading || isRssUrlValid(url)
   return (
     <S.Container>
-      <form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
+      <S.Form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
         <Flex justify="center" align="center">
           <Input
             ref={inputRef}
@@ -39,7 +37,7 @@ const RssInputContainer = () => {
             <Image alt="add 버튼" src={Icons.Add} width={20} height={20} />
           </S.AddButton>
         </Flex>
-      </form>
+      </S.Form>
       {isRssUrlValid(url) === false && (
         <S.Error>
           RSS 추가를 할 수 없는 형식의 링크입니다.{' '}

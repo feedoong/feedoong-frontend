@@ -3,6 +3,7 @@ export const CACHE_KEYS = {
   likedItems: ['likedItems'],
   likeItem: (id: number) => [...CACHE_KEYS.likedItems, id],
   subscriptions: ['subscriptions'],
+  subscription: (id: number) => [...CACHE_KEYS.subscriptions, id],
   preview: (url?: string) => ['channels', 'preview', url],
   signup: ['signup'],
   me: ['me'],

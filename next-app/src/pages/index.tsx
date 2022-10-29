@@ -7,6 +7,7 @@ import Top from 'components/views/Main/Top'
 import Main from 'components/views/Main'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
   const { data: userProfile, isLoading } = useQuery<UserProfile>(
@@ -28,6 +29,9 @@ const Home: NextPage = () => {
   }
   return (
     <>
+      <Head>
+        <title>홈 | 인사이트가 피둥피둥</title>
+      </Head>
       <RssInputView />
       <FeedsContainerView />
     </>

@@ -26,13 +26,21 @@ interface Props {
 
 const GridType = ({ item }: Props) => {
   const client = useQueryClient()
+
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
       onSuccess: () => {
         client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries(CACHE_KEYS.likedItems)
+        client.invalidateQueries({
+          predicate: ({ queryKey }) => {
+            if (Array.isArray(queryKey) && queryKey[0].includes('likedItems')) {
+              return true
+            }
+            return false
+          },
+        })
       },
     }
   )
@@ -74,7 +82,7 @@ const GridType = ({ item }: Props) => {
                 width={20}
                 height={20}
               />
-              <S.Author>{item.channelTitle}</S.Author>
+              <S.Author isGridType>{item.channelTitle}</S.Author>
               <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
             </S.PostMeta>
             <Flex gap={12} align="center">

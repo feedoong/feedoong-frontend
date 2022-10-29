@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
-import Image from "next/image";
+import Image from 'next/image'
 
 const basicFadeOut = keyframes`
   0% {
@@ -51,8 +51,7 @@ export const ToastWrapper = styled.div<{
   justify-content: center;
   align-items: center;
   position: fixed;
-  /* bottom: 50px; */
-  /* bottom: ${({ position }) => (position === 'bottom' ? '50px' : '100px')}; */
+  bottom: 50px;
   animation-name: ${({ type }) =>
     type === 'basic' ? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};

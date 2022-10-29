@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@floating-ui/react-dom": "^1.0.0",
+    "@floating-ui/react-dom-interactions": "^0.10.2",
     "@tanstack/react-query": "^4.6.0",
     "@tanstack/react-query-devtools": "^4.6.0",
     "axios": "^0.27.2",
@@ -24,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.0",
     "react-is": "^18.2.0",
+    "react-merge-refs": "^2.0.1",
     "recoil": "^0.7.5",
     "styled-components": "^5.3.5"
   },
