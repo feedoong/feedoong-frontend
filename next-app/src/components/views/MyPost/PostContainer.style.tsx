@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image'
 import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 
 import { colors } from 'styles/colors'
@@ -8,12 +8,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 `
 
 export const FeedWrapper = styled.div`
   margin: 40px 20px;
-  max-width: 626px;
+  padding: 0 12px;
+  max-width: 640px;
   width: 100%;
   border-radius: 4px;
 `
