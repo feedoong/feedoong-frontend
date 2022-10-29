@@ -11,6 +11,11 @@ export const Container = styled.div`
   background-color: ${colors.gray200};
 `
 
+export const Form = styled.form`
+  max-width: 472px;
+  width: 100%;
+`
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -20,7 +25,7 @@ export const Wrapper = styled.div`
 export const InputWrapper = styled.div<{ isValid?: boolean }>`
   display: flex;
   justify-content: space-between;
-  width: 472px;
+  flex: auto;
   height: 48px;
 
   padding: 13px 20px;
