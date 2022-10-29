@@ -9,12 +9,15 @@ import { getLikedItems } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 
+import { ITEMS_PER_PAGE } from './PostContainer.const'
+
 function PostContainer() {
-  const ITEMS_PER_PAGE = 10
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
     [CACHE_KEYS.likedItems, { page: currentPage }],
-    () => getLikedItems(currentPage)
+    () => {
+      return getLikedItems(currentPage)
+    }
   )
 
   const [selectedCategory, setSelectedCategory] = useState<

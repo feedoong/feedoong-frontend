@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image'
 import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 
 import { colors } from 'styles/colors'
@@ -6,14 +6,15 @@ import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   align-items: center;
 `
 
 export const FeedWrapper = styled.div`
   margin: 40px 20px;
-  max-width: 626px;
+  padding: 0 12px;
+  max-width: 650px;
+  width: 100%;
   border-radius: 4px;
 `
 
@@ -62,7 +63,5 @@ const CardLayout: {
 }
 
 export const CardContainer = styled.ul<{ type?: 'card' | 'grid' }>`
-  min-width: 626px;
-
   ${({ type = 'card' }) => CardLayout[type]}
 `

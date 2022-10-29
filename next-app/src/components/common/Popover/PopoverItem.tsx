@@ -34,6 +34,7 @@ const Container = styled.li`
 const Text = styled.span<{
   color?: string
 }>`
-  ${getTypographyStyles('Headline3_M')}
+  ${getTypographyStyles('Headline3_M')};
+  white-space: nowrap;
   color: ${({ color }) => color ?? colors.gray900};
 `

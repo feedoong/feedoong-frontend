@@ -5,7 +5,8 @@ import { getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 626px;
+  padding: 0 12px;
+  max-width: 640px;
   border-radius: 4px;
   margin: 0 auto;
   margin-top: 40px;

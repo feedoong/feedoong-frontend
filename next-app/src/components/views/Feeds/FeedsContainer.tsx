@@ -1,14 +1,25 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { useInView } from 'react-intersection-observer'
 
 import FeedItem from 'components/common/FeedItem'
 import Icons from 'assets/icons'
 import * as S from './FeedsContainer.style'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import Loading from 'components/common/Loading'
 
 const FeedsContainer = () => {
-  const { data, isLoading } = useQuery(CACHE_KEYS.feeds, getFeeds)
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery(
+      CACHE_KEYS.feeds,
+      ({ pageParam = 1 }) => getFeeds(pageParam),
+      {
+        getNextPageParam: (lastPage) =>
+          lastPage.items.length === 10 ? lastPage.next : undefined,
+      }
+    )
+  const { ref, inView } = useInView()
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
@@ -16,6 +27,12 @@ const FeedsContainer = () => {
   const [selectedViewType, setSelectedViewType] = useState<'card' | 'grid'>(
     'card'
   )
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage()
+    }
+  }, [inView, fetchNextPage])
 
   const isGridView = selectedViewType === 'grid'
 
@@ -51,13 +68,13 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {isLoading
-            ? '로딩 스피너'
-            : data?.items.map((item) => {
-                return (
-                  <FeedItem key={item.id} type={selectedViewType} item={item} />
-                )
-              })}
+          {data?.pages.map((page) =>
+            page.items.map((item) => (
+              <FeedItem key={item.id} type={selectedViewType} item={item} />
+            ))
+          )}
+          {isFetchingNextPage && <Loading />}
+          {hasNextPage && <span ref={ref} />}
         </S.CardContainer>
       </S.FeedWrapper>
     </S.Container>
