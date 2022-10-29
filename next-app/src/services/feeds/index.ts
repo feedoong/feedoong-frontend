@@ -8,8 +8,13 @@ import type {
   SubmitViewedItem,
 } from 'types/feeds'
 
-export const getFeeds = () => {
-  return api.get<null, Feed>(`/items`)
+export const getFeeds = (page = 1, size = 10) => {
+  return api.get<null, Feed>(`/items`, {
+    params: {
+      page,
+      size,
+    },
+  })
 }
 
 export const checkUrlAsRss = (url: string) => {

@@ -1,5 +1,7 @@
 export interface Feed {
   items: Item[]
+  next: number | null
+  prev: number | null
   totalCount: 0
 }
 
