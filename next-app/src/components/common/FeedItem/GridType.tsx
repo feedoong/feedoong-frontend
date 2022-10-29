@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Icons from 'assets/icons'
@@ -33,20 +32,10 @@ const GridType = ({ item, currentPage }: Props) => {
     CACHE_KEYS.likeItem(item.id),
     likeItem,
     {
-      onSuccess: (data) => {
-        client.setQueryData<Feed>(CACHE_KEYS.feeds, (prev) => {
-          if (prev) {
-            return {
-              ...prev,
-              items: prev.items.map((item) => {
-                return item.id === data.itemId
-                  ? { ...item, isLiked: data.isLiked }
-                  : item
-              }),
-            }
-          }
-        })
-        client.invalidateQueries([CACHE_KEYS.likedItems, { page: currentPage }])
+      onSuccess: () => {
+        // TODO: 캐시 무효화 로직 확인 ex. predicate
+        client.invalidateQueries(CACHE_KEYS.feeds)
+        client.invalidateQueries(CACHE_KEYS.likedItems)
       },
     }
   )

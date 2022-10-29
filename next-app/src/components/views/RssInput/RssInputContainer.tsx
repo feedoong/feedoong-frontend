@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { useRef } from 'react'
 
 import Icons from 'assets/icons'
@@ -14,8 +14,6 @@ const RssInputContainer = () => {
   const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput({
     inputRef,
   })
-
-  console.log({ url })
 
   const isSubmitEnabled = !isPreviewLoading || isRssUrlValid(url)
   return (
