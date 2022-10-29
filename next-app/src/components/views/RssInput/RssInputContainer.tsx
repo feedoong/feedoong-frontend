@@ -15,8 +15,6 @@ const RssInputContainer = () => {
     inputRef,
   })
 
-  // console.log({ url })
-
   const isSubmitEnabled = !isPreviewLoading || isRssUrlValid(url)
   return (
     <S.Container>

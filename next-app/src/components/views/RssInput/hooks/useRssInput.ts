@@ -2,10 +2,11 @@ import { type ChangeEvent, useState, RefObject } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
-import { isRssUrlValid } from '../RssInputContainer.utils'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from 'components/common/Toast'
 import { getAxiosError, isAxiosError } from 'utils/errors'
+
+import { isRssUrlValid } from '../RssInputContainer.utils'
 
 interface Props {
   inputRef: RefObject<HTMLInputElement>
@@ -22,9 +23,7 @@ const useRssInput = ({ inputRef }: Props) => {
       setUrl(undefined)
       if (inputRef.current) {
         inputRef.current.removeAttribute('value')
-        // console.log(inputRef.current)
       }
-      // FIXME: 캐시 만료가 안됨
       client.invalidateQueries(CACHE_KEYS.feeds)
       Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
     },
@@ -59,7 +58,7 @@ const useRssInput = ({ inputRef }: Props) => {
   const onSubmit = <T = HTMLFormElement>(e: React.FormEvent<T>) => {
     e.preventDefault()
     mutate({
-      url: url,
+      url,
       feedUrl: data?.feedUrl,
     })
   }
