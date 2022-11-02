@@ -1,9 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
-import { likeItem, submitViewedItem } from 'services/feeds'
 import { getFormatDate } from 'utils'
 
 import {
@@ -18,36 +15,14 @@ import Divider from '../Divider'
 
 import * as S from './FeedItem.style'
 import Anchor from '../Anchor'
-import { CACHE_KEYS } from 'services/cacheKeys'
+import useToggleLike from './hooks/useToggleLike'
 
 interface Props {
   item: Item
 }
 
 const GridType = ({ item }: Props) => {
-  const client = useQueryClient()
-
-  const { mutate: handleLike } = useMutation(
-    CACHE_KEYS.likeItem(item.id),
-    likeItem,
-    {
-      onSuccess: () => {
-        client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries({
-          predicate: ({ queryKey }) => {
-            if (Array.isArray(queryKey) && queryKey[0].includes('likedItems')) {
-              return true
-            }
-            return false
-          },
-        })
-      },
-    }
-  )
-  const { mutate: handleRead } = useMutation(
-    CACHE_KEYS.viewItem(item.id),
-    submitViewedItem
-  )
+  const { handleRead, handleLike } = useToggleLike(item)
 
   return (
     <Container>
