@@ -24,6 +24,7 @@ export interface PreviewResponse {
   imageUrl: string
   feedUrl: string
   title: string
+  url: string
 }
 
 export interface SubmitRssUrlParams {

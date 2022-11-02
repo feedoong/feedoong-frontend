@@ -58,8 +58,8 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ isValid }) =>
-    isValid === true ? colors.black : colors.gray500};
+  background-color: ${({ isValid, disabled }) =>
+    isValid === true && !disabled ? colors.black : colors.gray500};
   cursor: pointer;
 `
 

@@ -1,12 +1,10 @@
 import { type ChangeEvent, useState, RefObject } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from 'components/common/Toast'
 import { getAxiosError, isAxiosError } from 'utils/errors'
-
-import { isRssUrlValid } from '../RssInputContainer.utils'
 
 interface Props {
   inputRef: RefObject<HTMLInputElement>
@@ -15,35 +13,30 @@ interface Props {
 const useRssInput = ({ inputRef }: Props) => {
   const client = useQueryClient()
 
-  const [url, setUrl] = useState<string>()
+  const [url, setUrl] = useState<string | undefined>()
 
-  const { mutate } = useMutation(['/channels'], submitRssUrl, {
-    onSuccess: () => {
-      // TODO: null과 undefined와 ""를 구분해야 한다.
-      setUrl(undefined)
-      if (inputRef.current) {
-        inputRef.current.removeAttribute('value')
-      }
-      client.invalidateQueries(CACHE_KEYS.feeds)
-      Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
-    },
-    onError: (err) => {
-      if (isAxiosError(err)) {
-        const errorMessage = getAxiosError(err).exceptions.join(', ')
-        Toast.show({
-          type: 'error',
-          content: `채널 추가에 실패했습니다. ${errorMessage}`,
-        })
-      }
-    },
-  })
-
-  const { data, isLoading: isPreviewLoading } = useQuery(
-    CACHE_KEYS.preview(url),
-    () => checkUrlAsRss(url!),
+  const { mutate, isLoading: isSubmitting } = useMutation(
+    ['/channels'],
+    submitRssUrl,
     {
-      enabled: !!isRssUrlValid(url), // url이 유효한지 검사하는 조건이 정확하지 않음
-      onError: () => {}, // TODO: 불필요한 요청 줄이는 방법 생각해보기
+      onSuccess: () => {
+        // TODO: null과 undefined와 ""를 구분해야 한다.
+        // setUrl(undefined)
+        // if (inputRef.current) {
+        //   inputRef.current.removeAttribute('value')
+        // }
+        client.invalidateQueries(CACHE_KEYS.feeds)
+        Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
+      },
+      onError: (err) => {
+        if (isAxiosError(err)) {
+          const errorMessage = getAxiosError(err).message
+          Toast.show({
+            type: 'error',
+            content: `채널 추가에 실패했습니다. ${errorMessage}`,
+          })
+        }
+      },
     }
   )
 
@@ -55,19 +48,37 @@ const useRssInput = ({ inputRef }: Props) => {
     setUrl(e.target.value)
   }
 
-  const onSubmit = <T = HTMLFormElement>(e: React.FormEvent<T>) => {
-    e.preventDefault()
-    mutate({
-      url,
-      feedUrl: data?.feedUrl,
-    })
+  const onSubmit = async <T = HTMLFormElement>(e: React.FormEvent<T>) => {
+    try {
+      e.preventDefault()
+      if (!url) {
+        Toast.show({
+          type: 'error',
+          content: 'URL을 입력해주세요.',
+        })
+        return
+      }
+      const { url: siteUrl, feedUrl } = await checkUrlAsRss(url)
+      mutate({
+        url: siteUrl,
+        feedUrl,
+      })
+    } catch (error) {
+      if (isAxiosError(error)) {
+        const errorMessage = getAxiosError(error).message
+        Toast.show({
+          type: 'error',
+          content: `채널 추가에 실패했습니다. ${errorMessage}`,
+        })
+      }
+    }
   }
 
   return {
     url,
     onSubmit,
     handleInput,
-    isPreviewLoading,
+    isSubmitting,
   }
 }
 
