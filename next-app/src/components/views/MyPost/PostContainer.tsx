@@ -10,6 +10,7 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 
 import { ITEMS_PER_PAGE } from './PostContainer.const'
+import Loading from 'components/common/Loading'
 
 function PostContainer() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -62,22 +63,31 @@ function PostContainer() {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {isLoading
-            ? '로딩 스피너'
-            : data?.items.map((item) => {
+          {isLoading ? (
+            <Flex justify="center" style={{ width: '100%' }}>
+              <Loading />
+            </Flex>
+          ) : (
+            <>
+              {data?.items.map((item) => {
                 return (
                   <FeedItem key={item.id} type={selectedViewType} item={item} />
                 )
               })}
+              <Flex
+                justify="center"
+                style={{ width: '100%', padding: '44px 0' }}
+              >
+                <Paging
+                  totalPage={totalPage}
+                  currentPage={currentPage}
+                  movePage={(page: number) => setCurrentPage(page)}
+                />
+              </Flex>
+            </>
+          )}
         </S.CardContainer>
       </S.FeedWrapper>
-      <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
-        <Paging
-          totalPage={totalPage}
-          currentPage={currentPage}
-          movePage={(page: number) => setCurrentPage(page)}
-        />
-      </Flex>
     </S.Container>
   )
 }
