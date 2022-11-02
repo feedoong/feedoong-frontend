@@ -15,6 +15,7 @@ const FeedsContainer = () => {
       CACHE_KEYS.feeds,
       ({ pageParam = 1 }) => getFeeds(pageParam),
       {
+        staleTime: 500,
         getNextPageParam: (lastPage) =>
           lastPage.items.length === 10 ? lastPage.next : undefined,
       }

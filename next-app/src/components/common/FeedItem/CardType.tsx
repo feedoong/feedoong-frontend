@@ -1,19 +1,15 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-
 import type { Item } from 'types/feeds'
 import Icons from 'assets/icons'
 import { getFormatDate } from 'utils'
-import { likeItem, submitViewedItem } from 'services/feeds'
 
 import { Container, Title } from './CardType.style'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
 import Anchor from '../Anchor'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import Toast from '../Toast'
 
 import * as S from './FeedItem.style'
+import useToggleLike from './hooks/useToggleLike'
 
 interface Props {
   item: Item
@@ -26,56 +22,32 @@ interface Props {
  */
 
 const CardType = ({ item }: Props) => {
-  const client = useQueryClient()
-
-  const { mutate: handleLike } = useMutation(
-    CACHE_KEYS.likeItem(item.id),
-    likeItem,
-    {
-      onSuccess: async (data) => {
-        client.invalidateQueries(CACHE_KEYS.feeds)
-        client.invalidateQueries({
-          predicate: ({ queryHash }) => {
-            if (queryHash.includes('likedItems')) {
-              return true
-            }
-            return false
-          },
-        })
-
-        let toastMessage = '게시물이 저장되었습니다.'
-        if (!data.isLiked) {
-          toastMessage = '게시물 저장이 해제되었습니다.'
-        }
-        Toast.show({ content: toastMessage })
-      },
-    }
-  )
-  const { mutate: handleRead } = useMutation(
-    CACHE_KEYS.viewItem(item.id),
-    submitViewedItem
-  )
+  const { handleRead, handleLike } = useToggleLike(item)
 
   return (
     <Container>
       <S.Body>
-        <S.BodyWrapper>
-          <Anchor
-            href={item.link}
-            target="_blank"
-            onClick={() => handleRead(item.id)}
-          >
-            <Title>{item.title}</Title>
-          </Anchor>
-          <Anchor
-            href={item.link}
-            target="_blank"
-            onClick={() => handleRead(item.id)}
-          >
-            <S.Contents>{item.description}</S.Contents>
-          </Anchor>
-        </S.BodyWrapper>
-        <S.ThumbnailEmpty />
+        <Flex gap={10} justify="between" style={{ flex: 'auto' }}>
+          <S.BodyWrapper>
+            <Anchor
+              href={item.link}
+              target="_blank"
+              onClick={() => handleRead(item.id)}
+            >
+              <Title>{item.title}</Title>
+            </Anchor>
+            <Anchor
+              href={item.link}
+              target="_blank"
+              onClick={() => handleRead(item.id)}
+            >
+              <S.Contents>{item.description}</S.Contents>
+            </Anchor>
+          </S.BodyWrapper>
+          {item.imageUrl && (
+            <S.Thumbnail src={item.imageUrl} width={80} height={80} />
+          )}
+        </Flex>
       </S.Body>
       <Divider />
       <S.Footer>

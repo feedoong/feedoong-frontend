@@ -11,11 +11,12 @@ import * as S from './RssInputContainer.style'
 
 const RssInputContainer = () => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const { url, onSubmit, handleInput, isPreviewLoading } = useRssInput({
+  const { url, onSubmit, handleInput, isSubmitting } = useRssInput({
     inputRef,
   })
 
-  const isSubmitEnabled = !isPreviewLoading || isRssUrlValid(url)
+  const isSubmitEnabled = !isSubmitting && isRssUrlValid(url)
+
   return (
     <S.Container>
       <S.Form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
@@ -32,7 +33,7 @@ const RssInputContainer = () => {
           <S.AddButton
             type="submit"
             isValid={isRssUrlValid(url)}
-            disabled={isPreviewLoading || !isRssUrlValid(url)}
+            disabled={!isSubmitEnabled}
           >
             <Image alt="add 버튼" src={Icons.Add} width={20} height={20} />
           </S.AddButton>

@@ -53,6 +53,7 @@ export const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: auto;
 `
 
 export const Contents = styled.p`
@@ -106,8 +107,13 @@ export const ImageContainer = styled.div`
   border-radius: 10px;
 `
 
+export const Thumbnail = styled.img`
+  border-radius: 10px;
+  object-fit: cover;
+`
+
 export const ThumbnailEmpty = styled.div`
-  min-width: '80px';
+  min-width: 80px;
   height: 80px;
   background-color: ${colors.gray300};
   border-radius: 10px;

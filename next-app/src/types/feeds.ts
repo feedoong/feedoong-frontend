@@ -6,7 +6,7 @@ export interface Feed {
 }
 
 export interface Item {
-  imageUrl: string // 해당 게시물에 대한 이미지 (아직 존재하지 않는 값)
+  imageUrl: string
   description: string
   guid: string
   isLiked: boolean
@@ -24,6 +24,7 @@ export interface PreviewResponse {
   imageUrl: string
   feedUrl: string
   title: string
+  url: string
 }
 
 export interface SubmitRssUrlParams {
