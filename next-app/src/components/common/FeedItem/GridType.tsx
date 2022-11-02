@@ -36,8 +36,8 @@ const GridType = ({ item }: Props) => {
           <img
             alt="채널 로고"
             src={item.imageUrl}
-            width={'100%'}
-            height={'100%'}
+            width="100%"
+            height="100%"
             style={{
               objectFit: 'cover',
             }}

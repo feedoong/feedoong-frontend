@@ -23,7 +23,7 @@ export const GridTypeWrapper = styled.div<{ imageUrl?: string }>`
 
 export const Title = styled.h2<{ isImageExist: boolean }>`
   ${getTypographyStyles('Headline3_B')}
-  ${({ isImageExist }) => ellipsis(isImageExist ? 3 : 2)}
+  ${({ isImageExist }) => ellipsis(isImageExist ? 2 : 3)}
 
   color: ${colors.gray800};
 `
