@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 
@@ -6,11 +6,14 @@ export const Container = styled.div`
   overflow: hidden;
   border-radius: 20px;
   background-color: ${colors.gray100};
-  height: 288px;
 `
 
-export const GridTypeWrapper = styled.div`
-  height: 100%;
+export const GridTypeWrapper = styled.div<{ imageUrl?: string }>`
+  ${({ imageUrl }) =>
+    !imageUrl &&
+    css`
+      height: 100%;
+    `};
   padding: 20px;
   display: flex;
   justify-content: space-between;

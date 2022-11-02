@@ -32,9 +32,19 @@ const GridType = ({ item }: Props) => {
             height: '160px',
             backgroundColor: colors.gray300,
           }}
-        />
+        >
+          <img
+            alt="채널 로고"
+            src={item.imageUrl}
+            width={'100%'}
+            height={'100%'}
+            style={{
+              objectFit: 'cover',
+            }}
+          />
+        </div>
       )}
-      <GridTypeWrapper>
+      <GridTypeWrapper imageUrl={item.imageUrl}>
         <Flex gap={8} direction="column">
           <S.Body>
             <Anchor
@@ -45,7 +55,7 @@ const GridType = ({ item }: Props) => {
               <Title isImageExist={!!item.imageUrl}>{item.title}</Title>
             </Anchor>
           </S.Body>
-          <Description>{item.description}</Description>
+          {!item.imageUrl && <Description>{item.description}</Description>}
         </Flex>
         <div>
           <Divider mb={12} />
