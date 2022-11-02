@@ -1,5 +1,5 @@
-import React from 'react'
-import Image from "next/legacy/image";
+import React, { useEffect } from 'react'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 
 import Icons from 'assets/icons'
@@ -7,6 +7,7 @@ import MenuItem from './MenuItem'
 
 import * as S from './SideMenuBar.style'
 import Anchor from 'components/common/Anchor'
+import { useRouter } from 'next/router'
 
 interface Props {
   closeSideBar: () => void
@@ -14,6 +15,12 @@ interface Props {
 }
 
 const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
+  const { pathname } = useRouter()
+
+  useEffect(() => {
+    closeSideBar()
+  }, [pathname, closeSideBar])
+
   return (
     <S.SideMenuBarContainer isOpen={isOpen}>
       <S.CloseSection>
@@ -42,7 +49,7 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
         </div>
       </S.MenuSection>
     </S.SideMenuBarContainer>
-  );
+  )
 }
 
 export default SideMenuBar
