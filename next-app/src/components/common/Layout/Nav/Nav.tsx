@@ -16,8 +16,8 @@ const Nav = () => {
 
   return (
     <>
-      <TopNavBar openSideBar={openSideBar} />
-      <SideMenuBar closeSideBar={closeSideBar} isOpen={showSideBar} />
+      <TopNavBar setShowSideBar={setShowSideBar} />
+      <SideMenuBar setShowSideBar={setShowSideBar} isOpen={showSideBar} />
     </>
   )
 }

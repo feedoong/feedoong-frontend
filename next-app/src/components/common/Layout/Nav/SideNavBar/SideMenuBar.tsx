@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { type Dispatch, type SetStateAction, useEffect } from 'react'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 
@@ -10,21 +10,26 @@ import Anchor from 'components/common/Anchor'
 import { useRouter } from 'next/router'
 
 interface Props {
-  closeSideBar: () => void
+  setShowSideBar: Dispatch<SetStateAction<boolean | null>>
   isOpen: boolean | null
 }
 
-const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
+const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
   const { pathname } = useRouter()
 
   useEffect(() => {
-    closeSideBar()
-  }, [pathname, closeSideBar])
+    setShowSideBar((prev) => {
+      if (prev === true) {
+        return false
+      }
+      return prev
+    })
+  }, [pathname, setShowSideBar])
 
   return (
     <S.SideMenuBarContainer isOpen={isOpen}>
       <S.CloseSection>
-        <S.CloseButton onClick={closeSideBar}>
+        <S.CloseButton onClick={() => setShowSideBar(false)}>
           닫기
           <Image src={Icons.Close} alt="close-icon" width="12" height="12" />
         </S.CloseButton>
@@ -33,12 +38,12 @@ const SideMenuBar = ({ closeSideBar, isOpen }: Props) => {
       <S.MenuSection>
         <div>
           <Link href="/mypage/channels" passHref legacyBehavior>
-            <Anchor onClick={closeSideBar}>
+            <Anchor onClick={() => setShowSideBar(false)}>
               <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
             </Anchor>
           </Link>
           <Link href="/mypage/posts" passHref legacyBehavior>
-            <Anchor onClick={closeSideBar}>
+            <Anchor onClick={() => setShowSideBar(false)}>
               <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
             </Anchor>
           </Link>

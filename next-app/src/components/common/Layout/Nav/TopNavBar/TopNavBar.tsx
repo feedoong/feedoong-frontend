@@ -1,5 +1,5 @@
-import React from 'react'
-import Image from "next/legacy/image";
+import React, { type Dispatch, type SetStateAction } from 'react'
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 
@@ -10,10 +10,10 @@ import { getUserInfo, type UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 
 interface Props {
-  openSideBar: () => void
+  setShowSideBar: Dispatch<SetStateAction<boolean | null>>
 }
 
-const TopNavBar = ({ openSideBar }: Props) => {
+const TopNavBar = ({ setShowSideBar }: Props) => {
   const router = useRouter()
   const { data: userProfile } = useQuery<UserProfile>(
     CACHE_KEYS.me,
@@ -25,7 +25,7 @@ const TopNavBar = ({ openSideBar }: Props) => {
 
   return (
     <S.TopNavContainer>
-      <S.MenuButton onClick={openSideBar}>
+      <S.MenuButton onClick={() => setShowSideBar(true)}>
         <S.ImageWrapper>
           <Image
             priority
