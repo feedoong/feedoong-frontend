@@ -27,23 +27,27 @@ const CardType = ({ item }: Props) => {
   return (
     <Container>
       <S.Body>
-        <S.BodyWrapper>
-          <Anchor
-            href={item.link}
-            target="_blank"
-            onClick={() => handleRead(item.id)}
-          >
-            <Title>{item.title}</Title>
-          </Anchor>
-          <Anchor
-            href={item.link}
-            target="_blank"
-            onClick={() => handleRead(item.id)}
-          >
-            <S.Contents>{item.description}</S.Contents>
-          </Anchor>
-        </S.BodyWrapper>
-        <S.ThumbnailEmpty />
+        <Flex gap={10} justify="between" style={{ flex: 'auto' }}>
+          <S.BodyWrapper>
+            <Anchor
+              href={item.link}
+              target="_blank"
+              onClick={() => handleRead(item.id)}
+            >
+              <Title>{item.title}</Title>
+            </Anchor>
+            <Anchor
+              href={item.link}
+              target="_blank"
+              onClick={() => handleRead(item.id)}
+            >
+              <S.Contents>{item.description}</S.Contents>
+            </Anchor>
+          </S.BodyWrapper>
+          {item.imageUrl && (
+            <S.Thumbnail src={item.imageUrl} width={80} height={80} />
+          )}
+        </Flex>
       </S.Body>
       <Divider />
       <S.Footer>
