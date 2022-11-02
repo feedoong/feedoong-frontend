@@ -8,7 +8,8 @@
     "start": "next start",
     "deploy": "next build && next start",
     "lint": "next lint",
-    "build:extentsion": "next build && next export && mv out/_next out/next && sed -i '' -e 's/\\/_next/\\.\\/next/g' out/**.html && mv out/index.html mv out/popup-test.html ../extension && rsync -va --delete-after out/next/ ../extension/next/ && rm -rf out && rsync -va --delete-after ./src/assets ../extension/"
+    "build:extentsion": "next build && next export && mv out/_next out/next && sed -i '' -e 's/\\/_next/\\.\\/next/g' out/**.html && mv out/index.html mv out/popup-test.html ../extension && rsync -va --delete-after out/next/ ../extension/next/ && rm -rf out && rsync -va --delete-after ./src/assets ../extension/",
+    "prepare": "cd .. && husky install"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^1.0.0",
@@ -40,6 +41,7 @@
     "@yarnpkg/sdks": "^3.0.0-rc.18",
     "eslint": "8.22.0",
     "eslint-config-next": "^13.0.0",
+    "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "typescript": "4.7.4"
   },
