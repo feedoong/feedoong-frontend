@@ -9,6 +9,7 @@ import 'styles/font.css'
 
 import Layout from 'components/common/Layout'
 import type { ErrorResponse } from 'types/common'
+import Toast from 'components/common/Toast'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,11 +20,12 @@ const queryClient = new QueryClient({
       refetchOnReconnect: false,
 
       onError: (err: unknown) => {
-        ;(err as AxiosError<ErrorResponse>).response?.data?.exceptions.forEach(
-          (exception) => {
-            alert(exception)
-          }
-        )
+        Toast.show({
+          type: 'error',
+          content:
+            (err as AxiosError<ErrorResponse>).response?.data.message ??
+            '에러가 발생했습니다.',
+        })
       },
     },
   },
