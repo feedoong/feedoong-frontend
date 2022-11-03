@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
@@ -23,7 +24,7 @@ interface Props {
 
 const GridType = ({ item }: Props) => {
   const { handleRead, handleLike } = useToggleLike(item)
-
+ 
   return (
     <Container>
       {item.imageUrl && (
@@ -45,7 +46,11 @@ const GridType = ({ item }: Props) => {
         </div>
       )}
       <GridTypeWrapper imageUrl={item.imageUrl}>
-        <Flex gap={8} direction="column">
+        <Flex
+          gap={8}
+          direction="column"
+          style={{ height: !!item.imageUrl ? 'auto' : '206px' }}
+        >
           <S.Body>
             <Anchor
               href={item.link}
