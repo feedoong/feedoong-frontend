@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -12,8 +11,7 @@ import 'styles/font.css'
 import Layout from 'components/common/Layout'
 import type { ErrorResponse } from 'types/common'
 import Toast from 'components/common/Toast'
-import { useRouter } from 'next/router'
-import * as gtag from '../utils/gtag'
+import useGoogleAnalytics from 'hooks/useGoogleAnalytics'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,20 +34,8 @@ const queryClient = new QueryClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+  useGoogleAnalytics();
 
-  useEffect(() => {
-    const handleRouteChange = (url: any) => {
-      gtag.pageview(url);
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    router.events.on('hashChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-      router.events.off('hashChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-  
   return (
     <>
       {/* Global Site Tag (gtag.js) - Google Analytics */}
