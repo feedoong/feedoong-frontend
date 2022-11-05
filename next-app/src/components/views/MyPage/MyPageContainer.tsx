@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 
 import Dialog from 'components/common/Dialog'
 import { getUserInfo, UserProfile } from 'services/auth'
-
 import { CACHE_KEYS } from 'services/cacheKeys'
 import InfoRow from './InfoRow'
-
 import * as S from './MyPageContainer.style'
-import { useMutation } from '@tanstack/react-query'
 import { deleteAccount } from 'services/account'
 import Toast from 'components/common/Toast'
 

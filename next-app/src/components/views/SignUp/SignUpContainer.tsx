@@ -2,8 +2,9 @@ import Image from "next/legacy/image";
 import { useRouter } from 'next/router'
 
 import { googleAuthUrl } from './SignUpContainer.utils'
-import Icons from 'assets/icons'
 import * as S from './SignUpContainer.style'
+
+import Icons from 'assets/icons'
 
 const SignUpContainer = () => {
   const router = useRouter()

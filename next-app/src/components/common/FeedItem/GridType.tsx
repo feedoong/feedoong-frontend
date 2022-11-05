@@ -1,9 +1,6 @@
-import { useEffect, useRef } from 'react'
-import Icons from 'assets/icons'
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
 import { getFormatDate } from 'utils'
-
 import {
   Container,
   Description,
@@ -13,10 +10,11 @@ import {
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
-
 import * as S from './FeedItem.style'
 import Anchor from '../Anchor'
 import useToggleLike from './hooks/useToggleLike'
+
+import Icons from 'assets/icons'
 
 interface Props {
   item: Item
@@ -24,7 +22,7 @@ interface Props {
 
 const GridType = ({ item }: Props) => {
   const { handleRead, handleLike } = useToggleLike(item)
- 
+
   return (
     <Container>
       {item.imageUrl && (

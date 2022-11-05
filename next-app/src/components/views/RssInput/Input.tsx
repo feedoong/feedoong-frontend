@@ -1,9 +1,10 @@
 import { forwardRef, type ChangeEvent } from 'react'
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image'
 
-import Icons from 'assets/icons'
 import { useControlled } from './hooks'
 import * as S from './RssInputContainer.style'
+
+import Icons from 'assets/icons'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string

@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+
 import { ToastProps, ToastElement } from './Toast'
 import { renderImperatively, type ImperativeHandler } from './Toast.utils'
 

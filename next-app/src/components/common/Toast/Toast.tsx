@@ -1,7 +1,9 @@
 import React from 'react'
+
 import * as S from './Toast.style'
-import Icons from 'assets/icons'
 import Flex from '../Flex'
+
+import Icons from 'assets/icons'
 
 export type ToastProps = {
   type?: 'basic' | 'error'

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+
 import { colors } from 'styles/colors'
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 
