@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@floating-ui/react-dom-interactions", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:0.10.2"],\
             ["@tanstack/react-query", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
             ["@tanstack/react-query-devtools", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
+            ["@types/gtag.js", "npm:0.0.12"],\
             ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/node", "npm:18.7.9"],\
@@ -778,6 +779,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-emscripten-npm-1.39.6-c9c4021365-437f2f9cdf.zip/node_modules/@types/emscripten/",\
           "packageDependencies": [\
             ["@types/emscripten", "npm:1.39.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/gtag.js", [\
+        ["npm:0.0.12", {\
+          "packageLocation": "./.yarn/cache/@types-gtag.js-npm-0.0.12-6390d727c7-34efc27fbf.zip/node_modules/@types/gtag.js/",\
+          "packageDependencies": [\
+            ["@types/gtag.js", "npm:0.0.12"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2475,6 +2485,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@floating-ui/react-dom-interactions", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:0.10.2"],\
             ["@tanstack/react-query", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
             ["@tanstack/react-query-devtools", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
+            ["@types/gtag.js", "npm:0.0.12"],\
             ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/node", "npm:18.7.9"],\
