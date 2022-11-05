@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import Button from 'components/common/Button'
-import Images from 'assets/images'
 import { useRouter } from 'next/router'
 
+import Button from 'components/common/Button'
 import * as S from './404Container.style'
+
+import Images from 'assets/images'
 
 const Custom404Container = () => {
   const router = useRouter()

@@ -1,13 +1,13 @@
 import Image from 'next/legacy/image'
 import { useRef } from 'react'
 
-import Icons from 'assets/icons'
 import Flex from 'components/common/Flex'
-
 import Input from './Input'
 import { isRssUrlValid } from './RssInputContainer.utils'
 import { useRssInput } from './hooks'
 import * as S from './RssInputContainer.style'
+
+import Icons from 'assets/icons'
 
 const RssInputContainer = () => {
   const inputRef = useRef<HTMLInputElement>(null)

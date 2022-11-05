@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom'
 import { ReactNode } from 'react'
+
 import { isServer } from 'utils'
 
 interface Props {

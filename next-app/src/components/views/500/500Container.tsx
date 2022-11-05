@@ -1,10 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
-import Images from 'assets/images'
-import Button from 'components/common/Button'
 import { useRouter } from 'next/router'
 
+import Button from 'components/common/Button'
 import * as S from './500Container.style'
+
+import Images from 'assets/images'
 
 const Custom500Container = () => {
   const router = useRouter()

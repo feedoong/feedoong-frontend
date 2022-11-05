@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+
 import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'

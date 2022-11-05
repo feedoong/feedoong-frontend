@@ -1,8 +1,9 @@
-import Image from "next/legacy/image";
-import Icons from 'assets/icons'
+import Image from 'next/legacy/image'
 
 import * as S from 'components/common/FeedItem/FeedItem.style'
 import * as GS from 'components/common/Grid/Grid.style'
+
+import Icons from 'assets/icons'
 
 const Grid = () => {
   return (

@@ -1,8 +1,10 @@
 import React from 'react'
+
 import Page from './Page'
 import Flex from '../Flex'
-import Icons from 'assets/icons'
 import usePageInfo from './hooks/usePageInfo'
+
+import Icons from 'assets/icons'
 
 interface Props {
   totalPage: number
@@ -11,38 +13,43 @@ interface Props {
   displayedPageRange?: number
 }
 
-const Paging = ({ totalPage, currentPage, movePage, displayedPageRange = 9 }: Props) => {
+const Paging = ({
+  totalPage,
+  currentPage,
+  movePage,
+  displayedPageRange = 9,
+}: Props) => {
   const {
-    hasPreviousPage, 
-    previousPage, 
-    hasNextPage, 
-    nextPage, 
-    firstPage, 
-    lastPage
-  } = usePageInfo({ totalPage, currentPage, displayedPageRange, })
+    hasPreviousPage,
+    previousPage,
+    hasNextPage,
+    nextPage,
+    firstPage,
+    lastPage,
+  } = usePageInfo({ totalPage, currentPage, displayedPageRange })
 
   const isPrevPageVisible = (hasPreviousPage: boolean) => {
-    if (!hasPreviousPage) return false;
-    return true;
+    if (!hasPreviousPage) return false
+    return true
   }
 
   const isNextPageVisible = (hasNextPage: boolean) => {
-    if (!hasNextPage) return false;
-    return true;
+    if (!hasNextPage) return false
+    return true
   }
 
   const buildPages = () => {
-    const pages = [];
+    const pages = []
     for (let i = firstPage; i <= lastPage; i++) {
       pages.push(
         <Page
-          key={i} 
-          isActive={i === currentPage} 
-          pageNumber={i} 
-          pageText={i + ''} 
-          onClick={movePage} 
+          key={i}
+          isActive={i === currentPage}
+          pageNumber={i}
+          pageText={i + ''}
+          onClick={movePage}
         />
-      );
+      )
     }
 
     isPrevPageVisible(hasPreviousPage) &&
@@ -54,7 +61,7 @@ const Paging = ({ totalPage, currentPage, movePage, displayedPageRange = 9 }: Pr
           image={Icons.LeftArrow}
           disabled={!hasPreviousPage}
         />
-      );
+      )
 
     isNextPageVisible(hasNextPage) &&
       pages.push(
@@ -65,16 +72,16 @@ const Paging = ({ totalPage, currentPage, movePage, displayedPageRange = 9 }: Pr
           image={Icons.RightArrow}
           disabled={!hasNextPage}
         />
-      );
+      )
 
-    return pages;
+    return pages
   }
 
-  const pages = buildPages();
+  const pages = buildPages()
   return (
-    <Flex align='center' gap={8}>
+    <Flex align="center" gap={8}>
       {pages}
-    </Flex>  
+    </Flex>
   )
 }
 

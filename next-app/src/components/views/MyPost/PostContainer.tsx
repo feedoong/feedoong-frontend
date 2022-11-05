@@ -4,13 +4,13 @@ import { useQuery } from '@tanstack/react-query'
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
 import * as S from 'components/views/MyPost/PostContainer.style'
-import Icons from 'assets/icons'
 import { getLikedItems } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
-
 import { ITEMS_PER_PAGE } from './PostContainer.const'
 import Loading from 'components/common/Loading'
+
+import Icons from 'assets/icons'
 
 function PostContainer() {
   const [currentPage, setCurrentPage] = useState(1)

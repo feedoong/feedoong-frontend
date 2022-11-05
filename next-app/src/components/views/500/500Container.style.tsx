@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { getTypographyStyles } from 'styles/fonts'
 
 export const ContentWrapper = styled.div`

@@ -1,15 +1,14 @@
 import type { Item } from 'types/feeds'
-import Icons from 'assets/icons'
 import { getFormatDate } from 'utils'
-
 import { Container, Title } from './CardType.style'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
 import Anchor from '../Anchor'
-
 import * as S from './FeedItem.style'
 import useToggleLike from './hooks/useToggleLike'
+
+import Icons from 'assets/icons'
 
 interface Props {
   item: Item
