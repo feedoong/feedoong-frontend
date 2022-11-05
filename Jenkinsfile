@@ -28,6 +28,7 @@ pipeline {
             steps {
                 sh """
                     echo 'NEXT_PUBLIC_GOOGLE_CLIENT_ID=1085424381723-6dpgtsr7j2a450d32oda9m9hrrd88qs4.apps.googleusercontent.com' >> ./next-app/.env
+                    echo 'NEXT_PUBLIC_GA_TRACKING_ID=G-Q732SG7E7P' >> ./next-app/.env
                     echo 'NEXT_PUBLIC_APP_ENV=production' >> ./next-app/.env
                 """
             }
