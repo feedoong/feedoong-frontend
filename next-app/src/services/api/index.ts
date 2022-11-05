@@ -1,8 +1,8 @@
 import Axios, { AxiosResponse } from 'axios'
 import humps from 'humps'
+import Cookies from 'js-cookie'
 
 import { getApiEndpoint } from 'envs'
-import Cookies from 'js-cookie'
 
 const { camelizeKeys } = humps
 
