@@ -8,14 +8,7 @@ const Top = () => {
         <br />
         크롬 새탭에서 바로 시작하세요!
       </S.Subtitle>
-      <S.GoogleLoginButton
-        type="button"
-        onClick={() => {
-          throw new Error('Sentry Frontend Error')
-        }}
-      >
-        크롬에 추가하기
-      </S.GoogleLoginButton>
+      <S.GoogleLoginButton>크롬에 추가하기</S.GoogleLoginButton>
     </S.Wrapper>
   )
 }
