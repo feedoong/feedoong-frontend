@@ -676,7 +676,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/webpack-plugin@npm:1.20.0":
+"@sentry/webpack-plugin@npm:1.20.0, @sentry/webpack-plugin@npm:^1.20.0":
   version: 1.20.0
   resolution: "@sentry/webpack-plugin@npm:1.20.0"
   dependencies:
@@ -2338,6 +2338,7 @@ __metadata:
     "@floating-ui/react-dom": ^1.0.0
     "@floating-ui/react-dom-interactions": ^0.10.2
     "@sentry/nextjs": ^7.17.4
+    "@sentry/webpack-plugin": ^1.20.0
     "@tanstack/react-query": ^4.6.0
     "@tanstack/react-query-devtools": ^4.6.0
     "@types/gtag.js": ^0.0.12

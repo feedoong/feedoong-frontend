@@ -1,5 +1,7 @@
 const { withSentryConfig } = require('@sentry/nextjs')
 
+const SentryCliPlugin = require('@sentry/webpack-plugin')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -18,6 +20,15 @@ const nextConfig = {
     // for more information.
     hideSourceMaps: true,
   },
+  plugins: [
+    new SentryCliPlugin({
+      include: '.',
+      ignoreFile: '.gitignore',
+      ignore: ['node_modules', 'webpack.config.js'],
+      configFile: 'sentry.properties',
+      authToken: '3af41c3ff1494798bb70976c02a128d599252003acee414d8e4dad425cad3419'
+    }),
+  ],
 }
 
 const sentryWebpackPluginOptions = {
