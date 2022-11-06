@@ -1,6 +1,9 @@
 /**
  * NOTE: This requires `@sentry/nextjs` version 7.3.0 or higher.
  *
+ * NOTE: If using this with `next` version 12.2.0 or lower, uncomment the
+ * penultimate line in `CustomErrorComponent`.
+ *
  * This page is loaded by Nextjs:
  *  - on the server, when data-fetching methods throw or reject
  *  - on the client, when `getInitialProps` throws or rejects
