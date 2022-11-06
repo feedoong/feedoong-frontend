@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     // next/image에서 외부 이미지 가져올 때 에러 발생
     '@next/next/no-img-element': 'off',
+    'no-multiple-empty-lines': 'off',
     'import/order': [
       'error',
       {
