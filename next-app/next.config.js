@@ -30,6 +30,7 @@ const sentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
+  authToken: '3af41c3ff1494798bb70976c02a128d599252003acee414d8e4dad425cad3419'
 }
 
 // Make sure adding Sentry options is the last code to run before exporting, to
