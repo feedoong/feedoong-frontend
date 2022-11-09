@@ -19,4 +19,24 @@ Sentry.init({
   // `release` value here - use the environment variable `SENTRY_RELEASE`, so
   // that it will also get attached to your source maps
   enabled: isProduction(),
+  beforeSend(event, hint) {
+    if (event.exception) {
+      fetch(
+        'https://hooks.slack.com/services/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',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            username: 'Sentry-Alert',
+            text: `
+              Event-id: ${event.event_id}
+              Exception-type: ${event.exception.values?.[0].type}
+              Exception-value: ${event.exception.values?.[0].value}
+              Request-URL: ${event.request?.url}
+              `,
+          }),
+        }
+      )
+    }
+    return event
+  },
 })
