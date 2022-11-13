@@ -1,7 +1,8 @@
 import React from 'react'
 
-import * as S from './Toast.style'
 import Flex from '../Flex'
+
+import * as S from './Toast.style'
 
 import Icons from 'assets/icons'
 

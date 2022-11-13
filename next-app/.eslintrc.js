@@ -52,7 +52,7 @@ module.exports = {
             position: 'after',
           },
           {
-            pattern: './*.styles',
+            pattern: './*.style',
             group: 'sibling',
             position: 'after',
           },

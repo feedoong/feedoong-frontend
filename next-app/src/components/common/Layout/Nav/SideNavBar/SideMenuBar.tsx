@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import MenuItem from './MenuItem'
-import * as S from './SideMenuBar.style'
 import Anchor from 'components/common/Anchor'
+
+import * as S from './SideMenuBar.style'
 
 import Icons from 'assets/icons'
 

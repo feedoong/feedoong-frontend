@@ -3,10 +3,11 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 
 import FeedItem from 'components/common/FeedItem'
-import * as S from './FeedsContainer.style'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Loading from 'components/common/Loading'
+
+import * as S from './FeedsContainer.style'
 
 import Icons from 'assets/icons'
 
