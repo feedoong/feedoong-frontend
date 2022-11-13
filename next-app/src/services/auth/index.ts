@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import { getApiEndpoint } from 'envs'
 import api from 'services/api'
 import { AccessToken, RefreshToken } from 'constants/auth'
+import Toast from 'components/common/Toast'
 
 export interface UserProfile {
   email: string
@@ -26,25 +27,34 @@ export const getUserInfo = () => {
   return api.get<null, UserProfile>(`/users/me`)
 }
 
-export const refreshAccessToken = async (error: AxiosError) => {
-  const originalRequest = error.config
-  const refreshToken = Cookies.get(RefreshToken)
+export const refreshAccessToken = async (axiosError: AxiosError) => {
+  try {
+    const originalRequest = axiosError.config
+    const refreshToken = Cookies.get(RefreshToken)
 
-  const { data } = await axios.post<
-    SignUpResponse['refreshToken'],
-    AxiosResponse<SignUpResponse>
-  >(getApiEndpoint() + `/users/token`, {
-    refreshToken,
-  })
+    const { data } = await axios.post<
+      SignUpResponse['refreshToken'],
+      AxiosResponse<SignUpResponse>
+    >(getApiEndpoint() + `/users/token`, {
+      refreshToken,
+    })
 
-  const newAccessToken = data.accessToken
-  const newRefreshToken = data.refreshToken
+    const newAccessToken = data.accessToken
+    const newRefreshToken = data.refreshToken
 
-  Cookies.set(AccessToken, newAccessToken)
-  Cookies.set(RefreshToken, newRefreshToken)
+    Cookies.set(AccessToken, newAccessToken)
+    Cookies.set(RefreshToken, newRefreshToken)
 
-  axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
-  originalRequest.headers!.Authorization = `Bearer ${newAccessToken}`
-  // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-  return axios(originalRequest)
+    axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
+    originalRequest.headers!.Authorization = `Bearer ${newAccessToken}`
+    // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
+    return axios(originalRequest)
+  } catch (error) {
+    console.error(error)
+    Cookies.remove(AccessToken)
+    Cookies.remove(RefreshToken)
+
+    window.location.href = '/signup'
+    return Promise.reject(error)
+  }
 }
