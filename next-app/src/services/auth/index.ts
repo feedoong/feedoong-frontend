@@ -4,7 +4,6 @@ import Cookies from 'js-cookie'
 import { getApiEndpoint } from 'envs'
 import api from 'services/api'
 import { AccessToken, RefreshToken } from 'constants/auth'
-import Toast from 'components/common/Toast'
 
 export interface UserProfile {
   email: string
