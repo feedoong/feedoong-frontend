@@ -28,33 +28,25 @@ export const getUserInfo = () => {
 }
 
 export const refreshAccessToken = async (axiosError: AxiosError) => {
-  try {
-    const originalRequest = axiosError.config
-    const refreshToken = Cookies.get(RefreshToken)
+  const originalRequest = axiosError.config
+  const refreshToken = Cookies.get(RefreshToken)
 
-    const { data } = await axios.post<
-      SignUpResponse['refreshToken'],
-      AxiosResponse<SignUpResponse>
-    >(getApiEndpoint() + `/users/token`, {
-      refreshToken,
-    })
+  // TODO: 리프레시 토큰 만료시 로그아웃 처리도 필요
+  const { data } = await axios.post<
+    SignUpResponse['refreshToken'],
+    AxiosResponse<SignUpResponse>
+  >(getApiEndpoint() + `/users/token`, {
+    refreshToken,
+  })
 
-    const newAccessToken = data.accessToken
-    const newRefreshToken = data.refreshToken
+  const newAccessToken = data.accessToken
+  const newRefreshToken = data.refreshToken
 
-    Cookies.set(AccessToken, newAccessToken)
-    Cookies.set(RefreshToken, newRefreshToken)
+  Cookies.set(AccessToken, newAccessToken)
+  Cookies.set(RefreshToken, newRefreshToken)
 
-    axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
-    originalRequest.headers!.Authorization = `Bearer ${newAccessToken}`
-    // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-    return axios(originalRequest)
-  } catch (error) {
-    console.error(error)
-    Cookies.remove(AccessToken)
-    Cookies.remove(RefreshToken)
-
-    window.location.href = '/signup'
-    return Promise.reject(error)
-  }
+  axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
+  originalRequest.headers!.Authorization = `Bearer ${newAccessToken}`
+  // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
+  return axios(originalRequest)
 }
