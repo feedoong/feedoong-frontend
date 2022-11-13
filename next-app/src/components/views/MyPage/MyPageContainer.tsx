@@ -3,12 +3,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Cookies from 'js-cookie'
 
 import Dialog from 'components/common/Dialog'
+import Toast from 'components/common/Toast'
+import { deleteAccount } from 'services/account'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import { AccessToken } from 'constants/auth'
 import InfoRow from './InfoRow'
+
 import * as S from './MyPageContainer.style'
-import { deleteAccount } from 'services/account'
-import Toast from 'components/common/Toast'
 
 const MyPageContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
@@ -20,7 +22,7 @@ const MyPageContainer = () => {
     {
       onSuccess: () => {
         Toast.show({ content: 'Successfully delete account' })
-        Cookies.remove('token')
+        Cookies.remove(AccessToken)
         window.location.href = '/'
       },
     }
@@ -33,7 +35,7 @@ const MyPageContainer = () => {
   )
 
   const logoutAction = () => {
-    Cookies.remove('token')
+    Cookies.remove(AccessToken)
     client.invalidateQueries(CACHE_KEYS.me)
     window.location.href = '/'
   }

@@ -1,18 +1,19 @@
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
 import { getFormatDate } from 'utils'
+import { copyToClipboard } from './FeedItem.utils'
+import Flex from '../Flex'
+import Divider from '../Divider'
+import Anchor from '../Anchor'
+import useToggleLike from './hooks/useToggleLike'
+
+import * as S from './FeedItem.style'
 import {
   Container,
   Description,
   GridTypeWrapper,
   Title,
 } from './GridType.style'
-import { copyToClipboard } from './FeedItem.utils'
-import Flex from '../Flex'
-import Divider from '../Divider'
-import * as S from './FeedItem.style'
-import Anchor from '../Anchor'
-import useToggleLike from './hooks/useToggleLike'
 
 import Icons from 'assets/icons'
 

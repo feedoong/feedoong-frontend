@@ -2,6 +2,7 @@ import { forwardRef, type ChangeEvent } from 'react'
 import Image from 'next/legacy/image'
 
 import { useControlled } from './hooks'
+
 import * as S from './RssInputContainer.style'
 
 import Icons from 'assets/icons'

@@ -1,12 +1,13 @@
 import type { Item } from 'types/feeds'
 import { getFormatDate } from 'utils'
-import { Container, Title } from './CardType.style'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
 import Anchor from '../Anchor'
-import * as S from './FeedItem.style'
 import useToggleLike from './hooks/useToggleLike'
+
+import * as S from './FeedItem.style'
+import { Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
 

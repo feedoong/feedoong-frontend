@@ -3,8 +3,9 @@ import React, { type ReactNode, forwardRef } from 'react'
 import Portal from 'components/common/Portal'
 import { DialogTitle } from './DialogTitle'
 import { DialogContent } from './ DialogContent'
-import * as S from './Dialog.style'
 import { DialogActions } from './DialogActions'
+
+import * as S from './Dialog.style'
 
 interface Props {
   isOpen: boolean

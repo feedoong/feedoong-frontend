@@ -7,6 +7,7 @@ import humps from 'humps'
 import { submitAccessToken } from 'services/auth'
 import api from 'services/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import { AccessToken, RefreshToken } from 'constants/auth'
 
 const Oauth = () => {
   const router = useRouter()
@@ -17,7 +18,12 @@ const Oauth = () => {
     () => submitAccessToken(parseAccessToken(router.asPath)),
     {
       onSuccess: (response) => {
-        Cookies.set('token', response.accessToken, {
+        Cookies.set(RefreshToken, response.refreshToken, {
+          expires: 20,
+          sameSite: 'lax',
+        })
+
+        Cookies.set(AccessToken, response.accessToken, {
           expires: 7,
           secure: true,
           sameSite: 'lax',

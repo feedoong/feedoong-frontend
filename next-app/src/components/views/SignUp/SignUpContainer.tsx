@@ -2,6 +2,7 @@ import Image from "next/legacy/image";
 import { useRouter } from 'next/router'
 
 import { googleAuthUrl } from './SignUpContainer.utils'
+
 import * as S from './SignUpContainer.style'
 
 import Icons from 'assets/icons'
