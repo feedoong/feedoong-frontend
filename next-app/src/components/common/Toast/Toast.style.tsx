@@ -7,26 +7,26 @@ import { getTypographyStyles } from 'styles/fonts'
 const basicFadeOut = keyframes`
   0% {
     opacity: 1;
-    background-color: rgba(33, 35, 34, 0.7);
+    background-color: rgba(56, 114, 224, 0.8);
   }
   70% {
     opacity: 1;
-    background-color: rgba(33, 35, 34, 0.7);
+    background-color: rgba(56, 114, 224, 0.8);
   }
   100% {
     opacity: 0;
-    background-color: rgba(33, 35, 34, 0);
+    background-color: rgba(56, 114, 224, 0.8);
   }
 `
 
 const errorFadeOut = keyframes`
   0% {
     opacity: 1;
-    background-color: rgba(225, 73, 66, 0.3);
+    background-color: rgba(225, 73, 66, 0.8);
   }
   70% {
     opacity: 1;
-    background-color: rgba(225, 73, 66, 0.3);
+    background-color: rgba(225, 73, 66, 0.8);
   }
   100% {
     opacity: 0;
@@ -43,10 +43,11 @@ export const ToastWrapper = styled.div<{
 
   width: 500px;
   min-height: 40px;
-  border-radius: 10px;
   padding: 12px 16px;
+  border-radius: 10px;
+  color: ${colors.white};
   background: ${({ type }) =>
-    type === 'basic' ? 'rgba(33, 35, 34, 0.7)' : 'rgba(225, 73, 66, 0.3)'};
+    type === 'basic' ? 'rgba(56, 114, 224, 0.8)' : 'rgba(225, 73, 66, 0.8)'};
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -69,10 +70,6 @@ export const ToastWrapper = styled.div<{
     css`
       top: 150px;
     `}
-
-  p {
-    color: ${({ type }) => (type === 'basic' ? colors.white : colors.error)};
-  }
 `
 
 export const ToastIcon = styled(Image)`

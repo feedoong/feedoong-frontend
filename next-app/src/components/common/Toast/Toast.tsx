@@ -23,6 +23,7 @@ export const ToastElement = ({
     <Flex justify="center">
       <S.ToastWrapper type={type} position={position} duration={duration}>
         <S.ToastIcon
+          priority
           src={type === 'basic' ? Icons.ToastBasic : Icons.ToastError}
           alt="Toast_icon"
         />
