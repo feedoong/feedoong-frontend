@@ -38,7 +38,7 @@ export const likeItem = (id: string) => {
 
 // likeItem 두번 호출하면 그냥 취소 되는 듯
 export const unlikeItem = (id: string) => {
-  return api.delete<null, null>(`/likes/${id}`)
+  return api.delete<null, LikeItemResponse>(`/likes/${id}`)
 }
 
 export const getLikedItems = (page: number) => {
