@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Toast from 'components/common/Toast'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { likeItem, submitViewedItem } from 'services/feeds'
+import { likeItem, unlikeItem } from 'services/feeds'
 import type { Item } from 'types/feeds'
 
 const useToggleLike = (item: Item) => {
@@ -10,7 +10,7 @@ const useToggleLike = (item: Item) => {
 
   const { mutate: handleLike } = useMutation(
     CACHE_KEYS.likeItem(item.id),
-    likeItem,
+    !item.isLiked ? likeItem : unlikeItem,
     {
       onSuccess: async (data) => {
         client.invalidateQueries(CACHE_KEYS.feeds)
@@ -31,13 +31,8 @@ const useToggleLike = (item: Item) => {
       },
     }
   )
-  const { mutate: handleRead } = useMutation(
-    CACHE_KEYS.viewItem(item.id),
-    submitViewedItem
-  )
 
   return {
-    handleRead,
     handleLike,
   }
 }

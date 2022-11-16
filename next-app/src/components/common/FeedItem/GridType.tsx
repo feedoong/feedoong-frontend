@@ -6,6 +6,7 @@ import Flex from '../Flex'
 import Divider from '../Divider'
 import Anchor from '../Anchor'
 import useToggleLike from './hooks/useToggleLike'
+import useReadPost from './hooks/useReadPost'
 
 import * as S from './FeedItem.style'
 import {
@@ -22,7 +23,8 @@ interface Props {
 }
 
 const GridType = ({ item }: Props) => {
-  const { handleRead, handleLike } = useToggleLike(item)
+  const { handleLike } = useToggleLike(item)
+  const { handleRead } = useReadPost(item)
 
   return (
     <Container>
