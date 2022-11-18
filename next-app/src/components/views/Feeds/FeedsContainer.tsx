@@ -5,14 +5,14 @@ import { useInView } from 'react-intersection-observer'
 import FeedItem from 'components/common/FeedItem'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import Loading from 'components/common/Loading'
+import SkeletonCardType from 'components/common/Skeleton/CardType'
 
 import * as S from './FeedsContainer.style'
 
 import Icons from 'assets/icons'
 
 const FeedsContainer = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useInfiniteQuery(
       CACHE_KEYS.feeds,
       ({ pageParam = 1 }) => getFeeds(pageParam),
@@ -71,12 +71,17 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {data?.pages.map((page) =>
-            page.items.map((item) => (
-              <FeedItem key={item.id} type={selectedViewType} item={item} />
-            ))
-          )}
-          {isFetchingNextPage && <Loading />}
+          {isFetching &&
+            Array.from({ length: 10 }).map((_, idx) => (
+              <SkeletonCardType key={idx} />
+            ))}
+          {data &&
+            data.pages.map((page) =>
+              page.items.map((item) => (
+                <FeedItem key={item.id} type={selectedViewType} item={item} />
+              ))
+            )}
+          {isFetchingNextPage && <SkeletonCardType />}
           {hasNextPage && <span ref={ref} />}
         </S.CardContainer>
       </S.FeedWrapper>

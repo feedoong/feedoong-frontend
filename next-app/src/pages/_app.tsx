@@ -7,6 +7,7 @@ import Script from 'next/script'
 
 import 'styles/reset.css'
 import 'styles/font.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import Layout from 'components/common/Layout'
 import type { ErrorResponse } from 'types/common'
@@ -34,7 +35,7 @@ const queryClient = new QueryClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useGoogleAnalytics();
+  useGoogleAnalytics()
 
   return (
     <>
