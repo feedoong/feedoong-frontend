@@ -16,7 +16,7 @@ export const GridTypeWrapper = styled.div<{ imageUrl?: string }>`
     css`
       height: 100%;
     `};
-    
+
   padding: ${({ imageUrl }) => (imageUrl ? ' 12px 20px 20px 20px' : '20px')};
   display: flex;
   justify-content: space-between;

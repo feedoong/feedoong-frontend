@@ -29,10 +29,11 @@ export const TitleWrapper = styled.div`
   gap: 20px;
 `
 
-export const Title = styled.h1<{ isSelected: boolean }>`
+export const Title = styled.h1<{ $isSelected: boolean }>`
   ${getTypographyStyles('Headline2_B')}
 
-  color: ${({ isSelected }) => (isSelected ? colors.gray900 : colors.gray400)};
+  color: ${({ $isSelected }) =>
+    $isSelected ? colors.gray900 : colors.gray400};
   cursor: pointer;
 `
 
@@ -41,8 +42,9 @@ export const SelectViewType = styled.div`
   gap: 8px;
 `
 
-export const ViewType = styled(Image)<{ isSelected: boolean }>`
-  color: ${({ isSelected }) => (isSelected ? colors.gray900 : colors.gray400)};
+export const ViewType = styled(Image)<{ $isSelected: boolean }>`
+  color: ${({ $isSelected }) =>
+    $isSelected ? colors.gray900 : colors.gray400};
   cursor: pointer;
 `
 

@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import Cookies from 'js-cookie'
 
 import Dialog from 'components/common/Dialog'
 import Toast from 'components/common/Toast'
 import { deleteAccount } from 'services/account'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { AccessToken, RefreshToken } from 'constants/auth'
 import InfoRow from './InfoRow'
-import api from 'services/api'
+import { destroyTokensClientSide } from 'utils/auth'
 
 import * as S from './MyPageContainer.style'
 
@@ -23,7 +21,8 @@ const MyPageContainer = () => {
     {
       onSuccess: () => {
         Toast.show({ content: 'Successfully delete account' })
-        Cookies.remove(AccessToken)
+        destroyTokensClientSide()
+        client.invalidateQueries(CACHE_KEYS.me)
         window.location.href = '/'
       },
     }
@@ -36,10 +35,7 @@ const MyPageContainer = () => {
   )
 
   const logoutAction = () => {
-    Cookies.remove(AccessToken)
-    Cookies.remove(RefreshToken)
-
-    api.defaults.headers.common['Authorization'] = ''
+    destroyTokensClientSide()
 
     client.invalidateQueries(CACHE_KEYS.me)
     window.location.href = '/'

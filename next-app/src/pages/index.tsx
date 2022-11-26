@@ -8,8 +8,8 @@ import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
-import api from 'services/api'
-import { getFeeds } from 'services/feeds'
+import { createApi } from 'services/api'
+import { getFeedsServerSide } from 'services/feeds'
 
 const Home: NextPage = () => {
   useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
@@ -29,6 +29,7 @@ export default Home
 
 export const getServerSideProps = async (context: GetServerSideProps) => {
   try {
+    const api = createApi()
     const cookies = parseCookies(context as typeof parseCookies['arguments'])
 
     api.defaults.headers.common[
@@ -39,28 +40,17 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     await queryClient.prefetchQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
     await queryClient.prefetchInfiniteQuery(
       CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeeds(pageParam),
-      {
-        initialData: () => {
-          return {
-            pages: [
-              {
-                items: [],
-                next: 2,
-              },
-            ],
-            pageParams: [1],
-          }
-        },
-      }
+      ({ pageParam = 1 }) => getFeedsServerSide(api)(pageParam)
     )
 
     return {
       props: {
-        dehydratedState: dehydrate(queryClient),
+        /** @link https://github.com/TanStack/query/issues/1458#issuecomment-1022396964 */
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },
     }
   } catch (error) {
+    console.log(error)
     return {
       props: {},
     }

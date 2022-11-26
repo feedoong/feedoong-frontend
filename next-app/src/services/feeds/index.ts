@@ -1,3 +1,5 @@
+import type { AxiosInstance } from 'axios'
+
 import api from 'services/api'
 import type {
   Feed,
@@ -16,6 +18,17 @@ export const getFeeds = (page = 1, size = 10) => {
     },
   })
 }
+
+export const getFeedsServerSide =
+  (_api: AxiosInstance) =>
+  (page = 1, size = 10) => {
+    return _api.get<null, Feed>(`/items`, {
+      params: {
+        page,
+        size,
+      },
+    })
+  }
 
 export const checkUrlAsRss = (url: string) => {
   return api.get<null, PreviewResponse>(`/channels/preview`, {

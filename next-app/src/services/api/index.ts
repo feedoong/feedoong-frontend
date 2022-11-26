@@ -10,38 +10,44 @@ const { camelizeKeys } = humps
 
 const accessToken = Cookies.get(AccessToken)
 
-const api = Axios.create({
-  baseURL: getApiEndpoint(),
-  validateStatus: (status) => status >= 200 && status < 400,
-  headers: {
-    ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
-  },
-})
+export const createApi = () => {
+  const _api = Axios.create({
+    baseURL: getApiEndpoint(),
+    validateStatus: (status) => status >= 200 && status < 400,
+    headers: {
+      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+    },
+  })
 
-api.interceptors.response.use(
-  // try
-  (response) => {
-    return Promise.resolve(
-      camelizeKeys(response.data)
-    ) as unknown as AxiosResponse
-  },
-  // catch
-  async (error) => {
-    if (error instanceof AxiosError) {
-      if (error.response?.status === 401 || error.response?.status === 403) {
-        // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
-        const refreshToken = Cookies.get(RefreshToken)
-        if (refreshToken) {
-          return refreshAccessToken(error)
+  _api.interceptors.response.use(
+    // try
+    (response) => {
+      return Promise.resolve(
+        camelizeKeys(response.data)
+      ) as unknown as AxiosResponse
+    },
+    // catch
+    async (error) => {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 401 || error.response?.status === 403) {
+          // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
+          const refreshToken = Cookies.get(RefreshToken)
+          if (refreshToken) {
+            return refreshAccessToken(error)
+          }
         }
       }
+      return Promise.reject(error)
     }
-    return Promise.reject(error)
-  }
-)
+  )
 
-api.interceptors.request.use((config) => {
-  return config
-})
+  _api.interceptors.request.use((config) => {
+    return config
+  })
+
+  return _api
+}
+
+const api = createApi()
 
 export default api

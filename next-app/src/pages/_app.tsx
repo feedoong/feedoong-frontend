@@ -5,8 +5,9 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-import type { AxiosError } from 'axios'
+import Cookies from 'js-cookie'
 
 import 'styles/reset.css'
 import 'styles/font.css'
@@ -17,22 +18,31 @@ import Layout from 'components/common/Layout'
 import Toast from 'components/common/Toast'
 import Scripts from 'components/common/Scripts'
 import useGoogleAnalytics from 'hooks/useGoogleAnalytics'
+import { destroyTokensClientSide } from 'utils/auth'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3,
+      retry: false,
       retryOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
 
       onError: (err: unknown) => {
-        Toast.show({
-          type: 'error',
-          content:
-            (err as AxiosError<ErrorResponse>).response?.data.message ??
-            '에러가 발생했습니다.',
-        })
+        if (err instanceof AxiosError) {
+          const code = err.response?.data.code
+          if (code === 'REFRESH_TOKEN_NOT_FOUND') {
+            destroyTokensClientSide()
+            queryClient.invalidateQueries(CACHE_KEYS.me)
+            window.location.href = '/introduce'
+          }
+
+          Toast.show({
+            type: 'error',
+            content: err.response?.data.message ?? '에러가 발생했습니다.',
+          })
+        }
       },
     },
   },

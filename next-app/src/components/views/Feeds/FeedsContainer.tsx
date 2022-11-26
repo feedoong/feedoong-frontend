@@ -41,6 +41,7 @@ const FeedsContainer = () => {
   }, [inView, fetchNextPage])
 
   const isGridView = selectedViewType === 'grid'
+  const showSkeleton = isFetching && !data
 
   return (
     <S.Container>
@@ -48,7 +49,7 @@ const FeedsContainer = () => {
         <S.Header>
           <S.TitleWrapper>
             <S.Title
-              isSelected={selectedCategory === 'home'}
+              $isSelected={selectedCategory === 'home'}
               onClick={() => setSelectedCategory('home')}
             >
               홈 피드
@@ -58,7 +59,7 @@ const FeedsContainer = () => {
             <S.ViewType
               alt="카드 뷰"
               src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              isSelected={!isGridView}
+              $isSelected={!isGridView}
               onClick={() => setSelectedViewType('card')}
               width={16}
               height={16}
@@ -66,7 +67,7 @@ const FeedsContainer = () => {
             <S.ViewType
               alt="그리드 뷰"
               src={Icons[isGridView ? 'GridViewIcon' : 'GridViewIconDeactive']}
-              isSelected={isGridView}
+              $isSelected={isGridView}
               onClick={() => setSelectedViewType('grid')}
               width={16}
               height={16}
@@ -74,23 +75,19 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {isFetching &&
+          {showSkeleton &&
             Array.from({ length: 10 }).map((_, idx) => {
-              return isGridView ? (
-                <SkeletonGridType key={idx} />
-              ) : (
-                <SkeletonCardType key={idx} />
-              )
+              const Card = isGridView ? SkeletonGridType : SkeletonCardType
+              return <Card key={idx} />
             })}
-          {data &&
-            data.pages.map((page) =>
-              page.items.map((item) => (
-                <FeedItem key={item.id} type={selectedViewType} item={item} />
-              ))
-            )}
-          {isFetchingNextPage && <Loading />}
-          {hasNextPage && <span ref={ref} />}
+          {data?.pages.map((page) =>
+            page.items.map((item) => (
+              <FeedItem key={item.id} type={selectedViewType} item={item} />
+            ))
+          )}
         </S.CardContainer>
+        {isFetchingNextPage && <Loading />}
+        {hasNextPage && <span ref={ref} />}
       </S.FeedWrapper>
     </S.Container>
   )
