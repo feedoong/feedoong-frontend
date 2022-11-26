@@ -7,7 +7,7 @@ import Toast from 'components/common/Toast'
 import { deleteAccount } from 'services/account'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { AccessToken } from 'constants/auth'
+import { AccessToken, RefreshToken } from 'constants/auth'
 import InfoRow from './InfoRow'
 
 import * as S from './MyPageContainer.style'
@@ -36,6 +36,8 @@ const MyPageContainer = () => {
 
   const logoutAction = () => {
     Cookies.remove(AccessToken)
+    Cookies.remove(RefreshToken)
+
     client.invalidateQueries(CACHE_KEYS.me)
     window.location.href = '/'
   }

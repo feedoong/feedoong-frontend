@@ -9,9 +9,27 @@ import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import api from 'services/api'
+import Top from 'components/views/Main/Top'
+import Main from 'components/views/Main'
 
 const Home: NextPage = () => {
-  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo) // initialize user info
+  const { data: userProfile, isLoading } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo
+  )
+
+  if (isLoading) {
+    return null
+  }
+  // TODO: flicking 해소하기
+  if (!userProfile) {
+    return (
+      <>
+        <Top />
+        <Main />
+      </>
+    )
+  }
 
   return (
     <>
