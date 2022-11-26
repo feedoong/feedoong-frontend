@@ -33,19 +33,17 @@ function ChannelContainer() {
             })}
           </Flex>
         ) : (
-          <>
-            {data?.channels.map((item) => {
-              return <FeedItem key={item.id} type="subscription" item={item} />
-            })}
-            <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
-              <Paging
-                totalPage={totalPage}
-                currentPage={currentPage}
-                movePage={(page: number) => setCurrentPage(page)}
-              />
-            </Flex>
-          </>
+          data?.channels.map((item) => {
+            return <FeedItem key={item.id} type="subscription" item={item} />
+          })
         )}
+      </Flex>
+      <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
+        <Paging
+          totalPage={totalPage}
+          currentPage={currentPage}
+          movePage={(page: number) => setCurrentPage(page)}
+        />
       </Flex>
     </S.Container>
   )

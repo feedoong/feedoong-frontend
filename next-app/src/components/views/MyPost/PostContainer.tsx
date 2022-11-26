@@ -8,7 +8,7 @@ import { getLikedItems } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { ITEMS_PER_PAGE } from './PostContainer.const'
-import Loading from 'components/common/Loading'
+import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
 
 import Icons from 'assets/icons'
 
@@ -63,28 +63,22 @@ function PostContainer() {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {isLoading ? (
-            <Flex justify="center" style={{ width: '100%' }}>
-              <Loading />
-            </Flex>
-          ) : (
-            <>
-              {data?.items.map((item) => (
+          {isLoading
+            ? Array.from({ length: 10 }).map((_, idx) => {
+                const Card = isGridView ? SkeletonGridType : SkeletonCardType
+                return <Card key={idx} />
+              })
+            : data?.items.map((item) => (
                 <FeedItem key={item.id} type={selectedViewType} item={item} />
               ))}
-              <Flex
-                justify="center"
-                style={{ width: '100%', padding: '44px 0' }}
-              >
-                <Paging
-                  totalPage={totalPage}
-                  currentPage={currentPage}
-                  movePage={(page: number) => setCurrentPage(page)}
-                />
-              </Flex>
-            </>
-          )}
         </S.CardContainer>
+        <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
+          <Paging
+            totalPage={totalPage}
+            currentPage={currentPage}
+            movePage={(page: number) => setCurrentPage(page)}
+          />
+        </Flex>
       </S.FeedWrapper>
     </S.Container>
   )
