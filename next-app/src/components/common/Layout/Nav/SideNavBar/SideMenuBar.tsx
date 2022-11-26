@@ -50,7 +50,13 @@ const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
           </Link>
         </div>
         <div>
-          <MenuItem title="의견 남기기" iconUrl={Icons.SpeechBubble} />
+          <Anchor
+            href="https://forms.gle/h4QnoEvdLQPRpt7Q6"
+            target="_blank"
+            onClick={() => setShowSideBar(false)}
+          >
+            <MenuItem title="의견 남기기" iconUrl={Icons.SpeechBubble} />
+          </Anchor>
           <Link href="/introduce" passHref legacyBehavior>
             <Anchor onClick={() => setShowSideBar(false)}>
               <MenuItem title="피둥을 소개합니다" iconUrl={Icons.Thunder} />
