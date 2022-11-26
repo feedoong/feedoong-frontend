@@ -3,7 +3,7 @@ import humps from 'humps'
 import Cookies from 'js-cookie'
 
 import { getApiEndpoint } from 'envs'
-import { AccessToken } from 'constants/auth'
+import { AccessToken, RefreshToken } from 'constants/auth'
 import { refreshAccessToken } from 'services/auth'
 
 const { camelizeKeys } = humps
@@ -28,9 +28,12 @@ api.interceptors.response.use(
   // catch
   async (error) => {
     if (error instanceof AxiosError) {
-      // TODO: exception 조건 수정
-      if (error.response?.data.message.includes('expired')) {
-        return refreshAccessToken(error)
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
+        const refreshToken = Cookies.get(RefreshToken)
+        if (refreshToken) {
+          return refreshAccessToken(error)
+        }
       }
     }
     return Promise.reject(error)

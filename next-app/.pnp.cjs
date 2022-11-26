@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
+            ["nookies", "npm:2.5.2"],\
             ["prettier", "npm:2.7.1"],\
             ["query-string", "npm:7.1.1"],\
             ["react", "npm:18.2.0"],\
@@ -3025,6 +3026,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
+            ["nookies", "npm:2.5.2"],\
             ["prettier", "npm:2.7.1"],\
             ["query-string", "npm:7.1.1"],\
             ["react", "npm:18.2.0"],\
@@ -4474,6 +4476,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["nookies", [\
+        ["npm:2.5.2", {\
+          "packageLocation": "./.yarn/cache/nookies-npm-2.5.2-691fdd44ab-4cc6fd8d0a.zip/node_modules/nookies/",\
+          "packageDependencies": [\
+            ["nookies", "npm:2.5.2"],\
+            ["cookie", "npm:0.4.2"],\
+            ["set-cookie-parser", "npm:2.5.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["nopt", [\
         ["npm:6.0.0", {\
           "packageLocation": "./.yarn/cache/nopt-npm-6.0.0-5ea8050815-82149371f8.zip/node_modules/nopt/",\
@@ -5299,6 +5312,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/set-blocking-npm-2.0.0-49e2cffa24-6e65a05f7c.zip/node_modules/set-blocking/",\
           "packageDependencies": [\
             ["set-blocking", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["set-cookie-parser", [\
+        ["npm:2.5.1", {\
+          "packageLocation": "./.yarn/cache/set-cookie-parser-npm-2.5.1-530f8bd9ef-b99c37f976.zip/node_modules/set-cookie-parser/",\
+          "packageDependencies": [\
+            ["set-cookie-parser", "npm:2.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\

@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server'
 
-import { AccessToken } from 'constants/auth'
+import { AccessToken, RefreshToken } from 'constants/auth'
 
 export const isLoginValidServerSide = (request: NextRequest) => {
-  return request.cookies.get(AccessToken)
+  return request.cookies.get(AccessToken) || request.cookies.get(RefreshToken)
 }
