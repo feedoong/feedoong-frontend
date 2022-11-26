@@ -1,8 +1,9 @@
+import Skeleton from 'react-loading-skeleton'
+
 import { Container } from 'components/common/FeedItem/CardType.style'
 import * as S from '../FeedItem/FeedItem.style'
 import Flex from 'components/common/Flex'
 import Divider from 'components/common/Divider'
-import Skeleton from 'react-loading-skeleton'
 
 const SkeletonCardType = () => {
   return (

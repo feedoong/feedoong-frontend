@@ -19,11 +19,13 @@ const api = Axios.create({
 })
 
 api.interceptors.response.use(
+  // try
   (response) => {
     return Promise.resolve(
       camelizeKeys(response.data)
     ) as unknown as AxiosResponse
   },
+  // catch
   async (error) => {
     if (error instanceof AxiosError) {
       // TODO: exception 조건 수정

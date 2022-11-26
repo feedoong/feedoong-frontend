@@ -5,7 +5,8 @@ import { useInView } from 'react-intersection-observer'
 import FeedItem from 'components/common/FeedItem'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import SkeletonCardType from 'components/common/Skeleton/CardType'
+import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
+import Loading from 'components/common/Loading'
 
 import * as S from './FeedsContainer.style'
 
@@ -72,16 +73,20 @@ const FeedsContainer = () => {
         </S.Header>
         <S.CardContainer type={selectedViewType}>
           {isFetching &&
-            Array.from({ length: 10 }).map((_, idx) => (
-              <SkeletonCardType key={idx} />
-            ))}
+            Array.from({ length: 10 }).map((_, idx) => {
+              return isGridView ? (
+                <SkeletonGridType key={idx} />
+              ) : (
+                <SkeletonCardType key={idx} />
+              )
+            })}
           {data &&
             data.pages.map((page) =>
               page.items.map((item) => (
                 <FeedItem key={item.id} type={selectedViewType} item={item} />
               ))
             )}
-          {isFetchingNextPage && <SkeletonCardType />}
+          {isFetchingNextPage && <Loading />}
           {hasNextPage && <span ref={ref} />}
         </S.CardContainer>
       </S.FeedWrapper>
