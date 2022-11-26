@@ -47,6 +47,7 @@ const TopNavBar = ({ setShowSideBar }: Props) => {
               height={24}
               alt="프로필 사진"
               src={profileImageUrl}
+              priority
             />
           )}
           {name}

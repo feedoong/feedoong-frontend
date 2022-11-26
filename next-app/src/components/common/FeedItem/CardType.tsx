@@ -70,6 +70,7 @@ const CardType = ({ item }: Props) => {
             width={16}
             height={16}
             onClick={() => copyToClipboard(item.link)}
+            priority
           />
           <S.Bookmark
             alt="북마크"
@@ -77,6 +78,7 @@ const CardType = ({ item }: Props) => {
             width={16}
             height={16}
             onClick={() => handleLike(String(item.id))}
+            priority
           />
         </Flex>
       </S.Footer>

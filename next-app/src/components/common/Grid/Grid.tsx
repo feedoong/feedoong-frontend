@@ -17,6 +17,7 @@ const Grid = () => {
               src={Icons.NaverIcon}
               width={20}
               height={20}
+              priority
             />
             <span className="news">네이버 뉴스</span>
             <span className="date">2022.08.22</span>
@@ -27,6 +28,7 @@ const Grid = () => {
               src={Icons.DotsVertical}
               width={16}
               height={16}
+              priority
             />
           </div>
         </GS.ContentTop>
@@ -40,6 +42,7 @@ const Grid = () => {
             src={Icons.Bookmark}
             width={16}
             height={16}
+            priority
           />
         </GS.ContentFooter>
       </GS.Contents>
