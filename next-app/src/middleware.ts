@@ -6,7 +6,9 @@ export function middleware(request: NextRequest) {
   const isStatic = request.nextUrl.pathname.includes('/_next')
   const isLoginProcess = request.nextUrl.pathname.includes('/oauth')
 
-  if (!isStatic && !isLoginProcess && !isLoginValidServerSide(request)) {
+  const ignore = isStatic || isLoginProcess
+
+  if (!ignore && !isLoginValidServerSide(request)) {
     return NextResponse.rewrite(new URL('/signup', request.url))
   }
 
