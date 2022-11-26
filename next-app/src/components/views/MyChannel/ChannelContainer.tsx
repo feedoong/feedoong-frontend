@@ -8,6 +8,7 @@ import * as S from 'components/views/MyChannel/ChannelContainer.style'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
 import Loading from 'components/common/Loading'
+import { SkeletonSubscriptionType } from 'components/common/Skeleton'
 
 function ChannelContainer() {
   const ITEMS_PER_PAGE = 10
@@ -26,8 +27,10 @@ function ChannelContainer() {
       </S.Header>
       <Flex gap={20} direction="column">
         {isLoading ? (
-          <Flex justify="center" style={{ width: '100%' }}>
-            <Loading />
+          <Flex direction="column" style={{ width: '100%' }} gap={20}>
+            {Array.from({ length: 10 }).map((_, idx) => {
+              return <SkeletonSubscriptionType key={idx} />
+            })}
           </Flex>
         ) : (
           <>

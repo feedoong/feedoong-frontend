@@ -85,9 +85,9 @@ const FeedsContainer = () => {
               <FeedItem key={item.id} type={selectedViewType} item={item} />
             ))
           )}
-          {isFetchingNextPage && <Loading />}
-          {hasNextPage && <span ref={ref} />}
         </S.CardContainer>
+        {isFetchingNextPage && <Loading />}
+        {hasNextPage && <span ref={ref} />}
       </S.FeedWrapper>
     </S.Container>
   )

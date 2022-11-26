@@ -69,11 +69,9 @@ function PostContainer() {
             </Flex>
           ) : (
             <>
-              {data?.items.map((item) => {
-                return (
-                  <FeedItem key={item.id} type={selectedViewType} item={item} />
-                )
-              })}
+              {data?.items.map((item) => (
+                <FeedItem key={item.id} type={selectedViewType} item={item} />
+              ))}
               <Flex
                 justify="center"
                 style={{ width: '100%', padding: '44px 0' }}
