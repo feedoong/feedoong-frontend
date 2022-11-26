@@ -36,7 +36,13 @@ const RssInputContainer = () => {
             isValid={isRssUrlValid(url)}
             disabled={!isSubmitEnabled}
           >
-            <Image alt="add 버튼" src={Icons.Add} width={20} height={20} />
+            <Image
+              alt="add 버튼"
+              src={Icons.Add}
+              width={20}
+              height={20}
+              priority
+            />
           </S.AddButton>
         </Flex>
       </S.Form>

@@ -9,27 +9,9 @@ import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import api from 'services/api'
-import Top from 'components/views/Main/Top'
-import Main from 'components/views/Main'
 
 const Home: NextPage = () => {
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
-
-  if (isLoading) {
-    return null
-  }
-  // TODO: flicking 해소하기
-  if (!userProfile) {
-    return (
-      <>
-        <Top />
-        <Main />
-      </>
-    )
-  }
+  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
 
   return (
     <>
@@ -63,10 +45,7 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     }
   } catch (error) {
     return {
-      redirect: {
-        destination: '/signup',
-        permanent: false,
-      },
+      props: {},
     }
   }
 }
