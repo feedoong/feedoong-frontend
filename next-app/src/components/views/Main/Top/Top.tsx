@@ -1,3 +1,4 @@
+import Toast from 'components/common/Toast'
 import * as S from 'components/views/Main/Top/Top.style'
 const Top = () => {
   return (
@@ -8,7 +9,15 @@ const Top = () => {
         <br />
         크롬 새탭에서 바로 시작하세요!
       </S.Subtitle>
-      <S.GoogleLoginButton>크롬에 추가하기</S.GoogleLoginButton>
+      <S.GoogleLoginButton
+        onClick={() => {
+          Toast.show({
+            content: '아직 준비 중인 기능입니다! 조금만 기다려주세요 :)',
+          })
+        }}
+      >
+        크롬에 추가하기
+      </S.GoogleLoginButton>
     </S.Wrapper>
   )
 }
