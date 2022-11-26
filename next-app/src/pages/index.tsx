@@ -39,28 +39,17 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     await queryClient.prefetchQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
     await queryClient.prefetchInfiniteQuery(
       CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeeds(pageParam),
-      {
-        initialData: () => {
-          return {
-            pages: [
-              {
-                items: [],
-                next: 2,
-              },
-            ],
-            pageParams: [1],
-          }
-        },
-      }
+      ({ pageParam = 1 }) => getFeeds(pageParam)
     )
 
     return {
       props: {
-        dehydratedState: dehydrate(queryClient),
+        /** @link https://github.com/TanStack/query/issues/1458#issuecomment-1022396964 */
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },
     }
   } catch (error) {
+    console.log(error)
     return {
       props: {},
     }

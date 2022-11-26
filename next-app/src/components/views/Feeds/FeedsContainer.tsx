@@ -41,6 +41,7 @@ const FeedsContainer = () => {
   }, [inView, fetchNextPage])
 
   const isGridView = selectedViewType === 'grid'
+  const showSkeleton = isFetching && !data
 
   return (
     <S.Container>
@@ -74,20 +75,16 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {isFetching &&
+          {showSkeleton &&
             Array.from({ length: 10 }).map((_, idx) => {
-              return isGridView ? (
-                <SkeletonGridType key={idx} />
-              ) : (
-                <SkeletonCardType key={idx} />
-              )
+              const Card = isGridView ? SkeletonGridType : SkeletonCardType
+              return <Card key={idx} />
             })}
-          {data &&
-            data.pages.map((page) =>
-              page.items.map((item) => (
-                <FeedItem key={item.id} type={selectedViewType} item={item} />
-              ))
-            )}
+          {data?.pages.map((page) =>
+            page.items.map((item) => (
+              <FeedItem key={item.id} type={selectedViewType} item={item} />
+            ))
+          )}
           {isFetchingNextPage && <Loading />}
           {hasNextPage && <span ref={ref} />}
         </S.CardContainer>
