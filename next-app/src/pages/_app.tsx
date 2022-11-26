@@ -10,6 +10,7 @@ import type { AxiosError } from 'axios'
 
 import 'styles/reset.css'
 import 'styles/font.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import type { ErrorResponse } from 'types/common'
 import Layout from 'components/common/Layout'

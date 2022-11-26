@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import FeedItem from 'components/common/FeedItem'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
 import Loading from 'components/common/Loading'
 
 import * as S from './FeedsContainer.style'
@@ -12,7 +13,7 @@ import * as S from './FeedsContainer.style'
 import Icons from 'assets/icons'
 
 const FeedsContainer = () => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useInfiniteQuery(
       CACHE_KEYS.feeds,
       ({ pageParam = 1 }) => getFeeds(pageParam),
@@ -22,7 +23,9 @@ const FeedsContainer = () => {
           lastPage.items.length === 10 ? lastPage.next : undefined,
       }
     )
-  const { ref, inView } = useInView()
+  const { ref, inView } = useInView({
+    rootMargin: '25px',
+  })
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
@@ -71,11 +74,20 @@ const FeedsContainer = () => {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {data?.pages.map((page) =>
-            page.items.map((item) => (
-              <FeedItem key={item.id} type={selectedViewType} item={item} />
-            ))
-          )}
+          {isFetching &&
+            Array.from({ length: 10 }).map((_, idx) => {
+              return isGridView ? (
+                <SkeletonGridType key={idx} />
+              ) : (
+                <SkeletonCardType key={idx} />
+              )
+            })}
+          {data &&
+            data.pages.map((page) =>
+              page.items.map((item) => (
+                <FeedItem key={item.id} type={selectedViewType} item={item} />
+              ))
+            )}
           {isFetchingNextPage && <Loading />}
           {hasNextPage && <span ref={ref} />}
         </S.CardContainer>
