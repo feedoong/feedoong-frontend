@@ -61,6 +61,7 @@ const SubscriptionType = ({ item }: Props) => {
                     width={20}
                     height={20}
                     alt="링크 복사"
+                    priority
                   />
                 }
               >
@@ -75,6 +76,7 @@ const SubscriptionType = ({ item }: Props) => {
                     width={20}
                     height={20}
                     alt="채널 삭제"
+                    priority
                   />
                 }
               >
@@ -90,6 +92,7 @@ const SubscriptionType = ({ item }: Props) => {
               width={16}
               height={16}
               style={{ cursor: 'pointer' }}
+              priority
             />
           </span>
         </Popover>

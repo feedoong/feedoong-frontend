@@ -1,16 +1,20 @@
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RecoilRoot } from 'recoil'
 import type { AxiosError } from 'axios'
-import Script from 'next/script'
 
 import 'styles/reset.css'
 import 'styles/font.css'
 
-import Layout from 'components/common/Layout'
 import type { ErrorResponse } from 'types/common'
+import Layout from 'components/common/Layout'
 import Toast from 'components/common/Toast'
+import Scripts from 'components/common/Scripts'
 import useGoogleAnalytics from 'hooks/useGoogleAnalytics'
 
 const queryClient = new QueryClient({
@@ -38,31 +42,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+      <Scripts />
       <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </RecoilRoot>
+        <Hydrate state={pageProps.dehydratedState}>
+          <RecoilRoot>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </RecoilRoot>
+        </Hydrate>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>
