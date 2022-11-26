@@ -1,5 +1,5 @@
 import * as ReactDOM from 'react-dom/client'
-import { Root } from 'react-dom/client'
+import type { Root } from 'react-dom/client'
 import React, {
   forwardRef,
   ReactElement,
@@ -35,6 +35,8 @@ export const renderImperatively = (element: TargetElement) => {
       } else {
         afterClose()
       }
+      // TODO: 의존성 배열 추가해도 되는지 확인
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [visible])
 
     const onClose = () => {

@@ -16,7 +16,7 @@ import useGoogleAnalytics from 'hooks/useGoogleAnalytics'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false,
+      retry: 3,
       retryOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
@@ -34,7 +34,7 @@ const queryClient = new QueryClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useGoogleAnalytics();
+  useGoogleAnalytics()
 
   return (
     <>
