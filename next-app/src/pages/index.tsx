@@ -4,29 +4,14 @@ import Head from 'next/head'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import Top from 'components/views/Main/Top'
-import Main from 'components/views/Main'
+// import Top from 'components/views/Main/Top' // TODO: 메인 페이지에서는 제거하고 추후 복구
+// import Main from 'components/views/Main' // TODO: 메인 페이지에서는 제거하고 추후 복구
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 
 const Home: NextPage = () => {
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
+  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo) // initialize user info
 
-  if (isLoading) {
-    return null
-  }
-  // TODO: flicking 해소하기
-  if (!userProfile) {
-    return (
-      <>
-        <Top />
-        <Main />
-      </>
-    )
-  }
   return (
     <>
       <Head>
