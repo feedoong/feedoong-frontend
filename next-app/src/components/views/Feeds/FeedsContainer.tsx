@@ -23,7 +23,9 @@ const FeedsContainer = () => {
           lastPage.items.length === 10 ? lastPage.next : undefined,
       }
     )
-  const { ref, inView } = useInView()
+  const { ref, inView } = useInView({
+    rootMargin: '25px',
+  })
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
