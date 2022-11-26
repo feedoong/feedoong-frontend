@@ -4,3 +4,4 @@
 cd next-app
 yarn lint
 yarn tsc
+yarn build
