@@ -1,5 +1,9 @@
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RecoilRoot } from 'recoil'
 import type { AxiosError } from 'axios'
@@ -40,11 +44,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Scripts />
       <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </RecoilRoot>
+        <Hydrate state={pageProps.dehydratedState}>
+          <RecoilRoot>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </RecoilRoot>
+        </Hydrate>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>

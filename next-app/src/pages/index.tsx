@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useQuery } from '@tanstack/react-query'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import Head from 'next/head'
 
 import RssInputView from 'components/views/RssInput'
@@ -24,3 +24,14 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
