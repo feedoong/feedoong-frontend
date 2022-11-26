@@ -48,7 +48,7 @@ const FeedsContainer = () => {
         <S.Header>
           <S.TitleWrapper>
             <S.Title
-              isSelected={selectedCategory === 'home'}
+              $isSelected={selectedCategory === 'home'}
               onClick={() => setSelectedCategory('home')}
             >
               홈 피드
@@ -58,7 +58,7 @@ const FeedsContainer = () => {
             <S.ViewType
               alt="카드 뷰"
               src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              isSelected={!isGridView}
+              $isSelected={!isGridView}
               onClick={() => setSelectedViewType('card')}
               width={16}
               height={16}
@@ -66,7 +66,7 @@ const FeedsContainer = () => {
             <S.ViewType
               alt="그리드 뷰"
               src={Icons[isGridView ? 'GridViewIcon' : 'GridViewIconDeactive']}
-              isSelected={isGridView}
+              $isSelected={isGridView}
               onClick={() => setSelectedViewType('grid')}
               width={16}
               height={16}
