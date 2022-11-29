@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
@@ -10,6 +11,7 @@ import Flex from '../Flex'
 import Anchor from '../Anchor'
 import Popover from '../Popover'
 import Toast from '../Toast'
+import Dialog from '../Dialog'
 
 import { Container, Title, Url } from './SubscriptionType.style'
 
@@ -20,6 +22,8 @@ interface Props {
 }
 
 const SubscriptionType = ({ item }: Props) => {
+  const [isOpenDeleteChannelModal, setIsOpenDeleteChannelModal] =
+    useState(false)
   const client = useQueryClient()
   const { mutate } = useMutation(
     CACHE_KEYS.subscription(item.id),
@@ -49,6 +53,7 @@ const SubscriptionType = ({ item }: Props) => {
             <Title>{item.title}</Title>
           </Anchor>
         </Flex>
+
         <Popover
           placement="bottom-start"
           render={() => (
@@ -68,7 +73,7 @@ const SubscriptionType = ({ item }: Props) => {
                 링크 복사
               </Popover.Item>
               <Popover.Item
-                onClick={() => mutate()}
+                onClick={() => setIsOpenDeleteChannelModal(true)}
                 color={colors.error}
                 icon={
                   <Image
@@ -96,6 +101,23 @@ const SubscriptionType = ({ item }: Props) => {
             />
           </span>
         </Popover>
+
+        <Dialog isOpen={isOpenDeleteChannelModal}>
+          <Dialog.Title>채널을 삭제하시겠습니까?</Dialog.Title>
+          <Dialog.Content>
+            <p>
+              채널을 삭제하더라도<br></br>저장한 게시물은 남아있게 됩니다.
+            </p>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <button onClick={() => setIsOpenDeleteChannelModal(false)}>
+              취소
+            </button>
+            <button className="confirm" onClick={() => mutate()}>
+              삭제
+            </button>
+          </Dialog.Actions>
+        </Dialog>
       </Flex>
       <Anchor href={item.url} target="_blank">
         <Url>{item.description}</Url>
