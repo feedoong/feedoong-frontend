@@ -17,7 +17,7 @@ const RssInputContainer = () => {
   })
 
   const isSubmitEnabled = !isSubmitting && isRssUrlValid(url)
-
+  
   return (
     <S.Container>
       <S.Form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
@@ -26,7 +26,7 @@ const RssInputContainer = () => {
             ref={inputRef}
             name="url"
             placeholder="URL을 추가해서 피드로 모아보세요!"
-            isValid={isRssUrlValid(url)}
+            isError={!!url && !isRssUrlValid(url)}
             onChange={handleInput}
             value={url}
             onKeyUp={(e) => e.key === 'Enter' && isSubmitEnabled && onSubmit(e)}
@@ -46,7 +46,7 @@ const RssInputContainer = () => {
           </S.AddButton>
         </Flex>
       </S.Form>
-      {isRssUrlValid(url) === false && (
+      {!!url && isRssUrlValid(url) === false && (
         <S.Error>
           RSS 추가를 할 수 없는 형식의 링크입니다.{' '}
           <S.UnderLine>RSS 링크를 찾는 법</S.UnderLine>을 참고해주세요.

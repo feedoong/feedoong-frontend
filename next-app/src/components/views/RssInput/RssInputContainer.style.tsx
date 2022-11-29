@@ -24,20 +24,20 @@ export const Wrapper = styled.div`
   align-items: center;
 `
 
-export const InputWrapper = styled.div<{ isValid?: boolean }>`
+export const InputWrapper = styled.div<{ isError?: boolean }>`
   display: flex;
   justify-content: space-between;
   flex: auto;
   height: 48px;
 
   padding: 13px 20px;
-  border: ${({ isValid = true }) => !isValid && `1px solid ${colors.error}`};
+  border: ${({ isError }) => isError && `1px solid ${colors.error}`};
   border-radius: 100px;
   background-color: ${colors.white};
 
   &:focus-within {
     border: 1px solid
-      ${({ isValid = true }) => (isValid ? colors.black : colors.error)};
+      ${({ isError }) => (isError ? colors.error : colors.black)};
   }
 `
 
