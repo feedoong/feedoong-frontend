@@ -10,12 +10,12 @@ import Icons from 'assets/icons'
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string
   defaultValue?: string
-  isValid?: boolean
+  isError?: boolean
   onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ value, defaultValue, isValid, onChange, ...rest }, forwardedRef) => {
+  ({ value, defaultValue, isError, onChange, ...rest }, forwardedRef) => {
     const [selectedValue, setSelectedValue] = useControlled<string | undefined>(
       {
         controlled: value,
@@ -34,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <S.InputWrapper isValid={isValid}>
+      <S.InputWrapper isError={isError}>
         <S.Input
           {...rest}
           ref={forwardedRef}

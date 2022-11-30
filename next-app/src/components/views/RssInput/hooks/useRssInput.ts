@@ -13,7 +13,7 @@ interface Props {
 const useRssInput = ({ inputRef }: Props) => {
   const client = useQueryClient()
 
-  const [url, setUrl] = useState<string | undefined>()
+  const [url, setUrl] = useState('')
 
   const { mutate, isLoading: isSubmitting } = useMutation(
     ['/channels'],
@@ -25,6 +25,7 @@ const useRssInput = ({ inputRef }: Props) => {
         // if (inputRef.current) {
         //   inputRef.current.removeAttribute('value')
         // }
+        setUrl('')
         client.invalidateQueries(CACHE_KEYS.feeds)
         Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
       },
