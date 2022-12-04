@@ -7,13 +7,11 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-import Cookies from 'js-cookie'
 
 import 'styles/reset.css'
 import 'styles/font.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import type { ErrorResponse } from 'types/common'
 import Layout from 'components/common/Layout'
 import Toast from 'components/common/Toast'
 import Scripts from 'components/common/Scripts'

@@ -7,7 +7,6 @@ import Flex from 'components/common/Flex'
 import * as S from 'components/views/MyChannel/ChannelContainer.style'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
-import Loading from 'components/common/Loading'
 import { SkeletonSubscriptionType } from 'components/common/Skeleton'
 
 function ChannelContainer() {

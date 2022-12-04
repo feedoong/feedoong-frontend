@@ -30,6 +30,15 @@ export const getFeedsServerSide =
     })
   }
 
+export const getChannel = (channelId: string, page = 1, size = 10) => {
+  return api.get<null, Feed>(`/items/channel/${channelId}`, {
+    params: {
+      page,
+      size,
+    },
+  })
+}
+
 export const checkUrlAsRss = (url: string) => {
   return api.get<null, PreviewResponse>(`/channels/preview`, {
     params: { url },
@@ -49,7 +58,6 @@ export const likeItem = (id: string) => {
   return api.post<null, LikeItemResponse>(`/likes/${id}`)
 }
 
-// likeItem 두번 호출하면 그냥 취소 되는 듯
 export const unlikeItem = (id: string) => {
   return api.delete<null, LikeItemResponse>(`/likes/${id}`)
 }
