@@ -12,9 +12,10 @@ export const Container = styled.div`
   border-radius: 20px;
 `
 
-export const Title = styled.h2`
+export const Title = styled.h2<{ isViewed: boolean }>`
   ${getTypographyStyles('Headline3_B')}
   ${ellipsis(1)}
 
   color: ${colors.gray800};
+  opacity: ${({ isViewed }) => (isViewed ? 0.5 : 1)};
 `
