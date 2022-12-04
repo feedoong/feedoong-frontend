@@ -58,6 +58,21 @@ const SubscriptionType = ({ item }: Props) => {
           placement="bottom-start"
           render={() => (
             <Popover.Layout>
+              <Anchor href={'/mypage/channels/' + item.id.toString()}>
+                <Popover.Item
+                  icon={
+                    <Image
+                      src={Icons.Folder}
+                      width={20}
+                      height={20}
+                      alt="채널 상세"
+                      priority
+                    />
+                  }
+                >
+                  채널 상세
+                </Popover.Item>
+              </Anchor>
               <Popover.Item
                 onClick={() => copyToClipboard(item.url)}
                 icon={
