@@ -31,7 +31,8 @@ export const InputWrapper = styled.div<{ isError?: boolean }>`
   height: 48px;
 
   padding: 13px 20px;
-  border: ${({ isError }) => isError && `1px solid ${colors.error}`};
+  border: ${({ isError }) =>
+    isError ? `1px solid ${colors.error}` : `1px solid ${colors.white}`};
   border-radius: 100px;
   background-color: ${colors.white};
 
@@ -67,6 +68,9 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
 export const Error = styled.div`
   ${getTypographyStyles('Body2_M')};
 
+  position: absolute;
+  top: calc(48px + 4px);
+  left: 20px;
   padding-right: 48px;
   color: ${colors.error};
 `

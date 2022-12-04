@@ -17,11 +17,11 @@ const RssInputContainer = () => {
   })
 
   const isSubmitEnabled = !isSubmitting && isRssUrlValid(url)
-  
+
   return (
     <S.Container>
       <S.Form onSubmit={(e) => isSubmitEnabled && onSubmit(e)}>
-        <Flex justify="center" align="center">
+        <Flex justify="center" align="center" style={{ position: 'relative' }}>
           <Input
             ref={inputRef}
             name="url"
@@ -44,14 +44,14 @@ const RssInputContainer = () => {
               priority
             />
           </S.AddButton>
+          {!!url && isRssUrlValid(url) === false && (
+            <S.Error>
+              RSS 추가를 할 수 없는 형식의 링크입니다.{' '}
+              <S.UnderLine>RSS 링크를 찾는 법</S.UnderLine>을 참고해주세요.
+            </S.Error>
+          )}
         </Flex>
       </S.Form>
-      {!!url && isRssUrlValid(url) === false && (
-        <S.Error>
-          RSS 추가를 할 수 없는 형식의 링크입니다.{' '}
-          <S.UnderLine>RSS 링크를 찾는 법</S.UnderLine>을 참고해주세요.
-        </S.Error>
-      )}
     </S.Container>
   )
 }
