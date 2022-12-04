@@ -24,12 +24,13 @@ export const GridTypeWrapper = styled.div<{ imageUrl?: string }>`
   gap: 12px;
 `
 
-export const Title = styled.h2<{ isImageExist: boolean }>`
+export const Title = styled.h2<{ isViewed: boolean; isImageExist: boolean }>`
   ${getTypographyStyles('Headline3_B')}
   ${({ isImageExist }) => ellipsis(isImageExist ? 2 : 3)}
 
   color: ${colors.gray800};
   min-height: ${({ isImageExist }) => isImageExist && '52px'};
+  opacity: ${({ isViewed }) => (isViewed ? 0.5 : 1)};
 `
 
 export const Description = styled.div`

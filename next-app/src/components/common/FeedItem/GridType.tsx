@@ -58,7 +58,9 @@ const GridType = ({ item }: Props) => {
               target="_blank"
               onClick={() => handleRead(item.id)}
             >
-              <Title isImageExist={!!item.imageUrl}>{item.title}</Title>
+              <Title isViewed={item.isViewed} isImageExist={!!item.imageUrl}>
+                {item.title}
+              </Title>
             </Anchor>
           </S.Body>
           {!item.imageUrl && <Description>{item.description}</Description>}
