@@ -1,4 +1,5 @@
-import * as S from 'components/views/Main/Top/Top.style'
+import * as S from 'components/views/Introduce/Top/Top.style'
+
 const Top = () => {
   return (
     <S.Wrapper>

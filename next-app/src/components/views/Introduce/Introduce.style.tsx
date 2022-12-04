@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Wrapper = styled.div`
   margin: 100px 0;
@@ -9,31 +10,44 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 100px;
+
+  ${mediaQuery.tablet`
+    margin: 40px 20px;
+  `}
 `
 export const Container = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
 `
 
 export const Contents = styled.div`
-  width: 100%;
-  height: 400px;
-  margin: 0 180px;
   display: flex;
   justify-content: center;
   gap: 80px;
+  max-width: 786px;
+
+  span {
+    line-break: anywhere;
+  }
+
+  ${mediaQuery.tablet`
+    flex-direction: column;
+    gap: 40px;
+  `}
 `
 
 export const ImageWrapper = styled.div`
-  width: 550px;
-  height: 100%;
-  border-radius: 12px;
-  background-color: ${colors.gray200};
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  flex: 1;
+
+  img {
+    object-fit: cover;
+  }
 `
 export const BoardWrapper = styled.div`
-  width: 550px;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;

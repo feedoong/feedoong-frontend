@@ -3,6 +3,7 @@ import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   display: flex;
@@ -16,6 +17,10 @@ export const FeedWrapper = styled.div`
   max-width: 640px;
   width: 100%;
   border-radius: 4px;
+
+  ${mediaQuery.tablet`
+    padding: 0px 20px;
+  `}
 `
 
 export const Header = styled.div`
