@@ -49,7 +49,6 @@ export const likeItem = (id: string) => {
   return api.post<null, LikeItemResponse>(`/likes/${id}`)
 }
 
-// likeItem 두번 호출하면 그냥 취소 되는 듯
 export const unlikeItem = (id: string) => {
   return api.delete<null, LikeItemResponse>(`/likes/${id}`)
 }
