@@ -49,7 +49,7 @@ const SubscriptionType = ({ item }: Props) => {
             height={20}
             style={{ borderRadius: '50%' }}
           />
-          <Anchor href={item.url} target="_blank">
+          <Anchor href={'/mypage/channels/' + item.id.toString()}>
             <Title>{item.title}</Title>
           </Anchor>
         </Flex>
