@@ -47,7 +47,7 @@ function PostContainer() {
               {isLoading ? (
                 <Skeleton width={100} />
               ) : (
-                data?.items[0].channelTitle
+                data?.items[0]?.channelTitle ?? ''
               )}
             </S.Title>
           </S.TitleWrapper>
