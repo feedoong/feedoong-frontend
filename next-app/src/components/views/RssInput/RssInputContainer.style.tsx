@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   display: flex;
@@ -16,6 +17,10 @@ export const Form = styled.form`
   padding: 0 12px;
   max-width: 548px;
   width: 100%;
+
+  ${mediaQuery.tablet`
+    padding: 0px 20px;
+  `}
 `
 
 export const Wrapper = styled.div`
