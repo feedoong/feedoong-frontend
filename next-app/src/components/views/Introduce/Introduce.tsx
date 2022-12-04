@@ -1,6 +1,6 @@
-import * as S from 'components/views/Main/Main.style'
+import * as S from 'components/views/Introduce/Introduce.style'
 
-const Home = () => {
+const Introduce = () => {
   return (
     <S.Wrapper>
       <S.Container>
@@ -75,4 +75,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Introduce
