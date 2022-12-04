@@ -7,6 +7,7 @@ import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
 import Loading from 'components/common/Loading'
+import EmptyContents from 'components/common/EmptyContents'
 
 import * as S from './FeedsContainer.style'
 
@@ -86,6 +87,9 @@ const FeedsContainer = () => {
             ))
           )}
         </S.CardContainer>
+        {data?.pages[0].items.length === 0 && (
+          <EmptyContents content="구독 중인 채널이 없습니다!" />
+        )}
         {isFetchingNextPage && <Loading />}
         {hasNextPage && <span ref={ref} />}
       </S.FeedWrapper>

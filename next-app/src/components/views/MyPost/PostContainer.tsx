@@ -9,6 +9,7 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { ITEMS_PER_PAGE } from './PostContainer.const'
 import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
+import EmptyContents from 'components/common/EmptyContents'
 
 import Icons from 'assets/icons'
 
@@ -72,6 +73,9 @@ function PostContainer() {
                 <FeedItem key={item.id} type={selectedViewType} item={item} />
               ))}
         </S.CardContainer>
+        {!isLoading && data?.items.length === 0 && (
+          <EmptyContents content="저장된 게시물이 없습니다!" />
+        )}
         <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
           <Paging
             totalPage={totalPage}
