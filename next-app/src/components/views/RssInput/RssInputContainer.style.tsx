@@ -31,7 +31,8 @@ export const InputWrapper = styled.div<{ isError?: boolean }>`
   height: 48px;
 
   padding: 13px 20px;
-  border: ${({ isError }) => isError && `1px solid ${colors.error}`};
+  border: ${({ isError }) =>
+    isError ? `1px solid ${colors.error}` : `1px solid ${colors.white}`};
   border-radius: 100px;
   background-color: ${colors.white};
 
