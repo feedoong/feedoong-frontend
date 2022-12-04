@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   width: 100%;
@@ -10,6 +11,10 @@ export const Container = styled.div`
   border-radius: 4px;
   margin: 0 auto;
   margin-top: 40px;
+
+  ${mediaQuery.tablet`
+    padding: 0px 20px;
+  `}
 `
 
 export const Header = styled.div`
