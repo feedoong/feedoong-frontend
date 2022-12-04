@@ -1,4 +1,9 @@
-import React, { type Dispatch, type SetStateAction, useEffect } from 'react'
+import React, {
+  type Dispatch,
+  type SetStateAction,
+  forwardRef,
+  useEffect,
+} from 'react'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -15,7 +20,10 @@ interface Props {
   isOpen: boolean | null
 }
 
-const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
+const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
+  { setShowSideBar, isOpen }: Props,
+  ref
+) {
   const { pathname } = useRouter()
 
   useEffect(() => {
@@ -28,14 +36,13 @@ const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
   }, [pathname, setShowSideBar])
 
   return (
-    <S.SideMenuBarContainer isOpen={isOpen}>
+    <S.SideMenuBarContainer isOpen={isOpen} ref={ref}>
       <S.CloseSection>
         <S.CloseButton onClick={() => setShowSideBar(false)}>
           닫기
           <Image src={Icons.Close} alt="close-icon" width="12" height="12" />
         </S.CloseButton>
       </S.CloseSection>
-
       <S.MenuSection>
         <div>
           <Link href="/mypage/channels" passHref legacyBehavior>
@@ -66,6 +73,6 @@ const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
       </S.MenuSection>
     </S.SideMenuBarContainer>
   )
-}
+})
 
 export default SideMenuBar

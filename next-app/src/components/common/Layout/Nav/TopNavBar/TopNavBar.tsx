@@ -1,4 +1,4 @@
-import React, { type Dispatch, type SetStateAction } from 'react'
+import React, { forwardRef, type Dispatch, type SetStateAction } from 'react'
 import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
@@ -14,18 +14,19 @@ interface Props {
   setShowSideBar: Dispatch<SetStateAction<boolean | null>>
 }
 
-const TopNavBar = ({ setShowSideBar }: Props) => {
+const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
+  { setShowSideBar }: Props,
+  ref
+) {
   const router = useRouter()
   const { data: userProfile } = useQuery<UserProfile>(
     CACHE_KEYS.me,
     getUserInfo
   )
-
   const name = userProfile?.name
   const profileImageUrl = userProfile?.profileImageUrl
-
   return (
-    <S.TopNavContainer>
+    <S.TopNavContainer ref={ref}>
       <S.MenuButton onClick={() => setShowSideBar(true)}>
         <S.ImageWrapper>
           <Image
@@ -59,6 +60,6 @@ const TopNavBar = ({ setShowSideBar }: Props) => {
       )}
     </S.TopNavContainer>
   )
-}
+})
 
 export default TopNavBar
