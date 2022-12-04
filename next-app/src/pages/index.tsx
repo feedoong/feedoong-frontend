@@ -5,7 +5,7 @@ import { parseCookies } from 'nookies'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import { getUserInfo, UserProfile } from 'services/auth'
+import { getUserInfo, getUserInfoServerSide, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
@@ -37,7 +37,10 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     ] = `Bearer ${cookies[AccessToken]}`
 
     const queryClient = new QueryClient()
-    await queryClient.prefetchQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
+    await queryClient.prefetchQuery<UserProfile>(
+      CACHE_KEYS.me,
+      getUserInfoServerSide(api)
+    )
     await queryClient.prefetchInfiniteQuery(
       CACHE_KEYS.feeds,
       ({ pageParam = 1 }) => getFeedsServerSide(api)(pageParam)

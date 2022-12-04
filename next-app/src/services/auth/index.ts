@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { type AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 
 import { getApiEndpoint } from 'envs'
@@ -24,6 +24,10 @@ export const submitAccessToken = (token: string) => {
 
 export const getUserInfo = () => {
   return api.get<null, UserProfile>(`/users/me`)
+}
+
+export const getUserInfoServerSide = (_api: AxiosInstance) => () => {
+  return _api.get<null, UserProfile>(`/users/me`)
 }
 
 export const refreshAccessToken = async (axiosError: AxiosError) => {
