@@ -4,6 +4,7 @@ import Image from 'next/legacy/image'
 import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const TopNavContainer = styled.div`
   position: fixed;
@@ -15,6 +16,10 @@ export const TopNavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${mediaQuery.tablet`
+    padding: 18px 20px;
+  `}
 `
 
 export const MenuButton = styled.button`

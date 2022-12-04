@@ -8,7 +8,7 @@ const breakpoints: {
   desktop: 1024,
 }
 
-export const DeviceQuery = Object.keys(breakpoints).reduce((acc, label) => {
+export const mediaQuery = Object.keys(breakpoints).reduce((acc, label) => {
   acc[label] = (literals: TemplateStringsArray, ...placeholders: any[]) =>
     css`
       @media only screen and (max-width: ${breakpoints[label]}px) {
