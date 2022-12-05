@@ -14,7 +14,7 @@ const Introduce = () => {
             <Image src={Images.Introduce2} alt="온보딩 1" fill />
           </S.ImageWrapper>
           <S.BoardWrapper>
-            <S.Title>첫 페이지에 글이 배달돼요!</S.Title>
+            <S.Title>첫 페이지로 글이 배달돼요!</S.Title>
             <S.Text>
               <span>
                 RSS로 발행된 컨텐츠라면 어떤 것이든 구독할 수 있습니다.
