@@ -29,7 +29,6 @@ const RssInputContainer = () => {
             isError={!!url && !isRssUrlValid(url)}
             onChange={handleInput}
             value={url}
-            onKeyUp={(e) => e.key === 'Enter' && isSubmitEnabled && onSubmit(e)}
           />
           <S.AddButton
             type="submit"
