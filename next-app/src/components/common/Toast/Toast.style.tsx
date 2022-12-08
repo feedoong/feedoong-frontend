@@ -58,18 +58,18 @@ export const ToastWrapper = styled.div<{
     type === 'basic' ? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};
   animation-fill-mode: forwards;
+  z-index: 20000;
 
   ${({ position }) =>
     position === 'bottom' &&
     css`
       bottom: 50px;
     `}
-
   ${({ position }) =>
     position === 'top' &&
     css`
       top: 150px;
-    `}
+    `};
 `
 
 export const ToastIcon = styled(Image)`

@@ -63,9 +63,7 @@ const Content = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 330px;
   padding: 30px;
   transform: translate(-50%, -50%);
-
   border-radius: 10px; ;
 `
