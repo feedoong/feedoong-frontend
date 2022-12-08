@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import * as gtag from '../utils/gtag'
+import * as gtag from '../gtag'
 
-const useGoogleAnalytics = () => {
+export const useGoogleAnalytics = () => {
   const router = useRouter()
 
   useEffect(() => {
@@ -18,5 +18,3 @@ const useGoogleAnalytics = () => {
     }
   }, [router.events])
 }
-
-export default useGoogleAnalytics
