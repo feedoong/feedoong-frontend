@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { ellipsis, getTypographyStyles } from 'styles/fonts'
+import Anchor from '../Anchor'
 
 export const Footer = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ export const PostMeta = styled.div`
   }
 `
 
-export const Author = styled.span<{ isGridType?: boolean }>`
+export const Author = styled(Anchor)<{ isGridType?: boolean }>`
   ${getTypographyStyles('Body2_B')}
   ${(props) =>
     // TODO: ellipsis 유틸 함수로 대체 가능한지 체크
