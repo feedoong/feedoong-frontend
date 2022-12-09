@@ -60,7 +60,9 @@ const CardType = ({ item }: Props) => {
             width={20}
             height={20}
           />
-          <S.Author>{item.channelTitle}</S.Author>
+          <S.Author href={'/mypage/channels/' + item.channelId.toString()}>
+            {item.channelTitle}
+          </S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
         <Flex gap={12} align="center">

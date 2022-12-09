@@ -17,6 +17,7 @@ export interface Item {
   title: string
   channelImageUrl: string
   channelTitle: string
+  channelId: string
 }
 
 export interface PreviewResponse {
