@@ -1,21 +1,28 @@
 import { forwardRef, type ChangeEvent } from 'react'
-import Image from 'next/legacy/image'
 
 import { useControlled } from './hooks'
 
 import * as S from './RssInputContainer.style'
-
-import Icons from 'assets/icons'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string
   defaultValue?: string
   isError?: boolean
   onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void
+  renderInputIcon?: ({
+    selectedValue,
+    clearValue,
+  }: {
+    selectedValue: string | undefined
+    clearValue: VoidFunction
+  }) => React.ReactNode
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ value, defaultValue, isError, onChange, ...rest }, forwardedRef) => {
+  (
+    { value, defaultValue, isError, onChange, renderInputIcon, ...rest },
+    forwardedRef
+  ) => {
     const [selectedValue, setSelectedValue] = useControlled<string | undefined>(
       {
         controlled: value,
@@ -41,15 +48,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
           onChange={_onChange}
           value={selectedValue}
         />
-        {selectedValue && (
-          <Image
-            alt="삭제 버튼"
-            src={Icons.CancelCircle}
-            width={24}
-            height={24}
-            onClick={clearValue}
-          />
-        )}
+        {renderInputIcon?.({ selectedValue, clearValue })}
       </S.InputWrapper>
     )
   }

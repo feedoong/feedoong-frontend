@@ -81,5 +81,6 @@ export const Error = styled.div`
 `
 
 export const UnderLine = styled.span`
+  cursor: pointer;
   text-decoration: underline;
 `

@@ -7,7 +7,6 @@ import { getTypographyStyles } from 'styles/fonts'
 export const Container = styled.div`
   // TODO: 반응형
   width: 600px;
-  /* height: 600px; */
   background-color: ${colors.white};
   border-radius: 12px;
 `

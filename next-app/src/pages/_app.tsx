@@ -19,8 +19,6 @@ import Scripts from 'components/common/Scripts'
 import { useGoogleAnalytics } from 'utils/hooks'
 import { destroyTokensClientSide } from 'utils/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { useModal } from 'components/common/Modal'
-import RssInputModal from 'components/views/RssInput/modal'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,24 +50,6 @@ const queryClient = new QueryClient({
 function MyApp({ Component, pageProps }: AppProps) {
   useGoogleAnalytics()
 
-  const { handleOpen, renderModal } = useModal({
-    content: (
-      <RssInputModal
-        title="RSS 수동으로 추가하기"
-        submitButtonText="RSS 추가하기"
-        onSubmit={() => {
-          Toast.show({
-            content: 'RSS 주소가 성공적으로 추가되었습니다.',
-          })
-        }}
-      />
-    ),
-  })
-
-  useEffect(() => {
-    handleOpen()
-  }, [])
-
   return (
     <>
       <Scripts />
@@ -78,7 +58,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           <RecoilRoot>
             <Layout>
               <Component {...pageProps} />
-              {renderModal()}
             </Layout>
           </RecoilRoot>
         </Hydrate>

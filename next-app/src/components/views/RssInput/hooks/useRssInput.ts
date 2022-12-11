@@ -8,7 +8,8 @@ import { getAxiosError, isAxiosError } from 'utils/errors'
 
 const useRssInput = () => {
   const client = useQueryClient()
-
+  // state 하나에만 전체 로직이 의존하므로 좋지 않은 구조인듯함
+  // 상태 관리 하는 부분과 data fetch 하는 부분을 분리해야할듯
   const [url, setUrl] = useState('')
   const [isPreviewLoading, setIsPreviewLoading] = useState(false)
 

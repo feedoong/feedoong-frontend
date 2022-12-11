@@ -1,69 +1,38 @@
-import { useEffect } from 'react'
-import styled from 'styled-components'
+import Image from 'next/image'
 
-import { colors } from 'styles/colors'
-import { Z_INDEX } from 'styles/constants'
-import { useLockBodyScroll } from 'utils/hooks'
+import Divider from 'components/common/Divider'
+import * as S from './ModalLayout.styles'
+
+import Icons from 'assets/icons'
 
 interface Props {
-  isOpen: boolean
-  handleClose: VoidFunction
-  handleOpenedCallback?: VoidFunction
-  handleClosedCallback?: VoidFunction
-  children: React.ReactNode
+  title: string
+  onClose?: VoidFunction
+  children?: React.ReactNode
+  style?: React.CSSProperties
 }
 
 export const ModalLayout: React.FC<Props> = ({
-  isOpen,
-  handleClose,
-  handleOpenedCallback,
-  handleClosedCallback,
+  title,
+  onClose,
+  style,
   children,
 }) => {
-  useLockBodyScroll()
-
-  useEffect(() => {
-    if (isOpen) {
-      handleOpenedCallback?.()
-    }
-
-    return () => {
-      handleClosedCallback?.()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen])
-
   return (
-    <Container>
-      <Dimmer onClick={handleClose} />
-      <Content>{children}</Content>
-    </Container>
+    <S.Container>
+      <S.Header align="center" justify="between">
+        <S.Title>{title}</S.Title>
+        <Image
+          style={{ cursor: 'pointer' }}
+          onClick={onClose}
+          src={Icons.Close}
+          alt="close-icon"
+          width="12"
+          height="12"
+        />
+      </S.Header>
+      <Divider />
+      <S.Body style={style}>{children}</S.Body>
+    </S.Container>
   )
 }
-
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: ${Z_INDEX.modal};
-`
-
-const Dimmer = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: ${colors.black};
-  opacity: 0.25;
-`
-
-const Content = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  padding: 30px;
-  transform: translate(-50%, -50%);
-  border-radius: 10px; ;
-`

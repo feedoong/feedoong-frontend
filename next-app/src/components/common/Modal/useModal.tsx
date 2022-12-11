@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 
-import { ModalLayout } from './ModalLayout'
+import { DimmerLayout } from './DimmerLayout'
 
 interface Props {
   content: React.ReactNode
@@ -42,7 +42,7 @@ export const useModal = ({
     isMounted &&
     isOpen &&
     createPortal(
-      <ModalLayout
+      <DimmerLayout
         isOpen={isOpen}
         handleOpenedCallback={handleOpenedCallback}
         handleClosedCallback={handleClosedCallback}
@@ -51,7 +51,7 @@ export const useModal = ({
         {isValidElement(content)
           ? cloneElement(content, { onClose: handleClose })
           : content}
-      </ModalLayout>,
+      </DimmerLayout>,
       portalRef.current!
     )
 
