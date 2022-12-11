@@ -3,39 +3,14 @@ import Image from 'next/legacy/image'
 import Flex from 'components/common/Flex'
 import Input from './Input'
 import { isRssUrlValid } from './RssInputContainer.utils'
-import { useRssInput } from './hooks'
-import { ModalLayout, useModal } from 'components/common/Modal'
-import Toast from 'components/common/Toast'
-import Button from 'components/common/Button'
+import { useRssDirectInputModal, useRssInput } from './hooks'
 
 import * as S from './RssInputContainer.style'
 
 import Icons from 'assets/icons'
 
 const RssInputContainer = () => {
-  const { handleOpen, renderModal } = useModal({
-    content: (
-      <ModalLayout title="RSS 수동으로 추가하기">
-        <Flex direction="column" gap={12}>
-          <input placeholder="블로그 URL을 입력해주세요" />
-          <input placeholder="RSS URL을 입력해주세요" />
-        </Flex>
-        <Flex justify="end">
-          <Button
-            buttonStyle="secondary"
-            onClick={() => {
-              Toast.show({
-                content: 'RSS 주소가 성공적으로 추가되었습니다.',
-              })
-            }}
-          >
-            RSS 추가하기
-          </Button>
-        </Flex>
-      </ModalLayout>
-    ),
-  })
-
+  const { handleOpen, renderModal } = useRssDirectInputModal()
   const { url, onSubmit, handleInput, isSubmitting } = useRssInput()
 
   const isSubmitEnabled = !isSubmitting && isRssUrlValid(url)
@@ -50,9 +25,10 @@ const RssInputContainer = () => {
             isError={!!url && !isRssUrlValid(url)}
             onChange={handleInput}
             value={url}
-            renderInputIcon={({ selectedValue, clearValue }) => {
-              return selectedValue ? (
+            renderInputIcon={({ selectedValue, clearValue }) =>
+              selectedValue ? (
                 <Image
+                  style={{ cursor: 'pointer' }}
                   alt="삭제 버튼"
                   src={Icons.CancelCircle}
                   width={24}
@@ -61,6 +37,7 @@ const RssInputContainer = () => {
                 />
               ) : (
                 <Image
+                  style={{ cursor: 'pointer' }}
                   alt="RSS 직접 추가"
                   src={Icons.RssCircle}
                   width={24}
@@ -68,7 +45,7 @@ const RssInputContainer = () => {
                   onClick={handleOpen}
                 />
               )
-            }}
+            }
           />
           <S.AddButton
             type="submit"

@@ -26,17 +26,6 @@ export const Body = styled.div`
   flex-direction: column;
   gap: 12px;
   padding: 16px 20px;
-
-  input {
-    all: unset;
-    box-sizing: border-box;
-    padding: 11px 20px;
-    width: 100%;
-    height: 48px;
-
-    background: ${colors.gray100};
-    border-radius: 100px;
-  }
 `
 
 export const Description = styled.div`

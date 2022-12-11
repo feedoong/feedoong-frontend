@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
@@ -29,7 +29,10 @@ export const Wrapper = styled.div`
   align-items: center;
 `
 
-export const InputWrapper = styled.div<{ isError?: boolean }>`
+export const InputWrapper = styled.div<{
+  isError?: boolean
+  inputStyle?: React.CSSProperties
+}>`
   display: flex;
   justify-content: space-between;
   flex: auto;
@@ -45,6 +48,13 @@ export const InputWrapper = styled.div<{ isError?: boolean }>`
     border: 1px solid
       ${({ isError }) => (isError ? colors.error : colors.black)};
   }
+
+  ${({ inputStyle }) => {
+    return css`
+      background-color: ${inputStyle?.backgroundColor};
+      width: ${inputStyle?.width};
+    `
+  }}
 `
 
 export const Input = styled.input`

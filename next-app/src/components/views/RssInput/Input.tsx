@@ -9,6 +9,10 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   defaultValue?: string
   isError?: boolean
   onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void
+  /**
+   * @description 현재 background-color, color만 지원합니다.
+   */
+  inputStyle?: React.CSSProperties
   renderInputIcon?: ({
     selectedValue,
     clearValue,
@@ -20,7 +24,15 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input = forwardRef<HTMLInputElement, Props>(
   (
-    { value, defaultValue, isError, onChange, renderInputIcon, ...rest },
+    {
+      value,
+      defaultValue,
+      isError,
+      onChange,
+      inputStyle,
+      renderInputIcon,
+      ...rest
+    },
     forwardedRef
   ) => {
     const [selectedValue, setSelectedValue] = useControlled<string | undefined>(
@@ -41,7 +53,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <S.InputWrapper isError={isError}>
+      <S.InputWrapper isError={isError} inputStyle={inputStyle}>
         <S.Input
           {...rest}
           ref={forwardedRef}
