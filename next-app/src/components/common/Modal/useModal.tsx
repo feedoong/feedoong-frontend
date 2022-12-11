@@ -8,6 +8,7 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 
+import Portal from '../Portal'
 import { DimmerLayout } from './DimmerLayout'
 
 interface Props {
@@ -40,19 +41,19 @@ export const useModal = ({
 
   const renderModal = () =>
     isMounted &&
-    isOpen &&
-    createPortal(
-      <DimmerLayout
-        isOpen={isOpen}
-        handleOpenedCallback={handleOpenedCallback}
-        handleClosedCallback={handleClosedCallback}
-        handleClose={handleClose}
-      >
-        {isValidElement(content)
-          ? cloneElement(content, { onClose: handleClose })
-          : content}
-      </DimmerLayout>,
-      portalRef.current!
+    isOpen && (
+      <Portal selector="#modal">
+        <DimmerLayout
+          isOpen={isOpen}
+          handleOpenedCallback={handleOpenedCallback}
+          handleClosedCallback={handleClosedCallback}
+          handleClose={handleClose}
+        >
+          {isValidElement(content)
+            ? cloneElement(content, { onClose: handleClose })
+            : content}
+        </DimmerLayout>
+      </Portal>
     )
 
   return {
