@@ -12,8 +12,6 @@ import * as S from './TopNavBar.style'
 
 import Icons from 'assets/icons'
 
-const accessToken = Cookies.get(AccessToken)
-
 interface Props {
   setShowSideBar: Dispatch<SetStateAction<boolean | null>>
 }
@@ -23,6 +21,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
   ref
 ) {
   const router = useRouter()
+  const accessToken = Cookies.get(AccessToken)
 
   const { data: userProfile } = useQuery<UserProfile>(
     CACHE_KEYS.me,
