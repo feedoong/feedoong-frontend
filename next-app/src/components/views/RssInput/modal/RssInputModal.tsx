@@ -4,6 +4,7 @@ import Button from 'components/common/Button'
 import Divider from 'components/common/Divider'
 import Flex from 'components/common/Flex'
 import * as S from './RssInputModal.styles'
+import { useRssInput } from '../hooks'
 
 import Icons from 'assets/icons'
 
@@ -17,14 +18,13 @@ interface Props {
 
 const RssInputModal: React.FC<Props> = ({
   title,
-  description,
   submitButtonText,
-  onSubmit,
   onClose,
 }) => {
+  const { url, onSubmit, handleInput, isSubmitting } = useRssInput()
+
   const handleSubmit = () => {
     onSubmit()
-    // onClose?.()
   }
 
   return (

@@ -12,9 +12,7 @@ import Icons from 'assets/icons'
 
 const RssInputContainer = () => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const { url, onSubmit, handleInput, isSubmitting } = useRssInput({
-    inputRef,
-  })
+  const { url, onSubmit, handleInput, isSubmitting } = useRssInput()
 
   const isSubmitEnabled = !isSubmitting && isRssUrlValid(url)
 
