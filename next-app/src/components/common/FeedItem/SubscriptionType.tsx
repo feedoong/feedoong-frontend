@@ -16,6 +16,7 @@ import Dialog from '../Dialog'
 import { Container, Title, Url } from './SubscriptionType.style'
 
 import Icons from 'assets/icons'
+import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Subscription
@@ -38,13 +39,23 @@ const SubscriptionType = ({ item }: Props) => {
     }
   )
 
+  const getWellKnownChannelImg = (url: string) => {
+    try {
+      return getIconByHostname(new URL(url).hostname)
+    } catch (error) {
+      return
+    }
+  }
+
   return (
     <Container>
       <Flex justify="between">
         <Flex align="center" gap={8}>
           <img
             alt="채널 로고"
-            src={item.imageUrl ?? Icons.Account}
+            src={
+              item.imageUrl ?? getWellKnownChannelImg(item.url) ?? Icons.Account
+            }
             width={20}
             height={20}
             style={{ borderRadius: '50%' }}

@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import type { Item } from 'types/feeds'
 import { getFormatDate } from 'utils'
 import { copyToClipboard } from './FeedItem.utils'
@@ -11,6 +13,7 @@ import * as S from './FeedItem.style'
 import { Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
+import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Item
@@ -25,6 +28,18 @@ interface Props {
 const CardType = ({ item }: Props) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
+
+  const { pathname } = useRouter()
+  const isDetailPage =
+    pathname === '/mypage/posts' || pathname === '/mypage/channels/[id]'
+
+  const getWellKnownChannelImg = (url: string) => {
+    try {
+      return getIconByHostname(new URL(url).hostname)
+    } catch (error) {
+      return
+    }
+  }
 
   return (
     <Container>
@@ -56,13 +71,23 @@ const CardType = ({ item }: Props) => {
         <S.PostMeta>
           <img
             alt="채널 로고"
-            src={item.channelImageUrl ?? Icons.Account}
+            src={
+              item.channelImageUrl ??
+              getWellKnownChannelImg(item.link) ??
+              Icons.Account
+            }
             width={20}
             height={20}
           />
-          <S.Author href={'/mypage/channels/' + item.channelId.toString()}>
-            {item.channelTitle}
-          </S.Author>
+          {isDetailPage ? (
+            <S.Author href={item.link} target="_blank">
+              {item.channelTitle}
+            </S.Author>
+          ) : (
+            <S.Author href={'/mypage/channels/' + item.channelId.toString()}>
+              {item.channelTitle}
+            </S.Author>
+          )}
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
         <Flex gap={12} align="center">
