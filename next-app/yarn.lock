@@ -760,6 +760,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-virtual@npm:beta":
+  version: 3.0.0-beta.30
+  resolution: "@tanstack/react-virtual@npm:3.0.0-beta.30"
+  dependencies:
+    "@tanstack/virtual-core": 3.0.0-beta.30
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: f5e558acee618be35790cd217786960d91a465922161fe39b4e994f841b6330910763d2586ebc8ffbdfe38a3833dfc4b5aece446c2d713c3e3c4f51b9b893cab
+  languageName: node
+  linkType: hard
+
+"@tanstack/virtual-core@npm:3.0.0-beta.30":
+  version: 3.0.0-beta.30
+  resolution: "@tanstack/virtual-core@npm:3.0.0-beta.30"
+  checksum: 5d43b2ed529b6f422473905d214680c3fd4c2b19a4f9d22a6fc575f3eadf37d553a307e818e831737846875b6a1f486b3a991e0a127f3ffff2aff040c8a33d11
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -2340,6 +2358,7 @@ __metadata:
     "@sentry/nextjs": ^7.17.4
     "@tanstack/react-query": ^4.6.0
     "@tanstack/react-query-devtools": ^4.6.0
+    "@tanstack/react-virtual": beta
     "@types/gtag.js": ^0.0.12
     "@types/humps": ^2.0.2
     "@types/js-cookie": ^3

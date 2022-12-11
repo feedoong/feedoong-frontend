@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sentry/nextjs", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:7.17.4"],\
             ["@tanstack/react-query", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
             ["@tanstack/react-query-devtools", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
+            ["@tanstack/react-virtual", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:3.0.0-beta.30"],\
             ["@types/gtag.js", "npm:0.0.12"],\
             ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
@@ -1027,6 +1028,38 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/tanstack__react-query",\
             "react-dom",\
             "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/react-virtual", [\
+        ["npm:3.0.0-beta.30", {\
+          "packageLocation": "./.yarn/cache/@tanstack-react-virtual-npm-3.0.0-beta.30-df1b2fc0fb-f5e558acee.zip/node_modules/@tanstack/react-virtual/",\
+          "packageDependencies": [\
+            ["@tanstack/react-virtual", "npm:3.0.0-beta.30"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:3.0.0-beta.30", {\
+          "packageLocation": "./.yarn/__virtual__/@tanstack-react-virtual-virtual-8103784522/0/cache/@tanstack-react-virtual-npm-3.0.0-beta.30-df1b2fc0fb-f5e558acee.zip/node_modules/@tanstack/react-virtual/",\
+          "packageDependencies": [\
+            ["@tanstack/react-virtual", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:3.0.0-beta.30"],\
+            ["@tanstack/virtual-core", "npm:3.0.0-beta.30"],\
+            ["@types/react", "npm:18.0.17"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@tanstack/virtual-core", [\
+        ["npm:3.0.0-beta.30", {\
+          "packageLocation": "./.yarn/cache/@tanstack-virtual-core-npm-3.0.0-beta.30-052f9d8b53-5d43b2ed52.zip/node_modules/@tanstack/virtual-core/",\
+          "packageDependencies": [\
+            ["@tanstack/virtual-core", "npm:3.0.0-beta.30"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3010,6 +3043,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@sentry/nextjs", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:7.17.4"],\
             ["@tanstack/react-query", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
             ["@tanstack/react-query-devtools", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:4.6.0"],\
+            ["@tanstack/react-virtual", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:3.0.0-beta.30"],\
             ["@types/gtag.js", "npm:0.0.12"],\
             ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\

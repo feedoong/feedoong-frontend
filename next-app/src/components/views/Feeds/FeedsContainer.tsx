@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 
+import { useVirtualizer } from '@tanstack/react-virtual'
+import Loading from 'components/common/Loading'
 import FeedItem from 'components/common/FeedItem'
+import EmptyContents from 'components/common/EmptyContents'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
-import Loading from 'components/common/Loading'
-import EmptyContents from 'components/common/EmptyContents'
 
 import * as S from './FeedsContainer.style'
 
@@ -24,9 +25,8 @@ const FeedsContainer = () => {
           lastPage.items.length === 10 ? lastPage.next : undefined,
       }
     )
-  const { ref, inView } = useInView({
-    rootMargin: '25px',
-  })
+  const { ref, inView } = useInView({ rootMargin: '25px' })
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const [selectedCategory, setSelectedCategory] = useState<
     'home' | 'recommended'
@@ -35,17 +35,41 @@ const FeedsContainer = () => {
     'card'
   )
 
+  const itemVirtualizer = useVirtualizer({
+    count: data?.pages[0].totalCount || 0,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => 100,
+    overscan: 5,
+  })
+  const allItems = data?.pages.flatMap((d) => d.items) || []
+  // useEffect(() => {
+  //   if (inView) {
+  //     fetchNextPage()
+  //   }
+  // }, [inView, fetchNextPage])
+
   useEffect(() => {
-    if (inView) {
+    const [lastItem] = [...itemVirtualizer.getVirtualItems()].reverse()
+
+    if (!lastItem) {
+      return
+    }
+
+    if (
+      inView
+      // &&
+      // data?.pages[0].totalCount &&
+      // lastItem.index >= data?.pages[0].totalCount - 1
+    ) {
       fetchNextPage()
     }
   }, [inView, fetchNextPage])
 
   const isGridView = selectedViewType === 'grid'
   const showSkeleton = isFetching && !data
-
+  // console.log(allItems)
   return (
-    <S.Container>
+    <S.Container ref={scrollRef}>
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
@@ -81,11 +105,20 @@ const FeedsContainer = () => {
               const Card = isGridView ? SkeletonGridType : SkeletonCardType
               return <Card key={idx} />
             })}
-          {data?.pages.map((page) =>
+          {/* {data?.pages.map((page) =>
             page.items.map((item) => (
               <FeedItem key={item.id} type={selectedViewType} item={item} />
             ))
-          )}
+          )} */}
+          {itemVirtualizer.getVirtualItems().map((virtualRow) => {
+            console.log(virtualRow)
+            const item = allItems[virtualRow.index]
+            if (item) {
+              return (
+                <FeedItem key={item.id} type={selectedViewType} item={item} />
+              )
+            }
+          })}
         </S.CardContainer>
         {data?.pages[0].items.length === 0 && (
           <EmptyContents content="구독 중인 채널이 없습니다!" />
