@@ -40,6 +40,10 @@ export const ImageWrapper = styled.div`
 `
 
 export const Feedoong = styled.span`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
   font-size: 20px;
   font-weight: 700;
   font-family: 'CWDangamAsac-Bold';
