@@ -29,6 +29,7 @@ const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
   ref
 ) {
   const router = useRouter()
+  const accessToken = Cookies.get(AccessToken)
 
   const movePage = (href: string) => {
     router.push(accessToken ? href : '/signup')
