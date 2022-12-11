@@ -12,11 +12,11 @@ import Anchor from '../Anchor'
 import Popover from '../Popover'
 import Toast from '../Toast'
 import Dialog from '../Dialog'
+import { getWellKnownChannelImg } from 'utils'
 
 import { Container, Title, Url } from './SubscriptionType.style'
 
 import Icons from 'assets/icons'
-import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Subscription
@@ -38,14 +38,6 @@ const SubscriptionType = ({ item }: Props) => {
       },
     }
   )
-
-  const getWellKnownChannelImg = (url: string) => {
-    try {
-      return getIconByHostname(new URL(url).hostname)
-    } catch (error) {
-      return
-    }
-  }
 
   return (
     <Container>

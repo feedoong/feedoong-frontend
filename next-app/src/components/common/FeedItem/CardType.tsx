@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import type { Item } from 'types/feeds'
-import { getFormatDate } from 'utils'
+import { getFormatDate, getWellKnownChannelImg } from 'utils'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
@@ -13,7 +13,6 @@ import * as S from './FeedItem.style'
 import { Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
-import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Item
@@ -30,16 +29,7 @@ const CardType = ({ item }: Props) => {
   const { handleRead } = useReadPost(item)
 
   const { pathname } = useRouter()
-  const isDetailPage =
-    pathname === '/mypage/posts' || pathname === '/mypage/channels/[id]'
-
-  const getWellKnownChannelImg = (url: string) => {
-    try {
-      return getIconByHostname(new URL(url).hostname)
-    } catch (error) {
-      return
-    }
-  }
+  const isDetailPage = pathname === '/mypage/channels/[id]'
 
   return (
     <Container>
