@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { submitViewedItem } from 'services/feeds'
-import type { Feed, Item } from 'types/feeds'
+import type { Item } from 'types/feeds'
 
 const useReadPost = (item: Item) => {
   const client = useQueryClient()
