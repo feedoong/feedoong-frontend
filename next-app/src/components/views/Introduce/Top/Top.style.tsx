@@ -4,8 +4,7 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Wrapper = styled.div`
-  width: 100vw;
-  height: 300px;
+  padding: 60px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +29,7 @@ export const Subtitle = styled.h2`
 export const GoogleLoginButton = styled.button`
   all: unset;
 
-  margin: 40px 0;
+  margin-top: 20px;
   padding: 14px 50px;
   border-radius: 30px;
   border: 0;
