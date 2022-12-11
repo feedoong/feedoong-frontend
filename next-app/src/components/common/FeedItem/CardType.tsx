@@ -13,6 +13,7 @@ import * as S from './FeedItem.style'
 import { Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
+import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Item
@@ -29,7 +30,16 @@ const CardType = ({ item }: Props) => {
   const { handleRead } = useReadPost(item)
 
   const { pathname } = useRouter()
-  const isDetailPage = pathname === '/mypage/posts'
+  const isDetailPage =
+    pathname === '/mypage/posts' || pathname === '/mypage/channels/[id]'
+
+  const getWellKnownChannelImg = (url: string) => {
+    try {
+      return getIconByHostname(new URL(url).hostname)
+    } catch (error) {
+      return
+    }
+  }
 
   return (
     <Container>
@@ -61,7 +71,11 @@ const CardType = ({ item }: Props) => {
         <S.PostMeta>
           <img
             alt="채널 로고"
-            src={item.channelImageUrl ?? Icons.Account}
+            src={
+              item.channelImageUrl ??
+              getWellKnownChannelImg(item.link) ??
+              Icons.Account
+            }
             width={20}
             height={20}
           />

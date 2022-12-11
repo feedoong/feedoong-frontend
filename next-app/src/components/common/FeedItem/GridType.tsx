@@ -19,6 +19,7 @@ import {
 } from './GridType.style'
 
 import Icons from 'assets/icons'
+import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Item
@@ -30,6 +31,14 @@ const GridType = ({ item }: Props) => {
 
   const { pathname } = useRouter()
   const isDetailPage = pathname === '/mypage/posts'
+
+  const getWellKnownChannelImg = (url: string) => {
+    try {
+      return getIconByHostname(new URL(url).hostname)
+    } catch (error) {
+      return
+    }
+  }
 
   return (
     <Container>
@@ -76,7 +85,11 @@ const GridType = ({ item }: Props) => {
             <S.PostMeta>
               <img
                 alt="채널 로고"
-                src={item.channelImageUrl ?? Icons.Account}
+                src={
+                  item.channelImageUrl ??
+                  getWellKnownChannelImg(item.link) ??
+                  Icons.Account
+                }
                 width={20}
                 height={20}
               />
