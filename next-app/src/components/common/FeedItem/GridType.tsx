@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
 import { getFormatDate } from 'utils'
@@ -25,6 +27,9 @@ interface Props {
 const GridType = ({ item }: Props) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
+
+  const { pathname } = useRouter()
+  const isDetailPage = pathname === '/mypage/posts'
 
   return (
     <Container>
@@ -75,12 +80,18 @@ const GridType = ({ item }: Props) => {
                 width={20}
                 height={20}
               />
-              <S.Author
-                isGridType
-                href={'/mypage/channels/' + item.channelId.toString()}
-              >
-                {item.channelTitle}
-              </S.Author>
+              {isDetailPage ? (
+                <S.Author href={item.link} target="_blank">
+                  {item.channelTitle}
+                </S.Author>
+              ) : (
+                <S.Author
+                  isGridType
+                  href={'/mypage/channels/' + item.channelId.toString()}
+                >
+                  {item.channelTitle}
+                </S.Author>
+              )}
               <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
             </S.PostMeta>
             <Flex gap={12} align="center">

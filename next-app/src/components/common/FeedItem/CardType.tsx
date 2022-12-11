@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router'
+
 import type { Item } from 'types/feeds'
 import { getFormatDate } from 'utils'
 import { copyToClipboard } from './FeedItem.utils'
@@ -25,6 +27,9 @@ interface Props {
 const CardType = ({ item }: Props) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
+
+  const { pathname } = useRouter()
+  const isDetailPage = pathname === '/mypage/posts'
 
   return (
     <Container>
@@ -60,9 +65,15 @@ const CardType = ({ item }: Props) => {
             width={20}
             height={20}
           />
-          <S.Author href={'/mypage/channels/' + item.channelId.toString()}>
-            {item.channelTitle}
-          </S.Author>
+          {isDetailPage ? (
+            <S.Author href={item.link} target="_blank">
+              {item.channelTitle}
+            </S.Author>
+          ) : (
+            <S.Author href={'/mypage/channels/' + item.channelId.toString()}>
+              {item.channelTitle}
+            </S.Author>
+          )}
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
         <Flex gap={12} align="center">
