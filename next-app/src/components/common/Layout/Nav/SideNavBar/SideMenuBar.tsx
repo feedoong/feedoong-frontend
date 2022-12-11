@@ -58,6 +58,13 @@ const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
         </div>
         <div>
           <Anchor
+            href="https://www.notion.so/oj8mm/FAQ-081c373d745f411e91d47689c2bb53e3"
+            target="_blank"
+            onClick={() => setShowSideBar(false)}
+          >
+            <MenuItem title="사용 팁 & FAQ" iconUrl={Icons.SpeechBubble} />
+          </Anchor>
+          <Anchor
             href="https://forms.gle/h4QnoEvdLQPRpt7Q6"
             target="_blank"
             onClick={() => setShowSideBar(false)}
