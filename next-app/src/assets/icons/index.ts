@@ -23,6 +23,7 @@ import RightArrow from './right_arrow.svg'
 import LeftArrow from './left_arrow.svg'
 import Account from './account.png'
 import TrashCan from './trashcan.svg'
+import RssCircle from './rss-circle.svg'
 
 export const Icons = {
   NaverIcon,
@@ -50,6 +51,7 @@ export const Icons = {
   LeftArrow,
   Account: Account.src,
   TrashCan,
+  RssCircle,
 }
 
 export default Icons

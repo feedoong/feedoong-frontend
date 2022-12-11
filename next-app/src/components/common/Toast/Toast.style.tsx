@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { Z_INDEX } from 'styles/constants'
 
 const basicFadeOut = keyframes`
   0% {
@@ -58,18 +59,18 @@ export const ToastWrapper = styled.div<{
     type === 'basic' ? basicFadeOut : errorFadeOut};
   animation-duration: ${({ duration }) => `${duration}ms`};
   animation-fill-mode: forwards;
+  z-index: ${Z_INDEX.toast};
 
   ${({ position }) =>
     position === 'bottom' &&
     css`
       bottom: 50px;
     `}
-
   ${({ position }) =>
     position === 'top' &&
     css`
       top: 150px;
-    `}
+    `};
 `
 
 export const ToastIcon = styled(Image)`

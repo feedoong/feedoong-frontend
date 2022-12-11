@@ -6,25 +6,18 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from 'components/common/Toast'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 
-interface Props {
-  inputRef: RefObject<HTMLInputElement>
-}
-
-const useRssInput = ({ inputRef }: Props) => {
+const useRssInput = () => {
   const client = useQueryClient()
-
+  // state 하나에만 전체 로직이 의존하므로 좋지 않은 구조인듯함
+  // 상태 관리 하는 부분과 data fetch 하는 부분을 분리해야할듯
   const [url, setUrl] = useState('')
+  const [isPreviewLoading, setIsPreviewLoading] = useState(false)
 
   const { mutate, isLoading: isSubmitting } = useMutation(
     ['/channels'],
     submitRssUrl,
     {
       onSuccess: () => {
-        // TODO: null과 undefined와 ""를 구분해야 한다.
-        // setUrl(undefined)
-        // if (inputRef.current) {
-        //   inputRef.current.removeAttribute('value')
-        // }
         setUrl('')
         client.invalidateQueries(CACHE_KEYS.feeds)
         Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
@@ -49,9 +42,12 @@ const useRssInput = ({ inputRef }: Props) => {
     setUrl(e.target.value)
   }
 
-  const onSubmit = async <T = HTMLFormElement>(e: React.FormEvent<T>) => {
+  /**
+   * @description preventDefault를 사용할 필요가 있을 때는 이벤트 객체를 넣어줄 것
+   */
+  const onSubmit = async <T = HTMLFormElement>(e?: React.FormEvent<T>) => {
     try {
-      e.preventDefault()
+      e?.preventDefault()
       if (!url) {
         Toast.show({
           type: 'error',
@@ -59,6 +55,7 @@ const useRssInput = ({ inputRef }: Props) => {
         })
         return
       }
+      setIsPreviewLoading(true)
       const { url: siteUrl, feedUrl } = await checkUrlAsRss(url)
       mutate({
         url: siteUrl,
@@ -72,6 +69,8 @@ const useRssInput = ({ inputRef }: Props) => {
           content: `채널 추가에 실패했습니다. ${errorMessage}`,
         })
       }
+    } finally {
+      setIsPreviewLoading(false)
     }
   }
 
@@ -79,7 +78,7 @@ const useRssInput = ({ inputRef }: Props) => {
     url,
     onSubmit,
     handleInput,
-    isSubmitting,
+    isSubmitting: isSubmitting || isPreviewLoading,
   }
 }
 

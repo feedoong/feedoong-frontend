@@ -45,6 +45,18 @@ export const checkUrlAsRss = (url: string) => {
   })
 }
 
+export const checkUrlAsDirectRss = ({
+  homeUrl,
+  rssFeedUrl,
+}: {
+  homeUrl: string
+  rssFeedUrl: string
+}) => {
+  return api.get<null, PreviewResponse>(`/channels/preview/rss`, {
+    params: { homeUrl, rssFeedUrl },
+  })
+}
+
 export const submitRssUrl = (params: Partial<SubmitRssUrlParams>) => {
   if (!params.url || !params.feedUrl) {
     throw new Error('url and feedUrl are required')
