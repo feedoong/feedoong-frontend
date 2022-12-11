@@ -17,8 +17,6 @@ import * as S from './SideMenuBar.style'
 
 import Icons from 'assets/icons'
 
-const accessToken = Cookies.get(AccessToken)
-
 interface Props {
   setShowSideBar: Dispatch<SetStateAction<boolean | null>>
   isOpen: boolean | null
@@ -55,13 +53,25 @@ const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
       </S.CloseSection>
       <S.MenuSection>
         <div>
-          <Anchor onClick={() => movePage('/mypage/channels')}>
-            <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
-          </Anchor>
+          <Link
+            href={accessToken ? '/mypage/channels' : '/signup'}
+            passHref
+            legacyBehavior
+          >
+            <Anchor onClick={() => setShowSideBar(false)}>
+              <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
+            </Anchor>
+          </Link>
 
-          <Anchor onClick={() => movePage('/mypage/posts')}>
-            <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
-          </Anchor>
+          <Link
+            href={accessToken ? '/mypage/posts' : '/signup'}
+            passHref
+            legacyBehavior
+          >
+            <Anchor onClick={() => setShowSideBar(false)}>
+              <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
+            </Anchor>
+          </Link>
         </div>
         <div>
           <Anchor
