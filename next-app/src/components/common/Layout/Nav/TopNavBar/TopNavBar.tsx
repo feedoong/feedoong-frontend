@@ -2,13 +2,17 @@ import React, { forwardRef, type Dispatch, type SetStateAction } from 'react'
 import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
+import Cookies from 'js-cookie'
 
 import { getUserInfo, type UserProfile } from 'services/auth'
+import { AccessToken, RefreshToken } from 'constants/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 
 import * as S from './TopNavBar.style'
 
 import Icons from 'assets/icons'
+
+const accessToken = Cookies.get(AccessToken)
 
 interface Props {
   setShowSideBar: Dispatch<SetStateAction<boolean | null>>
@@ -19,10 +23,13 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
   ref
 ) {
   const router = useRouter()
+
   const { data: userProfile } = useQuery<UserProfile>(
     CACHE_KEYS.me,
-    getUserInfo
+    getUserInfo,
+    { enabled: !!accessToken }
   )
+
   const name = userProfile?.name
   const profileImageUrl = userProfile?.profileImageUrl
   return (
