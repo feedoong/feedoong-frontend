@@ -11,6 +11,7 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
 import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
+import { getWellKnownChannelImg } from 'utils'
 
 import Icons from 'assets/icons'
 
@@ -35,6 +36,10 @@ function PostContainer() {
   const isGridView = selectedViewType === 'grid'
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
+  const isChannelProfileImageExist =
+    data?.items[0].channelImageUrl ||
+    getWellKnownChannelImg(data?.items[0].link ?? '')
+
   return (
     <S.Container>
       <S.FeedWrapper>
@@ -47,7 +52,21 @@ function PostContainer() {
               {isLoading ? (
                 <Skeleton width={100} />
               ) : (
-                data?.items[0]?.channelTitle ?? ''
+                <Flex align="center" gap={8}>
+                  {isChannelProfileImageExist && (
+                    <img
+                      alt="채널 로고"
+                      src={
+                        data?.items[0].channelImageUrl ??
+                        getWellKnownChannelImg(data?.items[0].link ?? '')
+                      }
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: '50%' }}
+                    />
+                  )}
+                  {data?.items[0]?.channelTitle ?? ''}
+                </Flex>
               )}
             </S.Title>
           </S.TitleWrapper>

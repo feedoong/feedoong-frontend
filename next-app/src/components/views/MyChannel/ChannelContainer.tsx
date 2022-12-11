@@ -28,14 +28,14 @@ function ChannelContainer() {
       <Flex gap={20} direction="column">
         {isLoading ? (
           <Flex direction="column" style={{ width: '100%' }} gap={20}>
-            {Array.from({ length: 10 }).map((_, idx) => {
-              return <SkeletonSubscriptionType key={idx} />
-            })}
+            {Array.from({ length: 10 }).map((_, idx) => (
+              <SkeletonSubscriptionType key={idx} />
+            ))}
           </Flex>
         ) : (
-          data?.channels.map((item) => {
-            return <FeedItem key={item.id} type="subscription" item={item} />
-          })
+          data?.channels.map((item) => (
+            <FeedItem key={item.id} type="subscription" item={item} />
+          ))
         )}
       </Flex>
       {!isLoading && data?.channels.length === 0 && (

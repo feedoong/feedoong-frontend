@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
-import { getFormatDate } from 'utils'
+import { getFormatDate, getWellKnownChannelImg } from 'utils'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
@@ -19,7 +19,6 @@ import {
 } from './GridType.style'
 
 import Icons from 'assets/icons'
-import { getIconByHostname } from 'assets/channels'
 
 interface Props {
   item: Item
@@ -30,15 +29,7 @@ const GridType = ({ item }: Props) => {
   const { handleRead } = useReadPost(item)
 
   const { pathname } = useRouter()
-  const isDetailPage = pathname === '/mypage/posts'
-
-  const getWellKnownChannelImg = (url: string) => {
-    try {
-      return getIconByHostname(new URL(url).hostname)
-    } catch (error) {
-      return
-    }
-  }
+  const isDetailPage = pathname === '/mypage/channels/[id]'
 
   return (
     <Container>
