@@ -21,10 +21,14 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
   const router = useRouter()
   const { data: userProfile } = useQuery<UserProfile>(
     CACHE_KEYS.me,
-    getUserInfo
+    getUserInfo,
+    {
+      enabled: router.pathname !== '/introduce',
+    }
   )
   const name = userProfile?.name
   const profileImageUrl = userProfile?.profileImageUrl
+
   return (
     <S.TopNavContainer ref={ref}>
       <S.MenuButton onClick={() => setShowSideBar(true)}>

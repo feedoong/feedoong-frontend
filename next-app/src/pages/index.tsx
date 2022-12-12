@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import Head from 'next/head'
 import { parseCookies } from 'nookies'
+import { useRouter } from 'next/router'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
@@ -12,7 +13,11 @@ import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
 
 const Home: NextPage = () => {
-  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
+  const router = useRouter()
+
+  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
+    enabled: router.pathname !== '/introduce',
+  })
 
   return (
     <>
