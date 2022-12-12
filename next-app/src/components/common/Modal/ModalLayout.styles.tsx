@@ -9,6 +9,10 @@ export const Container = styled.div`
   width: 600px;
   background-color: ${colors.white};
   border-radius: 12px;
+
+  @media screen and (max-width: 425px) {
+    width: 350px;
+  }
 `
 
 export const Header = styled(Flex)`
