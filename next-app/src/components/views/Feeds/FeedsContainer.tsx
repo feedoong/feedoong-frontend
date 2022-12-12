@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
-
 import { useVirtualizer } from '@tanstack/react-virtual'
+
 import Loading from 'components/common/Loading'
 import FeedItem from 'components/common/FeedItem'
 import EmptyContents from 'components/common/EmptyContents'
@@ -35,13 +35,13 @@ const FeedsContainer = () => {
     'card'
   )
 
+  const allItems = data?.pages.flatMap((d) => d.items) || []
   const itemVirtualizer = useVirtualizer({
     count: data?.pages[0].totalCount || 0,
     getScrollElement: () => scrollRef.current,
-    estimateSize: () => 100,
+    estimateSize: () => 150,
     overscan: 5,
   })
-  const allItems = data?.pages.flatMap((d) => d.items) || []
   // useEffect(() => {
   //   if (inView) {
   //     fetchNextPage()
@@ -56,18 +56,16 @@ const FeedsContainer = () => {
     }
 
     if (
-      inView
-      // &&
-      // data?.pages[0].totalCount &&
-      // lastItem.index >= data?.pages[0].totalCount - 1
+      lastItem.index >= allItems.length -1 &&
+      hasNextPage &&
+      !isFetchingNextPage
     ) {
       fetchNextPage()
     }
-  }, [inView, fetchNextPage])
+  }, [hasNextPage, fetchNextPage, allItems.length, isFetchingNextPage, itemVirtualizer.getVirtualItems()])
 
   const isGridView = selectedViewType === 'grid'
   const showSkeleton = isFetching && !data
-  // console.log(allItems)
   return (
     <S.Container ref={scrollRef}>
       <S.FeedWrapper>
@@ -99,7 +97,7 @@ const FeedsContainer = () => {
             />
           </S.SelectViewType>
         </S.Header>
-        <S.CardContainer type={selectedViewType}>
+        <S.CardContainer type={selectedViewType} style={{ height: `${itemVirtualizer.getTotalSize()}px`, position: 'relative' }}>
           {showSkeleton &&
             Array.from({ length: 10 }).map((_, idx) => {
               const Card = isGridView ? SkeletonGridType : SkeletonCardType
@@ -111,11 +109,21 @@ const FeedsContainer = () => {
             ))
           )} */}
           {itemVirtualizer.getVirtualItems().map((virtualRow) => {
-            console.log(virtualRow)
+            const isLoaderItem = virtualRow.index > allItems.length - 1
             const item = allItems[virtualRow.index]
+            console.log(virtualRow.start)
             if (item) {
               return (
-                <FeedItem key={item.id} type={selectedViewType} item={item} />
+                <div key={item.id} style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: `${virtualRow.size}px`,
+                  transform: `translateY(${virtualRow.start}px)`,
+                  border: '1px solid red'
+                }}>{item.id}</div>
+                // <FeedItem key={item.id} type={selectedViewType} item={item} />
               )
             }
           })}
