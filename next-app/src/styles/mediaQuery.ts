@@ -4,6 +4,7 @@ const breakpoints: {
   [key: string]: number
 } = {
   mobile: 0,
+  mobileL: 425,
   tablet: 768,
   desktop: 1024,
 }
