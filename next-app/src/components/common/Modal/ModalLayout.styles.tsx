@@ -3,16 +3,16 @@ import styled from 'styled-components'
 import Flex from 'components/common/Flex'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
-  // TODO: 반응형
   width: 600px;
   background-color: ${colors.white};
   border-radius: 12px;
 
-  @media screen and (max-width: 425px) {
+  ${mediaQuery.mobileL`
     width: 350px;
-  }
+  `}
 `
 
 export const Header = styled(Flex)`
