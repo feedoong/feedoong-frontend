@@ -8,6 +8,29 @@ export const Container = styled.div`
   border-radius: 20px;
   background-color: ${colors.gray100};
   height: 290px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+  
+  &::after {
+    content: "";
+    width: 245px;
+    height: 320px;
+    border-radius: 15px;
+    left: 0;
+    top: 0;
+    position: absolute;
+  } 
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(40,40,40,.3);
+    transform: translate(0, -5px);
+
+    &::after {
+      transform: translate(0, 10px) scale(0.90);
+    }
+  }
 `
 
 export const GridTypeWrapper = styled.div<{ imageUrl?: string }>`
