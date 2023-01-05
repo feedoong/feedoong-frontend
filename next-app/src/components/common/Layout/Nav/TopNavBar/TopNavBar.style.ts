@@ -46,7 +46,7 @@ export const Feedoong = styled.span`
 
   font-size: 20px;
   font-weight: 700;
-  font-family: 'CWDangamAsac-Bold';
+  font-family: 'Satoshi-Bold';
   line-height: 24px;
   color: ${colors.white};
   cursor: pointer;
