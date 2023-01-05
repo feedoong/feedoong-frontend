@@ -1,6 +1,10 @@
 export const colors = {
+  mainBG: '#EDECE6',
+  mainPink: '#ECAFCB',
   white: '#fff',
   black: '#000',
+  red: '#E14942',
+  blue: '#3872E0',
   gray100: '#F5F5F5',
   gray200: '#EBEBEB',
   gray300: '#E0E0E0',
