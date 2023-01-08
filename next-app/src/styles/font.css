@@ -10,5 +10,6 @@ body {
   font-family: 'Satoshi-Bold';
   font-weight: 700;
   font-display: swap;
-  src: local('Satoshi-Bold'), url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');
+  src: local('Satoshi-Bold'),
+    url('../assets/fonts/Satoshi-Bold.woff2') format('woff2');
 }
