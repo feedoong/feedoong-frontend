@@ -50,6 +50,7 @@ export const refreshAccessToken = async (axiosError: AxiosError) => {
 
   api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
   originalRequest.headers!.Authorization = `Bearer ${newAccessToken}`
+  console.log({ newAccessToken, newRefreshToken })
   // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
   return api(originalRequest)
 }
