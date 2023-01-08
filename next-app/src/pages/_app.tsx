@@ -7,7 +7,6 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-import { useEffect } from 'react'
 
 import 'styles/reset.css'
 import 'styles/font.css'
@@ -30,6 +29,7 @@ const queryClient = new QueryClient({
 
       onError: (err: unknown) => {
         if (err instanceof AxiosError) {
+          console.log({ err: JSON.stringify(err) })
           const code = err.response?.data.code
           if (code === 'REFRESH_TOKEN_NOT_FOUND') {
             destroyTokensClientSide()

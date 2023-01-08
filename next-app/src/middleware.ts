@@ -4,9 +4,7 @@ import { isLoginValidServerSide } from 'utils/auth'
 
 export function middleware(request: NextRequest, response: NextResponse) {
   if (!isLoginValidServerSide(request)) {
-    return NextResponse.redirect(new URL('/introduce', request.url), {
-      status: 302,
-    })
+    return NextResponse.redirect(new URL('/introduce', request.url), 302)
   }
 
   return NextResponse.next()
