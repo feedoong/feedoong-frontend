@@ -8,8 +8,8 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-
 import { UAParser } from 'ua-parser-js'
+
 import Layout from 'components/common/Layout'
 import Toast from 'components/common/Toast'
 import Scripts from 'components/common/Scripts'
