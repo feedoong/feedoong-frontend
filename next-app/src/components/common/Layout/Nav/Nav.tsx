@@ -10,11 +10,11 @@ const Nav = () => {
   return (
     <>
       <TopNavBar setShowSideBar={setShowSideBar} ref={topNavRef} />
-      <SideMenuBar
+      {/* <SideMenuBar
         setShowSideBar={setShowSideBar}
         isOpen={showSideBar}
         ref={sideMenuRef}
-      />
+      /> */}
     </>
   )
 }

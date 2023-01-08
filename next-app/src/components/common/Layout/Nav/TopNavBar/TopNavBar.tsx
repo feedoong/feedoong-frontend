@@ -1,7 +1,7 @@
 import React, { forwardRef, type Dispatch, type SetStateAction } from 'react'
-import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
+import { isBrowser } from 'react-device-detect'
 
 import { getUserInfo, type UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
@@ -31,31 +31,29 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
 
   return (
     <S.TopNavContainer ref={ref}>
-      <S.MenuButton onClick={() => setShowSideBar(true)}>
-        <S.ImageWrapper>
-          <Image
-            priority
-            src={Icons.Menu}
-            alt="close-icon"
-            width="18.4"
-            height="16.4"
-          />
-        </S.ImageWrapper>
-        MENU
-      </S.MenuButton>
-      <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
+      <S.LogoButton onClick={() => router.push('/')}>
+        <S.LogoImage
+          priority
+          src={Icons.LogoDesktop}
+          alt="close-icon"
+          width={32}
+          height={32}
+        />
+        <S.Feedoong>Feedoong</S.Feedoong>
+      </S.LogoButton>
+
       {name ? (
         <S.MyPageButton onClick={() => router.push('/mypage/account')}>
+          {isBrowser && <span>{`${name}님, 안녕하세요!`}</span>}
           {profileImageUrl && (
             <S.UserImage
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               alt="프로필 사진"
               src={profileImageUrl}
               priority
             />
           )}
-          {name}
         </S.MyPageButton>
       ) : (
         <S.GoToSignUpButton onClick={() => router.push('/signup')}>
