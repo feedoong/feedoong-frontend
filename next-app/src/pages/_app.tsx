@@ -32,7 +32,10 @@ const queryClient = new QueryClient({
       onError: (err: unknown) => {
         if (err instanceof AxiosError) {
           const code = err.response?.data?.code
-          if (code === 'REFRESH_TOKEN_NOT_FOUND') {
+          if (
+            code === 'REFRESH_TOKEN_NOT_FOUND' ||
+            code === 'EXPIRED_REFRESH_TOKEN'
+          ) {
             destroyTokensClientSide()
             queryClient.invalidateQueries(CACHE_KEYS.me)
           }
