@@ -30,7 +30,10 @@ export const getUserInfoServerSide = (_api: AxiosInstance) => () => {
   return _api.get<null, UserProfile>(`/users/me`)
 }
 
-export const refreshAccessToken = async (axiosError: AxiosError) => {
+export const refreshAccessToken = async (
+  axiosError: AxiosError,
+  _api: AxiosInstance
+) => {
   const originalRequest = axiosError.config
   const refreshToken = Cookies.get(RefreshToken)
 
@@ -48,8 +51,8 @@ export const refreshAccessToken = async (axiosError: AxiosError) => {
   Cookies.set(AccessToken, newAccessToken)
   Cookies.set(RefreshToken, newRefreshToken)
 
-  api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
+  _api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
   originalRequest.headers!.Authorization = `Bearer ${newAccessToken}`
   // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-  return api(originalRequest)
+  return _api(originalRequest)
 }

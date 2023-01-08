@@ -19,15 +19,15 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
   ref
 ) {
   const router = useRouter()
-  // const { data: userProfile } = useQuery<UserProfile>(
-  //   CACHE_KEYS.me,
-  //   getUserInfo,
-  //   {
-  //     enabled: router.pathname !== '/introduce',
-  //   }
-  // )
-  // const name = userProfile?.name
-  // const profileImageUrl = userProfile?.profileImageUrl
+  const { data: userProfile } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo,
+    {
+      enabled: router.pathname !== '/introduce',
+    }
+  )
+  const name = userProfile?.name
+  const profileImageUrl = userProfile?.profileImageUrl
 
   return (
     <S.TopNavContainer ref={ref}>
@@ -44,7 +44,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
         MENU
       </S.MenuButton>
       <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
-      {/* {name ? (
+      {name ? (
         <S.MyPageButton onClick={() => router.push('/mypage/account')}>
           {profileImageUrl && (
             <S.UserImage
@@ -61,7 +61,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
         <S.GoToSignUpButton onClick={() => router.push('/signup')}>
           시작하기
         </S.GoToSignUpButton>
-      )} */}
+      )}
     </S.TopNavContainer>
   )
 })
