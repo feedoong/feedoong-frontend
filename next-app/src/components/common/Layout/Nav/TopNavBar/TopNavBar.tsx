@@ -27,16 +27,16 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
 ) {
   const [mounted, setMounted] = useState(false)
   const router = useRouter()
-  // const { data: userProfile } = useQuery<UserProfile>(
-  //   CACHE_KEYS.me,
-  //   getUserInfo,
-  //   {
-  //     enabled: router.pathname !== '/introduce',
-  //   }
-  // )
-  // const name = userProfile?.name
-  // const profileImageUrl = userProfile?.profileImageUrl
-  // const isBrowser = !isMobile()
+  const { data: userProfile } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo,
+    {
+      enabled: router.pathname !== '/introduce',
+    }
+  )
+  const name = userProfile?.name
+  const profileImageUrl = userProfile?.profileImageUrl
+  const isBrowser = !isMobile()
 
   useEffect(() => {
     setMounted(true)
@@ -58,7 +58,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
         </S.LogoButton>
       </Flex>
 
-      {/* {name ? (
+      {name ? (
         <S.MyPageButton onClick={() => router.push('/mypage/account')}>
           {mounted && isBrowser && <span>{`${name}님, 안녕하세요!`}</span>}
           {profileImageUrl && (
@@ -75,7 +75,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
         <S.GoToSignUpButton onClick={() => router.push('/signup')}>
           시작하기
         </S.GoToSignUpButton>
-      )}  */}
+      )}
     </S.TopNavContainer>
   )
 })

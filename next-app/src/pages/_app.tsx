@@ -31,13 +31,16 @@ const queryClient = new QueryClient({
 
       onError: (err: unknown) => {
         if (err instanceof AxiosError) {
-          console.log({ err: JSON.stringify(err) })
-          const code = err.response?.data.code
-          if (code === 'REFRESH_TOKEN_NOT_FOUND') {
+          const code = err.response?.data?.code
+          if (
+            code === 'REFRESH_TOKEN_NOT_FOUND' ||
+            code === 'EXPIRED_REFRESH_TOKEN'
+          ) {
             destroyTokensClientSide()
             queryClient.invalidateQueries(CACHE_KEYS.me)
-            window.location.href = '/introduce'
           }
+
+          window.location.href = '/introduce'
 
           Toast.show({
             type: 'error',
