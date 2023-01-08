@@ -8,17 +8,18 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-import 'styles/reset.css'
-import 'styles/font.css'
-import 'react-loading-skeleton/dist/skeleton.css'
-import { UAParser } from 'ua-parser-js'
 
+import { UAParser } from 'ua-parser-js'
 import Layout from 'components/common/Layout'
 import Toast from 'components/common/Toast'
 import Scripts from 'components/common/Scripts'
 import { useGoogleAnalytics } from 'utils/hooks'
 import { destroyTokensClientSide } from 'utils/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
+
+import 'styles/reset.css'
+import 'styles/font.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
