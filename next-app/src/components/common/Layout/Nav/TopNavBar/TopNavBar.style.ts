@@ -12,7 +12,7 @@ export const TopNavContainer = styled.div`
   width: 100%;
   height: 75px;
   padding: 18px 100px;
-  background-color: ${colors.gray900};
+  background-color: ${colors.black};
   display: flex;
   align-items: center;
   justify-content: space-between;
