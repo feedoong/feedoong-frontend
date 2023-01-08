@@ -1,5 +1,3 @@
-import React, { useEffect, useState, useRef } from 'react'
-
 import TopNavBar from './TopNavBar'
 import SideMenuBar from './SideNavBar'
 import useNav from './hooks/useNav'
