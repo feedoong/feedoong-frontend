@@ -1,19 +1,3 @@
-const path = require('path')
-
-/** @link https://github.com/import-js/eslint-plugin-import/issues/2164 */
-const getExternals = () => {
-  const getPackageJson = () =>
-    require(path.resolve(process.cwd(), 'package.json'))
-
-  const { dependencies, peerDependencies, devDependencies } = getPackageJson()
-
-  return Object.keys({
-    ...dependencies,
-    ...peerDependencies,
-    ...devDependencies,
-  })
-}
-
 module.exports = {
   extends: 'next/core-web-vitals',
   rules: {
@@ -28,14 +12,6 @@ module.exports = {
           ['internal', 'parent', 'sibling'],
         ],
         pathGroups: [
-          ...getExternals().map((name) => ({
-            pattern: `${name}`,
-            group: 'external',
-          })),
-          ...getExternals().map((name) => ({
-            pattern: `${name}/**`,
-            group: 'external',
-          })),
           {
             pattern: 'global-style/**',
             group: 'sibling',
@@ -75,5 +51,8 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+  },
+  settings: {
+    'import/external-module-folders': ['.yarn'],
   },
 }
