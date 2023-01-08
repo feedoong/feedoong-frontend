@@ -933,6 +933,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ua-parser-js@npm:^0.7.36":
+  version: 0.7.36
+  resolution: "@types/ua-parser-js@npm:0.7.36"
+  checksum: 8c24d4dc12ed1b8b98195838093391c358c81bf75e9cae0ecec8f7824b441e069daaa17b974a3e257172caddb671439f0c0b44bf43bfcf409b7a574a25aab948
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/parser@npm:^5.21.0":
   version: 5.38.0
   resolution: "@typescript-eslint/parser@npm:5.38.0"
@@ -2347,6 +2354,7 @@ __metadata:
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6
     "@types/styled-components": ^5.1.26
+    "@types/ua-parser-js": ^0.7.36
     "@yarnpkg/pnpify": ^4.0.0-rc.18
     "@yarnpkg/sdks": ^3.0.0-rc.18
     axios: ^0.27.2
@@ -2361,7 +2369,6 @@ __metadata:
     prettier: ^2.7.1
     query-string: ^7.1.1
     react: ^18.2.0
-    react-device-detect: ^2.2.2
     react-dom: ^18.2.0
     react-intersection-observer: ^9.4.0
     react-is: ^18.2.0
@@ -2370,6 +2377,7 @@ __metadata:
     recoil: ^0.7.5
     styled-components: ^5.3.5
     typescript: 4.7.4
+    ua-parser-js: ^1.0.32
   languageName: unknown
   linkType: soft
 
@@ -4070,18 +4078,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-device-detect@npm:^2.2.2":
-  version: 2.2.2
-  resolution: "react-device-detect@npm:2.2.2"
-  dependencies:
-    ua-parser-js: ^1.0.2
-  peerDependencies:
-    react: ">= 0.14.0"
-    react-dom: ">= 0.14.0"
-  checksum: d9245cf5a1c1e565e88523ed6be580497d1f6a972fb100a81092943bb7e44afdcdbae0d67bebe7424c4ba5b27a5d13df7894d122307f070fc26062704f7ec788
-  languageName: node
-  linkType: hard
-
 "react-dom@npm:^18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
@@ -4919,7 +4915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ua-parser-js@npm:^1.0.2":
+"ua-parser-js@npm:^1.0.32":
   version: 1.0.32
   resolution: "ua-parser-js@npm:1.0.32"
   checksum: 79a80efd9c21511fdafc042ab748e0e93c8cdb0e8925bf6d48ad7dbb08e808c60fcecd49e679670def44ef428c005aa1810810f6773e7d8135a7817338080813

@@ -40,6 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/styled-components", "npm:5.1.26"],\
+            ["@types/ua-parser-js", "npm:0.7.36"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.20"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.20"],\
             ["axios", "npm:0.27.2"],\
@@ -54,7 +55,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["query-string", "npm:7.1.1"],\
             ["react", "npm:18.2.0"],\
-            ["react-device-detect", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:2.2.2"],\
             ["react-dom", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:18.2.0"],\
             ["react-intersection-observer", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:9.4.0"],\
             ["react-is", "npm:18.2.0"],\
@@ -62,7 +62,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-merge-refs", "npm:2.0.1"],\
             ["recoil", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:0.7.5"],\
             ["styled-components", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:5.3.5"],\
-            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
+            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"],\
+            ["ua-parser-js", "npm:1.0.32"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -1231,6 +1232,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-treeify-npm-1.0.0-b5e04e9cd3-1b2397030d.zip/node_modules/@types/treeify/",\
           "packageDependencies": [\
             ["@types/treeify", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/ua-parser-js", [\
+        ["npm:0.7.36", {\
+          "packageLocation": "./.yarn/cache/@types-ua-parser-js-npm-0.7.36-f5ace9ead6-8c24d4dc12.zip/node_modules/@types/ua-parser-js/",\
+          "packageDependencies": [\
+            ["@types/ua-parser-js", "npm:0.7.36"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3018,6 +3028,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/styled-components", "npm:5.1.26"],\
+            ["@types/ua-parser-js", "npm:0.7.36"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.20"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.20"],\
             ["axios", "npm:0.27.2"],\
@@ -3032,7 +3043,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["query-string", "npm:7.1.1"],\
             ["react", "npm:18.2.0"],\
-            ["react-device-detect", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:2.2.2"],\
             ["react-dom", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:18.2.0"],\
             ["react-intersection-observer", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:9.4.0"],\
             ["react-is", "npm:18.2.0"],\
@@ -3040,7 +3050,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-merge-refs", "npm:2.0.1"],\
             ["recoil", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:0.7.5"],\
             ["styled-components", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:5.3.5"],\
-            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
+            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"],\
+            ["ua-parser-js", "npm:1.0.32"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -4961,33 +4972,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["react", "npm:18.2.0"],\
             ["loose-envify", "npm:1.4.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["react-device-detect", [\
-        ["npm:2.2.2", {\
-          "packageLocation": "./.yarn/cache/react-device-detect-npm-2.2.2-1848521a19-d9245cf5a1.zip/node_modules/react-device-detect/",\
-          "packageDependencies": [\
-            ["react-device-detect", "npm:2.2.2"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:2.2.2", {\
-          "packageLocation": "./.yarn/__virtual__/react-device-detect-virtual-e250bf04ae/0/cache/react-device-detect-npm-2.2.2-1848521a19-d9245cf5a1.zip/node_modules/react-device-detect/",\
-          "packageDependencies": [\
-            ["react-device-detect", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:2.2.2"],\
-            ["@types/react", "npm:18.0.17"],\
-            ["@types/react-dom", "npm:18.0.6"],\
-            ["react", "npm:18.2.0"],\
-            ["react-dom", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:18.2.0"],\
-            ["ua-parser-js", "npm:1.0.32"]\
-          ],\
-          "packagePeers": [\
-            "@types/react-dom",\
-            "@types/react",\
-            "react-dom",\
-            "react"\
           ],\
           "linkType": "HARD"\
         }]\
