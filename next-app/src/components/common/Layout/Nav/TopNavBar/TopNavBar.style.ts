@@ -10,21 +10,22 @@ export const TopNavContainer = styled.div`
   position: fixed;
   z-index: ${Z_INDEX.navBar};
   width: 100%;
-  height: 60px;
-  padding: 18px 40px;
-  background-color: ${colors.gray900};
+  height: 75px;
+  padding: 18px 100px;
+  background-color: ${colors.black};
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   ${mediaQuery.tablet`
-    padding: 18px 20px;
+    padding: 18px 24px;
   `}
 `
 
-export const MenuButton = styled.button`
+export const LogoButton = styled.button`
   ${getTypographyStyles('Body1_B')}
 
+  all: unset;
   color: ${colors.white};
   border: 0;
   background: none;
@@ -33,38 +34,34 @@ export const MenuButton = styled.button`
   cursor: pointer;
 `
 
-export const ImageWrapper = styled.div`
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
+export const LogoImage = styled(Image)`
+  width: 32px;
+  height: 32px;
 `
 
 export const Feedoong = styled.span`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
   font-size: 20px;
   font-weight: 700;
-  font-family: 'Satoshi-Bold';
   line-height: 24px;
+  font-family: 'Satoshi-Bold';
+  margin-left: 4px;
   color: ${colors.white};
   cursor: pointer;
 `
 
 export const MyPageButton = styled.div`
-  ${getTypographyStyles('Body1_B')};
+  ${getTypographyStyles('Body1_M')};
 
   display: flex;
   align-items: center;
   color: ${colors.white};
   cursor: pointer;
-  gap: 8px;
+  gap: 12px;
 `
 
 export const UserImage = styled(Image)`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
 `
 
