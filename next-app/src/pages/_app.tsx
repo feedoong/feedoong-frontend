@@ -35,8 +35,9 @@ const queryClient = new QueryClient({
           if (code === 'REFRESH_TOKEN_NOT_FOUND') {
             destroyTokensClientSide()
             queryClient.invalidateQueries(CACHE_KEYS.me)
-            window.location.href = '/introduce'
           }
+
+          window.location.href = '/introduce'
 
           Toast.show({
             type: 'error',
