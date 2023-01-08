@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getUserInfo, type UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { isMobile } from 'utils/userAgent'
+import Flex from 'components/common/Flex'
 
 import * as S from './TopNavBar.style'
 
@@ -43,16 +44,19 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
 
   return (
     <S.TopNavContainer ref={ref}>
-      <S.LogoButton onClick={() => router.push('/')}>
-        <S.LogoImage
-          priority
-          src={Icons.LogoDesktop}
-          alt="close-icon"
-          width={32}
-          height={32}
-        />
-        <S.Feedoong>Feedoong</S.Feedoong>
-      </S.LogoButton>
+      <Flex>
+        <button onClick={() => setShowSideBar(true)}>MENU</button>
+        <S.LogoButton onClick={() => router.push('/')}>
+          <S.LogoImage
+            priority
+            src={Icons.LogoDesktop}
+            alt="close-icon"
+            width={32}
+            height={32}
+          />
+          <S.Feedoong>Feedoong</S.Feedoong>
+        </S.LogoButton>
+      </Flex>
 
       {/* {name ? (
         <S.MyPageButton onClick={() => router.push('/mypage/account')}>
