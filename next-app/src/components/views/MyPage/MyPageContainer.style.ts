@@ -1,5 +1,5 @@
+import styled, { css } from 'styled-components'
 import Image from 'next/image'
-import styled from 'styled-components'
 
 import Flex from 'components/common/Flex'
 import { colors } from 'styles/colors'
@@ -23,6 +23,11 @@ export const PageTitle = styled.p`
 
   color: ${colors.gray900};
   margin-bottom: 60px;
+`
+
+export const ProfileImage = styled(Image)`
+  margin: 8px 0 30px;
+  border-radius: 50%;
 `
 
 export const Item = styled.div`
@@ -52,33 +57,28 @@ export const BorderLine = styled.div`
   margin: 30px 0;
 `
 
-export const InfoTitle = styled.span`
-  font-size: 20px;
-  font-weight: 500;
-  color: ${colors.gray600};
-`
-
-export const ButtonWrap = styled.div`
+export const ButtonContainer = styled.div`
   gap: 10px;
   display: flex;
-  gap: 12px;
-  margin-bottom: 60px;
+  margin-top: 60px;
+  justify-content: flex-end;
 `
 
-export const UserImage = styled(Image)`
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-`
+export const Button = styled.button<{ outline?: boolean }>`
+  ${getTypographyStyles('Headline3_M')}
 
-export const NickName = styled.span`
-  ${getTypographyStyles('Headline1_B')}
-  color: ${colors.gray900};
-`
-
-export const SettingButton = styled.button`
-  all: unset;
+  color: ${colors.white};
+  background: ${colors.black};
+  padding: 14px 40px;
+  border-radius: 30px;
+  border: 0;
   cursor: pointer;
+
+  ${({ outline }) => outline && css`
+    border: 1px solid ${colors.gray500};
+    color: ${colors.black};
+    background-color: ${colors.white};
+  `}
 `
 
 export const FeedoongUrl = styled.span`

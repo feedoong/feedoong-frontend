@@ -10,6 +10,7 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import InfoItem from '../MyAccount/InfoRow/InfoItem'
 import { destroyTokensClientSide } from 'utils/auth'
 import Flex from 'components/common/Flex'
+import { Label } from './InfoRow/InfoItem.style'
 
 import * as S from './MyPageContainer.style'
 
@@ -71,15 +72,13 @@ const MyPageContainer = () => {
             회원님의 프로필을 방문하는 사용자에게 다음 정보가 표시됩니다.
           </span>
         </S.Item>
-        <S.SubLabel>사진</S.SubLabel>
-        <div
-          style={{
-            width: '72px',
-            height: '72px',
-            backgroundColor: 'pink',
-            marginBottom: '30px',
-          }}
-        ></div>
+        <Label style={{ display: 'block', marginLeft: '12px' }}>사진</Label>
+        <S.ProfileImage
+          src={userProfile.profileImageUrl}
+          width={72}
+          height={72}
+          alt={'profileImage'}
+        />
 
         <Flex gap={20}>
           <InfoItem
@@ -113,26 +112,15 @@ const MyPageContainer = () => {
           />
           <InfoItem readOnly value={userProfile.name} labelName={'이름'} />
         </Flex>
-        {/* <Flex
-          align={'center'}
-          justify={'between'}
-          style={{ width: '315px', padding: '0 12px', marginBottom: '8px' }}
-        >
-          <S.SubLabel>피둥 주소</S.SubLabel>
-          <S.CopyButton>주소 복사</S.CopyButton>
-        </Flex> */}
 
-        {/* <InfoRow title="로그인 계정" value={userProfile.email} />
-        <div style={{ marginBottom: '60px' }}>
-          <InfoRow title="이름" value={userProfile.name} />
-        </div>
         <S.BorderLine />
-        <S.ButtonWrap>
-          <S.Button onClick={() => setIsOpenDeleteAccountModal(true)}>
-            회원 탈퇴
+
+        <S.ButtonContainer>
+          <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
+            회원탈퇴
           </S.Button>
           <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
-        </S.ButtonWrap> */}
+        </S.ButtonContainer>
       </S.Contents>
 
       <Dialog isOpen={isOpenDeleteAccountModal}>

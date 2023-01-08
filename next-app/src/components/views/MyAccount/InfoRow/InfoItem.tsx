@@ -24,9 +24,9 @@ const InfoItem = ({
       <Flex
         align={'center'}
         justify={'between'}
-        style={{ padding: '0 12px', marginBottom: '8px' }}
+        style={{ padding: '0 12px' }}
       >
-        <S.SubLabel>{labelName}</S.SubLabel>
+        <S.Label>{labelName}</S.Label>
         {buttonName && (
           <S.CopyButton onClick={buttonAction}>{buttonName}</S.CopyButton>
         )}

@@ -5,9 +5,12 @@ import { getTypographyStyles } from 'styles/fonts'
 
 export const InfoItemContainer = styled.div`
   width: 315px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
 `
 
-export const SubLabel = styled.span`
+export const Label = styled.span`
   ${getTypographyStyles('Body1_B')}
   color: ${colors.gray600};
 `
