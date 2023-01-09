@@ -9,9 +9,9 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import InfoRow from './InfoRow'
 import { destroyTokensClientSide } from 'utils/auth'
 
-import * as S from './MyPageContainer.style'
+import * as S from './MyAccountContainer.style'
 
-const MyPageContainer = () => {
+const MyAccountContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
 
@@ -89,4 +89,4 @@ const MyPageContainer = () => {
   )
 }
 
-export default MyPageContainer
+export default MyAccountContainer
