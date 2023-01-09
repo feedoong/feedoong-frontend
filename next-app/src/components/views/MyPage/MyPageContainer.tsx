@@ -1,90 +1,109 @@
-import React, { useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 
-import Dialog from 'components/common/Dialog'
-import Toast from 'components/common/Toast'
-import { deleteAccount } from 'services/account'
-import { getUserInfo, UserProfile } from 'services/auth'
+import Paging from 'components/common/Paging'
+import FeedItem from 'components/common/FeedItem'
+import Flex from 'components/common/Flex'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import InfoRow from './InfoRow'
-import { destroyTokensClientSide } from 'utils/auth'
+import { getSubscriptions } from 'services/subscriptions'
+import { SkeletonSubscriptionType } from 'components/common/Skeleton'
+import EmptyContents from 'components/common/EmptyContents'
+import { getUserInfo, UserProfile } from 'services/auth'
+import Tab from 'components/common/Tab'
 
 import * as S from './MyPageContainer.style'
 
-const MyPageContainer = () => {
-  const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
-    useState(false)
+import Icons from 'assets/icons'
 
-  const { mutate: deleteAccountAction } = useMutation(
-    ['deleteAccount'],
-    deleteAccount,
+const MyPageContainer = () => {
+  const ITEMS_PER_PAGE = 10
+  const router = useRouter()
+  const [currentPage, setCurrentPage] = useState(1)
+  const [selectedTab, setSelectedTab] = useState({
+    label: '등록한 채널',
+    value: 'channel',
+  })
+  const { data, isLoading } = useQuery(
+    [CACHE_KEYS.subscriptions, { page: currentPage }],
+    () => getSubscriptions(currentPage)
+  )
+  const { data: userProfile } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo,
     {
-      onSuccess: () => {
-        Toast.show({ content: 'Successfully delete account' })
-        destroyTokensClientSide()
-        client.invalidateQueries(CACHE_KEYS.me)
-        window.location.href = '/'
-      },
+      enabled: router.pathname !== '/introduce',
     }
   )
 
-  const client = useQueryClient()
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
+  const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
+  const name = userProfile?.name
+  const profileImageUrl = userProfile?.profileImageUrl
 
-  const logoutAction = () => {
-    destroyTokensClientSide()
-
-    client.invalidateQueries(CACHE_KEYS.me)
-    window.location.href = '/'
-  }
-
-  if (isLoading || !userProfile) {
-    return null
+  const getFeedoongUrl = () => {
+    const emailId = userProfile?.email.split('@')[0]
+    return `feedoong.io/${emailId}`
   }
 
   return (
     <S.Container>
       <S.Contents>
-        <S.PageTitle>내 정보</S.PageTitle>
-        <S.BorderLine />
-        <InfoRow title="로그인 계정" value={userProfile.email} />
-        <div style={{ marginBottom: '60px' }}>
-          <InfoRow title="이름" value={userProfile.name} />
-        </div>
-        <S.BorderLine />
-        <S.ButtonWrap>
-          <S.Button onClick={() => setIsOpenDeleteAccountModal(true)}>
-            회원 탈퇴
-          </S.Button>
-          <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
-        </S.ButtonWrap>
+        <S.Header>
+          {profileImageUrl && (
+            <S.UserImage
+              width={72}
+              height={72}
+              alt="프로필 사진"
+              src={profileImageUrl}
+              priority
+            />
+          )}
+          <Flex direction={'column'} justify={'center'}>
+            <Flex align="center" gap={5}>
+              <S.NickName>{name}</S.NickName>
+              <Image src={Icons.SettingIcon} alt="setting_icon" />
+            </Flex>
+            <S.FeedoongUrl>{getFeedoongUrl()}</S.FeedoongUrl>
+          </Flex>
+        </S.Header>
+
+        <S.TabWrapper>
+          <Tab
+            tabData={[
+              { label: '등록한 채널', value: 'channel' },
+              { label: '저장한 게시물', value: 'post' },
+            ]}
+            selectedTab={selectedTab}
+            onClick={(tab) => setSelectedTab(tab)}
+          />
+        </S.TabWrapper>
+
+        <Flex gap={20} direction="column">
+          {isLoading ? (
+            <Flex direction="column" style={{ width: '100%' }} gap={20}>
+              {Array.from({ length: 10 }).map((_, idx) => (
+                <SkeletonSubscriptionType key={idx} />
+              ))}
+            </Flex>
+          ) : (
+            data?.channels.map((item) => (
+              <FeedItem key={item.id} type="subscription" item={item} />
+            ))
+          )}
+        </Flex>
+        {!isLoading && data?.channels.length === 0 && (
+          <EmptyContents content="구독 중인 채널이 없습니다!" />
+        )}
+
+        <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
+          <Paging
+            totalPage={totalPage}
+            currentPage={currentPage}
+            movePage={(page: number) => setCurrentPage(page)}
+          />
+        </Flex>
       </S.Contents>
-      <Dialog isOpen={isOpenDeleteAccountModal}>
-        <Dialog.Title>정말 탈퇴하시겠습니까?</Dialog.Title>
-        <Dialog.Content>
-          <p>
-            탈퇴하시면 회원님의 모든 기록이 삭제됩니다.<br></br>삭제된 정보는
-            복구할 수 없으니<br></br>신중하게 결정해주세요.
-          </p>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <button onClick={() => setIsOpenDeleteAccountModal(false)}>
-            취소
-          </button>
-          <button
-            className="secondary"
-            onClick={() => {
-              deleteAccountAction()
-              setIsOpenDeleteAccountModal(false)
-            }}
-          >
-            회원탈퇴
-          </button>
-        </Dialog.Actions>
-      </Dialog>
     </S.Container>
   )
 }

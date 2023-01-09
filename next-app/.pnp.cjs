@@ -40,7 +40,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/styled-components", "npm:5.1.26"],\
-            ["@types/ua-parser-js", "npm:0.7.36"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.20"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.20"],\
             ["axios", "npm:0.27.2"],\
@@ -62,8 +61,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-merge-refs", "npm:2.0.1"],\
             ["recoil", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:0.7.5"],\
             ["styled-components", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:5.3.5"],\
-            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"],\
-            ["ua-parser-js", "npm:1.0.32"]\
+            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -1232,15 +1230,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-treeify-npm-1.0.0-b5e04e9cd3-1b2397030d.zip/node_modules/@types/treeify/",\
           "packageDependencies": [\
             ["@types/treeify", "npm:1.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/ua-parser-js", [\
-        ["npm:0.7.36", {\
-          "packageLocation": "./.yarn/cache/@types-ua-parser-js-npm-0.7.36-f5ace9ead6-8c24d4dc12.zip/node_modules/@types/ua-parser-js/",\
-          "packageDependencies": [\
-            ["@types/ua-parser-js", "npm:0.7.36"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3028,7 +3017,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/styled-components", "npm:5.1.26"],\
-            ["@types/ua-parser-js", "npm:0.7.36"],\
             ["@yarnpkg/pnpify", "npm:4.0.0-rc.20"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.20"],\
             ["axios", "npm:0.27.2"],\
@@ -3050,8 +3038,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-merge-refs", "npm:2.0.1"],\
             ["recoil", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:0.7.5"],\
             ["styled-components", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:5.3.5"],\
-            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"],\
-            ["ua-parser-js", "npm:1.0.32"]\
+            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -5934,15 +5921,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/typescript-patch-0feff98f1a-9096d8f6c1.zip/node_modules/typescript/",\
           "packageDependencies": [\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["ua-parser-js", [\
-        ["npm:1.0.32", {\
-          "packageLocation": "./.yarn/cache/ua-parser-js-npm-1.0.32-95b0b6a78d-79a80efd9c.zip/node_modules/ua-parser-js/",\
-          "packageDependencies": [\
-            ["ua-parser-js", "npm:1.0.32"]\
           ],\
           "linkType": "HARD"\
         }]\
