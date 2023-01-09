@@ -7,7 +7,7 @@ import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding-top: 60px;
   background-color: ${colors.mainBG};
 `
@@ -44,5 +44,9 @@ export const NickName = styled.span`
 
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
-  color: ${colors.gray500}
+  color: ${colors.gray500};
+`
+
+export const TabWrapper = styled.div`
+  margin-bottom: 24px;
 `
