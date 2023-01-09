@@ -50,7 +50,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
       </Flex>
 
       {name ? (
-        <S.MyPageButton onClick={() => router.push('/mypage/account')}>
+        <S.MyPageButton onClick={() => router.push('/mypage')}>
           <span className="userName">{`${name}님, 안녕하세요!`}</span>
           {profileImageUrl && (
             <S.UserImage

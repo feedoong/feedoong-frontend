@@ -1,9 +1,9 @@
 import React from 'react'
 
-import MyAccountContainer from 'components/views/MyAccount/MyAccountContainer'
+import MyAccountContainer from 'components/views/MyAccount'
 
-const MyPage = () => {
+const MyAccount = () => {
   return <MyAccountContainer />
 }
 
-export default MyPage
+export default MyAccount
