@@ -7,9 +7,11 @@ import React, {
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie'
 
 import MenuItem from './MenuItem'
 import Anchor from 'components/common/Anchor'
+import { AccessToken } from 'constants/auth'
 
 import * as S from './SideMenuBar.style'
 
@@ -24,7 +26,13 @@ const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
   { setShowSideBar, isOpen }: Props,
   ref
 ) {
-  const { pathname } = useRouter()
+  const router = useRouter()
+  const accessToken = Cookies.get(AccessToken)
+
+  const movePage = (href: string) => {
+    router.push(accessToken ? href : '/signup')
+    setShowSideBar(false)
+  }
 
   useEffect(() => {
     setShowSideBar((prev) => {
@@ -33,7 +41,7 @@ const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
       }
       return prev
     })
-  }, [pathname, setShowSideBar])
+  }, [router.pathname, setShowSideBar])
 
   return (
     <S.SideMenuBarContainer isOpen={isOpen} ref={ref}>
@@ -45,12 +53,21 @@ const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
       </S.CloseSection>
       <S.MenuSection>
         <div>
-          <Link href="/mypage/channels" passHref legacyBehavior>
+          <Link
+            href={accessToken ? '/mypage/channels' : '/signup'}
+            passHref
+            legacyBehavior
+          >
             <Anchor onClick={() => setShowSideBar(false)}>
               <MenuItem title="내가 등록한 채널" iconUrl={Icons.Folder} />
             </Anchor>
           </Link>
-          <Link href="/mypage/posts" passHref legacyBehavior>
+
+          <Link
+            href={accessToken ? '/mypage/posts' : '/signup'}
+            passHref
+            legacyBehavior
+          >
             <Anchor onClick={() => setShowSideBar(false)}>
               <MenuItem title="내가 저장한 게시물" iconUrl={Icons.Star} />
             </Anchor>
