@@ -43,6 +43,11 @@ export const NickName = styled.span`
   color: ${colors.gray900};
 `
 
+export const SettingButton = styled.button`
+  all: unset;
+  cursor: pointer;
+`
+
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
   color: ${colors.gray500};

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import Paging from 'components/common/Paging'
 import Flex from 'components/common/Flex'
@@ -19,6 +20,7 @@ export type MyPageTabOption = typeof MY_PAGE_TABS[number]
 
 const MyPageContainer = () => {
   const ITEMS_PER_PAGE = 10
+  const router = useRouter()
   const {
     listType,
     totalPage,
@@ -51,8 +53,11 @@ const MyPageContainer = () => {
           <Flex direction={'column'} justify={'center'}>
             <Flex align="center" gap={5}>
               <S.NickName>{userProfile?.name || ''}</S.NickName>
-              <Image src={Icons.SettingIcon} alt="setting_icon" />
+              <S.SettingButton onClick={() => router.push('/mypage/account')}>
+                <Image src={Icons.SettingIcon} alt="setting_icon" />
+              </S.SettingButton>
             </Flex>
+            {/* TODO: 클립보드 기능 추가해야 함 */}
             <S.FeedoongUrl>{feedoongUrl}</S.FeedoongUrl>
           </Flex>
         </S.Header>
