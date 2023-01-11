@@ -1,100 +1,82 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import Paging from 'components/common/Paging'
-import FeedItem from 'components/common/FeedItem'
 import Flex from 'components/common/Flex'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getSubscriptions } from 'services/subscriptions'
-import { SkeletonSubscriptionType } from 'components/common/Skeleton'
-import EmptyContents from 'components/common/EmptyContents'
-import { getUserInfo, UserProfile } from 'services/auth'
-import Tab from 'components/common/Tab'
+import List from './List'
+import Tab from 'components/common/Tab/Tab'
+import useMyPage from './hooks/useMyPage'
 
 import * as S from './MyPageContainer.style'
 
 import Icons from 'assets/icons'
 
+export const MY_PAGE_TABS = [
+  { label: '등록한 채널', value: 'channel' },
+  { label: '저장한 게시물', value: 'post' },
+] as const
+
+export type MyPageTabOption = typeof MY_PAGE_TABS[number]
+
 const MyPageContainer = () => {
   const ITEMS_PER_PAGE = 10
-  const router = useRouter()
-  const [currentPage, setCurrentPage] = useState(1)
-  const [selectedTab, setSelectedTab] = useState({
-    label: '등록한 채널',
-    value: 'channel',
-  })
-  const { data, isLoading } = useQuery(
-    [CACHE_KEYS.subscriptions, { page: currentPage }],
-    () => getSubscriptions(currentPage)
-  )
-  const { data: userProfile } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      enabled: router.pathname !== '/introduce',
-    }
-  )
-
-  const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
-  const name = userProfile?.name
-  const profileImageUrl = userProfile?.profileImageUrl
-
-  const getFeedoongUrl = () => {
-    const emailId = userProfile?.email.split('@')[0]
-    return `feedoong.io/${emailId}`
-  }
+  const {
+    listType,
+    totalPage,
+    currentPage,
+    setCurrentPage,
+    selectedTab,
+    setSelectedTab,
+    userProfile,
+    feedoongUrl,
+    postListData,
+    channelListData,
+    isLoading,
+    isEmptyList,
+    emptyContent,
+  } = useMyPage({ itemsPerPage: ITEMS_PER_PAGE })
 
   return (
     <S.Container>
       <S.Contents>
         <S.Header>
-          {profileImageUrl && (
+          {userProfile?.profileImageUrl && (
             <S.UserImage
               width={72}
               height={72}
               alt="프로필 사진"
-              src={profileImageUrl}
+              src={userProfile.profileImageUrl || ''}
               priority
             />
           )}
           <Flex direction={'column'} justify={'center'}>
             <Flex align="center" gap={5}>
-              <S.NickName>{name}</S.NickName>
+              <S.NickName>{userProfile?.name || ''}</S.NickName>
               <Image src={Icons.SettingIcon} alt="setting_icon" />
             </Flex>
-            <S.FeedoongUrl>{getFeedoongUrl()}</S.FeedoongUrl>
+            <S.FeedoongUrl>{feedoongUrl}</S.FeedoongUrl>
           </Flex>
         </S.Header>
 
         <S.TabWrapper>
           <Tab
-            tabData={[
-              { label: '등록한 채널', value: 'channel' },
-              { label: '저장한 게시물', value: 'post' },
-            ]}
+            tabData={MY_PAGE_TABS}
             selectedTab={selectedTab}
-            onClick={(tab) => setSelectedTab(tab)}
+            onClick={(tab) => setSelectedTab(tab as MyPageTabOption)}
           />
         </S.TabWrapper>
 
-        <Flex gap={20} direction="column">
-          {isLoading ? (
-            <Flex direction="column" style={{ width: '100%' }} gap={20}>
-              {Array.from({ length: 10 }).map((_, idx) => (
-                <SkeletonSubscriptionType key={idx} />
-              ))}
-            </Flex>
-          ) : (
-            data?.channels.map((item) => (
-              <FeedItem key={item.id} type="subscription" item={item} />
-            ))
-          )}
-        </Flex>
-        {!isLoading && data?.channels.length === 0 && (
-          <EmptyContents content="구독 중인 채널이 없습니다!" />
-        )}
+        <List
+          type={listType}
+          listData={
+            listType === 'channel'
+              ? channelListData?.channels
+              : postListData?.items
+          }
+          isLoading={isLoading}
+          isEmptyList={isEmptyList}
+          emptyContent={emptyContent}
+          itemsPerPage={ITEMS_PER_PAGE}
+        />
 
         <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
           <Paging

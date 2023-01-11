@@ -1,24 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import * as S from './Tab.style'
 
-type Tab = { label: string; value: string }
+export type TabType = { label: string; value: string } 
 interface Props {
-  tabData: Tab[]
-  selectedTab: Tab
-  onClick: (tab: Tab) => void;
+  tabData: readonly TabType[]
+  selectedTab: TabType
+  onClick: (tab: TabType) => void;
 }
 
 const Tab = ({ tabData, selectedTab, onClick }: Props) => {
-  // const [selectedTab, setSelectedTab] = useState<Tab>({ label: '', value: '' })
-
-  // const getIsSelected = (value: string) => {
-  //   return selectedTab.value === value
-  // }
-
   return (
     <S.TabContainer>
-      {tabData.map((item, index) => {
+      {tabData.map((item) => {
         return (
           <S.Tab
             key={`${item.value}`}

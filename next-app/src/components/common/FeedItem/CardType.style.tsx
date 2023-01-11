@@ -4,6 +4,7 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 
 export const Container = styled.div`
+  width: 100%;
   background-color: ${colors.gray100};
   padding: 20px;
   display: flex;
