@@ -36,7 +36,7 @@ const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
   return (
     <S.TopNavContainer ref={ref}>
       <Flex>
-        <button onClick={() => setShowSideBar(true)}>MENU</button>
+        {/* <button onClick={() => setShowSideBar(true)}>MENU</button> */}
         <S.LogoButton onClick={() => router.push('/')}>
           <S.LogoImage
             priority
