@@ -10,8 +10,18 @@ import Images from 'assets/images'
 const Custom500Container = () => {
   const router = useRouter()
   return (
-    <S.ContentWrapper>
-      <S.ContentContainer>
+    <S.ContentWrapper
+      gap={24}
+      align="center"
+      justify="center"
+      direction="column"
+    >
+      <S.ContentContainer
+        gap={20}
+        align="center"
+        justify="center"
+        direction="column"
+      >
         <Image src={Images.Custom500} alt="500Error" />
         <S.MainDescription>페이지를 표시할 수 없습니다.</S.MainDescription>
       </S.ContentContainer>

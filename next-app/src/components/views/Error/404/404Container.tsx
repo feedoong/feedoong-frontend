@@ -12,8 +12,18 @@ import Images from 'assets/images'
 const Custom404Container = () => {
   const router = useRouter()
   return (
-    <CommonS.ContentWrapper>
-      <CommonS.ContentContainer>
+    <CommonS.ContentWrapper
+      gap={24}
+      align="center"
+      justify="center"
+      direction="column"
+    >
+      <CommonS.ContentContainer
+        gap={20}
+        align="center"
+        justify="center"
+        direction="column"
+      >
         <Image src={Images.Custom404} alt="404Error" />
         <CommonS.MainDescription>
           요청하신 페이지를 찾을 수 없습니다.
