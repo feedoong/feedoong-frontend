@@ -4,12 +4,13 @@ import { getTypographyStyles, ellipsis } from 'styles/fonts'
 import { colors } from 'styles/colors'
 
 export const Container = styled.div`
-  background-color: ${colors.gray100};
+  background-color: ${colors.white};
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 3px;
   border-radius: 20px;
+  border-bottom-left-radius: 0px;
   width: 100%;
 `
 
@@ -23,6 +24,6 @@ export const Title = styled.h2`
 
 export const Url = styled.span`
   ${getTypographyStyles('Body2_M')}
-
+  ${ellipsis(1)}
   color: ${colors.gray600};
 `

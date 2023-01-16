@@ -30,8 +30,7 @@
     "react-loading-skeleton": "^3.1.0",
     "react-merge-refs": "^2.0.1",
     "recoil": "^0.7.5",
-    "styled-components": "^5.3.5",
-    "ua-parser-js": "^1.0.32"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@sentry/nextjs": "^7.17.4",
@@ -42,7 +41,6 @@
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@types/styled-components": "^5.1.26",
-    "@types/ua-parser-js": "^0.7.36",
     "@yarnpkg/pnpify": "^4.0.0-rc.18",
     "@yarnpkg/sdks": "^3.0.0-rc.18",
     "eslint": "8.22.0",

@@ -57,6 +57,12 @@ export const MyPageButton = styled.div`
   color: ${colors.white};
   cursor: pointer;
   gap: 12px;
+
+  .userName {
+    ${mediaQuery.mobileL`
+    visibility: hidden;
+  `}
+  }
 `
 
 export const UserImage = styled(Image)`

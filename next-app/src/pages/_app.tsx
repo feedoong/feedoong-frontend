@@ -1,5 +1,4 @@
-import type { AppProps, AppContext } from 'next/app'
-import App from 'next/app'
+import type { AppProps } from 'next/app'
 import {
   Hydrate,
   QueryClient,
@@ -8,7 +7,6 @@ import {
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-import { UAParser } from 'ua-parser-js'
 
 import Layout from 'components/common/Layout'
 import Toast from 'components/common/Toast'
@@ -70,20 +68,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </QueryClientProvider>
     </>
   )
-}
-
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(appContext)
-
-  if (appContext.ctx.req && appContext.ctx.req.headers) {
-    const uaParser = new UAParser(appContext.ctx.req.headers['user-agent'])
-
-    //Mobile in pageProps
-    appProps.pageProps.isMobile = uaParser.getResult().device.type === 'mobile'
-  }
-
-  return { ...appProps }
 }
 
 export default MyApp

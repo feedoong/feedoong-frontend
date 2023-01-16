@@ -8,8 +8,8 @@ export const Page = styled.div<{isActive?: boolean, isImage: boolean }>`
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  color: ${colors.gray500};
-  background-color: ${colors.gray100};
+  color: ${colors.white};
+  background-color: ${colors.gray400};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@ export const Page = styled.div<{isActive?: boolean, isImage: boolean }>`
   ${({ isActive }) => isActive && css`
     ${getTypographyStyles('Body1_B')}
     color: ${colors.white};
-    background-color: ${colors.gray600};
+    background-color: ${colors.mainPink};
   `}
 
   ${({ isImage }) => isImage && css`

@@ -41,7 +41,7 @@ const CardType = ({ item }: Props) => {
               target="_blank"
               onClick={() => handleRead(item.id)}
             >
-              <Title isViewed={item.isViewed}>{item.title}</Title>
+              <Title>{item.title}</Title>
             </Anchor>
             <Anchor
               href={item.link}
