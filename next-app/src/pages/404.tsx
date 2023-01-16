@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Custom404Container from 'components/views/404/404Container'
+import { Custom404Container } from 'components/views/Error'
 
 const Custom404 = () => {
   return <Custom404Container />
