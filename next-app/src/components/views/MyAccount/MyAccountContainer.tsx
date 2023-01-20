@@ -12,6 +12,7 @@ import InfoItem from './InfoItem'
 import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
+import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 
 import * as S from './MyAccountContainer.style'
 
@@ -87,6 +88,7 @@ const MyAccountContainer = () => {
             value={getMyProfileUrl()}
             labelName={'피둥 주소'}
             buttonName={'주소 복사'}
+            buttonAction={() => copyToClipboard(getMyProfileUrl())}
           />
           <InfoItem
             // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)
