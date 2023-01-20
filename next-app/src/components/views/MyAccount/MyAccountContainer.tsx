@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-} from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
@@ -14,6 +10,8 @@ import { destroyTokensClientSide } from 'utils/auth'
 import Flex from 'components/common/Flex'
 import InfoItem from './InfoItem'
 import { Label } from './InfoItem/InfoItem.style'
+import Divider from 'components/common/Divider'
+import { colors } from 'styles/colors'
 
 import * as S from './MyAccountContainer.style'
 
@@ -104,7 +102,7 @@ const MyAccountContainer = () => {
           />
         </Flex>
 
-        <S.BorderLine />
+        <Divider color={colors.gray400} mt={30} mb={30} />
 
         <S.Item>
           <span className="label">계정 정보</span>
@@ -121,7 +119,7 @@ const MyAccountContainer = () => {
           <InfoItem readOnly value={userProfile.name} labelName={'이름'} />
         </Flex>
 
-        <S.BorderLine />
+        <Divider color={colors.gray400} mt={30} mb={30} />
 
         <S.ButtonContainer>
           <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
