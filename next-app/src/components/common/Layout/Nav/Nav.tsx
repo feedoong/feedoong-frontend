@@ -36,7 +36,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
 
       {name ? (
         <S.MyPageButton onClick={() => router.push('/mypage')}>
-          <span className="userName">{`${name}님, 안녕하세요!`}</span>
+          <S.UserName>{`${name}님, 안녕하세요!`}</S.UserName>
           {profileImageUrl && (
             <S.UserImage
               width={32}
