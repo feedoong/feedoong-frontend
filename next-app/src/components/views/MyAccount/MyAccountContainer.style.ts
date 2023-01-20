@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Contents = styled.div`
   width: 650px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding: 60px 0;
 `
 
 export const PageTitle = styled.p`
