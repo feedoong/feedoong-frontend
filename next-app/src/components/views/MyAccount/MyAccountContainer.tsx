@@ -1,4 +1,8 @@
-import React, { useState } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useRef,
+} from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
@@ -6,15 +10,18 @@ import Toast from 'components/common/Toast'
 import { deleteAccount } from 'services/account'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import InfoRow from './InfoRow'
 import { destroyTokensClientSide } from 'utils/auth'
+import Flex from 'components/common/Flex'
+import InfoItem from './InfoItem'
+import { Label } from './InfoItem/InfoItem.style'
 
 import * as S from './MyAccountContainer.style'
 
 const MyAccountContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
-
+  const [isEditMode, setIsEditMode] = useState(false)
+  const nickNameRef = useRef<HTMLInputElement>(null)
   const { mutate: deleteAccountAction } = useMutation(
     ['deleteAccount'],
     deleteAccount,
@@ -29,16 +36,28 @@ const MyAccountContainer = () => {
   )
 
   const client = useQueryClient()
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
+  const {
+    data: userProfile,
+    isLoading,
+    isSuccess,
+  } = useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
+
+  useEffect(() => {
+    if (isSuccess && nickNameRef.current) {
+      nickNameRef.current.value = userProfile.name
+    }
+  }, [isSuccess])
 
   const logoutAction = () => {
     destroyTokensClientSide()
 
     client.invalidateQueries(CACHE_KEYS.me)
     window.location.href = '/'
+  }
+
+  const getMyProfileUrl = () => {
+    const emailId = userProfile?.email.split('@')[0]
+    return `feedoong.io/${emailId}`
   }
 
   if (isLoading || !userProfile) {
@@ -49,19 +68,69 @@ const MyAccountContainer = () => {
     <S.Container>
       <S.Contents>
         <S.PageTitle>내 정보</S.PageTitle>
+        <S.Item>
+          <span className="label">공개 프로필</span>
+          <span className="desc">
+            회원님의 프로필을 방문하는 사용자에게 다음 정보가 표시됩니다.
+          </span>
+        </S.Item>
+
+        <Label style={{ display: 'block', marginLeft: '12px' }}>사진</Label>
+        <S.ProfileImage
+          // TODO: 프로필 이미지 변경 기능 추가 (이미지 사진도 API로 따로 받아 노출해야 함)
+          src={userProfile.profileImageUrl}
+          width={72}
+          height={72}
+          alt={'profileImage'}
+        />
+        <Flex gap={20}>
+          <InfoItem
+            readOnly
+            value={getMyProfileUrl()}
+            labelName={'피둥 주소'}
+            buttonName={'주소 복사'}
+          />
+          <InfoItem
+            // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)
+            ref={nickNameRef}
+            readOnly={!isEditMode}
+            labelName={'닉네임'}
+            buttonName={isEditMode ? '저장' : '편집'}
+            buttonAction={
+              isEditMode
+                ? () => setIsEditMode(false)
+                : () => setIsEditMode(true)
+            }
+          />
+        </Flex>
+
         <S.BorderLine />
-        <InfoRow title="로그인 계정" value={userProfile.email} />
-        <div style={{ marginBottom: '60px' }}>
-          <InfoRow title="이름" value={userProfile.name} />
-        </div>
+
+        <S.Item>
+          <span className="label">계정 정보</span>
+          <span className="desc">
+            이 정보는 수정이 불가하며, 회원님의 프로필에 표시되지 않습니다.
+          </span>
+        </S.Item>
+        <Flex gap={20}>
+          <InfoItem
+            readOnly
+            value={userProfile.email}
+            labelName={'로그인 계정'}
+          />
+          <InfoItem readOnly value={userProfile.name} labelName={'이름'} />
+        </Flex>
+
         <S.BorderLine />
-        <S.ButtonWrap>
-          <S.Button onClick={() => setIsOpenDeleteAccountModal(true)}>
-            회원 탈퇴
+
+        <S.ButtonContainer>
+          <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
+            회원탈퇴
           </S.Button>
           <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
-        </S.ButtonWrap>
+        </S.ButtonContainer>
       </S.Contents>
+
       <Dialog isOpen={isOpenDeleteAccountModal}>
         <Dialog.Title>정말 탈퇴하시겠습니까?</Dialog.Title>
         <Dialog.Content>
