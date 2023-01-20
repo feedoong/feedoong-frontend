@@ -50,9 +50,9 @@ const MyAccountContainer = () => {
       <S.Contents>
         <S.PageTitle>내 정보</S.PageTitle>
         <S.BorderLine />
-        <InfoRow title="로그인 계정" value={userProfile.email} />
+        {/* <InfoRow title="로그인 계정" value={userProfile.email} /> */}
         <div style={{ marginBottom: '60px' }}>
-          <InfoRow title="이름" value={userProfile.name} />
+          {/* <InfoRow title="이름" value={userProfile.name} /> */}
         </div>
         <S.BorderLine />
         <S.ButtonWrap>

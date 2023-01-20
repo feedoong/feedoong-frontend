@@ -10,7 +10,7 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import InfoItem from '../MyAccount/InfoRow/InfoItem'
 import { destroyTokensClientSide } from 'utils/auth'
 import Flex from 'components/common/Flex'
-import { Label } from './InfoRow/InfoItem.style'
+// import { Label } from './InfoRow/InfoItem.style'
 
 import * as S from './MyPageContainer.style'
 
@@ -24,43 +24,43 @@ export const MY_PAGE_TABS = [
 export type MyPageTabOption = typeof MY_PAGE_TABS[number]
 
 const MyPageContainer = () => {
-  const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
-    useState(false)
+  // const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
+  //   useState(false)
 
-  const { mutate: deleteAccountAction } = useMutation(
-    ['deleteAccount'],
-    deleteAccount,
-    {
-      onSuccess: () => {
-        Toast.show({ content: 'Successfully delete account' })
-        destroyTokensClientSide()
-        client.invalidateQueries(CACHE_KEYS.me)
-        window.location.href = '/'
-      },
-    }
-  )
+  // const { mutate: deleteAccountAction } = useMutation(
+  //   ['deleteAccount'],
+  //   deleteAccount,
+  //   {
+  //     onSuccess: () => {
+  //       Toast.show({ content: 'Successfully delete account' })
+  //       destroyTokensClientSide()
+  //       client.invalidateQueries(CACHE_KEYS.me)
+  //       window.location.href = '/'
+  //     },
+  //   }
+  // )
 
-  const client = useQueryClient()
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
+  // const client = useQueryClient()
+  // const { data: userProfile, isLoading } = useQuery<UserProfile>(
+  //   CACHE_KEYS.me,
+  //   getUserInfo
+  // )
 
-  const logoutAction = () => {
-    destroyTokensClientSide()
+  // const logoutAction = () => {
+  //   destroyTokensClientSide()
 
-    client.invalidateQueries(CACHE_KEYS.me)
-    window.location.href = '/'
-  }
+  //   client.invalidateQueries(CACHE_KEYS.me)
+  //   window.location.href = '/'
+  // }
 
-  const getMyProfileUrl = () => {
-    const emailId = userProfile?.email.split('@')[0]
-    return `feedoong.io/${emailId}`
-  }
+  // const getMyProfileUrl = () => {
+  //   const emailId = userProfile?.email.split('@')[0]
+  //   return `feedoong.io/${emailId}`
+  // }
 
-  if (isLoading || !userProfile) {
-    return null
-  }
+  // if (isLoading || !userProfile) {
+  //   return null
+  // }
 
   return (
     <S.Container>
@@ -72,16 +72,16 @@ const MyPageContainer = () => {
             회원님의 프로필을 방문하는 사용자에게 다음 정보가 표시됩니다.
           </span>
         </S.Item>
-        <Label style={{ display: 'block', marginLeft: '12px' }}>사진</Label>
+        {/* <Label style={{ display: 'block', marginLeft: '12px' }}>사진</Label>
         <S.ProfileImage
           src={userProfile.profileImageUrl}
           width={72}
           height={72}
           alt={'profileImage'}
-        />
+        /> */}
 
         <Flex gap={20}>
-          <InfoItem
+          {/* <InfoItem
             readOnly
             value={getMyProfileUrl()}
             labelName={'피둥 주소'}
@@ -92,7 +92,7 @@ const MyPageContainer = () => {
             value={userProfile.name}
             labelName={'사용자 이름'}
             buttonName={'저장'}
-          />
+          /> */}
         </Flex>
 
         <S.BorderLine />
@@ -105,25 +105,25 @@ const MyPageContainer = () => {
         </S.Item>
 
         <Flex gap={20}>
-          <InfoItem
+          {/* <InfoItem
             readOnly
             value={userProfile.email}
             labelName={'로그인 계정'}
           />
-          <InfoItem readOnly value={userProfile.name} labelName={'이름'} />
+          <InfoItem readOnly value={userProfile.name} labelName={'이름'} /> */}
         </Flex>
 
         <S.BorderLine />
 
         <S.ButtonContainer>
-          <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
+          {/* <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
             회원탈퇴
           </S.Button>
-          <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
+          <S.Button onClick={() => logoutAction()}>로그아웃</S.Button> */}
         </S.ButtonContainer>
       </S.Contents>
 
-      <Dialog isOpen={isOpenDeleteAccountModal}>
+      {/* <Dialog isOpen={isOpenDeleteAccountModal}> */}
         <Dialog.Title>정말 탈퇴하시겠습니까?</Dialog.Title>
         <Dialog.Content>
           <p>
@@ -131,21 +131,21 @@ const MyPageContainer = () => {
             복구할 수 없으니<br></br>신중하게 결정해주세요.
           </p>
         </Dialog.Content>
-        <Dialog.Actions>
-          <button onClick={() => setIsOpenDeleteAccountModal(false)}>
+        {/* <Dialog.Actions> */}
+          {/* <button onClick={() => setIsOpenDeleteAccountModal(false)}>
             취소
-          </button>
-          <button
+          </button> */}
+          {/* <button
             className="secondary"
             onClick={() => {
               deleteAccountAction()
               setIsOpenDeleteAccountModal(false)
             }}
-          >
-            회원탈퇴
-          </button>
-        </Dialog.Actions>
-      </Dialog>
+          > */}
+            {/* 회원탈퇴 */}
+          {/* </button> */}
+        {/* </Dialog.Actions> */}
+      {/* </Dialog> */}
     </S.Container>
   )
 }
