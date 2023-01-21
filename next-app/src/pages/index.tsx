@@ -24,8 +24,10 @@ const Home: NextPage = () => {
       <Head>
         <title>홈 | 인사이트가 피둥피둥</title>
       </Head>
-      <RssInputView />
-      <FeedsContainerView />
+      <div style={{ height: 'calc(100vh - 75px)', overflow: 'auto' }}>
+        <RssInputView />
+        <FeedsContainerView />
+      </div>
     </>
   )
 }

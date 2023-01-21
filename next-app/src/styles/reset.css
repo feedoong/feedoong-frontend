@@ -106,6 +106,10 @@ nav,
 section {
   display: block;
 }
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 body {
   line-height: 1;
 }
