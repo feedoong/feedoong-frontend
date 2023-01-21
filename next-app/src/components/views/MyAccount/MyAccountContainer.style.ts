@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   width: 100%;
@@ -14,6 +15,11 @@ export const Contents = styled.div`
   width: 650px;
   margin: 0 auto;
   padding: 60px 0;
+
+  ${mediaQuery.mobileL`
+    width: 100%;
+    padding: 40px 24px;
+  `}
 `
 
 export const PageTitle = styled.p`
@@ -40,6 +46,11 @@ export const Item = styled.div`
     ${getTypographyStyles('Body1_M')}
     color: ${colors.gray700};
   }
+
+  ${mediaQuery.mobileL`
+     flex-direction: column;
+     align-items: flex-start;
+  `}
 `
 
 export const SubLabel = styled.span`
@@ -83,4 +94,13 @@ export const FeedoongUrl = styled.span`
 
 export const TabWrapper = styled.div`
   margin-bottom: 24px;
+`
+
+export const InfoItemContainer = styled.div`
+  display: flex;
+  gap: 20px;
+
+  ${mediaQuery.mobileL`
+    flex-direction: column;
+  `}
 `

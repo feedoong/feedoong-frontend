@@ -82,7 +82,7 @@ const MyAccountContainer = () => {
           height={72}
           alt={'profileImage'}
         />
-        <Flex gap={20}>
+        <S.InfoItemContainer>
           <InfoItem
             readOnly
             value={getMyProfileUrl()}
@@ -102,7 +102,7 @@ const MyAccountContainer = () => {
                 : () => setIsEditMode(true)
             }
           />
-        </Flex>
+        </S.InfoItemContainer>
 
         <Divider color={colors.gray400} mt={30} mb={30} />
 
@@ -112,14 +112,14 @@ const MyAccountContainer = () => {
             이 정보는 수정이 불가하며, 회원님의 프로필에 표시되지 않습니다.
           </span>
         </S.Item>
-        <Flex gap={20}>
+        <S.InfoItemContainer>
           <InfoItem
             readOnly
             value={userProfile.email}
             labelName={'로그인 계정'}
           />
           <InfoItem readOnly value={userProfile.name} labelName={'이름'} />
-        </Flex>
+        </S.InfoItemContainer>
 
         <Divider color={colors.gray400} mt={30} mb={30} />
 

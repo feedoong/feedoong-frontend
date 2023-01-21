@@ -2,12 +2,17 @@ import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const InfoItemContainer = styled.div`
   width: 315px;
   gap: 8px;
   display: flex;
   flex-direction: column;
+
+  ${mediaQuery.mobileL`
+    width: 100%;
+  `}
 `
 
 export const Label = styled.span`
@@ -30,6 +35,7 @@ export const Input = styled.input`
   border-radius: 100px;
   outline: none;
   padding: 11px 20px;
+  
   &:read-only {
     cursor: default;
     color: ${colors.gray600};
