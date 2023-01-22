@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef, useMemo } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
@@ -38,14 +38,13 @@ const MyAccountContainer = () => {
   const {
     data: userProfile,
     isLoading,
-    isSuccess,
-  } = useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo)
-
-  useEffect(() => {
-    if (isSuccess && nickNameRef.current) {
-      nickNameRef.current.value = userProfile.name
-    }
-  }, [isSuccess])
+  } = useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
+    onSuccess: (data) => {
+      if (nickNameRef.current) {
+        nickNameRef.current.value = data.name
+      }
+    },
+  })
 
   const logoutAction = () => {
     destroyTokensClientSide()
@@ -54,11 +53,15 @@ const MyAccountContainer = () => {
     window.location.href = '/'
   }
 
-  const getMyProfileUrl = () => {
-    const [emailId] = userProfile?.email.split('@')
+  const getMyProfileURL = () => {
+    let emailId = ''
+    if (userProfile?.email) {
+      ;[emailId] = userProfile?.email.split('@')
+    }
     return `feedoong.io/${emailId}`
   }
 
+  const profileURL = useMemo(getMyProfileURL, [userProfile?.email])
   if (isLoading || !userProfile) {
     return null
   }
@@ -85,10 +88,10 @@ const MyAccountContainer = () => {
         <S.InfoItemContainer>
           <InfoItem
             readOnly
-            value={getMyProfileUrl()}
+            value={getMyProfileURL()}
             labelName={'피둥 주소'}
             buttonName={'주소 복사'}
-            buttonAction={() => copyToClipboard(getMyProfileUrl())}
+            buttonAction={() => copyToClipboard(getMyProfileURL())}
           />
           <InfoItem
             // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)
@@ -96,9 +99,7 @@ const MyAccountContainer = () => {
             readOnly={!isEditMode}
             labelName={'닉네임'}
             buttonName={isEditMode ? '저장' : '편집'}
-            buttonAction={
-              setIsEditMode(!isEditMode)
-            }
+            buttonAction={() => setIsEditMode((prev) => !prev)}
           />
         </S.InfoItemContainer>
 
