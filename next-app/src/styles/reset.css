@@ -113,6 +113,10 @@ html, body {
 body {
   line-height: 1;
 }
+main {
+  height: calc(100vh - 75px);
+  overflow: auto;
+}
 ol,
 ul {
   list-style: none;
