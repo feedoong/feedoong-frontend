@@ -7,7 +7,6 @@ import { deleteAccount } from 'services/account'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { destroyTokensClientSide } from 'utils/auth'
-import Flex from 'components/common/Flex'
 import InfoItem from './InfoItem'
 import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
@@ -35,16 +34,17 @@ const MyAccountContainer = () => {
   )
 
   const client = useQueryClient()
-  const {
-    data: userProfile,
-    isLoading,
-  } = useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
-    onSuccess: (data) => {
-      if (nickNameRef.current) {
-        nickNameRef.current.value = data.name
-      }
-    },
-  })
+  const { data: userProfile, isLoading } = useQuery<UserProfile>(
+    CACHE_KEYS.me,
+    getUserInfo,
+    {
+      onSuccess: (data) => {
+        if (nickNameRef.current) {
+          nickNameRef.current.value = data.name
+        }
+      },
+    }
+  )
 
   const logoutAction = () => {
     destroyTokensClientSide()
