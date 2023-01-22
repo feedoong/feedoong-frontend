@@ -106,8 +106,16 @@ nav,
 section {
   display: block;
 }
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 body {
   line-height: 1;
+}
+main {
+  height: calc(100vh - 75px);
+  overflow: auto;
 }
 ol,
 ul {
