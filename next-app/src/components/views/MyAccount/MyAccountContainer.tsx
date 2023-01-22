@@ -97,9 +97,7 @@ const MyAccountContainer = () => {
             labelName={'닉네임'}
             buttonName={isEditMode ? '저장' : '편집'}
             buttonAction={
-              isEditMode
-                ? () => setIsEditMode(false)
-                : () => setIsEditMode(true)
+              setIsEditMode(!isEditMode)
             }
           />
         </S.InfoItemContainer>
