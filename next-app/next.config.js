@@ -8,7 +8,6 @@ const nextConfig = {
   },
   images: {
     domains: ['lh3.googleusercontent.com'],
-    unoptimized: true,
   },
   sentry: {
     // Use `hidden-source-map` rather than `source-map` as the Webpack `devtool`
