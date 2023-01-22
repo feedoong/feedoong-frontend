@@ -13,13 +13,5 @@ export interface Subscriptions {
 }
 
 export const isSubscription = (obj: any): obj is Subscription => {
-  return (
-    obj &&
-    obj.description &&
-    obj.feedUrl &&
-    obj.id &&
-    obj.title &&
-    obj.url &&
-    obj.imageUrl
-  )
+  return obj.feedUrl
 }

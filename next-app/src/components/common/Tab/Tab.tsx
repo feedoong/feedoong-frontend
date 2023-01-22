@@ -2,11 +2,11 @@ import React from 'react'
 
 import * as S from './Tab.style'
 
-export type TabItem = { label: string; value: string } 
+export type TabItem = { label: string; value: string }
 interface Props {
   tabData: readonly TabItem[]
   selectedTab: TabItem
-  onClick: (tab: TabItem) => void;
+  onClick: (tab: TabItem) => void
 }
 
 const Tab = ({ tabData, selectedTab, onClick }: Props) => {
