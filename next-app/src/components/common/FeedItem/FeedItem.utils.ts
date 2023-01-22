@@ -5,7 +5,7 @@ export const copyToClipboard = async (linkUrl: string) => {
     await navigator.clipboard.writeText(linkUrl)
     Toast.show({ content: '클립보드에 복사되었습니다.' })
   } catch (error) {
-    Toast.show({ content: '복사에 실패하였습니다.' })
+    Toast.show({ type: 'error', content: '복사에 실패하였습니다.' })
     console.log(error)
   }
 }
