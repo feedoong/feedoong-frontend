@@ -36,7 +36,7 @@ const List = ({
     })
   }
 
-  const renderlist = () => {
+  const renderList = () => {
     return listData.map((item: any) => (
       <FeedItem
         key={item.id}
@@ -49,7 +49,7 @@ const List = ({
   return (
     <S.ListContainer>
       <Flex gap={20} direction="column">
-        {isLoading ? renderSkeleton() : renderlist()}
+        {isLoading ? renderSkeleton() : renderList()}
       </Flex>
 
       {isEmptyList && <EmptyContents content={emptyContent} />}
