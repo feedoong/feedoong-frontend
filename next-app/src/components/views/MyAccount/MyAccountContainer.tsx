@@ -55,7 +55,7 @@ const MyAccountContainer = () => {
   }
 
   const getMyProfileUrl = () => {
-    const emailId = userProfile?.email.split('@')[0]
+    const [emailId] = userProfile?.email.split('@')
     return `feedoong.io/${emailId}`
   }
 
