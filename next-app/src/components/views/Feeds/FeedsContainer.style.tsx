@@ -3,11 +3,14 @@ import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${colors.mainBG};
+
 `
 
 export const FeedWrapper = styled.div`
@@ -16,6 +19,10 @@ export const FeedWrapper = styled.div`
   max-width: 650px;
   width: 100%;
   border-radius: 4px;
+
+  ${mediaQuery.tablet`
+    padding: 0px 20px;
+  `}
 `
 
 export const Header = styled.div`
@@ -29,11 +36,11 @@ export const TitleWrapper = styled.div`
   gap: 20px;
 `
 
-export const Title = styled.h1<{ isSelected?: boolean }>`
+export const Title = styled.h1<{ $isSelected?: boolean }>`
   ${getTypographyStyles('Headline2_B')}
 
-  color: ${({ isSelected = true }) =>
-    isSelected ? colors.gray900 : colors.gray400};
+  color: ${({ $isSelected = true }) =>
+    $isSelected ? colors.gray900 : colors.gray400};
   cursor: pointer;
 `
 
@@ -42,8 +49,9 @@ export const SelectViewType = styled.div`
   gap: 8px;
 `
 
-export const ViewType = styled(Image)<{ isSelected: boolean }>`
-  color: ${({ isSelected }) => (isSelected ? colors.gray900 : colors.gray400)};
+export const ViewType = styled(Image)<{ $isSelected: boolean }>`
+  color: ${({ $isSelected }) =>
+    $isSelected ? colors.gray900 : colors.gray400};
   cursor: pointer;
 `
 

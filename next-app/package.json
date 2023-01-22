@@ -21,11 +21,13 @@
     "humps": "^2.0.1",
     "js-cookie": "^3.0.1",
     "next": "^13.0.0",
+    "nookies": "^2.5.2",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.0",
     "react-is": "^18.2.0",
+    "react-loading-skeleton": "^3.1.0",
     "react-merge-refs": "^2.0.1",
     "recoil": "^0.7.5",
     "styled-components": "^5.3.5"
@@ -47,5 +49,5 @@
     "prettier": "^2.7.1",
     "typescript": "4.7.4"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@3.3.0"
 }

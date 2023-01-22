@@ -1,3 +1,5 @@
+import type { AxiosInstance } from 'axios'
+
 import api from 'services/api'
 import type {
   Feed,
@@ -17,9 +19,41 @@ export const getFeeds = (page = 1, size = 10) => {
   })
 }
 
+export const getFeedsServerSide =
+  (_api: AxiosInstance) =>
+  (page = 1, size = 10) => {
+    return _api.get<null, Feed>(`/items`, {
+      params: {
+        page,
+        size,
+      },
+    })
+  }
+
+export const getChannel = (channelId: string, page = 1, size = 10) => {
+  return api.get<null, Feed>(`/items/channel/${channelId}`, {
+    params: {
+      page,
+      size,
+    },
+  })
+}
+
 export const checkUrlAsRss = (url: string) => {
   return api.get<null, PreviewResponse>(`/channels/preview`, {
     params: { url },
+  })
+}
+
+export const checkUrlAsDirectRss = ({
+  homeUrl,
+  rssFeedUrl,
+}: {
+  homeUrl: string
+  rssFeedUrl: string
+}) => {
+  return api.get<null, PreviewResponse>(`/channels/preview/rss`, {
+    params: { homeUrl, rssFeedUrl },
   })
 }
 
@@ -36,7 +70,6 @@ export const likeItem = (id: string) => {
   return api.post<null, LikeItemResponse>(`/likes/${id}`)
 }
 
-// likeItem 두번 호출하면 그냥 취소 되는 듯
 export const unlikeItem = (id: string) => {
   return api.delete<null, LikeItemResponse>(`/likes/${id}`)
 }

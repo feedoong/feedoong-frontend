@@ -4,12 +4,14 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 
 export const Container = styled.div`
-  background-color: ${colors.gray100};
+  width: 100%;
+  background-color: ${colors.white};
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   border-radius: 20px;
+  border-bottom-left-radius: 0px;
 `
 
 export const Title = styled.h2`

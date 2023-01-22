@@ -1,23 +1,18 @@
-import React, { useCallback, useState } from 'react'
-
 import TopNavBar from './TopNavBar'
 import SideMenuBar from './SideNavBar'
+import useNav from './hooks/useNav'
 
 const Nav = () => {
-  const [showSideBar, setShowSideBar] = useState<boolean | null>(null)
-
-  const openSideBar = useCallback(() => {
-    setShowSideBar(true)
-  }, [])
-
-  const closeSideBar = useCallback(() => {
-    setShowSideBar(false)
-  }, [])
+  const { showSideBar, setShowSideBar, topNavRef, sideMenuRef } = useNav()
 
   return (
     <>
-      <TopNavBar setShowSideBar={setShowSideBar} />
-      <SideMenuBar setShowSideBar={setShowSideBar} isOpen={showSideBar} />
+      <TopNavBar setShowSideBar={setShowSideBar} ref={topNavRef} />
+      {/* <SideMenuBar
+        setShowSideBar={setShowSideBar}
+        isOpen={showSideBar}
+        ref={sideMenuRef}
+      /> */}
     </>
   )
 }

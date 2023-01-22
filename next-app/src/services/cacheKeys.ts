@@ -1,4 +1,5 @@
 export const CACHE_KEYS = {
+  channels: ['channels'],
   feeds: ['feeds'],
   likedItems: ['likedItems'],
   likeItem: (id: number) => [...CACHE_KEYS.likedItems, id],

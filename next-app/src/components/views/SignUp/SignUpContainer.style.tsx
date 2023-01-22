@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background: ${colors.gray900};
+  padding: 25px;
 `
 
 export const Title = styled.h1`
@@ -26,6 +27,7 @@ export const Subtitle = styled.h2`
   ${getTypographyStyles('Headline3_M')}
   color: ${colors.gray400};
   text-align: center;
+  word-break: keep-all;
 `
 
 export const GoogleLoginButton = styled.button`

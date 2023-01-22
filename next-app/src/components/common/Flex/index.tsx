@@ -13,9 +13,18 @@ interface Props {
   style?: React.CSSProperties
 }
 
-const Flex = ({ gap, justify, align, direction, children, style }: Props) => {
+const Flex = ({
+  gap,
+  justify,
+  align,
+  direction,
+  children,
+  style,
+  ...rest
+}: Props) => {
   return (
     <Container
+      {...rest}
       gap={gap}
       justify={justify}
       align={align}

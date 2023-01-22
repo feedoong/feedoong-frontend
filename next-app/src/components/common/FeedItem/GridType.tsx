@@ -1,6 +1,8 @@
+import { useRouter } from 'next/router'
+
 import { colors } from 'styles/colors'
 import type { Item } from 'types/feeds'
-import { getFormatDate } from 'utils'
+import { getFormatDate, getWellKnownChannelImg } from 'utils'
 import { copyToClipboard } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
@@ -25,6 +27,9 @@ interface Props {
 const GridType = ({ item }: Props) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
+
+  const { pathname } = useRouter()
+  const isDetailPage = pathname === '/mypage/channels/[id]'
 
   return (
     <Container>
@@ -58,7 +63,9 @@ const GridType = ({ item }: Props) => {
               target="_blank"
               onClick={() => handleRead(item.id)}
             >
-              <Title isImageExist={!!item.imageUrl}>{item.title}</Title>
+              <Title isViewed={item.isViewed} isImageExist={!!item.imageUrl}>
+                {item.title}
+              </Title>
             </Anchor>
           </S.Body>
           {!item.imageUrl && <Description>{item.description}</Description>}
@@ -69,11 +76,26 @@ const GridType = ({ item }: Props) => {
             <S.PostMeta>
               <img
                 alt="채널 로고"
-                src={item.channelImageUrl ?? Icons.Account}
+                src={
+                  item.channelImageUrl ??
+                  getWellKnownChannelImg(item.link) ??
+                  Icons.Account
+                }
                 width={20}
                 height={20}
               />
-              <S.Author isGridType>{item.channelTitle}</S.Author>
+              {isDetailPage ? (
+                <S.Author href={item.link} target="_blank">
+                  {item.channelTitle}
+                </S.Author>
+              ) : (
+                <S.Author
+                  isGridType
+                  href={'/mypage/channels/' + item.channelId.toString()}
+                >
+                  {item.channelTitle}
+                </S.Author>
+              )}
               <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
             </S.PostMeta>
             <Flex gap={12} align="center">
@@ -83,6 +105,7 @@ const GridType = ({ item }: Props) => {
                 width={16}
                 height={16}
                 onClick={() => copyToClipboard(item.link)}
+                priority
               />
               <S.Bookmark
                 alt="북마크"
@@ -90,6 +113,7 @@ const GridType = ({ item }: Props) => {
                 width={16}
                 height={16}
                 onClick={() => handleLike(String(item.id))}
+                priority
               />
             </Flex>
           </S.Footer>

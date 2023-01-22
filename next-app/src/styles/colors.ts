@@ -1,4 +1,8 @@
 export const colors = {
+  mainBG: '#EDECE6',
+  mainPink: '#ECAFCB',
+  red: '#E14942',
+  blue: '#3872E0',
   white: '#fff',
   black: '#000',
   gray100: '#F5F5F5',

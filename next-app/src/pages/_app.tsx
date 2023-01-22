@@ -1,17 +1,23 @@
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { AxiosError } from 'axios'
 import { RecoilRoot } from 'recoil'
-import type { AxiosError } from 'axios'
-import Script from 'next/script'
+
+import Layout from 'components/common/Layout'
+import Toast from 'components/common/Toast'
+import Scripts from 'components/common/Scripts'
+import { useGoogleAnalytics } from 'utils/hooks'
+import { destroyTokensClientSide } from 'utils/auth'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 import 'styles/reset.css'
 import 'styles/font.css'
-
-import Layout from 'components/common/Layout'
-import type { ErrorResponse } from 'types/common'
-import Toast from 'components/common/Toast'
-import useGoogleAnalytics from 'hooks/useGoogleAnalytics'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,47 +28,42 @@ const queryClient = new QueryClient({
       refetchOnReconnect: false,
 
       onError: (err: unknown) => {
-        Toast.show({
-          type: 'error',
-          content:
-            (err as AxiosError<ErrorResponse>).response?.data.message ??
-            '에러가 발생했습니다.',
-        })
+        if (err instanceof AxiosError) {
+          const code = err.response?.data?.code
+          if (
+            code === 'REFRESH_TOKEN_NOT_FOUND' ||
+            code === 'EXPIRED_REFRESH_TOKEN'
+          ) {
+            destroyTokensClientSide()
+            queryClient.invalidateQueries(CACHE_KEYS.me)
+          }
+
+          window.location.href = '/introduce'
+
+          Toast.show({
+            type: 'error',
+            content: err.response?.data.message ?? '에러가 발생했습니다.',
+          })
+        }
       },
     },
   },
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useGoogleAnalytics();
+  useGoogleAnalytics()
 
   return (
     <>
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+      <Scripts />
       <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </RecoilRoot>
+        <Hydrate state={pageProps.dehydratedState}>
+          <RecoilRoot>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </RecoilRoot>
+        </Hydrate>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>

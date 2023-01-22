@@ -1,4 +1,9 @@
-import React, { type Dispatch, type SetStateAction, useEffect } from 'react'
+import React, {
+  type Dispatch,
+  type SetStateAction,
+  forwardRef,
+  useEffect,
+} from 'react'
 import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -15,7 +20,10 @@ interface Props {
   isOpen: boolean | null
 }
 
-const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
+const SideMenuBar = forwardRef<HTMLDivElement, Props>(function SideMenuBar(
+  { setShowSideBar, isOpen }: Props,
+  ref
+) {
   const { pathname } = useRouter()
 
   useEffect(() => {
@@ -28,14 +36,13 @@ const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
   }, [pathname, setShowSideBar])
 
   return (
-    <S.SideMenuBarContainer isOpen={isOpen}>
+    <S.SideMenuBarContainer isOpen={isOpen} ref={ref}>
       <S.CloseSection>
         <S.CloseButton onClick={() => setShowSideBar(false)}>
           닫기
           <Image src={Icons.Close} alt="close-icon" width="12" height="12" />
         </S.CloseButton>
       </S.CloseSection>
-
       <S.MenuSection>
         <div>
           <Link href="/mypage/channels" passHref legacyBehavior>
@@ -50,12 +57,29 @@ const SideMenuBar = ({ setShowSideBar, isOpen }: Props) => {
           </Link>
         </div>
         <div>
-          <MenuItem title="의견 남기기" iconUrl={Icons.SpeechBubble} />
-          <MenuItem title="피둥을 소개합니다" iconUrl={Icons.Thunder} />
+          <Anchor
+            href="https://www.notion.so/oj8mm/FAQ-081c373d745f411e91d47689c2bb53e3"
+            target="_blank"
+            onClick={() => setShowSideBar(false)}
+          >
+            <MenuItem title="사용 팁 & FAQ" iconUrl={Icons.SpeechBubble} />
+          </Anchor>
+          <Anchor
+            href="https://forms.gle/h4QnoEvdLQPRpt7Q6"
+            target="_blank"
+            onClick={() => setShowSideBar(false)}
+          >
+            <MenuItem title="의견 남기기" iconUrl={Icons.SpeechBubble} />
+          </Anchor>
+          <Link href="/introduce" passHref legacyBehavior>
+            <Anchor onClick={() => setShowSideBar(false)}>
+              <MenuItem title="피둥을 소개합니다" iconUrl={Icons.Thunder} />
+            </Anchor>
+          </Link>
         </div>
       </S.MenuSection>
     </S.SideMenuBarContainer>
   )
-}
+})
 
 export default SideMenuBar

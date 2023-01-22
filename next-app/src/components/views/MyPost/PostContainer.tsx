@@ -8,7 +8,8 @@ import { getLikedItems } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { ITEMS_PER_PAGE } from './PostContainer.const'
-import Loading from 'components/common/Loading'
+import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
+import EmptyContents from 'components/common/EmptyContents'
 
 import Icons from 'assets/icons'
 
@@ -37,7 +38,7 @@ function PostContainer() {
         <S.Header>
           <S.TitleWrapper>
             <S.Title
-              isSelected={selectedCategory === 'home'}
+              $isSelected={selectedCategory === 'home'}
               onClick={() => setSelectedCategory('home')}
             >
               내가 저장한 게시물
@@ -47,7 +48,7 @@ function PostContainer() {
             <S.ViewType
               alt="카드 뷰"
               src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              isSelected={!isGridView}
+              $isSelected={!isGridView}
               onClick={() => setSelectedViewType('card')}
               width={16}
               height={16}
@@ -55,7 +56,7 @@ function PostContainer() {
             <S.ViewType
               alt="그리드 뷰"
               src={Icons[isGridView ? 'GridViewIcon' : 'GridViewIconDeactive']}
-              isSelected={isGridView}
+              $isSelected={isGridView}
               onClick={() => setSelectedViewType('grid')}
               width={16}
               height={16}
@@ -63,30 +64,25 @@ function PostContainer() {
           </S.SelectViewType>
         </S.Header>
         <S.CardContainer type={selectedViewType}>
-          {isLoading ? (
-            <Flex justify="center" style={{ width: '100%' }}>
-              <Loading />
-            </Flex>
-          ) : (
-            <>
-              {data?.items.map((item) => {
-                return (
-                  <FeedItem key={item.id} type={selectedViewType} item={item} />
-                )
-              })}
-              <Flex
-                justify="center"
-                style={{ width: '100%', padding: '44px 0' }}
-              >
-                <Paging
-                  totalPage={totalPage}
-                  currentPage={currentPage}
-                  movePage={(page: number) => setCurrentPage(page)}
-                />
-              </Flex>
-            </>
-          )}
+          {isLoading
+            ? Array.from({ length: 10 }).map((_, idx) => {
+                const Card = isGridView ? SkeletonGridType : SkeletonCardType
+                return <Card key={idx} />
+              })
+            : data?.items.map((item) => (
+                <FeedItem key={item.id} type={selectedViewType} item={item} />
+              ))}
         </S.CardContainer>
+        {!isLoading && data?.items.length === 0 && (
+          <EmptyContents content="저장된 게시물이 없습니다!" />
+        )}
+        <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
+          <Paging
+            totalPage={totalPage}
+            currentPage={currentPage}
+            movePage={(page: number) => setCurrentPage(page)}
+          />
+        </Flex>
       </S.FeedWrapper>
     </S.Container>
   )

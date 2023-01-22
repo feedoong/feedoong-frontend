@@ -1,89 +1,96 @@
-import React, { useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import Cookies from 'js-cookie'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 
-import Dialog from 'components/common/Dialog'
-import Toast from 'components/common/Toast'
-import { deleteAccount } from 'services/account'
-import { getUserInfo, UserProfile } from 'services/auth'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { AccessToken } from 'constants/auth'
-import InfoRow from './InfoRow'
+import Paging from 'components/common/Paging'
+import Flex from 'components/common/Flex'
+import List from './List'
+import Tab from 'components/common/Tab/Tab'
+import useMyPage from './hooks/useMyPage'
 
 import * as S from './MyPageContainer.style'
 
+import Icons from 'assets/icons'
+
+export const MY_PAGE_TABS = [
+  { label: '등록한 채널', value: 'channel' },
+  { label: '저장한 게시물', value: 'post' },
+] as const
+
+export type MyPageTabOption = typeof MY_PAGE_TABS[number]
+
 const MyPageContainer = () => {
-  const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
-    useState(false)
-
-  const { mutate: deleteAccountAction } = useMutation(
-    ['deleteAccount'],
-    deleteAccount,
-    {
-      onSuccess: () => {
-        Toast.show({ content: 'Successfully delete account' })
-        Cookies.remove(AccessToken)
-        window.location.href = '/'
-      },
-    }
-  )
-
-  const client = useQueryClient()
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
-
-  const logoutAction = () => {
-    Cookies.remove(AccessToken)
-    client.invalidateQueries(CACHE_KEYS.me)
-    window.location.href = '/'
-  }
-
-  if (isLoading || !userProfile) {
-    return null
-  }
+  const ITEMS_PER_PAGE = 10
+  const router = useRouter()
+  const {
+    listType,
+    totalPage,
+    currentPage,
+    setCurrentPage,
+    selectedTab,
+    setSelectedTab,
+    userProfile,
+    feedoongUrl,
+    postListData,
+    channelListData,
+    isLoading,
+    isEmptyList,
+    emptyContent,
+  } = useMyPage({ itemsPerPage: ITEMS_PER_PAGE })
 
   return (
     <S.Container>
       <S.Contents>
-        <S.PageTitle>내 정보</S.PageTitle>
-        <S.BorderLine />
-        <InfoRow title="로그인 계정" value={userProfile.email} />
-        <div style={{ marginBottom: '60px' }}>
-          <InfoRow title="이름" value={userProfile.name} />
-        </div>
-        <S.BorderLine />
-        <S.ButtonWrap>
-          <S.Button onClick={() => setIsOpenDeleteAccountModal(true)}>
-            회원 탈퇴
-          </S.Button>
-          <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
-        </S.ButtonWrap>
+        <S.Header>
+          {userProfile?.profileImageUrl && (
+            <S.UserImage
+              width={72}
+              height={72}
+              alt="프로필 사진"
+              src={userProfile.profileImageUrl || ''}
+              priority
+            />
+          )}
+          <Flex direction={'column'} justify={'center'}>
+            <Flex align="center" gap={5}>
+              <S.NickName>{userProfile?.name || ''}</S.NickName>
+              <S.SettingButton onClick={() => router.push('/mypage/account')}>
+                <Image src={Icons.SettingIcon} alt="setting_icon" />
+              </S.SettingButton>
+            </Flex>
+            {/* TODO: 클립보드 기능 추가해야 함 */}
+            <S.FeedoongUrl>{feedoongUrl}</S.FeedoongUrl>
+          </Flex>
+        </S.Header>
+
+        <S.TabWrapper>
+          <Tab
+            tabData={MY_PAGE_TABS}
+            selectedTab={selectedTab}
+            onClick={(tab) => setSelectedTab(tab as MyPageTabOption)}
+          />
+        </S.TabWrapper>
+
+        <List
+          type={listType}
+          listData={
+            listType === 'channel'
+              ? channelListData?.channels
+              : postListData?.items
+          }
+          isLoading={isLoading}
+          isEmptyList={isEmptyList}
+          emptyContent={emptyContent}
+          itemsPerPage={ITEMS_PER_PAGE}
+        />
+
+        <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
+          <Paging
+            totalPage={totalPage}
+            currentPage={currentPage}
+            movePage={(page: number) => setCurrentPage(page)}
+          />
+        </Flex>
       </S.Contents>
-      <Dialog isOpen={isOpenDeleteAccountModal}>
-        <Dialog.Title>정말 탈퇴하시겠습니까?</Dialog.Title>
-        <Dialog.Content>
-          <p>
-            탈퇴하시면 회원님의 모든 기록이 삭제됩니다.<br></br>삭제된 정보는
-            복구할 수 없으니<br></br>신중하게 결정해주세요.
-          </p>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <button onClick={() => setIsOpenDeleteAccountModal(false)}>
-            취소
-          </button>
-          <button
-            className="secondary"
-            onClick={() => {
-              deleteAccountAction()
-              setIsOpenDeleteAccountModal(false)
-            }}
-          >
-            회원탈퇴
-          </button>
-        </Dialog.Actions>
-      </Dialog>
     </S.Container>
   )
 }

@@ -1,51 +1,58 @@
+import Image from 'next/image'
 import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  background-color: ${colors.gray900};
+  height: 100%;
+  min-height: 100vh;
+  padding-top: 60px;
+  background-color: ${colors.mainBG};
 `
 
 export const Contents = styled.div`
-  width: 626px;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  max-width: 640px;
+  border-radius: 4px;
   margin: 0 auto;
-  padding-top: 120px;
+
+  ${mediaQuery.tablet`
+    padding: 0px 20px;
+  `}
 `
 
-export const PageTitle = styled.p`
-  ${getTypographyStyles('Headline2_B')};
-
-  color: ${colors.white};
-  margin-bottom: 20px;
-`
-
-export const BorderLine = styled.div`
-  border: 1px solid ${colors.gray800};
-  margin-bottom: 40px;
-`
-
-export const InfoTitle = styled.span`
-  font-size: 20px;
-  font-weight: 500;
-  color: ${colors.gray600};
-`
-
-export const ButtonWrap = styled.div`
-  gap: 10px;
+export const Header = styled.div`
   display: flex;
-  justify-content: center;
+  gap: 12px;
+  margin-bottom: 60px;
 `
 
-export const Button = styled.button`
-  ${getTypographyStyles('Headline3_M')}
+export const UserImage = styled(Image)`
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+`
 
-  color: ${colors.white};
-  background: ${colors.gray800};
-  padding: 14px 40px;
-  border-radius: 30px;
-  border: 0;
+export const NickName = styled.span`
+  ${getTypographyStyles('Headline1_B')}
+  color: ${colors.gray900};
+`
+
+export const SettingButton = styled.button`
+  all: unset;
   cursor: pointer;
+`
+
+export const FeedoongUrl = styled.span`
+  ${getTypographyStyles('Body1_M')}
+  color: ${colors.gray500};
+`
+
+export const TabWrapper = styled.div`
+  margin-bottom: 24px;
 `

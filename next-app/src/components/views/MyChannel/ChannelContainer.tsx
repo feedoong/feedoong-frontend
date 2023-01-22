@@ -7,7 +7,8 @@ import Flex from 'components/common/Flex'
 import * as S from 'components/views/MyChannel/ChannelContainer.style'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getSubscriptions } from 'services/subscriptions'
-import Loading from 'components/common/Loading'
+import { SkeletonSubscriptionType } from 'components/common/Skeleton'
+import EmptyContents from 'components/common/EmptyContents'
 
 function ChannelContainer() {
   const ITEMS_PER_PAGE = 10
@@ -26,23 +27,26 @@ function ChannelContainer() {
       </S.Header>
       <Flex gap={20} direction="column">
         {isLoading ? (
-          <Flex justify="center" style={{ width: '100%' }}>
-            <Loading />
+          <Flex direction="column" style={{ width: '100%' }} gap={20}>
+            {Array.from({ length: 10 }).map((_, idx) => (
+              <SkeletonSubscriptionType key={idx} />
+            ))}
           </Flex>
         ) : (
-          <>
-            {data?.channels.map((item) => {
-              return <FeedItem key={item.id} type="subscription" item={item} />
-            })}
-            <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
-              <Paging
-                totalPage={totalPage}
-                currentPage={currentPage}
-                movePage={(page: number) => setCurrentPage(page)}
-              />
-            </Flex>
-          </>
+          data?.channels.map((item) => (
+            <FeedItem key={item.id} type="subscription" item={item} />
+          ))
         )}
+      </Flex>
+      {!isLoading && data?.channels.length === 0 && (
+        <EmptyContents content="구독 중인 채널이 없습니다!" />
+      )}
+      <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
+        <Paging
+          totalPage={totalPage}
+          currentPage={currentPage}
+          movePage={(page: number) => setCurrentPage(page)}
+        />
       </Flex>
     </S.Container>
   )

@@ -1,10 +1,14 @@
-import React, { type Dispatch, type SetStateAction } from 'react'
-import Image from 'next/legacy/image'
+import React, {
+  forwardRef,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
 
 import { getUserInfo, type UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import Flex from 'components/common/Flex'
 
 import * as S from './TopNavBar.style'
 
@@ -14,42 +18,49 @@ interface Props {
   setShowSideBar: Dispatch<SetStateAction<boolean | null>>
 }
 
-const TopNavBar = ({ setShowSideBar }: Props) => {
+const TopNavBar = forwardRef<HTMLDivElement, Props>(function TopNavBar(
+  { setShowSideBar }: Props,
+  ref
+) {
   const router = useRouter()
   const { data: userProfile } = useQuery<UserProfile>(
     CACHE_KEYS.me,
-    getUserInfo
+    getUserInfo,
+    {
+      enabled: router.pathname !== '/introduce',
+    }
   )
-
   const name = userProfile?.name
   const profileImageUrl = userProfile?.profileImageUrl
 
   return (
-    <S.TopNavContainer>
-      <S.MenuButton onClick={() => setShowSideBar(true)}>
-        <S.ImageWrapper>
-          <Image
+    <S.TopNavContainer ref={ref}>
+      <Flex>
+        {/* <button onClick={() => setShowSideBar(true)}>MENU</button> */}
+        <S.LogoButton onClick={() => router.push('/')}>
+          <S.LogoImage
             priority
-            src={Icons.Menu}
+            src={Icons.LogoDesktop}
             alt="close-icon"
-            width="18.4"
-            height="16.4"
+            width={32}
+            height={32}
           />
-        </S.ImageWrapper>
-        MENU
-      </S.MenuButton>
-      <S.Feedoong onClick={() => router.push('/')}>Feedoong</S.Feedoong>
+          <S.Feedoong>Feedoong</S.Feedoong>
+        </S.LogoButton>
+      </Flex>
+
       {name ? (
-        <S.MyPageButton onClick={() => router.push('/mypage/account')}>
+        <S.MyPageButton onClick={() => router.push('/mypage')}>
+          <span className="userName">{`${name}님, 안녕하세요!`}</span>
           {profileImageUrl && (
             <S.UserImage
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               alt="프로필 사진"
               src={profileImageUrl}
+              priority
             />
           )}
-          {name}
         </S.MyPageButton>
       ) : (
         <S.GoToSignUpButton onClick={() => router.push('/signup')}>
@@ -58,6 +69,6 @@ const TopNavBar = ({ setShowSideBar }: Props) => {
       )}
     </S.TopNavContainer>
   )
-}
+})
 
 export default TopNavBar

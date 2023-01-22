@@ -1,32 +1,24 @@
-import type { NextPage } from 'next'
-import { useQuery } from '@tanstack/react-query'
+import type { GetServerSideProps, NextPage } from 'next'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import Head from 'next/head'
+import { parseCookies } from 'nookies'
+import { useRouter } from 'next/router'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import Top from 'components/views/Main/Top'
-import Main from 'components/views/Main'
-import { getUserInfo, UserProfile } from 'services/auth'
+import { getUserInfo, getUserInfoServerSide, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import { AccessToken } from 'constants/auth'
+import { createApi } from 'services/api'
+import { getFeedsServerSide } from 'services/feeds'
 
 const Home: NextPage = () => {
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo
-  )
+  const router = useRouter()
 
-  if (isLoading) {
-    return null
-  }
-  // TODO: flicking 해소하기
-  if (!userProfile) {
-    return (
-      <>
-        <Top />
-        <Main />
-      </>
-    )
-  }
+  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
+    enabled: router.pathname !== '/introduce',
+  })
+
   return (
     <>
       <Head>
@@ -39,3 +31,36 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps = async (context: GetServerSideProps) => {
+  try {
+    const api = createApi()
+    const cookies = parseCookies(context as typeof parseCookies['arguments'])
+
+    api.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${cookies[AccessToken]}`
+
+    const queryClient = new QueryClient()
+    await queryClient.prefetchQuery<UserProfile>(
+      CACHE_KEYS.me,
+      getUserInfoServerSide(api)
+    )
+    await queryClient.prefetchInfiniteQuery(
+      CACHE_KEYS.feeds,
+      ({ pageParam = 1 }) => getFeedsServerSide(api)(pageParam)
+    )
+
+    return {
+      props: {
+        /** @link https://github.com/TanStack/query/issues/1458#issuecomment-1022396964 */
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      },
+    }
+  } catch (error) {
+    console.log(error)
+    return {
+      props: {},
+    }
+  }
+}
