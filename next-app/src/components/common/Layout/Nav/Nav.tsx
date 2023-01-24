@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 
 import { getUserInfo, type UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
 
 import * as S from './Nav.style'
 
@@ -16,8 +15,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
     CACHE_KEYS.me,
     getUserInfo,
     {
-      // TODO: 단일 포인트로 모아서 관리할 수 있는 방법 있는지 찾아보기
-      enabled: requiredAuthMatcher(router.pathname),
+      enabled: router.pathname !== '/introduce',
     }
   )
   const name = userProfile?.name
