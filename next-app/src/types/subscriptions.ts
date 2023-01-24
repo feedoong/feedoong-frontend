@@ -11,3 +11,7 @@ export interface Subscriptions {
   channels: Subscription[]
   totalCount: number
 }
+
+export const isSubscription = (obj: any): obj is Subscription => {
+  return obj.feedUrl
+}

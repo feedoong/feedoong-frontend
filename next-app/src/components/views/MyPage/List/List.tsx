@@ -8,12 +8,14 @@ import {
   SkeletonCardType,
   SkeletonSubscriptionType,
 } from 'components/common/Skeleton'
+import { isSubscription, Subscription } from 'types/subscriptions'
+import type { Item } from 'types/feeds'
 
 import * as S from './List.style'
 
 export interface Props {
   type: typeof MY_PAGE_TABS[number]['value']
-  listData: any
+  listData?: Item[] | Subscription[]
   isLoading: boolean
   isEmptyList: boolean
   emptyContent: string
@@ -36,22 +38,20 @@ const List = ({
     })
   }
 
-  const renderlist = () => {
-    return listData.map((item: any) => (
-      <FeedItem
-        key={item.id}
-        type={type === 'channel' ? 'subscription' : 'card'}
-        item={item}
-      />
-    ))
+  const renderList = () => {
+    return listData?.map((item) => {
+      if (isSubscription(item)) {
+        return <FeedItem key={item.id} type="subscription" item={item} />
+      }
+      return <FeedItem key={item.id} type="card" item={item} />
+    })
   }
 
   return (
     <S.ListContainer>
       <Flex gap={20} direction="column">
-        {isLoading ? renderSkeleton() : renderlist()}
+        {isLoading ? renderSkeleton() : renderList()}
       </Flex>
-
       {isEmptyList && <EmptyContents content={emptyContent} />}
     </S.ListContainer>
   )

@@ -1,61 +1,32 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useQuery } from '@tanstack/react-query'
-import { useMemo } from 'react'
 
-import Paging from 'components/common/Paging'
 import Flex from 'components/common/Flex'
-import List from './List'
 import Tab from 'components/common/Tab/Tab'
-import useList from './List/hook/useList'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getUserInfo, UserProfile } from 'services/auth'
+import ChannelList from './List/ChannelList'
+import PostList from './List/PostList'
+import { getFeedoongUrl, getSelectedTab } from './MyPageContainer.utils'
+import { useGetUserProfile } from './queries/userProfile'
 
 import * as S from './MyPageContainer.style'
 
 import Icons from 'assets/icons'
 
 export const MY_PAGE_TABS = [
-  { label: '등록한 채널', value: 'channel' },
-  { label: '저장한 게시물', value: 'post' },
+  { label: '등록한 채널', value: 'channel', TabComponent: ChannelList },
+  { label: '저장한 게시물', value: 'post', TabComponent: PostList },
 ] as const
 
 export type MyPageTabOption = typeof MY_PAGE_TABS[number]
 export type MyPageListType = typeof MY_PAGE_TABS[number]['value']
 
 const MyPageContainer = () => {
-  const ITEMS_PER_PAGE = 10
   const router = useRouter()
-  const { data: userProfile } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      enabled: router.pathname !== '/introduce',
-    }
-  )
+  const { data: userProfile } = useGetUserProfile()
 
-  const { listData, isLoading, isEmptyList, emptyContent, totalCount } =
-    useList({
-      listType: (router.query.tab as MyPageListType) || 'channel',
-      currentPage: Number(router.query.page),
-    })
+  const selectedTab = getSelectedTab(router.query.tab as MyPageListType)
+  const { TabComponent } = selectedTab
 
-  const totalPage = totalCount ? Math.ceil(totalCount / ITEMS_PER_PAGE) : 1
-
-  const getFeedoongUrl = () => {
-    const emailId = userProfile?.email.split('@')[0]
-    return `feedoong.io/${emailId}`
-  }
-
-  const getSelectedTab = () => {
-    return (
-      MY_PAGE_TABS.find((tab) => tab.value === router.query.tab) ||
-      MY_PAGE_TABS[0]
-    )
-  }
-
-  const feedoongURL = useMemo(getFeedoongUrl, [userProfile?.email])
-  const selectedTab = useMemo(getSelectedTab, [router.query.tab])
   return (
     <S.Container>
       <S.Contents>
@@ -77,7 +48,7 @@ const MyPageContainer = () => {
               </S.SettingButton>
             </Flex>
             {/* TODO: 클립보드 기능 추가해야 함 */}
-            <S.FeedoongUrl>{feedoongURL}</S.FeedoongUrl>
+            <S.FeedoongUrl>{getFeedoongUrl(userProfile)}</S.FeedoongUrl>
           </Flex>
         </S.Header>
 
@@ -85,42 +56,21 @@ const MyPageContainer = () => {
           <Tab
             tabData={MY_PAGE_TABS}
             selectedTab={selectedTab}
-            onClick={(tab) =>
+            onClick={(tab) => {
+              const clickDiffTab = tab.value !== selectedTab.value
+
               router.push({
                 pathname: router.pathname,
                 query: {
                   ...router.query,
                   tab: tab.value,
+                  ...(clickDiffTab && { page: 1 }),
                 },
               })
-            }
+            }}
           />
         </S.TabWrapper>
-
-        <List
-          type={(router.query.tab as MyPageListType) || 'channel'}
-          listData={listData}
-          isLoading={isLoading}
-          isEmptyList={isEmptyList}
-          emptyContent={emptyContent}
-          itemsPerPage={ITEMS_PER_PAGE}
-        />
-
-        <Flex style={{ width: '100%', padding: '44px 0' }} justify="center">
-          <Paging
-            totalPage={totalPage}
-            currentPage={Number(router.query.page) || 1}
-            movePage={(page: number) =>
-              router.push({
-                pathname: router.pathname,
-                query: {
-                  ...router.query,
-                  page,
-                },
-              })
-            }
-          />
-        </Flex>
+        <TabComponent />
       </S.Contents>
     </S.Container>
   )
