@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app'
-import { useSetRecoilState } from 'recoil'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -8,7 +7,6 @@ import Layout from 'components/common/Layout'
 import Scripts from 'components/common/Scripts'
 import Providers from 'components/common/Providers'
 import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
-import { UserProfileAtom } from 'store/userProfile'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks'
@@ -19,18 +17,9 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const GlobalListener: React.FC = () => {
   const router = useRouter()
-  const setUserProfile = useSetRecoilState(UserProfileAtom)
-  const { data: userProfile } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      enabled: requiredAuthMatcher(router.pathname),
-    }
-  )
-
-  if (userProfile) {
-    setUserProfile(userProfile)
-  }
+  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
+    enabled: requiredAuthMatcher(router.pathname),
+  })
 
   return null
 }

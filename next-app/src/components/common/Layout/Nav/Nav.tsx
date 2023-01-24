@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
-import { useRecoilValue } from 'recoil'
+import { useQueryClient } from '@tanstack/react-query'
 
-import { UserProfileAtom } from 'store/userProfile'
+import { UserProfile } from 'services/auth'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 import * as S from './Nav.style'
 
@@ -10,7 +11,8 @@ import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  const { name, profileImageUrl } = useRecoilValue(UserProfileAtom)
+  const client = useQueryClient()
+  const userProfile = client.getQueryData<UserProfile>(CACHE_KEYS.me)
 
   return (
     <S.TopNavContainer ref={ref}>
@@ -25,15 +27,15 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
         <S.Feedoong>Feedoong</S.Feedoong>
       </S.LogoButton>
 
-      {name ? (
+      {userProfile?.name ? (
         <S.MyPageButton onClick={() => router.push('/mypage')}>
-          <S.UserName>{`${name}님, 안녕하세요!`}</S.UserName>
-          {profileImageUrl && (
+          <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
+          {userProfile.profileImageUrl && (
             <S.UserImage
               width={32}
               height={32}
               alt="프로필 사진"
-              src={profileImageUrl}
+              src={userProfile.profileImageUrl}
               priority
             />
           )}

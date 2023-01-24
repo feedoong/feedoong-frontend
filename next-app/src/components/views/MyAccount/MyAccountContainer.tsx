@@ -1,6 +1,5 @@
-import React, { useState, useRef, useMemo, useLayoutEffect } from 'react'
+import React, { useState, useRef, useMemo, useEffect } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useRecoilValue } from 'recoil'
 
 import Dialog from 'components/common/Dialog'
 import Toast from 'components/common/Toast'
@@ -12,7 +11,7 @@ import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
-import { UserProfileAtom } from 'store/userProfile'
+import { UserProfile } from 'services/auth'
 
 import * as S from './MyAccountContainer.style'
 
@@ -35,7 +34,7 @@ const MyAccountContainer = () => {
   )
 
   const client = useQueryClient()
-  const userProfile = useRecoilValue(UserProfileAtom)
+  const userProfile = client.getQueryData<UserProfile>(CACHE_KEYS.me)
 
   const logoutAction = () => {
     client.invalidateQueries(CACHE_KEYS.me)
@@ -54,11 +53,16 @@ const MyAccountContainer = () => {
 
   const profileURL = useMemo(getMyProfileURL, [userProfile?.email])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    /**
+     * @reference https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
+     */
     if (nickNameRef.current) {
-      nickNameRef.current.value = userProfile.name
+      if (userProfile) {
+        nickNameRef.current.value = userProfile.name
+      }
     }
-  }, [userProfile.name])
+  }, [userProfile])
 
   if (!userProfile) {
     return null

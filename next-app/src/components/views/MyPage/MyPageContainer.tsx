@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useRecoilValue } from 'recoil'
+import { useQueryClient } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
 import Tab, { getSelectedTab } from 'components/common/Tab/Tab'
 import ChannelList from './List/ChannelList'
 import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
-import { UserProfileAtom } from 'store/userProfile'
+import { UserProfile } from 'services/auth'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 import * as S from './MyPageContainer.style'
 
@@ -25,7 +26,8 @@ export type MyPageListType = typeof MY_PAGE_TABS[number]['value']
 
 const MyPageContainer = () => {
   const router = useRouter()
-  const userProfile = useRecoilValue(UserProfileAtom)
+  const client = useQueryClient()
+  const userProfile = client.getQueryData<UserProfile>(CACHE_KEYS.me)
 
   const selectedTab = getSelectedTab(
     MY_PAGE_TABS,
@@ -37,7 +39,7 @@ const MyPageContainer = () => {
     <S.Container>
       <S.Contents>
         <S.Header>
-          {userProfile.profileImageUrl && (
+          {userProfile?.profileImageUrl && (
             <S.UserImage
               width={72}
               height={72}
@@ -48,7 +50,7 @@ const MyPageContainer = () => {
           )}
           <Flex direction={'column'} justify={'center'}>
             <Flex align="center" gap={5}>
-              <S.NickName>{userProfile.name}</S.NickName>
+              <S.NickName>{userProfile?.name}</S.NickName>
               <S.SettingButton onClick={() => router.push('/mypage/account')}>
                 <Image src={Icons.SettingIcon} alt="setting_icon" />
               </S.SettingButton>
