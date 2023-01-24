@@ -1,6 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-import { requiredAuthPaths } from 'features/auth/requiredAuthMatcher'
 import { isLoginValidServerSide } from 'utils/auth'
 
 export function middleware(request: NextRequest, response: NextResponse) {
@@ -12,5 +11,5 @@ export function middleware(request: NextRequest, response: NextResponse) {
 }
 
 export const config = {
-  matcher: requiredAuthPaths,
+  matcher: ['/', '/mypage/:path*'],
 }
