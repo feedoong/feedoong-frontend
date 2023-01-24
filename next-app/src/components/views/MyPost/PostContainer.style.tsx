@@ -1,5 +1,4 @@
-import Image from 'next/legacy/image'
-import styled, { css, type FlattenSimpleInterpolation } from 'styled-components'
+import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
@@ -9,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${colors.mainBG};
 `
 
 export const FeedWrapper = styled.div`
@@ -34,40 +34,15 @@ export const TitleWrapper = styled.div`
   gap: 20px;
 `
 
-export const Title = styled.h1<{ $isSelected: boolean }>`
+export const Title = styled.h1`
   ${getTypographyStyles('Headline2_B')}
 
-  color: ${({ $isSelected }) =>
-    $isSelected ? colors.gray900 : colors.gray400};
+  color: ${colors.gray900};
   cursor: pointer;
 `
 
-export const SelectViewType = styled.div`
+export const CardContainer = styled.ul`
   display: flex;
-  gap: 8px;
-`
-
-export const ViewType = styled(Image)<{ $isSelected: boolean }>`
-  color: ${({ $isSelected }) =>
-    $isSelected ? colors.gray900 : colors.gray400};
-  cursor: pointer;
-`
-
-const CardLayout: {
-  [type in 'card' | 'grid']: FlattenSimpleInterpolation
-} = {
-  card: css`
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-  `,
-  grid: css`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  `,
-}
-
-export const CardContainer = styled.ul<{ type?: 'card' | 'grid' }>`
-  ${({ type = 'card' }) => CardLayout[type]}
+  gap: 20px;
+  flex-direction: column;
 `

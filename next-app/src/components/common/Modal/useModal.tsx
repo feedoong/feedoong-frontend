@@ -6,7 +6,6 @@ import {
   useEffect,
   useRef,
 } from 'react'
-import { createPortal } from 'react-dom'
 
 import Portal from '../Portal'
 import { DimmerLayout } from './DimmerLayout'
@@ -49,7 +48,7 @@ export const useModal = ({
           handleClosedCallback={handleClosedCallback}
           handleClose={handleClose}
         >
-          {isValidElement(content)
+          {isValidElement<{ onClose: VoidFunction }>(content)
             ? cloneElement(content, { onClose: handleClose })
             : content}
         </DimmerLayout>

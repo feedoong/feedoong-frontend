@@ -10,7 +10,9 @@ export const Container = styled.div`
   align-items: center;
   gap: 4px;
   padding: 40px 0;
-  background-color: ${colors.gray200};
+  background-color: ${colors.black};
+
+  border-top: 1px solid ${colors.gray900};
 `
 
 export const Form = styled.form`
@@ -76,7 +78,7 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
   justify-content: center;
   align-items: center;
   background-color: ${({ isValid, disabled }) =>
-    isValid === true && !disabled ? colors.black : colors.gray500};
+    isValid === true && !disabled ? colors.mainPink : colors.gray500};
   cursor: pointer;
 `
 

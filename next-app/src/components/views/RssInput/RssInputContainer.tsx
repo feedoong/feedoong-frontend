@@ -54,9 +54,10 @@ const RssInputContainer = () => {
           >
             <Image
               alt="add 버튼"
+              // TODO: svg 컴포넌트로 변경
               src={Icons.Add}
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               priority
             />
           </S.AddButton>

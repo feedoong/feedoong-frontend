@@ -3,12 +3,12 @@ import React from 'react'
 import * as S from './Tab.style'
 
 export type TabItem = { label: string; value: string }
+
 interface Props {
   tabData: readonly TabItem[]
   selectedTab: TabItem
   onClick: (tab: TabItem) => void
 }
-
 const Tab = ({ tabData, selectedTab, onClick }: Props) => {
   return (
     <S.TabContainer>
@@ -28,3 +28,10 @@ const Tab = ({ tabData, selectedTab, onClick }: Props) => {
 }
 
 export default Tab
+
+export const getSelectedTab = (
+  tabData: TabItem[],
+  currentTab?: TabItem['value']
+) => {
+  return tabData.find((tab) => tab.value === currentTab) || tabData[0]
+}
