@@ -1,5 +1,15 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Container = styled.div<{ isSignUpPage: boolean }>`
-  ${({ isSignUpPage }) => !isSignUpPage && 'padding-top: 75px'}
+export const Container = styled.div<{ fullHeight: boolean }>`
+  padding-top: 75px;
+
+  ${({ fullHeight }) =>
+    fullHeight &&
+    css`
+      padding-top: 0;
+
+      main {
+        height: 100vh;
+      }
+    `};
 `

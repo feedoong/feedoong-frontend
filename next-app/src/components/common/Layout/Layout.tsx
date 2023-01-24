@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 
 import Nav from './Nav'
+import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
 
 import { Container } from './Layout.style'
 
@@ -11,13 +11,14 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter()
-  const isSignUpPage = useMemo(() => router.pathname === '/signup', [router])
-  const isOauthPage = useMemo(() => router.pathname === '/oauth', [router])
+  const isRequiredAuthPage = requiredAuthMatcher(router.pathname)
+  const isSignUpPage = router.pathname === '/signup'
+  const isIntroducePage = router.pathname === '/introduce'
 
   return (
     <>
-      {!(isSignUpPage || isOauthPage) && <Nav />}
-      <Container isSignUpPage={isSignUpPage}>
+      {(isRequiredAuthPage || isIntroducePage) && <Nav />}
+      <Container fullHeight={isSignUpPage}>
         <main>{children}</main>
       </Container>
     </>

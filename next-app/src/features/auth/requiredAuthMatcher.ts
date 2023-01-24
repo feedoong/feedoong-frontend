@@ -1,4 +1,10 @@
-export const requiredAuthPaths = ['/', '/mypage/:path*']
+export const requiredAuthPaths = [
+  '/',
+  '/mypage',
+  '/mypage/channels/:id',
+  '/mypage/posts/:id',
+  '/mypage/account',
+]
 
 export const requiredAuthMatcher = (pathname: string) => {
   return requiredAuthPaths.some((path) => {
@@ -8,10 +14,19 @@ export const requiredAuthMatcher = (pathname: string) => {
 }
 
 const pathToRegExp = (path: string) => {
-  return new RegExp(
-    /*  1. Replace all "/" with "\/" (escape the slashes)
-        2. Replace all ":paramName" with "([^\\/]+)" (match all non-slashes, one or more times)
-        3. Add "(?:\\/)?$" to the end of the pattern to match the end of the string */
-    '^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '([^\\/]+)') + '(?:\\/)?$'
-  )
+  const pathSegments = path.split('/')
+  const regExpString = buildRegExpString(pathSegments)
+
+  return new RegExp(`^${regExpString}(?:\\/)?$`)
+
+  function buildRegExpString(pathSegments: string[]) {
+    return pathSegments
+      .map((segment) => {
+        if (segment.startsWith(':')) {
+          return '([^\\/]+)'
+        }
+        return segment
+      })
+      .join('(?:\\/)?')
+  }
 }
