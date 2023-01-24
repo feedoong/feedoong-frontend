@@ -1,25 +1,17 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import Head from 'next/head'
 import { parseCookies } from 'nookies'
-import { useRouter } from 'next/router'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import { getUserInfo, getUserInfoServerSide, UserProfile } from 'services/auth'
+import { getUserInfoServerSide, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
-import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
 
 const Home: NextPage = () => {
-  const router = useRouter()
-
-  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
-    enabled: requiredAuthMatcher(router.pathname),
-  })
-
   return (
     <>
       <Head>

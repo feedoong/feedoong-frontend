@@ -1,10 +1,10 @@
-import React, { useState, useRef, useMemo } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import React, { useState, useRef, useMemo, useLayoutEffect } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
 
 import Dialog from 'components/common/Dialog'
 import Toast from 'components/common/Toast'
 import { deleteAccount } from 'services/account'
-import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { destroyTokensClientSide } from 'utils/auth'
 import InfoItem from './InfoItem'
@@ -12,6 +12,7 @@ import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
+import { UserProfileAtom } from 'store/userProfile'
 
 import * as S from './MyAccountContainer.style'
 
@@ -34,17 +35,7 @@ const MyAccountContainer = () => {
   )
 
   const client = useQueryClient()
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      onSuccess: (data) => {
-        if (nickNameRef.current) {
-          nickNameRef.current.value = data.name
-        }
-      },
-    }
-  )
+  const userProfile = useRecoilValue(UserProfileAtom)
 
   const logoutAction = () => {
     client.invalidateQueries(CACHE_KEYS.me)
@@ -62,7 +53,14 @@ const MyAccountContainer = () => {
   }
 
   const profileURL = useMemo(getMyProfileURL, [userProfile?.email])
-  if (isLoading || !userProfile) {
+
+  useLayoutEffect(() => {
+    if (nickNameRef.current) {
+      nickNameRef.current.value = userProfile.name
+    }
+  }, [userProfile.name])
+
+  if (!userProfile) {
     return null
   }
 

@@ -1,10 +1,8 @@
-import React, { forwardRef, type Dispatch, type SetStateAction } from 'react'
+import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@tanstack/react-query'
+import { useRecoilValue } from 'recoil'
 
-import { getUserInfo, type UserProfile } from 'services/auth'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
+import { UserProfileAtom } from 'store/userProfile'
 
 import * as S from './Nav.style'
 
@@ -12,16 +10,7 @@ import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  const { data: userProfile } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      // TODO: 단일 포인트로 모아서 관리할 수 있는 방법 있는지 찾아보기
-      enabled: requiredAuthMatcher(router.pathname),
-    }
-  )
-  const name = userProfile?.name
-  const profileImageUrl = userProfile?.profileImageUrl
+  const { name, profileImageUrl } = useRecoilValue(UserProfileAtom)
 
   return (
     <S.TopNavContainer ref={ref}>
