@@ -1,7 +1,6 @@
 export const requiredAuthPaths = ['/', '/mypage/:path*']
 
 export const requiredAuthMatcher = (pathname: string) => {
-  console.log({ pathname })
   return requiredAuthPaths.some((path) => {
     const regExp = pathToRegExp(path)
     return regExp.test(pathname)

@@ -10,9 +10,7 @@ export function middleware(request: NextRequest, response: NextResponse) {
   return NextResponse.next()
 }
 
-// NOTE: 'features/auth/requiredAuthMatcher' 경로의 값을 사용할 경우 too_many_redirects 에러가 발생함
-export const requiredAuthPaths = ['/', '/mypage/:path*']
-
 export const config = {
-  matcher: requiredAuthPaths,
+  // NOTE: 'features/auth/requiredAuthMatcher' 경로의 값을 사용할 경우 too_many_redirects 에러가 발생함
+  matcher: ['/', '/mypage/:path*'],
 }
