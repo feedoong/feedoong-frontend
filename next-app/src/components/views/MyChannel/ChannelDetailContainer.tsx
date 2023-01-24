@@ -6,14 +6,12 @@ import Skeleton from 'react-loading-skeleton'
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
 import * as S from 'components/views/MyPost/PostContainer.style'
-import { getChannel, getLikedItems } from 'services/feeds'
+import { getChannel } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
-import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
+import { SkeletonCardType } from 'components/common/Skeleton'
 import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
 import { getWellKnownChannelImg } from 'utils'
-
-import Icons from 'assets/icons'
 
 function PostContainer() {
   const { query } = useRouter()
@@ -26,14 +24,6 @@ function PostContainer() {
     { enabled: !!id }
   )
 
-  const [selectedCategory, setSelectedCategory] = useState<
-    'home' | 'recommended'
-  >('home')
-  const [selectedViewType, setSelectedViewType] = useState<'card' | 'grid'>(
-    'card'
-  )
-
-  const isGridView = selectedViewType === 'grid'
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   const isChannelProfileImageExist =
@@ -45,10 +35,7 @@ function PostContainer() {
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
-            <S.Title
-              $isSelected={selectedCategory === 'home'}
-              onClick={() => setSelectedCategory('home')}
-            >
+            <S.Title>
               {isLoading ? (
                 <Skeleton width={100} />
               ) : (
@@ -70,33 +57,14 @@ function PostContainer() {
               )}
             </S.Title>
           </S.TitleWrapper>
-          <S.SelectViewType>
-            <S.ViewType
-              alt="카드 뷰"
-              src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              $isSelected={!isGridView}
-              onClick={() => setSelectedViewType('card')}
-              width={16}
-              height={16}
-            />
-            <S.ViewType
-              alt="그리드 뷰"
-              src={Icons[isGridView ? 'GridViewIcon' : 'GridViewIconDeactive']}
-              $isSelected={isGridView}
-              onClick={() => setSelectedViewType('grid')}
-              width={16}
-              height={16}
-            />
-          </S.SelectViewType>
         </S.Header>
-        <S.CardContainer type={selectedViewType}>
+        <S.CardContainer>
           {isLoading
             ? Array.from({ length: 10 }).map((_, idx) => {
-                const Card = isGridView ? SkeletonGridType : SkeletonCardType
-                return <Card key={idx} />
+                return <SkeletonCardType key={idx} />
               })
             : data?.items.map((item) => (
-                <FeedItem key={item.id} type={selectedViewType} item={item} />
+                <FeedItem key={item.id} type="card" item={item} />
               ))}
         </S.CardContainer>
         <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>

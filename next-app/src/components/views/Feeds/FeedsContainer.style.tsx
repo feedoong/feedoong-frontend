@@ -1,8 +1,6 @@
-import Image from 'next/legacy/image'
 import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
-import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
