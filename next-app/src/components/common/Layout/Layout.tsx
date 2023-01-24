@@ -12,13 +12,16 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter()
-  const { isErrorPage, isIntroducePage, isRequiredAuthPage, isSignUpPage } =
-    routerBranch(router.pathname)
+
+  const { isErrorPage, isIntroducePage, isRequiredAuthPage } = routerBranch(
+    router.pathname
+  )
+  const appearGNB = isRequiredAuthPage || isIntroducePage
 
   return (
     <>
-      {(isRequiredAuthPage || isIntroducePage) && <Nav />}
-      <Container fullHeight={isSignUpPage || isErrorPage}>
+      {appearGNB && <Nav />}
+      <Container fullHeight={!appearGNB || isErrorPage}>
         <main>{children}</main>
       </Container>
     </>
@@ -30,7 +33,6 @@ export default Layout
 const routerBranch = (pathname: string) => {
   return {
     isRequiredAuthPage: requiredAuthMatcher(pathname),
-    isSignUpPage: pathname === '/signup',
     isIntroducePage: pathname === '/introduce',
     isErrorPage: isErrorPage(pathname),
   }
