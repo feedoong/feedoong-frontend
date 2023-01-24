@@ -11,12 +11,13 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
+import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
 
 const Home: NextPage = () => {
   const router = useRouter()
 
   useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
-    enabled: router.pathname !== '/introduce',
+    enabled: requiredAuthMatcher(router.pathname),
   })
 
   return (
