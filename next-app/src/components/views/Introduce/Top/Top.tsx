@@ -1,4 +1,6 @@
+import Anchor from 'components/common/Anchor'
 import * as S from 'components/views/Introduce/Top/Top.style'
+import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 
 const Top = () => {
   return (
@@ -9,7 +11,9 @@ const Top = () => {
         <br />
         크롬 새탭에서 바로 시작하세요!
       </S.Subtitle>
-      <S.GoogleLoginButton>크롬에 추가하기</S.GoogleLoginButton>
+      <Anchor href={FEEDOONG_EXTENSION_URL} target="_blank">
+        <S.GoogleLoginButton>크롬에 추가하기</S.GoogleLoginButton>
+      </Anchor>
     </S.Wrapper>
   )
 }
