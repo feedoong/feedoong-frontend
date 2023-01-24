@@ -1,8 +1,8 @@
-import type {
-  AxiosError,
-  AxiosInstance,
-  AxiosResponse,
-  AxiosRequestHeaders,
+import axios, {
+  type AxiosError,
+  type AxiosInstance,
+  type AxiosResponse,
+  type AxiosRequestHeaders,
 } from 'axios'
 import Cookies from 'js-cookie'
 
@@ -43,7 +43,7 @@ export const refreshAccessToken = async (
   const refreshToken = Cookies.get(RefreshToken)
 
   // TODO: 리프레시 토큰 만료시 로그아웃 처리도 필요
-  const { data } = await _api.post<
+  const { data } = await axios.post<
     SignUpResponse['refreshToken'],
     AxiosResponse<SignUpResponse>
   >(getApiEndpoint() + `/users/token`, {
