@@ -28,3 +28,10 @@ const Tab = ({ tabData, selectedTab, onClick }: Props) => {
 }
 
 export default Tab
+
+export const getSelectedTab = (
+  tabData: TabItem[],
+  currentTab?: TabItem['value']
+) => {
+  return tabData.find((tab) => tab.value === currentTab) || tabData[0]
+}

@@ -2,10 +2,10 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import Flex from 'components/common/Flex'
-import Tab from 'components/common/Tab/Tab'
+import Tab, { getSelectedTab } from 'components/common/Tab/Tab'
 import ChannelList from './List/ChannelList'
 import PostList from './List/PostList'
-import { getFeedoongUrl, getSelectedTab } from './MyPageContainer.utils'
+import { getFeedoongUrl } from './MyPageContainer.utils'
 import { useGetUserProfile } from './queries/userProfile'
 
 import * as S from './MyPageContainer.style'
@@ -15,16 +15,21 @@ import Icons from 'assets/icons'
 export const MY_PAGE_TABS = [
   { label: '등록한 채널', value: 'channel', TabComponent: ChannelList },
   { label: '저장한 게시물', value: 'post', TabComponent: PostList },
-] as const
+]
 
-export type MyPageTabOption = typeof MY_PAGE_TABS[number]
+export type MyPageTabOption = typeof MY_PAGE_TABS[number] & {
+  TabComponent: React.FC
+}
 export type MyPageListType = typeof MY_PAGE_TABS[number]['value']
 
 const MyPageContainer = () => {
   const router = useRouter()
   const { data: userProfile } = useGetUserProfile()
 
-  const selectedTab = getSelectedTab(router.query.tab as MyPageListType)
+  const selectedTab = getSelectedTab(
+    MY_PAGE_TABS,
+    router.query.tab as MyPageListType
+  ) as MyPageTabOption
   const { TabComponent } = selectedTab
 
   return (

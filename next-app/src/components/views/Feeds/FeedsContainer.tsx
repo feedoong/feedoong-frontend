@@ -1,19 +1,33 @@
 import { useEffect, useState } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
+import { useRouter } from 'next/router'
 
 import FeedItem from 'components/common/FeedItem'
 import { getFeeds } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { SkeletonCardType, SkeletonGridType } from 'components/common/Skeleton'
+import { SkeletonCardType } from 'components/common/Skeleton'
 import Loading from 'components/common/Loading'
 import EmptyContents from 'components/common/EmptyContents'
+import Tab from 'components/common/Tab'
+import { getSelectedTab } from 'components/common/Tab/Tab'
 
 import * as S from './FeedsContainer.style'
 
-import Icons from 'assets/icons'
+export const FEED_TABS = [
+  {
+    label: '내 피드',
+    value: 'home',
+  },
+  {
+    label: '둘러보기',
+    value: 'recommended',
+  },
+]
 
 const FeedsContainer = () => {
+  const router = useRouter()
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useInfiniteQuery(
       CACHE_KEYS.feeds,
@@ -28,62 +42,43 @@ const FeedsContainer = () => {
     rootMargin: '25px',
   })
 
-  const [selectedCategory, setSelectedCategory] = useState<
-    'home' | 'recommended'
-  >('home')
-  const [selectedViewType, setSelectedViewType] = useState<'card' | 'grid'>(
-    'card'
-  )
-
   useEffect(() => {
     if (inView) {
       fetchNextPage()
     }
   }, [inView, fetchNextPage])
 
-  const isGridView = selectedViewType === 'grid'
   const showSkeleton = isFetching && !data
+
+  const selectedTab = getSelectedTab(FEED_TABS, router.query.tab as string)
+
+  console.log({ selectedTab })
 
   return (
     <S.Container>
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
-            <S.Title
-              $isSelected={selectedCategory === 'home'}
-              onClick={() => setSelectedCategory('home')}
-            >
-              홈 피드
-            </S.Title>
+            <Tab
+              tabData={FEED_TABS}
+              selectedTab={selectedTab}
+              onClick={(tab) => {
+                router.push({
+                  pathname: router.pathname,
+                  query: { tab: tab.value },
+                })
+              }}
+            />
           </S.TitleWrapper>
-          <S.SelectViewType>
-            <S.ViewType
-              alt="카드 뷰"
-              src={Icons[!isGridView ? 'CardViewIcon' : 'CardViewIconDeactive']}
-              $isSelected={!isGridView}
-              onClick={() => setSelectedViewType('card')}
-              width={16}
-              height={16}
-            />
-            <S.ViewType
-              alt="그리드 뷰"
-              src={Icons[isGridView ? 'GridViewIcon' : 'GridViewIconDeactive']}
-              $isSelected={isGridView}
-              onClick={() => setSelectedViewType('grid')}
-              width={16}
-              height={16}
-            />
-          </S.SelectViewType>
         </S.Header>
-        <S.CardContainer type={selectedViewType}>
+        <S.CardContainer>
           {showSkeleton &&
             Array.from({ length: 10 }).map((_, idx) => {
-              const Card = isGridView ? SkeletonGridType : SkeletonCardType
-              return <Card key={idx} />
+              return <SkeletonCardType key={idx} />
             })}
           {data?.pages.map((page) =>
             page.items.map((item) => (
-              <FeedItem key={item.id} type={selectedViewType} item={item} />
+              <FeedItem key={item.id} type="card" item={item} />
             ))
           )}
         </S.CardContainer>
