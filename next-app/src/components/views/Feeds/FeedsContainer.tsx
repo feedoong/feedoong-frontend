@@ -22,8 +22,8 @@ export const FEED_TABS = [
   {
     label: '둘러보기',
     value: 'recommended',
-  },
-]
+  }
+] satisfies { label: string; value: string }[];
 
 const FeedsContainer = () => {
   const router = useRouter()
@@ -59,7 +59,7 @@ const FeedsContainer = () => {
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
-            <Tab
+            <Tab<typeof FEED_TABS>
               tabData={FEED_TABS}
               selectedTab={selectedTab}
               onClick={(tab) => {

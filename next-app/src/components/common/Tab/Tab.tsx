@@ -2,14 +2,19 @@ import React from 'react'
 
 import * as S from './Tab.style'
 
-export type TabItem = { label: string; value: string }
-interface Props {
-  tabData: readonly TabItem[]
-  selectedTab: TabItem
-  onClick: (tab: TabItem) => void
+type TabItem = Record<string, string>
+
+interface Props<T extends TabItem[]> {
+  tabData: T
+  selectedTab: T[number]
+  onClick: (tab: T[number]) => void
 }
 
-const Tab = ({ tabData, selectedTab, onClick }: Props) => {
+const Tab = <T extends TabItem[]>({
+  tabData,
+  selectedTab,
+  onClick,
+}: Props<T>) => {
   return (
     <S.TabContainer>
       {tabData.map((item) => {
@@ -29,9 +34,9 @@ const Tab = ({ tabData, selectedTab, onClick }: Props) => {
 
 export default Tab
 
-export const getSelectedTab = (
-  tabData: TabItem[],
-  currentTab?: TabItem['value']
+export const getSelectedTab = <T extends TabItem[]>(
+  tabData: T,
+  currentTab?: T[number]['value']
 ) => {
   return tabData.find((tab) => tab.value === currentTab) || tabData[0]
 }
