@@ -17,4 +17,6 @@ export const useGoogleAnalytics = () => {
       router.events.off('hashChangeComplete', handleRouteChange)
     }
   }, [router.events])
+
+  return null
 }

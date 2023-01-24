@@ -1,7 +1,8 @@
-import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 
 import Nav from './Nav'
+import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
+import { isErrorPage } from 'features/errors/errors'
 
 import { Container } from './Layout.style'
 
@@ -11,13 +12,16 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter()
-  const isSignUpPage = useMemo(() => router.pathname === '/signup', [router])
-  const isOauthPage = useMemo(() => router.pathname === '/oauth', [router])
+
+  const { isErrorPage, isIntroducePage, isRequiredAuthPage } = routerBranch(
+    router.pathname
+  )
+  const appearGNB = isRequiredAuthPage || isIntroducePage
 
   return (
     <>
-      {!(isSignUpPage || isOauthPage) && <Nav />}
-      <Container isSignUpPage={isSignUpPage}>
+      {appearGNB && <Nav />}
+      <Container fullHeight={!appearGNB || isErrorPage}>
         <main>{children}</main>
       </Container>
     </>
@@ -25,3 +29,11 @@ const Layout = ({ children }: Props) => {
 }
 
 export default Layout
+
+const routerBranch = (pathname: string) => {
+  return {
+    isRequiredAuthPage: requiredAuthMatcher(pathname),
+    isIntroducePage: pathname === '/introduce',
+    isErrorPage: isErrorPage(pathname),
+  }
+}

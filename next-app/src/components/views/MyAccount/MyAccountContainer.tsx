@@ -47,9 +47,9 @@ const MyAccountContainer = () => {
   )
 
   const logoutAction = () => {
-    destroyTokensClientSide()
-
     client.invalidateQueries(CACHE_KEYS.me)
+
+    destroyTokensClientSide()
     window.location.href = '/'
   }
 

@@ -6,7 +6,7 @@ import Flex from 'components/common/Flex'
 
 export const ContentWrapper = styled(Flex)`
   width: 100%;
-  height: calc(100vh - 75px);
+  height: 100%;
   background-color: ${colors.mainBG};
 `
 
