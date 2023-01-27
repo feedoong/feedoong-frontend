@@ -7,7 +7,7 @@ import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 75px);
+  height: 100%;
   overflow: auto;
   padding-top: 60px;
   background-color: ${colors.mainBG};
