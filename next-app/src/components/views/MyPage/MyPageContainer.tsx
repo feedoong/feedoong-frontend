@@ -11,6 +11,7 @@ import { useGetUserProfile } from './queries/userProfile'
 import * as S from './MyPageContainer.style'
 
 import Icons from 'assets/icons'
+import PageContainer from 'components/common/PageContainer'
 
 export const MY_PAGE_TABS = [
   { label: '등록한 채널', value: 'channel', TabComponent: ChannelList },
@@ -33,7 +34,7 @@ const MyPageContainer = () => {
   const { TabComponent } = selectedTab
 
   return (
-    <S.Container>
+    <PageContainer>
       <S.Contents>
         <S.Header>
           {userProfile?.profileImageUrl && (
@@ -77,7 +78,7 @@ const MyPageContainer = () => {
         </S.TabWrapper>
         <TabComponent />
       </S.Contents>
-    </S.Container>
+    </PageContainer>
   )
 }
 
