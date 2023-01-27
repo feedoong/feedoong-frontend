@@ -17,7 +17,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
     getUserInfo,
     {
       // TODO: 단일 포인트로 모아서 관리할 수 있는 방법 있는지 찾아보기
-      enabled: requiredAuthMatcher(router.pathname),
+      enabled: requiredAuthMatcher(router.pathname) || router.pathname === '/introduce',
     }
   )
   const name = userProfile?.name
