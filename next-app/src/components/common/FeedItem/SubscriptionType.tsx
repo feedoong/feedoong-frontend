@@ -58,7 +58,7 @@ const SubscriptionType = ({ item }: Props) => {
             gap={8}
             style={{ width: '100%' }}
           >
-            <Anchor href={'/mypage/channels/' + item.id.toString()}>
+            <Anchor href={'/channel/' + item.id.toString()}>
               <Title>{item.title}</Title>
             </Anchor>
 
@@ -66,7 +66,7 @@ const SubscriptionType = ({ item }: Props) => {
               placement="bottom-start"
               render={() => (
                 <Popover.Layout>
-                  <Anchor href={'/mypage/channels/' + item.id.toString()}>
+                  <Anchor href={'/channel/' + item.id.toString()}>
                     <Popover.Item
                       icon={
                         <Image

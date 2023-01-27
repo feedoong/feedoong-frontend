@@ -12,6 +12,7 @@ import Paging from 'components/common/Paging'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
 import { getWellKnownChannelImg } from 'utils'
+import PageContainer from 'components/common/PageContainer'
 
 function PostContainer() {
   const { query } = useRouter()
@@ -31,7 +32,7 @@ function PostContainer() {
     getWellKnownChannelImg(data?.items[0].link ?? '')
 
   return (
-    <S.Container>
+    <PageContainer>
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
@@ -75,7 +76,7 @@ function PostContainer() {
           />
         </Flex>
       </S.FeedWrapper>
-    </S.Container>
+    </PageContainer>
   )
 }
 

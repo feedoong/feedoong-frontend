@@ -7,15 +7,15 @@ import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 75px);
-  background-color: ${colors.mainBG};
+  height: 100%;
   overflow: auto;
+  background-color: ${colors.mainBG};
 `
 
 export const Contents = styled.div`
   width: 650px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding-bottom: 40px;
 
   ${mediaQuery.mobileL`
     width: 100%;

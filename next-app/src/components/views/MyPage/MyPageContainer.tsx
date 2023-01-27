@@ -7,6 +7,7 @@ import ChannelList from './List/ChannelList'
 import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
 import { useGetUserProfile } from './queries/userProfile'
+import PageContainer from 'components/common/PageContainer'
 
 import * as S from './MyPageContainer.style'
 
@@ -33,7 +34,7 @@ const MyPageContainer = () => {
   const { TabComponent } = selectedTab
 
   return (
-    <S.Container>
+    <PageContainer>
       <S.Contents>
         <S.Header>
           {userProfile?.profileImageUrl && (
@@ -77,7 +78,7 @@ const MyPageContainer = () => {
         </S.TabWrapper>
         <TabComponent />
       </S.Contents>
-    </S.Container>
+    </PageContainer>
   )
 }
 
