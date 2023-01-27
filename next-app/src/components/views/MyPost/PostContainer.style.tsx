@@ -5,9 +5,11 @@ import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
+  height: 100%;
+  overflow: auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   background-color: ${colors.mainBG};
 `
 
