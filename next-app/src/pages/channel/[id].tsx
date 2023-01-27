@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 
-import MyChannelDetailView from 'components/views/MyChannel/ChannelDetailContainer'
+import ChannelDetailView from 'components/views/Channel/ChannelDetailContainer'
 
-const MyChannelDetail: NextPage = () => {
-  return <MyChannelDetailView />
+const ChannelDetail: NextPage = () => {
+  return <ChannelDetailView />
 }
 
-export default MyChannelDetail
+export default ChannelDetail
