@@ -12,9 +12,9 @@ import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
+import PageContainer from 'components/common/PageContainer'
 
 import * as S from './MyAccountContainer.style'
-import PageContainer from 'components/common/PageContainer'
 
 const MyAccountContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =

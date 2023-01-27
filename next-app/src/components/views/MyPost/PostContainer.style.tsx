@@ -4,6 +4,15 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
+export const Container = styled.div`
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: ${colors.mainBG};
+`
+
 export const FeedWrapper = styled.div`
   margin: 0 auto;
   padding: 0 12px;
