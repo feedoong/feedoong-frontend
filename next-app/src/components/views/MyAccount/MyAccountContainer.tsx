@@ -14,6 +14,7 @@ import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 
 import * as S from './MyAccountContainer.style'
+import PageContainer from 'components/common/PageContainer'
 
 const MyAccountContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
@@ -67,7 +68,7 @@ const MyAccountContainer = () => {
   }
 
   return (
-    <S.Container>
+    <PageContainer>
       <S.Contents>
         <S.PageTitle>내 정보</S.PageTitle>
         <S.Item>
@@ -153,7 +154,7 @@ const MyAccountContainer = () => {
           </button>
         </Dialog.Actions>
       </Dialog>
-    </S.Container>
+    </PageContainer>
   )
 }
 

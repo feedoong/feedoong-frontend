@@ -5,14 +5,6 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  padding-top: 60px;
-  background-color: ${colors.mainBG};
-`
-
 export const Contents = styled.div`
   width: 100%;
   padding: 0 12px;

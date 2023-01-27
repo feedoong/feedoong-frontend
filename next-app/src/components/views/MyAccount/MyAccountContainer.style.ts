@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Contents = styled.div`
   width: 650px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding-bottom: 40px;
 
   ${mediaQuery.mobileL`
     width: 100%;

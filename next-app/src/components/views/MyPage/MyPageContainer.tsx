@@ -7,11 +7,11 @@ import ChannelList from './List/ChannelList'
 import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
 import { useGetUserProfile } from './queries/userProfile'
+import PageContainer from 'components/common/PageContainer'
 
 import * as S from './MyPageContainer.style'
 
 import Icons from 'assets/icons'
-import PageContainer from 'components/common/PageContainer'
 
 export const MY_PAGE_TABS = [
   { label: '등록한 채널', value: 'channel', TabComponent: ChannelList },
