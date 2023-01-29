@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useQueryClient } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
 import Tab, { getSelectedTab } from 'components/common/Tab/Tab'
 import ChannelList from './List/ChannelList'
 import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
-import { UserProfile } from 'services/auth'
-import { CACHE_KEYS } from 'services/cacheKeys'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 import * as S from './MyPageContainer.style'
 
@@ -26,8 +24,7 @@ export type MyPageListType = typeof MY_PAGE_TABS[number]['value']
 
 const MyPageContainer = () => {
   const router = useRouter()
-  const client = useQueryClient()
-  const userProfile = client.getQueryData<UserProfile>(CACHE_KEYS.me)
+  const { data: userProfile } = useGetUserProfile()
 
   const selectedTab = getSelectedTab(
     MY_PAGE_TABS,

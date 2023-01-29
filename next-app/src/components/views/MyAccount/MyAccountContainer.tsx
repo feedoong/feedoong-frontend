@@ -11,7 +11,7 @@ import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
-import { UserProfile } from 'services/auth'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 import * as S from './MyAccountContainer.style'
 
@@ -34,7 +34,7 @@ const MyAccountContainer = () => {
   )
 
   const client = useQueryClient()
-  const userProfile = client.getQueryData<UserProfile>(CACHE_KEYS.me)
+  const { data: userProfile, isLoading } = useGetUserProfile()
 
   const logoutAction = () => {
     client.invalidateQueries(CACHE_KEYS.me)
@@ -54,17 +54,12 @@ const MyAccountContainer = () => {
   const profileURL = useMemo(getMyProfileURL, [userProfile?.email])
 
   useEffect(() => {
-    /**
-     * @reference https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
-     */
-    if (nickNameRef.current) {
-      if (userProfile) {
-        nickNameRef.current.value = userProfile.name
-      }
+    if (nickNameRef.current && userProfile) {
+      nickNameRef.current.value = userProfile.name
     }
   }, [userProfile])
 
-  if (!userProfile) {
+  if (isLoading || !userProfile) {
     return null
   }
 
@@ -90,10 +85,10 @@ const MyAccountContainer = () => {
         <S.InfoItemContainer>
           <InfoItem
             readOnly
-            value={getMyProfileURL()}
+            value={profileURL}
             labelName={'피둥 주소'}
             buttonName={'주소 복사'}
-            buttonAction={() => copyToClipboard(getMyProfileURL())}
+            buttonAction={() => copyToClipboard(profileURL)}
           />
           <InfoItem
             // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)

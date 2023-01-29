@@ -10,8 +10,11 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 const Home: NextPage = () => {
+  useGetUserProfile()
+
   return (
     <>
       <Head>

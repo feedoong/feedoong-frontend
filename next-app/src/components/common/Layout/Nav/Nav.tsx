@@ -1,9 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
-import { useQueryClient } from '@tanstack/react-query'
 
-import { UserProfile } from 'services/auth'
-import { CACHE_KEYS } from 'services/cacheKeys'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 import * as S from './Nav.style'
 
@@ -11,8 +9,7 @@ import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  const client = useQueryClient()
-  const userProfile = client.getQueryData<UserProfile>(CACHE_KEYS.me)
+  const { data: userProfile } = useGetUserProfile()
 
   return (
     <S.TopNavContainer ref={ref}>
