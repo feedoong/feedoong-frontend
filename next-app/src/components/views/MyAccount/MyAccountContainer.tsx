@@ -11,6 +11,7 @@ import { Label } from './InfoItem/InfoItem.style'
 import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
+import PageContainer from 'components/common/PageContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
 
 import * as S from './MyAccountContainer.style'
@@ -64,7 +65,7 @@ const MyAccountContainer = () => {
   }
 
   return (
-    <S.Container>
+    <PageContainer>
       <S.Contents>
         <S.PageTitle>내 정보</S.PageTitle>
         <S.Item>
@@ -150,7 +151,7 @@ const MyAccountContainer = () => {
           </button>
         </Dialog.Actions>
       </Dialog>
-    </S.Container>
+    </PageContainer>
   )
 }
 

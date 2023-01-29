@@ -3,7 +3,10 @@ import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
-export const TabContainer = styled.div``
+export const TabContainer = styled.div`
+  display: flex;
+  gap: 2px;
+`
 
 export const Tab = styled.button<{ isSelected: boolean }>`
   all: unset;

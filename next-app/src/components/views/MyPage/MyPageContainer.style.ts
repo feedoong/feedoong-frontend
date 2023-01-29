@@ -5,17 +5,8 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
-export const Container = styled.div`
-  width: 100%;
-  height: calc(100vh - 75px);
-  overflow: auto;
-  padding-top: 60px;
-  background-color: ${colors.mainBG};
-`
-
 export const Contents = styled.div`
   width: 100%;
-  height: 100%;
   padding: 0 12px;
   max-width: 640px;
   border-radius: 4px;
