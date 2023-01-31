@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 
 import { HOUR, MINUTE } from 'constants/dateTime'
