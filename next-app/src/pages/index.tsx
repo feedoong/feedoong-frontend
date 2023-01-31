@@ -40,7 +40,10 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery<UserProfile>(
       CACHE_KEYS.me,
-      getUserInfoServerSide(api)
+      getUserInfoServerSide(api),
+      {
+        staleTime: Infinity,
+      }
     )
     await queryClient.prefetchInfiniteQuery(
       CACHE_KEYS.feeds,

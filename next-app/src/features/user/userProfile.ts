@@ -14,10 +14,8 @@ export const useGetUserProfile = (
   return useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
     ...options,
     enabled: requiredAuthMatcher(router.pathname),
-    /**
-     * TODO: cache time, stale time 정책 정의
-     */
-    staleTime: MINUTE * 30,
-    cacheTime: HOUR,
+
+    /** @NOTE 로그인 했을 때 얻은 유저 정보를 계속 사용하도록 함. 만약 직접 쿼리 무효화를 했을 경우에만 사라짐. */
+    staleTime: Infinity,
   })
 }
