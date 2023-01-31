@@ -1,10 +1,8 @@
 export const requiredAuthPaths = [
   '/',
   '/mypage',
-  '/mypage/channels/:id',
-  '/mypage/posts/:id',
   '/mypage/account',
-  '/channel/:id'
+  '/channels/:id',
 ]
 
 export const requiredAuthMatcher = (pathname: string) => {
