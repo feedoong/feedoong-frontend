@@ -1,24 +1,19 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import Head from 'next/head'
 import { parseCookies } from 'nookies'
-import { useRouter } from 'next/router'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import { getUserInfo, getUserInfoServerSide, UserProfile } from 'services/auth'
+import { getUserInfoServerSide, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
-import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 const Home: NextPage = () => {
-  const router = useRouter()
-
-  useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
-    enabled: requiredAuthMatcher(router.pathname),
-  })
+  useGetUserProfile()
 
   return (
     <>
@@ -45,7 +40,10 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery<UserProfile>(
       CACHE_KEYS.me,
-      getUserInfoServerSide(api)
+      getUserInfoServerSide(api),
+      {
+        staleTime: Infinity,
+      }
     )
     await queryClient.prefetchInfiniteQuery(
       CACHE_KEYS.feeds,

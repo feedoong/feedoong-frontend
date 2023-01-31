@@ -29,7 +29,7 @@ const CardType = ({ item }: Props) => {
   const { handleRead } = useReadPost(item)
 
   const { pathname } = useRouter()
-  const isDetailPage = pathname === '/mypage/channels/[id]'
+  const isDetailPage = pathname === '/channels/[id]'
 
   return (
     <Container>
@@ -74,7 +74,7 @@ const CardType = ({ item }: Props) => {
               {item.channelTitle}
             </S.Author>
           ) : (
-            <S.Author href={'/mypage/channels/' + item.channelId.toString()}>
+            <S.Author href={'/channels/' + item.channelId.toString()}>
               {item.channelTitle}
             </S.Author>
           )}

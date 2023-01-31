@@ -1,10 +1,7 @@
-import React, { forwardRef, type Dispatch, type SetStateAction } from 'react'
+import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@tanstack/react-query'
 
-import { getUserInfo, type UserProfile } from 'services/auth'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 import * as S from './Nav.style'
 
@@ -12,16 +9,7 @@ import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  const { data: userProfile } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      // TODO: 단일 포인트로 모아서 관리할 수 있는 방법 있는지 찾아보기
-      enabled: requiredAuthMatcher(router.pathname) || router.pathname === '/introduce',
-    }
-  )
-  const name = userProfile?.name
-  const profileImageUrl = userProfile?.profileImageUrl
+  const { data: userProfile } = useGetUserProfile()
 
   return (
     <S.TopNavContainer ref={ref}>
@@ -36,15 +24,15 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
         <S.Feedoong>Feedoong</S.Feedoong>
       </S.LogoButton>
 
-      {name ? (
+      {userProfile?.name ? (
         <S.MyPageButton onClick={() => router.push('/mypage')}>
-          <S.UserName>{`${name}님, 안녕하세요!`}</S.UserName>
-          {profileImageUrl && (
+          <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
+          {userProfile.profileImageUrl && (
             <S.UserImage
               width={32}
               height={32}
               alt="프로필 사진"
-              src={profileImageUrl}
+              src={userProfile.profileImageUrl}
               priority
             />
           )}

@@ -1,10 +1,9 @@
-import React, { useState, useRef, useMemo } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import React, { useState, useRef, useMemo, useEffect } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
 import Toast from 'components/common/Toast'
 import { deleteAccount } from 'services/account'
-import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { destroyTokensClientSide } from 'utils/auth'
 import InfoItem from './InfoItem'
@@ -13,6 +12,7 @@ import Divider from 'components/common/Divider'
 import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 import PageContainer from 'components/common/PageContainer'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 import * as S from './MyAccountContainer.style'
 
@@ -35,17 +35,7 @@ const MyAccountContainer = () => {
   )
 
   const client = useQueryClient()
-  const { data: userProfile, isLoading } = useQuery<UserProfile>(
-    CACHE_KEYS.me,
-    getUserInfo,
-    {
-      onSuccess: (data) => {
-        if (nickNameRef.current) {
-          nickNameRef.current.value = data.name
-        }
-      },
-    }
-  )
+  const { data: userProfile, isLoading } = useGetUserProfile()
 
   const logoutAction = () => {
     client.invalidateQueries(CACHE_KEYS.me)
@@ -63,6 +53,13 @@ const MyAccountContainer = () => {
   }
 
   const profileURL = useMemo(getMyProfileURL, [userProfile?.email])
+
+  useEffect(() => {
+    if (nickNameRef.current && userProfile) {
+      nickNameRef.current.value = userProfile.name
+    }
+  }, [userProfile])
+
   if (isLoading || !userProfile) {
     return null
   }
@@ -89,10 +86,10 @@ const MyAccountContainer = () => {
         <S.InfoItemContainer>
           <InfoItem
             readOnly
-            value={getMyProfileURL()}
+            value={profileURL}
             labelName={'피둥 주소'}
             buttonName={'주소 복사'}
-            buttonAction={() => copyToClipboard(getMyProfileURL())}
+            buttonAction={() => copyToClipboard(profileURL)}
           />
           <InfoItem
             // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)

@@ -6,7 +6,7 @@ import Tab, { getSelectedTab } from 'components/common/Tab/Tab'
 import ChannelList from './List/ChannelList'
 import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
-import { useGetUserProfile } from './queries/userProfile'
+import { useGetUserProfile } from 'features/user/userProfile'
 import PageContainer from 'components/common/PageContainer'
 
 import * as S from './MyPageContainer.style'
@@ -42,13 +42,13 @@ const MyPageContainer = () => {
               width={72}
               height={72}
               alt="프로필 사진"
-              src={userProfile.profileImageUrl || ''}
+              src={userProfile.profileImageUrl}
               priority
             />
           )}
           <Flex direction={'column'} justify={'center'}>
             <Flex align="center" gap={5}>
-              <S.NickName>{userProfile?.name || ''}</S.NickName>
+              <S.NickName>{userProfile?.name}</S.NickName>
               <S.SettingButton onClick={() => router.push('/mypage/account')}>
                 <Image src={Icons.SettingIcon} alt="setting_icon" />
               </S.SettingButton>

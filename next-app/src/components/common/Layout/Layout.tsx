@@ -13,15 +13,13 @@ interface Props {
 const Layout = ({ children }: Props) => {
   const router = useRouter()
 
-  const { isErrorPage, isSignUpPage } = routerBranch(
-    router.pathname
-  )
-  const disapperGNB = isSignUpPage
+  const { isErrorPage, isSignUpPage } = routerBranch(router.pathname)
+  const disappearGNB = isSignUpPage
 
   return (
     <>
-      {!disapperGNB && <Nav />}
-      <Container fullHeight={disapperGNB || isErrorPage}>
+      {!disappearGNB && <Nav />}
+      <Container fullHeight={disappearGNB || isErrorPage}>
         <main>{children}</main>
       </Container>
     </>
