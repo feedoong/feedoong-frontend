@@ -31,7 +31,7 @@ export const globalQueryErrorHandler = (
 }
 
 const goToIntroducePage = () => {
-  const isClient = !isServer
+  const isClient = !isServer()
   if (isClient) {
     window.location.href = '/introduce'
   }
