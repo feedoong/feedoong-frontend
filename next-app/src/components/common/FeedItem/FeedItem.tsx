@@ -15,9 +15,9 @@ type Props =
       item: Item
     }
   | {
-      type: 'recommend/item'
+      type: 'recommend/card'
       item: RecommendationItem
-    }
+    } // 아직 미구현
   | {
       type: 'subscription'
       item: Subscription

@@ -8,6 +8,7 @@ import Divider from '../Divider'
 import Anchor from '../Anchor'
 import useToggleLike from './hooks/useToggleLike'
 import useReadPost from './hooks/useReadPost'
+import LogoIcon from './LogoIcon'
 
 import * as S from './FeedItem.style'
 import { Container, Title } from './CardType.style'
@@ -15,7 +16,7 @@ import { Container, Title } from './CardType.style'
 import Icons from 'assets/icons'
 
 interface Props {
-  type: 'card' | 'recommend/item'
+  type: 'card' | 'recommend/card'
   item: Item | Exclude<Item, 'isViewed' | 'isLiked'>
 }
 
@@ -25,7 +26,7 @@ interface Props {
  * @constructor
  */
 
-const CardType = ({ item }: Props) => {
+const CardType = ({ type, item }: Props) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
 
@@ -60,15 +61,13 @@ const CardType = ({ item }: Props) => {
       <Divider />
       <S.Footer>
         <S.PostMeta>
-          <img
-            alt="채널 로고"
+          <LogoIcon
+            type={type}
             src={
               item.channelImageUrl ??
               getWellKnownChannelImg(item.link) ??
               Icons.Account
             }
-            width={20}
-            height={20}
           />
           {isDetailPage ? (
             <S.Author href={item.link} target="_blank">
