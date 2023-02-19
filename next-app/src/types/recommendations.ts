@@ -1,4 +1,5 @@
 import { Item } from './feeds'
+import type { Subscription } from './subscriptions'
 
 export type Recommendations = {
   channels: [
@@ -28,3 +29,8 @@ export type Recommendations = {
 }
 
 export type RecommendationItem = Exclude<Item, 'isViewed' | 'isLiked'>
+
+export type RecommendationSubscription = Exclude<
+  Subscription,
+  'isViewed' | 'isLiked'
+>
