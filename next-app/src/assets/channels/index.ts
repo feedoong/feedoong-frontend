@@ -9,6 +9,7 @@ import Chrome from './chrome.png'
 import Hyperconnect from './hyperconnect.ico'
 import NhnToast from './nhnToast.ico'
 import Velog from './velog.ico'
+import Youtube from './youtube.ico'
 
 export const getIconByHostname = (hostname: string) => {
   // 로직으로 처리할 경우
@@ -20,6 +21,9 @@ export const getIconByHostname = (hostname: string) => {
   }
   if (hostname.includes('tistory')) {
     return Tistory.src
+  }
+  if (hostname.includes('youtube')) {
+    return Youtube.src
   }
   // 정확한 hostname으로 처리할 경우
   switch (hostname) {

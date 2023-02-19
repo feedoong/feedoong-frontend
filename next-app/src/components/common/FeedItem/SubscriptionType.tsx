@@ -5,6 +5,7 @@ import { getWellKnownChannelImg } from 'utils'
 import type { RecommendationSubscription } from 'types/recommendations'
 import RecommendationPopover from './Popovers/RecommendationPopover'
 import FeedItemPopover from './Popovers/FeedItemPopover'
+import LogoIcon from './LogoIcon'
 
 import { Container, Title, Url } from './SubscriptionType.style'
 
@@ -21,19 +22,14 @@ type Props =
     }
 
 const SubscriptionType = ({ type, item }: Props) => {
-  console.log({ type })
-
   return (
     <Container>
       <Flex gap={12}>
-        <img
-          alt="채널 로고"
+        <LogoIcon
+          type={type}
           src={
             item.imageUrl ?? getWellKnownChannelImg(item.url) ?? Icons.Account
           }
-          width={48}
-          height={48}
-          style={{ borderRadius: '12px' }}
         />
         <Flex direction="column" style={{ width: '100%' }}>
           <Flex
