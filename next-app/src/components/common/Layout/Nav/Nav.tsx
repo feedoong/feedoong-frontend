@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
 
 import { useGetUserProfile } from 'features/user/userProfile'
+import ProfilePopover from './ProfilePopover'
 
 import * as S from './Nav.style'
 
@@ -25,18 +26,20 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
       </S.LogoButton>
 
       {userProfile?.name ? (
-        <S.MyPageButton onClick={() => router.push('/mypage')}>
-          <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
-          {userProfile.profileImageUrl && (
-            <S.UserImage
-              width={32}
-              height={32}
-              alt="프로필 사진"
-              src={userProfile.profileImageUrl}
-              priority
-            />
-          )}
-        </S.MyPageButton>
+        <ProfilePopover>
+          <S.MyPageButton>
+            <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
+            {userProfile.profileImageUrl && (
+              <S.UserImage
+                width={32}
+                height={32}
+                alt="프로필 사진"
+                src={userProfile.profileImageUrl}
+                priority
+              />
+            )}
+          </S.MyPageButton>
+        </ProfilePopover>
       ) : (
         <S.GoToSignUpButton onClick={() => router.push('/signup')}>
           시작하기
