@@ -1,5 +1,8 @@
 import type { Item } from 'types/feeds'
-import type { RecommendationItem } from 'types/recommendations'
+import type {
+  RecommendationItem,
+  RecommendationSubscription,
+} from 'types/recommendations'
 import type { Subscription } from 'types/subscriptions'
 import CardType from './CardType'
 import SubscriptionType from './SubscriptionType'
@@ -12,23 +15,32 @@ type Props =
       item: Item
     }
   | {
-      type: 'recommendation'
+      type: 'recommend/item'
       item: RecommendationItem
     }
   | {
       type: 'subscription'
       item: Subscription
     }
+  | {
+      type: 'recommend/subscription'
+      item: Subscription
+    }
 
 const FeedItem = ({ type = 'card', item }: Props) => {
   if (type === 'card') {
-    return <CardType item={item as Item} />
+    return <CardType type="card" item={item as Item} />
   }
-  if (type === 'recommendation') {
-    return <CardType item={item as RecommendationItem} />
+  if (type === 'recommend/subscription') {
+    return (
+      <SubscriptionType
+        type="recommend/subscription"
+        item={item as RecommendationSubscription}
+      />
+    )
   }
   if (type === 'subscription') {
-    return <SubscriptionType item={item as Subscription} />
+    return <SubscriptionType type="subscription" item={item as Subscription} />
   }
   return null
 }

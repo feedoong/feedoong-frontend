@@ -23,7 +23,13 @@ const Recommendation = () => {
           return <SkeletonCardType key={idx} />
         })}
       {data?.channels.map((channel) => {
-        return <FeedItem key={channel.id} type="subscription" item={channel} />
+        return (
+          <FeedItem
+            key={channel.id}
+            type="recommend/subscription"
+            item={channel}
+          />
+        )
       })}
       {/* <PageTitle>최근에 등록된 아이템</PageTitle>
       {data?.items.map((item) => {

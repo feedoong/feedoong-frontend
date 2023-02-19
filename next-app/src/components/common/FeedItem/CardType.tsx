@@ -15,6 +15,7 @@ import { Container, Title } from './CardType.style'
 import Icons from 'assets/icons'
 
 interface Props {
+  type: 'card' | 'recommend/item'
   item: Item | Exclude<Item, 'isViewed' | 'isLiked'>
 }
 
