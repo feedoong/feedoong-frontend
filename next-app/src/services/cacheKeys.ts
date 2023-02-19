@@ -9,4 +9,5 @@ export const CACHE_KEYS = {
   signup: ['signup'],
   me: ['me'],
   viewItem: (id: number) => ['viewItem', id],
+  recommendations: ['recommendations'],
 }

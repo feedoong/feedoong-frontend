@@ -28,8 +28,8 @@ function PostContainer() {
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   const isChannelProfileImageExist =
-    data?.items[0].channelImageUrl ||
-    getWellKnownChannelImg(data?.items[0].link ?? '')
+    data?.items[0]?.channelImageUrl ||
+    getWellKnownChannelImg(data?.items[0]?.link ?? '')
 
   return (
     <PageContainer>

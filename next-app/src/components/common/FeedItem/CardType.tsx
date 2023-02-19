@@ -15,7 +15,7 @@ import { Container, Title } from './CardType.style'
 import Icons from 'assets/icons'
 
 interface Props {
-  item: Item
+  item: Item | Exclude<Item, 'isViewed' | 'isLiked'>
 }
 
 /**
@@ -89,14 +89,16 @@ const CardType = ({ item }: Props) => {
             onClick={() => copyToClipboard(item.link)}
             priority
           />
-          <S.Bookmark
-            alt="북마크"
-            src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
-            width={16}
-            height={16}
-            onClick={() => handleLike(String(item.id))}
-            priority
-          />
+          {item.isLiked && (
+            <S.Bookmark
+              alt="북마크"
+              src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
+              width={16}
+              height={16}
+              onClick={() => handleLike(String(item.id))}
+              priority
+            />
+          )}
         </Flex>
       </S.Footer>
     </Container>
