@@ -1,5 +1,7 @@
+import Icons from 'assets/icons'
+
 interface Props {
-  src: string
+  src?: string
   diameter?: number
   style?: React.CSSProperties
 }
@@ -8,7 +10,7 @@ const LogoIcon = ({ src, diameter, style }: Props) => {
   return (
     <img
       alt="채널 로고"
-      src={src}
+      src={src ?? Icons.Account}
       width={diameter ?? 20}
       height={diameter ?? 20}
       style={style ?? { borderRadius: '50%' }}

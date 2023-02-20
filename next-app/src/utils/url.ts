@@ -14,6 +14,6 @@ export const getWellKnownChannelImg = (url: string) => {
   try {
     return getIconByHostname(new URL(url).hostname)
   } catch {
-    return ''
+    return
   }
 }

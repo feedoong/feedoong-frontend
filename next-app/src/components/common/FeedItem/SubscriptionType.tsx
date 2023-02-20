@@ -28,9 +28,7 @@ const SubscriptionType = ({ type, item }: Props) => {
       <Flex gap={12}>
         <LogoIcon
           diameter={getDiameterByType(type)}
-          src={
-            item.imageUrl ?? getWellKnownChannelImg(item.url) ?? Icons.Account
-          }
+          src={item.imageUrl ?? getWellKnownChannelImg(item.url)}
         />
         <Flex direction="column" style={{ width: '100%' }}>
           <Flex

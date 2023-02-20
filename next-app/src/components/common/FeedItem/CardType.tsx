@@ -63,11 +63,7 @@ const CardType = ({ type, item }: Props) => {
         <S.PostMeta>
           <LogoIcon
             diameter={getDiameterByType(type)}
-            src={
-              item.channelImageUrl ??
-              getWellKnownChannelImg(item.link) ??
-              Icons.Account
-            }
+            src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
           />
           {isDetailPage ? (
             <S.Author href={item.link} target="_blank">
