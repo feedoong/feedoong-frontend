@@ -19,22 +19,12 @@ const useRssDirectInputModal = () => {
   const client = useQueryClient()
   const [rssDirectChannelUrl, setRssDirectChannelUrl] = useState('')
   const [isPreviewLoading, setIsPreviewLoading] = useState(false)
-  const [rssDirectUrl, setRssDirectUrl] = useState('')
-
-  const handleInput =
-    (setState: Dispatch<SetStateAction<string>>) =>
-    (e: ChangeEvent<HTMLInputElement> | string) => {
-      if (typeof e === 'string') {
-        setState(e)
-        return
-      }
-      setState(e.target.value)
-    }
+  const [rssDirectRssUrl, setRssDirectRssUrl] = useState('')
 
   const onSubmit = async <T = HTMLFormElement,>(e?: React.FormEvent<T>) => {
     try {
       e?.preventDefault()
-      if (!rssDirectChannelUrl || !rssDirectUrl) {
+      if (!rssDirectChannelUrl || !rssDirectRssUrl) {
         Toast.show({
           type: 'error',
           content: 'URL을 입력해주세요.',
@@ -44,7 +34,7 @@ const useRssDirectInputModal = () => {
       setIsPreviewLoading(true)
       const { url: siteUrl, feedUrl } = await checkUrlAsDirectRss({
         homeUrl: rssDirectChannelUrl,
-        rssFeedUrl: rssDirectUrl,
+        rssFeedUrl: rssDirectRssUrl,
       })
       mutateRss({
         url: siteUrl,
@@ -69,7 +59,7 @@ const useRssDirectInputModal = () => {
     {
       onSuccess: () => {
         setRssDirectChannelUrl('')
-        setRssDirectUrl('')
+        setRssDirectRssUrl('')
 
         client.invalidateQueries(CACHE_KEYS.feeds)
         Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
@@ -89,7 +79,7 @@ const useRssDirectInputModal = () => {
   const isSubmitEnabled =
     !isRssSubmitting &&
     isRssUrlValid(rssDirectChannelUrl) &&
-    isRssUrlValid(rssDirectUrl)
+    isRssUrlValid(rssDirectRssUrl)
 
   const { handleOpen, renderModal } = useModal({
     content: (
@@ -103,45 +93,13 @@ const useRssDirectInputModal = () => {
           onSubmit={(e) => isSubmitEnabled && onSubmit(e)}
         >
           <Flex direction="column" gap={12}>
-            <Input
-              placeholder="블로그 URL을 입력해주세요"
-              isError={
-                !!rssDirectChannelUrl && !isRssUrlValid(rssDirectChannelUrl)
-              }
+            <BlogUrlInput
+              url={rssDirectChannelUrl}
               onChange={handleInput(setRssDirectChannelUrl)}
-              value={rssDirectChannelUrl}
-              inputStyle={{ width: '100%', backgroundColor: colors.gray100 }}
-              renderInputIcon={({ selectedValue, clearValue }) =>
-                selectedValue && (
-                  <Image
-                    style={{ cursor: 'pointer' }}
-                    alt="삭제 버튼"
-                    src={Icons.CancelCircle}
-                    width={24}
-                    height={24}
-                    onClick={clearValue}
-                  />
-                )
-              }
             />
-            <Input
-              placeholder="RSS URL을 입력해주세요"
-              isError={!!rssDirectUrl && !isRssUrlValid(rssDirectUrl)}
-              onChange={handleInput(setRssDirectUrl)}
-              value={rssDirectUrl}
-              inputStyle={{ width: '100%', backgroundColor: colors.gray100 }}
-              renderInputIcon={({ selectedValue, clearValue }) =>
-                selectedValue && (
-                  <Image
-                    style={{ cursor: 'pointer' }}
-                    alt="삭제 버튼"
-                    src={Icons.CancelCircle}
-                    width={24}
-                    height={24}
-                    onClick={clearValue}
-                  />
-                )
-              }
+            <RssUrlInput
+              url={rssDirectRssUrl}
+              onChange={handleInput(setRssDirectRssUrl)}
             />
           </Flex>
           <Flex justify="end">
@@ -167,3 +125,69 @@ const useRssDirectInputModal = () => {
 }
 
 export default useRssDirectInputModal
+
+const handleInput =
+  (setState: Dispatch<SetStateAction<string>>) =>
+  (e: ChangeEvent<HTMLInputElement> | string) => {
+    if (typeof e === 'string') {
+      setState(e)
+      return
+    }
+    setState(e.target.value)
+  }
+
+const BlogUrlInput = ({
+  url: rssDirectChannelUrl,
+  onChange,
+}: {
+  url: string
+  onChange: (e: ChangeEvent<HTMLInputElement> | string) => void
+}) => (
+  <Input
+    placeholder="블로그 URL을 입력해주세요"
+    isError={!!rssDirectChannelUrl && !isRssUrlValid(rssDirectChannelUrl)}
+    onChange={onChange}
+    value={rssDirectChannelUrl}
+    inputStyle={{ width: '100%', backgroundColor: colors.gray100 }}
+    renderInputIcon={({ selectedValue, clearValue }) =>
+      selectedValue && (
+        <Image
+          style={{ cursor: 'pointer' }}
+          alt="삭제 버튼"
+          src={Icons.CancelCircle}
+          width={24}
+          height={24}
+          onClick={clearValue}
+        />
+      )
+    }
+  />
+)
+
+const RssUrlInput = ({
+  url: rssDirectRssUrl,
+  onChange,
+}: {
+  url: string
+  onChange: (e: ChangeEvent<HTMLInputElement> | string) => void
+}) => (
+  <Input
+    placeholder="RSS URL을 입력해주세요"
+    isError={!!rssDirectRssUrl && !isRssUrlValid(rssDirectRssUrl)}
+    onChange={onChange}
+    value={rssDirectRssUrl}
+    inputStyle={{ width: '100%', backgroundColor: colors.gray100 }}
+    renderInputIcon={({ selectedValue, clearValue }) =>
+      selectedValue && (
+        <Image
+          style={{ cursor: 'pointer' }}
+          alt="삭제 버튼"
+          src={Icons.CancelCircle}
+          width={24}
+          height={24}
+          onClick={clearValue}
+        />
+      )
+    }
+  />
+)
