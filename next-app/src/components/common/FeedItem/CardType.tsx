@@ -89,16 +89,14 @@ const CardType = ({ type, item }: Props) => {
             onClick={() => copyToClipboard(item.link)}
             priority
           />
-          {item.isLiked && (
-            <S.Bookmark
-              alt="북마크"
-              src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
-              width={16}
-              height={16}
-              onClick={() => handleLike(String(item.id))}
-              priority
-            />
-          )}
+          <S.Bookmark
+            alt="북마크"
+            src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
+            width={16}
+            height={16}
+            onClick={() => handleLike(String(item.id))}
+            priority
+          />
         </Flex>
       </S.Footer>
     </Container>
