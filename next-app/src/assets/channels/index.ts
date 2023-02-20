@@ -44,4 +44,5 @@ export const getIconByHostname = (hostname: string) => {
     case 'velog.io':
       return Velog.src
   }
+  return ''
 }

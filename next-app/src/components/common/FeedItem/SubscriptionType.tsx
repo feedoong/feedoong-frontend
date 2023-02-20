@@ -5,7 +5,8 @@ import { getWellKnownChannelImg } from 'utils'
 import type { RecommendationSubscription } from 'types/recommendations'
 import RecommendationPopover from './Popovers/RecommendationPopover'
 import FeedItemPopover from './Popovers/FeedItemPopover'
-import LogoIcon from './LogoIcon'
+import LogoIcon from '../LogoIcon'
+import { getDiameterByType } from './FeedItem.utils'
 
 import { Container, Title, Url } from './SubscriptionType.style'
 
@@ -26,7 +27,7 @@ const SubscriptionType = ({ type, item }: Props) => {
     <Container>
       <Flex gap={12}>
         <LogoIcon
-          type={type}
+          diameter={getDiameterByType(type)}
           src={
             item.imageUrl ?? getWellKnownChannelImg(item.url) ?? Icons.Account
           }
