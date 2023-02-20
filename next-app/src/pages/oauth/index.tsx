@@ -8,6 +8,10 @@ import { submitAccessToken } from 'services/auth'
 import api from 'services/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken, RefreshToken } from 'constants/auth'
+import {
+  setAccessTokenToCookie,
+  setRefreshTokenToCookie,
+} from 'features/auth/setToken'
 
 const Oauth = () => {
   const router = useRouter()
@@ -18,16 +22,9 @@ const Oauth = () => {
     () => submitAccessToken(parseAccessToken(router.asPath)),
     {
       onSuccess: (response) => {
-        Cookies.set(RefreshToken, response.refreshToken, {
-          expires: 20,
-          sameSite: 'lax',
-        })
+        setRefreshTokenToCookie(response.refreshToken)
+        setAccessTokenToCookie(response.accessToken)
 
-        Cookies.set(AccessToken, response.accessToken, {
-          expires: 7,
-          secure: true,
-          sameSite: 'lax',
-        })
         api.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${response.accessToken}`
