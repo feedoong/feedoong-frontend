@@ -17,7 +17,6 @@ const useChannelList = () => {
     listData: data?.channels,
     isLoading,
     isEmptyList: !isLoading && data?.channels.length === 0,
-    emptyContent: '저장된 게시물이 없습니다',
     totalCount: data?.totalCount,
   }
 }

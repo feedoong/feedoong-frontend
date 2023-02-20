@@ -3,13 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
-import * as S from 'components/views/MyPost/PostContainer.style'
 import { getLikedItems } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { ITEMS_PER_PAGE } from './PostContainer.const'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import EmptyContents from 'components/common/EmptyContents'
+import * as S from 'components/views/MyPost/PostContainer.style'
 
 function PostContainer() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -21,6 +21,7 @@ function PostContainer() {
   )
 
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
+  const isEmpty = !isLoading && data?.items.length === 0
 
   return (
     <S.Container>
@@ -39,9 +40,7 @@ function PostContainer() {
                 <FeedItem key={item.id} type="card" item={item} />
               ))}
         </S.CardContainer>
-        {!isLoading && data?.items.length === 0 && (
-          <EmptyContents content="저장된 게시물이 없습니다!" />
-        )}
+        {isEmpty && <EmptyContents content="저장된 게시물이 없습니다!" />}
         <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
           <Paging
             totalPage={totalPage}
