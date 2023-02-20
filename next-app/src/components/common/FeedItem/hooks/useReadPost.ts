@@ -41,12 +41,14 @@ function getAfterReadData(
   data: SubmitViewedItem,
   variables: number
 ) {
-  const targetItem = prev.pages
-    .flatMap((page) => page.items)
-    .find((item) => item.id === variables)
+  return produce(prev, (draft) => {
+    const targetItem = draft.pages
+      .flatMap((page) => page.items)
+      .find((item) => item.id === variables)
 
-  if (targetItem) {
-    mergeObjectsByMutate(targetItem, data)
-  }
-  return prev
+    if (targetItem) {
+      mergeObjectsByMutate(targetItem, data)
+    }
+    return draft
+  })
 }

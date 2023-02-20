@@ -4,11 +4,15 @@ import axios, {
   type AxiosResponse,
   type AxiosRequestHeaders,
 } from 'axios'
-import Cookies from 'js-cookie'
 
 import { getApiEndpoint } from 'envs'
 import api from 'services/api'
-import { AccessToken, RefreshToken } from 'constants/auth'
+import {
+  getRefreshTokenFromCookie,
+  setAccessTokenToCookie,
+  setAuthorizationHeader,
+  setRefreshTokenToCookie,
+} from 'features/auth/token'
 
 export interface UserProfile {
   email: string
@@ -40,23 +44,22 @@ export const refreshAccessToken = async (
   _api: AxiosInstance
 ) => {
   const originalRequest = axiosError.config
-  const refreshToken = Cookies.get(RefreshToken)
 
   // TODO: 리프레시 토큰 만료시 로그아웃 처리도 필요
   const { data } = await axios.post<
     SignUpResponse['refreshToken'],
     AxiosResponse<SignUpResponse>
   >(getApiEndpoint() + `/users/token`, {
-    refreshToken,
+    refreshToken: getRefreshTokenFromCookie(),
   })
 
   const newAccessToken = data.accessToken
   const newRefreshToken = data.refreshToken
 
-  Cookies.set(AccessToken, newAccessToken)
-  Cookies.set(RefreshToken, newRefreshToken)
+  setRefreshTokenToCookie(newRefreshToken)
+  setAccessTokenToCookie(newAccessToken)
 
-  _api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`
+  setAuthorizationHeader(_api, newAccessToken, { type: 'Bearer' })
 
   // 필요한 코드인지 확인 필요
   if (!originalRequest.headers) {

@@ -1,15 +1,17 @@
 import Axios, { AxiosError, AxiosResponse } from 'axios'
 import humps from 'humps'
-import Cookies from 'js-cookie'
 
 import { getApiEndpoint } from 'envs'
-import { AccessToken, RefreshToken } from 'constants/auth'
 import { refreshAccessToken } from 'services/auth'
+import {
+  getAccessTokenFromCookie,
+  getRefreshTokenFromCookie,
+} from 'features/auth/token'
 
 const { camelizeKeys } = humps
 
 export const createApi = () => {
-  const accessToken = Cookies.get(AccessToken)
+  const accessToken = getAccessTokenFromCookie()
 
   const _api = Axios.create({
     baseURL: getApiEndpoint(),
@@ -31,8 +33,7 @@ export const createApi = () => {
       if (error instanceof AxiosError) {
         if (error.response?.status === 401 || error.response?.status === 403) {
           // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
-          const refreshToken = Cookies.get(RefreshToken)
-          if (refreshToken) {
+          if (getRefreshTokenFromCookie()) {
             return refreshAccessToken(error, _api)
           }
         }
