@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import produce from 'immer'
 
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { submitViewedItem } from 'services/feeds'
-import type { Feed, Item } from 'types/feeds'
+import type { Feed, Item, SubmitViewedItem } from 'types/feeds'
+import { mergeObjectsByMutate } from 'utils/common'
 
 interface PrevDataType {
   pages: Feed[]
@@ -18,19 +20,10 @@ const useReadPost = (item: Item) => {
     {
       onSuccess: (data, variables) => {
         client.setQueryData<PrevDataType>(CACHE_KEYS.feeds, (prev) => {
-          if (prev) {
-            return {
-              ...prev,
-              pages: prev.pages.map((page) => {
-                return {
-                  ...page,
-                  items: page.items.map((item) => {
-                    return item.id === variables ? { ...item, ...data } : item
-                  }),
-                }
-              }),
-            }
+          if (!prev) {
+            return
           }
+          return getAfterReadData(prev, data, variables)
         })
       },
     }
@@ -42,3 +35,18 @@ const useReadPost = (item: Item) => {
 }
 
 export default useReadPost
+
+function getAfterReadData(
+  prev: PrevDataType,
+  data: SubmitViewedItem,
+  variables: number
+) {
+  const targetItem = prev.pages
+    .flatMap((page) => page.items)
+    .find((item) => item.id === variables)
+
+  if (targetItem) {
+    mergeObjectsByMutate(targetItem, data)
+  }
+  return prev
+}
