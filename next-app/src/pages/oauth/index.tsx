@@ -1,13 +1,16 @@
 import { useRouter } from 'next/router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import qs from 'query-string'
-import Cookies from 'js-cookie'
 import humps from 'humps'
 
 import { submitAccessToken } from 'services/auth'
 import api from 'services/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { AccessToken, RefreshToken } from 'constants/auth'
+import {
+  setAccessTokenToCookie,
+  setAuthorizationHeader,
+  setRefreshTokenToCookie,
+} from 'features/auth/token'
 
 const Oauth = () => {
   const router = useRouter()
@@ -18,19 +21,10 @@ const Oauth = () => {
     () => submitAccessToken(parseAccessToken(router.asPath)),
     {
       onSuccess: (response) => {
-        Cookies.set(RefreshToken, response.refreshToken, {
-          expires: 20,
-          sameSite: 'lax',
-        })
+        setRefreshTokenToCookie(response.refreshToken)
+        setAccessTokenToCookie(response.accessToken)
 
-        Cookies.set(AccessToken, response.accessToken, {
-          expires: 7,
-          secure: true,
-          sameSite: 'lax',
-        })
-        api.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${response.accessToken}`
+        setAuthorizationHeader(api, response.accessToken, { type: 'Bearer' })
 
         client.setQueryData(CACHE_KEYS.me, response)
         router.replace('/')

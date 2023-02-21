@@ -2,13 +2,13 @@ import { useRouter } from 'next/router'
 
 import type { Item } from 'types/feeds'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
-import { copyToClipboard } from './FeedItem.utils'
+import { copyToClipboard, getDiameterByType } from './FeedItem.utils'
 import Flex from '../Flex'
 import Divider from '../Divider'
 import Anchor from '../Anchor'
 import useToggleLike from './hooks/useToggleLike'
 import useReadPost from './hooks/useReadPost'
-import LogoIcon from './LogoIcon'
+import LogoIcon from '../LogoIcon'
 
 import * as S from './FeedItem.style'
 import { Container, Title } from './CardType.style'
@@ -62,12 +62,8 @@ const CardType = ({ type, item }: Props) => {
       <S.Footer>
         <S.PostMeta>
           <LogoIcon
-            type={type}
-            src={
-              item.channelImageUrl ??
-              getWellKnownChannelImg(item.link) ??
-              Icons.Account
-            }
+            diameter={getDiameterByType(type)}
+            src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
           />
           {isDetailPage ? (
             <S.Author href={item.link} target="_blank">

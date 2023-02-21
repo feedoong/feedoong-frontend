@@ -13,14 +13,11 @@ export const globalQueryErrorHandler = (
 ) => {
   if (err instanceof AxiosError) {
     const code = err.response?.data?.code
-    if (
-      code === RESPONSE_CODE.REFRESH_TOKEN_NOT_FOUND ||
-      code === RESPONSE_CODE.EXPIRED_REFRESH_TOKEN
-    ) {
+
+    if (isDestroyTokenError(code)) {
       destroyTokensClientSide()
       queryClient.invalidateQueries(CACHE_KEYS.me)
     }
-
     goToIntroducePage()
 
     Toast.show({
@@ -36,3 +33,9 @@ const goToIntroducePage = () => {
     window.location.href = '/introduce'
   }
 }
+
+const isDestroyTokenError = (code: string) =>
+  [
+    RESPONSE_CODE.REFRESH_TOKEN_NOT_FOUND,
+    RESPONSE_CODE.EXPIRED_REFRESH_TOKEN,
+  ].includes(code)

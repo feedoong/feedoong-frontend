@@ -11,6 +11,7 @@ import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
+import { setAuthorizationHeader } from 'features/auth/token'
 
 const Home: NextPage = () => {
   useGetUserProfile()
@@ -33,9 +34,7 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
     const api = createApi()
     const cookies = parseCookies(context as typeof parseCookies['arguments'])
 
-    api.defaults.headers.common[
-      'Authorization'
-    ] = `Bearer ${cookies[AccessToken]}`
+    setAuthorizationHeader(api, cookies[AccessToken], { type: 'Bearer' })
 
     const queryClient = new QueryClient()
     await queryClient.prefetchQuery<UserProfile>(

@@ -48,13 +48,7 @@ const useRssInput = () => {
   const onSubmit = async <T = HTMLFormElement>(e?: React.FormEvent<T>) => {
     try {
       e?.preventDefault()
-      if (!url) {
-        Toast.show({
-          type: 'error',
-          content: 'URL을 입력해주세요.',
-        })
-        return
-      }
+
       setIsPreviewLoading(true)
       const { url: siteUrl, feedUrl } = await checkUrlAsRss(url)
       mutate({

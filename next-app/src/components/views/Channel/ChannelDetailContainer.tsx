@@ -13,6 +13,7 @@ import { SkeletonCardType } from 'components/common/Skeleton'
 import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
 import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
+import LogoIcon from 'components/common/LogoIcon'
 
 function PostContainer() {
   const { query } = useRouter()
@@ -42,15 +43,12 @@ function PostContainer() {
               ) : (
                 <Flex align="center" gap={8}>
                   {isChannelProfileImageExist && (
-                    <img
-                      alt="채널 로고"
+                    <LogoIcon
+                      diameter={20}
                       src={
                         data?.items[0].channelImageUrl ??
                         getWellKnownChannelImg(data?.items[0].link ?? '')
                       }
-                      width={20}
-                      height={20}
-                      style={{ borderRadius: '50%' }}
                     />
                   )}
                   {data?.items[0]?.channelTitle ?? ''}

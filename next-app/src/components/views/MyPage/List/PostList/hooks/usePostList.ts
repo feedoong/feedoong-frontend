@@ -19,7 +19,6 @@ const usePostList = () => {
     listData: data?.items,
     isLoading,
     isEmptyList: !isLoading && data?.items.length === 0,
-    emptyContent: '구독 중인 게시물이 없습니다',
     totalCount: data?.totalCount,
   }
 }

@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 
 import { AccessToken, RefreshToken } from 'constants/auth'
 import api from 'services/api'
+import { setAuthorizationHeader } from 'features/auth/token'
 
 export const isLoginValidServerSide = (request: NextRequest) => {
   const accessToken = request.cookies.get(AccessToken)
@@ -27,6 +28,7 @@ export const isLoginValidServerSide = (request: NextRequest) => {
 export const destroyTokensClientSide = () => {
   Cookies.remove(RefreshToken)
   Cookies.remove(AccessToken)
-  api.defaults.headers.common['Authorization'] = ''
+
+  setAuthorizationHeader(api, '')
   // TODO: Invalidate the tokens on the server
 }

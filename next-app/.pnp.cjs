@@ -48,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
             ["humps", "npm:2.0.1"],\
             ["husky", "npm:8.0.1"],\
+            ["immer", "npm:9.0.19"],\
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
             ["nookies", "npm:2.5.2"],\
@@ -3025,6 +3026,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
             ["humps", "npm:2.0.1"],\
             ["husky", "npm:8.0.1"],\
+            ["immer", "npm:9.0.19"],\
             ["js-cookie", "npm:3.0.1"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
             ["nookies", "npm:2.5.2"],\
@@ -3608,6 +3610,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/immediate-npm-3.0.6-c27588a2d3-f9b3486477.zip/node_modules/immediate/",\
           "packageDependencies": [\
             ["immediate", "npm:3.0.6"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["immer", [\
+        ["npm:9.0.19", {\
+          "packageLocation": "./.yarn/cache/immer-npm-9.0.19-96ee7d3dab-f02ee53989.zip/node_modules/immer/",\
+          "packageDependencies": [\
+            ["immer", "npm:9.0.19"]\
           ],\
           "linkType": "HARD"\
         }]\

@@ -2355,6 +2355,7 @@ __metadata:
     eslint-config-next: ^13.0.0
     humps: ^2.0.1
     husky: ^8.0.1
+    immer: ^9.0.19
     js-cookie: ^3.0.1
     next: ^13.0.0
     nookies: ^2.5.2
@@ -2879,6 +2880,13 @@ __metadata:
   version: 3.0.6
   resolution: "immediate@npm:3.0.6"
   checksum: f9b3486477555997657f70318cc8d3416159f208bec4cca3ff3442fd266bc23f50f0c9bd8547e1371a6b5e82b821ec9a7044a4f7b944798b25aa3cc6d5e63e62
+  languageName: node
+  linkType: hard
+
+"immer@npm:^9.0.19":
+  version: 9.0.19
+  resolution: "immer@npm:9.0.19"
+  checksum: f02ee53989989c287cd548a3d817fccf0bfe56db919755ee94a72ea3ae78a00363fba93ee6c010fe54a664380c29c53d44ed4091c6a86cae60957ad2cfabc010
   languageName: node
   linkType: hard
 
