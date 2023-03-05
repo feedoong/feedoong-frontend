@@ -8,6 +8,7 @@ import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
 import { useGetUserProfile } from 'features/user/userProfile'
 import PageContainer from 'components/common/PageContainer'
+import Toast from 'components/common/Toast'
 
 import * as S from './MyPageContainer.style'
 

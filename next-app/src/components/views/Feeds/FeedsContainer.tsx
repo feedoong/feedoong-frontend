@@ -4,6 +4,7 @@ import Tab from 'components/common/Tab'
 import { getSelectedTab } from 'components/common/Tab/Tab'
 import MyFeed from './MyFeed'
 import Recommendations from './Recommendations'
+import Notification from 'components/common/Notification'
 
 import * as S from './FeedsContainer.style'
 
