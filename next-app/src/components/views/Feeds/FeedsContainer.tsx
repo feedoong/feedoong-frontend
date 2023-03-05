@@ -15,16 +15,13 @@ const FeedsContainer = () => {
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
-            {/* <Tab
-              tabData={FEED_TABS}
-              selectedTab={selectedTab}
-              onClick={(tab) => {
-                router.push({
-                  pathname: router.pathname,
-                  query: { tab: tab.value },
-                })
-              }}
-            /> */}
+            <button onClick={() => router.push('/feed/me')}>내 피드</button>
+            <button onClick={() => router.push('/feed/recommended/channels')}>
+              둘러보기 - 채널
+            </button>
+            <button onClick={() => router.push('/feed/recommended/posts')}>
+              둘러보기 - 게시물
+            </button>
           </S.TitleWrapper>
         </S.Header>
         <SwitchCase
