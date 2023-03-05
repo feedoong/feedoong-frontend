@@ -9,6 +9,7 @@ import { getFeedoongUrl } from './MyPageContainer.utils'
 import { useGetUserProfile } from 'features/user/userProfile'
 import PageContainer from 'components/common/PageContainer'
 import Toast from 'components/common/Toast'
+import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 
 import * as S from './MyPageContainer.style'
 
@@ -54,8 +55,11 @@ const MyPageContainer = () => {
                 <Image src={Icons.SettingIcon} alt="setting_icon" />
               </S.SettingButton>
             </Flex>
-            {/* TODO: 클립보드 기능 추가해야 함 */}
-            <S.FeedoongUrl>{getFeedoongUrl(userProfile)}</S.FeedoongUrl>
+            <S.FeedoongUrl
+              onClick={() => copyToClipboard(getFeedoongUrl(userProfile))}
+            >
+              {getFeedoongUrl(userProfile)}
+            </S.FeedoongUrl>
           </Flex>
         </S.Header>
 

@@ -42,6 +42,13 @@ export const SettingButton = styled.button`
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
   color: ${colors.gray500};
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-position: under;
+  }
 `
 
 export const TabWrapper = styled.div`
