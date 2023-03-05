@@ -9,7 +9,6 @@ import { getUserInfoServerSide, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { AccessToken } from 'constants/auth'
 import { createApi } from 'services/api'
-import { getFeedsServerSide } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { setAuthorizationHeader } from 'features/auth/token'
 
@@ -43,10 +42,6 @@ export const getServerSideProps = async (context: GetServerSideProps) => {
       {
         staleTime: Infinity,
       }
-    )
-    await queryClient.prefetchInfiniteQuery(
-      CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeedsServerSide(api)(pageParam)
     )
 
     return {

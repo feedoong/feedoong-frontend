@@ -2,7 +2,8 @@ import { useRouter } from 'next/router'
 import { SwitchCase } from '@toss/react'
 
 import MyFeed from './MyFeed'
-import RecommendedChannels from './Recommended'
+import RecommendedChannels from './Recommended/RecommendedChannels'
+import RecommendedPosts from './Recommended/RecommendedPosts'
 
 import * as S from './FeedsContainer.style'
 
@@ -31,7 +32,7 @@ const FeedsContainer = () => {
           caseBy={{
             '/feed/me': <MyFeed />,
             '/feed/recommended/channels': <RecommendedChannels />,
-            // '/feed/recommended/posts': <RecommendedChannels />,
+            '/feed/recommended/posts': <RecommendedPosts />,
           }}
           defaultComponent={<MyFeed />}
         />
