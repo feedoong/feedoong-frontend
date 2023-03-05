@@ -1,5 +1,5 @@
 import { NotificationProps, Notification } from './Notification'
-import { renderImperatively, type ImperativeHandler } from '../Toast/Toast.utils'
+import { renderImperatively, type ImperativeHandler } from 'utils/popUp'
 
 let currentHandler: ImperativeHandler | null = null
 let currentTimeout: number | null = null
