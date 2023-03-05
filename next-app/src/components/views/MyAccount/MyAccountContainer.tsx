@@ -95,8 +95,9 @@ const MyAccountContainer = () => {
             // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)
             ref={nickNameRef}
             readOnly={!isEditMode}
-            labelName={'닉네임'}
-            buttonName={isEditMode ? '저장' : '편집'}
+            labelName={'피둥 닉네임'}
+            // FIXME: production에서는 닉네임 편집 기능 일단 보류 (API 생성 후 추가)
+            // buttonName={isEditMode ? '저장' : '편집'} 
             buttonAction={() => setIsEditMode((prev) => !prev)}
           />
         </S.InfoItemContainer>
