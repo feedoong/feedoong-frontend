@@ -21,7 +21,7 @@ type Props =
       item: Item
     }
   | {
-      type: 'privateCard'
+      type: 'card/private'
       item: PrivateItem
     }
 
@@ -32,7 +32,7 @@ type Props =
  */
 
 const CardType = ({ type, item }: Props) => {
-  if (type === 'privateCard') {
+  if (type === 'card/private') {
     return <PrivateCardType item={item} />
   }
   return <PublicCardType item={item} />

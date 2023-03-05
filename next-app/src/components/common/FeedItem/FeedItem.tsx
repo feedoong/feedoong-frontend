@@ -1,6 +1,5 @@
 import type { Item, PrivateItem } from 'types/feeds'
-import type { RecommendationSubscription } from 'types/recommendations'
-import type { Subscription } from 'types/subscriptions'
+import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import CardType from './CardType'
 import SubscriptionType from './SubscriptionType'
 
@@ -12,7 +11,7 @@ type Props =
       item: Item
     }
   | {
-      type: 'privateCard'
+      type: 'card/private'
       item: PrivateItem
     }
   | {
@@ -20,27 +19,27 @@ type Props =
       item: Subscription
     }
   | {
-      type: 'recommend/subscription'
-      item: Subscription
+      type: 'subscription/private'
+      item: PrivateSubscription
     }
 
 const FeedItem = ({ type = 'card', item }: Props) => {
   if (type === 'card') {
     return <CardType type="card" item={item as Item} />
   }
-  if (type === 'privateCard') {
-    return <CardType type="privateCard" item={item as PrivateItem} />
-  }
-  if (type === 'recommend/subscription') {
-    return (
-      <SubscriptionType
-        type="recommend/subscription"
-        item={item as RecommendationSubscription}
-      />
-    )
+  if (type === 'card/private') {
+    return <CardType type="card/private" item={item as PrivateItem} />
   }
   if (type === 'subscription') {
     return <SubscriptionType type="subscription" item={item as Subscription} />
+  }
+  if (type === 'subscription/private') {
+    return (
+      <SubscriptionType
+        type="subscription/private"
+        item={item as PrivateSubscription}
+      />
+    )
   }
   return null
 }

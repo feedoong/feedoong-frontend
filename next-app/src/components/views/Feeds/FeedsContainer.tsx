@@ -1,32 +1,13 @@
 import { useRouter } from 'next/router'
 import { SwitchCase } from '@toss/react'
 
-import Tab from 'components/common/Tab'
-import { getSelectedTab } from 'components/common/Tab/Tab'
 import MyFeed from './MyFeed'
-import Recommendations from './Recommendations'
+import RecommendedChannels from './Recommended'
 
 import * as S from './FeedsContainer.style'
 
-export const FEED_TABS = [
-  {
-    label: '내 피드',
-    value: 'home',
-  },
-  {
-    label: '채널 둘러보기',
-    value: 'recommended',
-  },
-]
-
-interface Props {
-  selectedTab: 'me' | 'recommended/channels' | 'recommended/posts'
-}
-
-const FeedsContainer = ({ selectedTab }: Props) => {
+const FeedsContainer = () => {
   const router = useRouter()
-
-  // const selectedTab = getSelectedTab(FEED_TABS, router.query.tab as string)
 
   return (
     <S.Container>
@@ -46,11 +27,11 @@ const FeedsContainer = ({ selectedTab }: Props) => {
           </S.TitleWrapper>
         </S.Header>
         <SwitchCase
-          value={selectedTab}
+          value={router.pathname}
           caseBy={{
-            me: <MyFeed />,
-            'recommended/channels': <Recommendations />,
-            'recommended/posts': <Recommendations />,
+            '/feed/me': <MyFeed />,
+            '/feed/recommended/channels': <RecommendedChannels />,
+            // '/feed/recommended/posts': <RecommendedChannels />,
           }}
           defaultComponent={<MyFeed />}
         />

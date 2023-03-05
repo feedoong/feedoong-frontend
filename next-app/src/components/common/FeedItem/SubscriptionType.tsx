@@ -1,16 +1,13 @@
-import type { Subscription } from 'types/subscriptions'
+import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
 import Anchor from '../Anchor'
 import { getWellKnownChannelImg } from 'utils'
-import type { RecommendationSubscription } from 'types/recommendations'
-import RecommendationPopover from './Popovers/RecommendationPopover'
+import PrivateFeedItemPopover from './Popovers/PrivateFeedItemPopover'
 import FeedItemPopover from './Popovers/FeedItemPopover'
 import LogoIcon from '../LogoIcon'
 import { getDiameterByType } from './FeedItem.utils'
 
 import { Container, Title, Url } from './SubscriptionType.style'
-
-import Icons from 'assets/icons'
 
 type Props =
   | {
@@ -18,8 +15,8 @@ type Props =
       item: Subscription
     }
   | {
-      type: 'recommend/subscription'
-      item: RecommendationSubscription
+      type: 'subscription/private'
+      item: PrivateSubscription
     }
 
 const SubscriptionType = ({ type, item }: Props) => {
@@ -40,10 +37,10 @@ const SubscriptionType = ({ type, item }: Props) => {
             <Anchor href={'/channels/' + item.id.toString()}>
               <Title>{item.title}</Title>
             </Anchor>
-            {type === 'subscription' ? (
-              <FeedItemPopover item={item} />
+            {type === 'subscription/private' ? (
+              <PrivateFeedItemPopover item={item} />
             ) : (
-              <RecommendationPopover item={item} />
+              <FeedItemPopover item={item} />
             )}
           </Flex>
           <Anchor href={item.url} target="_blank" style={{ width: '90%' }}>

@@ -3,15 +3,15 @@ import Image from 'next/image'
 import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import { copyToClipboard } from '../FeedItem.utils'
-import type { RecommendationSubscription } from 'types/recommendations'
+import type { PrivateSubscription } from 'types/subscriptions'
 
 import Icons from 'assets/icons'
 
 interface Props {
-  item: RecommendationSubscription
+  item: PrivateSubscription
 }
 
-const RecommendationPopover = ({ item }: Props) => {
+const PrivateFeedItemPopover = ({ item }: Props) => {
   return (
     <>
       <Popover
@@ -65,4 +65,4 @@ const RecommendationPopover = ({ item }: Props) => {
   )
 }
 
-export default RecommendationPopover
+export default PrivateFeedItemPopover

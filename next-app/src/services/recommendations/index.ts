@@ -1,20 +1,23 @@
 import type { AxiosInstance } from 'axios'
 
 import api from 'services/api'
-import type { Recommendations } from 'types/recommendations'
+import { Item } from 'types/feeds'
+import { Subscription } from 'types/subscriptions'
 
-/** @deprecated */
-export const getRecommendations = () => {
-  return api.get<null, Recommendations>(`/recommendations`)
+export const getRecommendedChannels = () => {
+  return api.get<null, Subscription[]>(`/channels/recommended`)
+}
+
+export const getRecommendedPosts = () => {
+  return api.get<null, Item[]>(`/items/recommended`)
 }
 
 /** @note 새로운 api 이므로 연결 필요 */
-export const getRecommendationChannelsServerSide =
-  (_api: AxiosInstance) => () => {
-    return _api.get<null, Recommendations>(`/channels/recommended`)
-  }
+export const getRecommendedChannelsServerSide = (_api: AxiosInstance) => () => {
+  return _api.get<null, Subscription[]>(`/channels/recommended`)
+}
 
 /** @note 새로운 api 이므로 연결 필요 */
-export const getRecommendationPostsServerSide = (_api: AxiosInstance) => () => {
-  return _api.get<null, Recommendations>(`/items/recommended`)
+export const getRecommendedPostsServerSide = (_api: AxiosInstance) => () => {
+  return _api.get<null, Item[]>(`/items/recommended`)
 }
