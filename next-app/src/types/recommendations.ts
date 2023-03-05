@@ -1,6 +1,6 @@
-import { Item } from './feeds'
 import type { Subscription } from './subscriptions'
 
+/** @deprecated 타입 분리해야 함 */
 export type Recommendations = {
   channels: [
     {
@@ -27,8 +27,6 @@ export type Recommendations = {
     }
   ]
 }
-
-export type RecommendationItem = Exclude<Item, 'isViewed' | 'isLiked'>
 
 export type RecommendationSubscription = Exclude<
   Subscription,

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import type { Item } from 'types/feeds'
+import type { Item, PrivateItem } from 'types/feeds'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
 import { copyToClipboard, getDiameterByType } from './FeedItem.utils'
 import Flex from '../Flex'
@@ -15,10 +15,15 @@ import { Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
 
-interface Props {
-  type: 'card' | 'recommend/card'
-  item: Item | Exclude<Item, 'isViewed' | 'isLiked'>
-}
+type Props =
+  | {
+      type: 'card'
+      item: Item
+    }
+  | {
+      type: 'privateCard'
+      item: PrivateItem
+    }
 
 /**
  * TODO: 북마크 상태 변경 시 깜빡임 문제
@@ -27,11 +32,18 @@ interface Props {
  */
 
 const CardType = ({ type, item }: Props) => {
+  if (type === 'privateCard') {
+    return <PrivateCardType item={item} />
+  }
+  return <PublicCardType item={item} />
+}
+
+const PrivateCardType = ({ item }: { item: PrivateItem }) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
 
   const { pathname } = useRouter()
-  const isDetailPage = pathname === '/channels/[id]'
+  const isChannelPage = pathname === '/channels/[id]'
 
   return (
     <Container>
@@ -62,10 +74,10 @@ const CardType = ({ type, item }: Props) => {
       <S.Footer>
         <S.PostMeta>
           <LogoIcon
-            diameter={getDiameterByType(type)}
+            diameter={getDiameterByType('card')}
             src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
           />
-          {isDetailPage ? (
+          {isChannelPage ? (
             <S.Author href={item.link} target="_blank">
               {item.channelTitle}
             </S.Author>
@@ -91,6 +103,60 @@ const CardType = ({ type, item }: Props) => {
             width={16}
             height={16}
             onClick={() => handleLike(String(item.id))}
+            priority
+          />
+        </Flex>
+      </S.Footer>
+    </Container>
+  )
+}
+
+const PublicCardType = ({ item }: { item: Item }) => {
+  const { pathname } = useRouter()
+  const isChannelPage = pathname === '/channels/[id]'
+
+  return (
+    <Container>
+      <S.Body>
+        <Flex gap={10} justify="between" style={{ flex: 'auto' }}>
+          <S.BodyWrapper>
+            <Anchor href={item.link} target="_blank">
+              <Title>{item.title}</Title>
+            </Anchor>
+            <Anchor href={item.link} target="_blank">
+              <S.Contents>{item.description}</S.Contents>
+            </Anchor>
+          </S.BodyWrapper>
+          {item.imageUrl && (
+            <S.Thumbnail src={item.imageUrl} width={80} height={80} />
+          )}
+        </Flex>
+      </S.Body>
+      <Divider />
+      <S.Footer>
+        <S.PostMeta>
+          <LogoIcon
+            diameter={getDiameterByType('card')}
+            src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
+          />
+          {isChannelPage ? (
+            <S.Author href={item.link} target="_blank">
+              {item.channelTitle}
+            </S.Author>
+          ) : (
+            <S.Author href={'/channels/' + item.channelId.toString()}>
+              {item.channelTitle}
+            </S.Author>
+          )}
+          <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
+        </S.PostMeta>
+        <Flex gap={12} align="center">
+          <S.CopyLinkButton
+            alt="링크 복사"
+            src={Icons.Link}
+            width={16}
+            height={16}
+            onClick={() => copyToClipboard(item.link)}
             priority
           />
         </Flex>

@@ -1,8 +1,5 @@
-import type { Item } from 'types/feeds'
-import type {
-  RecommendationItem,
-  RecommendationSubscription,
-} from 'types/recommendations'
+import type { Item, PrivateItem } from 'types/feeds'
+import type { RecommendationSubscription } from 'types/recommendations'
 import type { Subscription } from 'types/subscriptions'
 import CardType from './CardType'
 import SubscriptionType from './SubscriptionType'
@@ -15,9 +12,9 @@ type Props =
       item: Item
     }
   | {
-      type: 'recommend/card'
-      item: RecommendationItem
-    } // 아직 미구현
+      type: 'privateCard'
+      item: PrivateItem
+    }
   | {
       type: 'subscription'
       item: Subscription
@@ -30,6 +27,9 @@ type Props =
 const FeedItem = ({ type = 'card', item }: Props) => {
   if (type === 'card') {
     return <CardType type="card" item={item as Item} />
+  }
+  if (type === 'privateCard') {
+    return <CardType type="privateCard" item={item as PrivateItem} />
   }
   if (type === 'recommend/subscription') {
     return (
