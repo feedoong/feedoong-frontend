@@ -20,6 +20,7 @@ type Props =
     }
 
 const SubscriptionType = ({ type, item }: Props) => {
+  console.log(type)
   return (
     <Container>
       <Flex gap={12}>
@@ -38,9 +39,9 @@ const SubscriptionType = ({ type, item }: Props) => {
               <Title>{item.title}</Title>
             </Anchor>
             {type === 'subscription/private' ? (
-              <PrivateFeedItemPopover item={item} />
+              <PrivateFeedItemPopover item={item as Subscription} />
             ) : (
-              <FeedItemPopover item={item} />
+              <FeedItemPopover item={item as PrivateSubscription} />
             )}
           </Flex>
           <Anchor href={item.url} target="_blank" style={{ width: '90%' }}>
