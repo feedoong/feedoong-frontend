@@ -1,3 +1,5 @@
+import { SwitchCase } from '@toss/react'
+
 import type { Item, PrivateItem } from 'types/feeds'
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import CardType from './CardType'
@@ -24,24 +26,27 @@ type Props =
     }
 
 const FeedItem = ({ type = 'card', item }: Props) => {
-  if (type === 'card') {
-    return <CardType type="card" item={item as Item} />
-  }
-  if (type === 'card/private') {
-    return <CardType type="card/private" item={item as PrivateItem} />
-  }
-  if (type === 'subscription') {
-    return <SubscriptionType type="subscription" item={item as Subscription} />
-  }
-  if (type === 'subscription/private') {
-    return (
-      <SubscriptionType
-        type="subscription/private"
-        item={item as PrivateSubscription}
-      />
-    )
-  }
-  return null
+  return (
+    <SwitchCase
+      value={type}
+      caseBy={{
+        card: <CardType type="card" item={item as Item} />,
+        'card/private': (
+          <CardType type="card/private" item={item as PrivateItem} />
+        ),
+        subscription: (
+          <SubscriptionType type="subscription" item={item as Subscription} />
+        ),
+        'subscription/private': (
+          <SubscriptionType
+            type="subscription/private"
+            item={item as PrivateSubscription}
+          />
+        ),
+      }}
+      defaultComponent={null}
+    />
+  )
 }
 
 export default FeedItem

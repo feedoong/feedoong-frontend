@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { SwitchCase } from '@toss/react'
 
 import type { Item, PrivateItem } from 'types/feeds'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
@@ -32,10 +33,15 @@ type Props =
  */
 
 const CardType = ({ type, item }: Props) => {
-  if (type === 'card/private') {
-    return <PrivateCardType item={item} />
-  }
-  return <PublicCardType item={item} />
+  return (
+    <SwitchCase
+      value={type}
+      caseBy={{
+        card: <PublicCardType item={item as Item} />,
+        'card/private': <PrivateCardType item={item as PrivateItem} />,
+      }}
+    />
+  )
 }
 
 const PrivateCardType = ({ item }: { item: PrivateItem }) => {
