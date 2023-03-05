@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <title>홈 | 인사이트가 피둥피둥</title>
       </Head>
       <RssInputView />
-      <FeedsContainerView selectedTab="me" />
+      <FeedsContainerView selectedTab="recommended/channels" />
     </>
   )
 }
