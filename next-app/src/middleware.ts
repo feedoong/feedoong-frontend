@@ -5,7 +5,10 @@ import { isLoginValidServerSide } from 'utils/auth'
 
 export function middleware(request: NextRequest, response: NextResponse) {
   if (!isLoginValidServerSide(request)) {
-    return NextResponse.redirect(new URL(ROUTE.INTRODUCE, request.url), 302)
+    return NextResponse.redirect(
+      new URL(ROUTE.RECOMMENDED_CHANNELS, request.url),
+      302
+    )
   }
 
   return NextResponse.next()

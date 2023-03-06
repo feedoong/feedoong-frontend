@@ -32,7 +32,7 @@ export default Layout
 const routerBranch = (pathname: string) => {
   return {
     isRequiredAuthPage: requiredAuthMatcher(pathname),
-    isIntroducePage: pathname === ROUTE.INTRODUCE,
+    isIntroducePage: pathname === ROUTE.RECOMMENDED_CHANNELS,
     isSignUpPage: pathname === ROUTE.SIGN_UP,
     isErrorPage: isErrorPage(pathname),
   }

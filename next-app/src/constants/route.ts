@@ -8,4 +8,5 @@ export const FEED_ROUTE = {
 export const ROUTE = {
   INTRODUCE: '/introduce',
   SIGN_UP: '/signup',
-}
+  ...FEED_ROUTE,
+} as const
