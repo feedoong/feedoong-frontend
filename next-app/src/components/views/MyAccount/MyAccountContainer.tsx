@@ -13,6 +13,7 @@ import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 import PageContainer from 'components/common/PageContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
+import { getFeedoongUrl } from '../MyPage/MyPageContainer.utils'
 
 import * as S from './MyAccountContainer.style'
 
@@ -44,16 +45,6 @@ const MyAccountContainer = () => {
     window.location.href = '/'
   }
 
-  const getMyProfileURL = () => {
-    let emailId = ''
-    if (userProfile?.email) {
-      ;[emailId] = userProfile?.email.split('@')
-    }
-    return `feedoong.io/${emailId}`
-  }
-
-  const profileURL = useMemo(getMyProfileURL, [userProfile?.email])
-
   useEffect(() => {
     if (nickNameRef.current && userProfile) {
       nickNameRef.current.value = userProfile.name
@@ -63,6 +54,8 @@ const MyAccountContainer = () => {
   if (isLoading || !userProfile) {
     return null
   }
+
+  const profileURL = getFeedoongUrl(userProfile)
 
   return (
     <PageContainer>

@@ -28,16 +28,6 @@ const Paging = ({
     lastPage,
   } = usePageInfo({ totalPage, currentPage, displayedPageRange })
 
-  const isPrevPageVisible = (hasPreviousPage: boolean) => {
-    if (!hasPreviousPage) return false
-    return true
-  }
-
-  const isNextPageVisible = (hasNextPage: boolean) => {
-    if (!hasNextPage) return false
-    return true
-  }
-
   const buildPages = () => {
     const pages = []
     for (let i = firstPage; i <= lastPage; i++) {
@@ -52,7 +42,7 @@ const Paging = ({
       )
     }
 
-    isPrevPageVisible(hasPreviousPage) &&
+    hasPreviousPage &&
       pages.unshift(
         <Page
           key={'prev' + previousPage}
@@ -63,7 +53,7 @@ const Paging = ({
         />
       )
 
-    isNextPageVisible(hasNextPage) &&
+    hasNextPage &&
       pages.push(
         <Page
           key={'next' + nextPage}

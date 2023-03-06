@@ -8,6 +8,7 @@ import Paging from 'components/common/Paging'
 import { SkeletonSubscriptionType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
 import EmptyContents from 'components/common/EmptyContents'
+import type { PrivateSubscription } from 'types/subscriptions'
 
 const ChannelList = () => {
   const router = useRouter()
@@ -24,7 +25,11 @@ const ChannelList = () => {
                 return <SkeletonSubscriptionType key={idx} />
               })
             : listData?.map((item) => (
-                <FeedItem key={item.id} type="subscription" item={item} />
+                <FeedItem
+                  key={item.id}
+                  type="subscription/private"
+                  item={item as PrivateSubscription}
+                />
               ))
         }
         renderEmptyContent={() =>

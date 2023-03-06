@@ -2,6 +2,7 @@ import type { QueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import Toast from 'components/common/Toast'
+import { ROUTE } from 'constants/route'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { RESPONSE_CODE } from 'types/common'
 import { isServer } from 'utils'
@@ -30,7 +31,7 @@ export const globalQueryErrorHandler = (
 const goToIntroducePage = () => {
   const isClient = !isServer()
   if (isClient) {
-    window.location.href = '/introduce'
+    window.location.href = ROUTE.RECOMMENDED_CHANNELS
   }
 }
 

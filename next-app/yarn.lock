@@ -140,6 +140,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.19.0":
+  version: 7.21.0
+  resolution: "@babel/runtime@npm:7.21.0"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 7b33e25bfa9e0e1b9e8828bb61b2d32bdd46b41b07ba7cb43319ad08efc6fda8eb89445193e67d6541814627df0ca59122c0ea795e412b99c5183a0540d338ab
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.18.10":
   version: 7.18.10
   resolution: "@babel/template@npm:7.18.10"
@@ -764,6 +773,41 @@ __metadata:
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
   checksum: ad87447820dd3f24825d2d947ebc03072b20a42bfc96cbafec16bff8bbda6c1a81fcb0be56d5b21968560c5359a0af4038a68ba150c3e1694fe4c109a063bed8
+  languageName: node
+  linkType: hard
+
+"@toss/react@npm:^1.3.6":
+  version: 1.3.6
+  resolution: "@toss/react@npm:1.3.6"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    "@toss/storage": ^1.2.0
+    "@toss/utils": ^1.4.0
+    classnames: ^2.3.1
+    lodash.debounce: ^4.0.8
+    lodash.throttle: ^4.1.1
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18
+  checksum: 11bba566b9cdd681799420c026d4397edcbdec5021eebb82a90ceb3fe3f16ce6932ed02af088e9d12b44995d88abc5873615e7226581df0599f8d974f89c2986
+  languageName: node
+  linkType: hard
+
+"@toss/storage@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@toss/storage@npm:1.2.0"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+  checksum: 14af01371400e777d9d0382a4ec6a0cc9f2880d58350e1435700fb3382b11924929b0d4d660f4df118310c6f85d8fa23867c8ba78d5401bc02bf069c893ddadc
+  languageName: node
+  linkType: hard
+
+"@toss/utils@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@toss/utils@npm:1.4.0"
+  dependencies:
+    "@babel/runtime": ^7.14.8
+    date-fns: ^2.25.0
+  checksum: 91879941643fcb6211a446a562fb4d1604be18ea9f817c6b5343fff23d637b48d6d98df54ee46df3d67de5b7dcb49ba5dd5cd35614144b8670d5b05e908db750
   languageName: node
   linkType: hard
 
@@ -1572,6 +1616,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.1":
+  version: 2.3.2
+  resolution: "classnames@npm:2.3.2"
+  checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -1757,6 +1808,13 @@ __metadata:
   version: 1.0.8
   resolution: "damerau-levenshtein@npm:1.0.8"
   checksum: d240b7757544460ae0586a341a53110ab0a61126570ef2d8c731e3eab3f0cb6e488e2609e6a69b46727635de49be20b071688698744417ff1b6c1d7ccd03e0de
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.25.0":
+  version: 2.29.3
+  resolution: "date-fns@npm:2.29.3"
+  checksum: e01cf5b62af04e05dfff921bb9c9933310ed0e1ae9a81eb8653452e64dc841acf7f6e01e1a5ae5644d0337e9a7f936175fd2cb6819dc122fdd9c5e86c56be484
   languageName: node
   linkType: hard
 
@@ -2340,6 +2398,7 @@ __metadata:
     "@sentry/nextjs": ^7.17.4
     "@tanstack/react-query": ^4.6.0
     "@tanstack/react-query-devtools": ^4.6.0
+    "@toss/react": ^1.3.6
     "@types/gtag.js": ^0.0.12
     "@types/humps": ^2.0.2
     "@types/js-cookie": ^3
@@ -3279,10 +3338,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.debounce@npm:^4.0.8":
+  version: 4.0.8
+  resolution: "lodash.debounce@npm:4.0.8"
+  checksum: a3f527d22c548f43ae31c861ada88b2637eb48ac6aa3eb56e82d44917971b8aa96fbb37aa60efea674dc4ee8c42074f90f7b1f772e9db375435f6c83a19b3bc6
+  languageName: node
+  linkType: hard
+
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash.throttle@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "lodash.throttle@npm:4.1.1"
+  checksum: 129c0a28cee48b348aef146f638ef8a8b197944d4e9ec26c1890c19d9bf5a5690fe11b655c77a4551268819b32d27f4206343e30c78961f60b561b8608c8c805
   languageName: node
   linkType: hard
 
@@ -4176,6 +4249,13 @@ __metadata:
     react-native:
       optional: true
   checksum: 19b410cca6839c8b886b91378112e12de3e0393b547211dafcf7a272c1aa2d7af6c09a9ed39fb3e1997abe5f3d6583e3774dc9f9cdda8c36e4cb0be64a1b17ce
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.13.11":
+  version: 0.13.11
+  resolution: "regenerator-runtime@npm:0.13.11"
+  checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
   languageName: node
   linkType: hard
 
