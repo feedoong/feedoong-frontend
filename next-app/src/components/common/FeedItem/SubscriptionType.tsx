@@ -65,7 +65,14 @@ const SubscriptionType = ({ type, item }: Props) => {
             gap={8}
             style={{ width: '100%' }}
           >
-            <Anchor href={'/channels/' + item.id.toString()}>
+            <Anchor
+              target={type === 'subscription' ? '_blank' : '_self'}
+              href={
+                type === 'subscription'
+                  ? item.url
+                  : '/channels/' + item.id.toString()
+              }
+            >
               <Title>{item.title}</Title>
             </Anchor>
             {type === 'subscription/private' ? (

@@ -145,15 +145,9 @@ const PublicCardType = ({ item }: { item: Item }) => {
             diameter={getDiameterByType('card')}
             src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
           />
-          {isChannelPage ? (
-            <S.Author href={item.link} target="_blank">
-              {item.channelTitle}
-            </S.Author>
-          ) : (
-            <S.Author href={'/channels/' + item.channelId.toString()}>
-              {item.channelTitle}
-            </S.Author>
-          )}
+          <S.Author href={item.link} target="_blank">
+            {item.channelTitle}
+          </S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
         <Flex gap={12} align="center">
