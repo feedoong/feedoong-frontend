@@ -4,6 +4,8 @@ import { SwitchCase } from '@toss/react'
 import MyFeed from './MyFeed'
 import RecommendedChannels from './Recommended/RecommendedChannels'
 import RecommendedPosts from './Recommended/RecommendedPosts'
+import FeedTab from './FeedTab'
+import { FEED_ROUTE } from 'constants/route'
 
 import * as S from './FeedsContainer.style'
 
@@ -15,21 +17,15 @@ const FeedsContainer = () => {
       <S.FeedWrapper>
         <S.Header>
           <S.TitleWrapper>
-            <button onClick={() => router.push('/feed/me')}>내 피드</button>
-            <button onClick={() => router.push('/feed/recommended/channels')}>
-              둘러보기 - 채널
-            </button>
-            <button onClick={() => router.push('/feed/recommended/posts')}>
-              둘러보기 - 게시물
-            </button>
+            <FeedTab />
           </S.TitleWrapper>
         </S.Header>
         <SwitchCase
           value={router.pathname}
           caseBy={{
-            '/feed/me': <MyFeed />,
-            '/feed/recommended/channels': <RecommendedChannels />,
-            '/feed/recommended/posts': <RecommendedPosts />,
+            [FEED_ROUTE.MY_FEED]: <MyFeed />,
+            [FEED_ROUTE.RECOMMENDED_CHANNELS]: <RecommendedChannels />,
+            [FEED_ROUTE.RECOMMENDED_POSTS]: <RecommendedPosts />,
           }}
           defaultComponent={<MyFeed />}
         />

@@ -5,6 +5,7 @@ import { getTypographyStyles } from 'styles/fonts'
 
 export const TabContainer = styled.div`
   display: flex;
+  width: 100%;
 `
 
 export const Tab = styled.button<{ isSelected: boolean }>`
@@ -21,8 +22,34 @@ export const Tab = styled.button<{ isSelected: boolean }>`
   ${({ isSelected }) =>
     isSelected &&
     css`
+      width: fit-content;
       color: ${colors.white};
       background-color: ${colors.black};
       ${getTypographyStyles('Body1_B')};
     `}
+`
+
+export const SubTab = styled.button<{ isSelected: boolean }>`
+  all: unset;
+
+  ${getTypographyStyles('Body2_M')};
+  color: ${colors.gray500};
+
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      color: ${colors.white};
+      ${getTypographyStyles('Body2_B')};
+    `}
+`
+
+export const VerticalDivider = styled.div`
+  width: 1px;
+  height: 20px;
+  background-color: ${colors.gray800};
 `
