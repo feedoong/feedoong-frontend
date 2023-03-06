@@ -42,6 +42,7 @@ export const SettingButton = styled.button`
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
   color: ${colors.gray500};
+  cursor: pointer;
 `
 
 export const TabWrapper = styled.div`

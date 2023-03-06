@@ -18,6 +18,7 @@ export interface UserProfile {
   email: string
   name: string
   profileImageUrl: string
+  username: string
 }
 
 export interface SignUpResponse extends UserProfile {
