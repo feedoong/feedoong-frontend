@@ -5,8 +5,26 @@ import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
-export const Container = styled.div`
-  width: 600px;
+export const Container = styled.div<{
+  size?: 'small' | 'medium' | 'large'
+}>`
+  ${({ size = 'large' }) => {
+    // TODO: 임시로 사이즈 나눠둠. 추후에 디자인 시스템에 맞게 수정 필요
+    switch (size) {
+      case 'small':
+        return `
+          width: 250px;
+        `
+      case 'medium':
+        return `
+          width: 400px;
+        `
+      case 'large':
+        return `
+          width: 600px;
+        `
+    }
+  }}
   background-color: ${colors.white};
   border-radius: 12px;
 

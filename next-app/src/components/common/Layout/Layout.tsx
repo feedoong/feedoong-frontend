@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import Nav from './Nav'
 import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
 import { isErrorPage } from 'features/errors/errors'
+import { ROUTE } from 'constants/route'
 
 import { Container } from './Layout.style'
 
@@ -31,8 +32,8 @@ export default Layout
 const routerBranch = (pathname: string) => {
   return {
     isRequiredAuthPage: requiredAuthMatcher(pathname),
-    isIntroducePage: pathname === '/introduce',
-    isSignUpPage: pathname === '/signup',
+    isIntroducePage: pathname === ROUTE.RECOMMENDED_CHANNELS,
+    isSignUpPage: pathname === ROUTE.SIGN_UP,
     isErrorPage: isErrorPage(pathname),
   }
 }

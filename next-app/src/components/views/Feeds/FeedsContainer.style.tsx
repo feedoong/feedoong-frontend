@@ -26,11 +26,13 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  width: 100%;
 `
 
 export const TitleWrapper = styled.div`
   display: flex;
   gap: 20px;
+  width: 100%;
 `
 
 export const CardContainer = styled.ul`

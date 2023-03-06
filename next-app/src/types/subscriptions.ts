@@ -7,6 +7,11 @@ export interface Subscription {
   imageUrl: string
 }
 
+export interface PrivateSubscription extends Subscription {
+  isViewed: boolean
+  isLiked: boolean
+}
+
 export interface Subscriptions {
   channels: Subscription[]
   totalCount: number

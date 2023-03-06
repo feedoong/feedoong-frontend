@@ -83,7 +83,7 @@ const useRssDirectInputModal = () => {
 
   const { handleOpen, renderModal } = useModal({
     content: (
-      <ModalLayout title="RSS 수동으로 추가하기">
+      <ModalLayout title="RSS 수동으로 추가하기" size="large">
         <form
           style={{
             display: 'flex',

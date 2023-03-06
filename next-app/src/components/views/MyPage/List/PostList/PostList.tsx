@@ -8,6 +8,7 @@ import Paging from 'components/common/Paging'
 import EmptyContents from 'components/common/EmptyContents'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
+import type { PrivateItem } from 'types/feeds'
 
 const PostList = () => {
   const router = useRouter()
@@ -24,7 +25,11 @@ const PostList = () => {
                 return <SkeletonCardType key={idx} />
               })
             : listData?.map((item) => (
-                <FeedItem key={item.id} type="card" item={item} />
+                <FeedItem
+                  key={item.id}
+                  type="card/private"
+                  item={item as PrivateItem}
+                />
               ))
         }
         renderEmptyContent={() =>

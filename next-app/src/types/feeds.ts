@@ -9,8 +9,6 @@ export interface Item {
   imageUrl: string
   description: string
   guid: string
-  isLiked: boolean
-  isViewed: boolean
   id: number
   link: string
   publishedAt: string // 2022-10-09T18:11:18.497Z
@@ -18,6 +16,11 @@ export interface Item {
   channelImageUrl: string
   channelTitle: string
   channelId: string
+}
+
+export interface PrivateItem extends Item {
+  isLiked: boolean
+  isViewed: boolean
 }
 
 export interface PreviewResponse {

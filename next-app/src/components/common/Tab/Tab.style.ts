@@ -5,7 +5,6 @@ import { getTypographyStyles } from 'styles/fonts'
 
 export const TabContainer = styled.div`
   display: flex;
-  gap: 2px;
 `
 
 export const Tab = styled.button<{ isSelected: boolean }>`

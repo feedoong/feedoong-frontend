@@ -1,9 +1,7 @@
-import type { Item } from 'types/feeds'
-import type {
-  RecommendationItem,
-  RecommendationSubscription,
-} from 'types/recommendations'
-import type { Subscription } from 'types/subscriptions'
+import { SwitchCase } from '@toss/react'
+
+import type { Item, PrivateItem } from 'types/feeds'
+import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import CardType from './CardType'
 import SubscriptionType from './SubscriptionType'
 
@@ -15,34 +13,40 @@ type Props =
       item: Item
     }
   | {
-      type: 'recommend/card'
-      item: RecommendationItem
-    } // 아직 미구현
+      type: 'card/private'
+      item: PrivateItem
+    }
   | {
       type: 'subscription'
       item: Subscription
     }
   | {
-      type: 'recommend/subscription'
-      item: Subscription
+      type: 'subscription/private'
+      item: PrivateSubscription
     }
 
 const FeedItem = ({ type = 'card', item }: Props) => {
-  if (type === 'card') {
-    return <CardType type="card" item={item as Item} />
-  }
-  if (type === 'recommend/subscription') {
-    return (
-      <SubscriptionType
-        type="recommend/subscription"
-        item={item as RecommendationSubscription}
-      />
-    )
-  }
-  if (type === 'subscription') {
-    return <SubscriptionType type="subscription" item={item as Subscription} />
-  }
-  return null
+  return (
+    <SwitchCase
+      value={type}
+      caseBy={{
+        card: <CardType type="card" item={item as Item} />,
+        'card/private': (
+          <CardType type="card/private" item={item as PrivateItem} />
+        ),
+        subscription: (
+          <SubscriptionType type="subscription" item={item as Subscription} />
+        ),
+        'subscription/private': (
+          <SubscriptionType
+            type="subscription/private"
+            item={item as PrivateSubscription}
+          />
+        ),
+      }}
+      defaultComponent={null}
+    />
+  )
 }
 
 export default FeedItem

@@ -9,6 +9,7 @@ import BookmarkDeactive from './bookmark-deactive.svg'
 import Logo from './Feedoong.svg'
 import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
+import AddMono from './add-mono.svg'
 import CancelCircle from './cancel.svg'
 import Close from './close.svg'
 import Menu from './menu_icon.svg'
@@ -40,6 +41,7 @@ export const Icons = {
   Logo,
   GoogleIcon,
   Add,
+  AddMono,
   CancelCircle,
   Close,
   Menu,

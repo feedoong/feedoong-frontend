@@ -8,7 +8,6 @@ import PostList from './List/PostList'
 import { getFeedoongUrl } from './MyPageContainer.utils'
 import { useGetUserProfile } from 'features/user/userProfile'
 import PageContainer from 'components/common/PageContainer'
-import Toast from 'components/common/Toast'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 
 import * as S from './MyPageContainer.style'
@@ -35,6 +34,8 @@ const MyPageContainer = () => {
   ) as MyPageTabOption
   const { TabComponent } = selectedTab
 
+  const profileURL = getFeedoongUrl(userProfile)
+
   return (
     <PageContainer>
       <S.Contents>
@@ -55,10 +56,8 @@ const MyPageContainer = () => {
                 <Image src={Icons.SettingIcon} alt="setting_icon" />
               </S.SettingButton>
             </Flex>
-            <S.FeedoongUrl
-              onClick={() => copyToClipboard(getFeedoongUrl(userProfile))}
-            >
-              {getFeedoongUrl(userProfile)}
+            <S.FeedoongUrl onClick={() => copyToClipboard(profileURL)}>
+              {profileURL}
             </S.FeedoongUrl>
           </Flex>
         </S.Header>
