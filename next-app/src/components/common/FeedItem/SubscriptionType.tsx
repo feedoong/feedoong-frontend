@@ -20,7 +20,6 @@ type Props =
     }
 
 const SubscriptionType = ({ type, item }: Props) => {
-  console.log(type)
   return (
     <Container>
       <Flex gap={12}>

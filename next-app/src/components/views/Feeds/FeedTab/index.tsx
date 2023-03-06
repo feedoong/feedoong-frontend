@@ -21,6 +21,7 @@ const FeedTab = () => {
         내 피드
       </Tab>
       <Tab
+        fullWidth={pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)}
         isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)}
         onClick={() => {
           if (pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)) {

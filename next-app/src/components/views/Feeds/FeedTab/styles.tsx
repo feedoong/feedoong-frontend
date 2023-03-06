@@ -8,7 +8,7 @@ export const TabContainer = styled.div`
   width: 100%;
 `
 
-export const Tab = styled.button<{ isSelected: boolean }>`
+export const Tab = styled.div<{ isSelected: boolean; fullWidth?: boolean }>`
   all: unset;
   cursor: pointer;
   padding: 8px 16px;
@@ -16,16 +16,22 @@ export const Tab = styled.button<{ isSelected: boolean }>`
   border-radius: 50px;
   color: ${colors.gray500};
   background-color: ${colors.white};
+  white-space: nowrap;
 
   ${getTypographyStyles('Body1_M')};
 
   ${({ isSelected }) =>
     isSelected &&
     css`
-      width: fit-content;
       color: ${colors.white};
       background-color: ${colors.black};
       ${getTypographyStyles('Body1_B')};
+    `}
+
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
     `}
 `
 

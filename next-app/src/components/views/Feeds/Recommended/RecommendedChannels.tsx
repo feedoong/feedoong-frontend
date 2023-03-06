@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import FeedItem from 'components/common/FeedItem'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getRecommendedChannels } from 'services/recommendations'
-import { SkeletonCardType } from 'components/common/Skeleton'
+import { SkeletonSubscriptionType } from 'components/common/Skeleton'
 import * as S from '../FeedsContainer.style'
 
 const RecommendedChannels = () => {
@@ -18,7 +18,7 @@ const RecommendedChannels = () => {
     <S.CardContainer>
       {showSkeleton &&
         Array.from({ length: 10 }).map((_, idx) => {
-          return <SkeletonCardType key={idx} />
+          return <SkeletonSubscriptionType key={idx} />
         })}
       {data?.channels.map((channel) => {
         return <FeedItem key={channel.id} type="subscription" item={channel} />

@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>홈 | 인사이트가 피둥피둥</title>
+        <title>내 피드 | 인사이트가 피둥피둥</title>
       </Head>
       <RssInputView />
       <FeedsContainerView />
