@@ -6,6 +6,7 @@ import Flex from 'components/common/Flex'
 import { ModalLayout, useModal } from 'components/common/Modal'
 import { getTypographyStyles } from 'styles/fonts'
 import { colors } from 'styles/colors'
+import { ROUTE } from 'constants/route'
 
 export const useCheckLoginModal = () => {
   const router = useRouter()
@@ -30,7 +31,7 @@ export const useCheckLoginModal = () => {
           <Button
             type="button"
             buttonStyle="secondary"
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push(ROUTE.SIGN_UP)}
           >
             로그인
           </Button>

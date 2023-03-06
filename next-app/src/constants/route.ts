@@ -4,3 +4,8 @@ export const FEED_ROUTE = {
   RECOMMENDED_CHANNELS: '/feed/recommended/channels',
   RECOMMENDED_POSTS: '/feed/recommended/posts',
 } as const
+
+export const ROUTE = {
+  INTRODUCE: '/introduce',
+  SIGN_UP: '/signup',
+}
