@@ -1,30 +1,30 @@
-import { ToastProps, ToastElement } from './Toast'
+import { NotificationProps, Notification } from './Notification'
 import { renderImperatively, type ImperativeHandler } from 'utils/popUp'
 
 let currentHandler: ImperativeHandler | null = null
 let currentTimeout: number | null = null
 
-export type ToastHandler = {
+export type NotificationHandler = {
   close: () => void
 }
 
-const ToastInner = (props: ToastProps & { onClose?: () => void }) => (
-  <ToastElement {...props} />
+const NotificationInner = (props: NotificationProps & { onClose?: () => void }) => (
+  <Notification {...props} />
 )
 
-const defaultProps: Partial<ToastProps> = {
-  duration: 2000,
+const defaultProps: Partial<NotificationProps> = {
+  duration: 5000,
   position: 'bottom',
 }
 
-export const show = (toastProps: ToastProps) => {
+export const show = (notificationProps: NotificationProps) => {
   const props = {
     ...defaultProps,
-    ...toastProps,
+    ...notificationProps,
   }
 
   const element = (
-    <ToastInner
+    <NotificationInner
       {...props}
       onClose={() => {
         currentHandler = null
@@ -48,7 +48,7 @@ export const show = (toastProps: ToastProps) => {
     }, props.duration)
   }
 
-  return currentHandler as ToastHandler
+  return currentHandler as NotificationHandler
 }
 
 export const clear = () => {
@@ -56,7 +56,7 @@ export const clear = () => {
   currentHandler = null
 }
 
-export const config = (props: Pick<ToastProps, 'duration' | 'position'>) => {
+export const config = (props: Pick<NotificationProps, 'duration' | 'position'>) => {
   if (props.duration !== undefined) {
     defaultProps.duration = props.duration
   }

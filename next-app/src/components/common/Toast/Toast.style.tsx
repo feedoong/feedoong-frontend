@@ -8,15 +8,15 @@ import { Z_INDEX } from 'styles/constants'
 const basicFadeOut = keyframes`
   0% {
     opacity: 1;
-    background-color: rgba(56, 114, 224, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
   }
   70% {
     opacity: 1;
-    background-color: rgba(56, 114, 224, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
   }
   100% {
     opacity: 0;
-    background-color: rgba(56, 114, 224, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
   }
 `
 
@@ -42,13 +42,12 @@ export const ToastWrapper = styled.div<{
 }>`
   ${getTypographyStyles('Body2_M')};
 
-  width: 500px;
   min-height: 40px;
-  padding: 12px 16px;
-  border-radius: 10px;
+  padding: 8px 20px;
+  border-radius: 16px;
   color: ${colors.white};
   background: ${({ type }) =>
-    type === 'basic' ? 'rgba(56, 114, 224, 0.8)' : 'rgba(225, 73, 66, 0.8)'};
+    type === 'basic' ? 'rgba(0, 0, 0, 0.6)' : 'rgba(225, 73, 66, 0.8)'};
   display: flex;
   flex-direction: row;
   justify-content: center;
