@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Image from 'next/legacy/image'
 
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 import { colors } from 'styles/colors'
@@ -26,4 +27,8 @@ export const Url = styled.span`
   ${getTypographyStyles('Body2_M')}
   ${ellipsis(1)}
   color: ${colors.gray600};
+`
+
+export const AddButton = styled(Image)`
+  cursor: pointer;
 `

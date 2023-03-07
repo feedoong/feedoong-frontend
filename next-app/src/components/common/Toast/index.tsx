@@ -1,0 +1,60 @@
+import toast from 'react-hot-toast'
+import Image from 'next/image'
+
+import Icons from 'assets/icons'
+
+const show = ({
+  content,
+  option,
+  type = 'success',
+}: {
+  content: string
+  option?: any
+  type?: 'success' | 'error' | 'loading'
+}) => {
+  const toastOption = {
+    icon: (
+      <Image
+        src={type === 'error' ? Icons.ToastError : Icons.ToastBasic}
+        alt="toast_icon"
+      />
+    ),
+    position: 'bottom-center',
+    style: {
+      borderRadius: '16px',
+      background: 'rgba(0, 0, 0, 0.6)',
+      color: 'white',
+      padding: '8px 20px',
+      fontWeight: '600',
+      fontSize: '14px',
+    },
+    type,
+    ...option,
+  }
+
+  switch (type) {
+    case 'loading':
+      return toast.loading(content, toastOption)
+    case 'error':
+      return toast.error(content, toastOption)
+    case 'success':
+    default:
+      toast.success(content, toastOption)
+  }
+}
+
+const Toast = {
+  show,
+}
+
+export default Toast
+
+// import { clear, show, config } from './methods'
+
+// const Toast = {
+//   show,
+//   clear,
+//   config,
+// }
+
+// export default Toast

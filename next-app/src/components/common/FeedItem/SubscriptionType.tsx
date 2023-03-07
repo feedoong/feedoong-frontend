@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
 import Anchor from '../Anchor'
@@ -13,7 +11,7 @@ import Toast from '../Toast'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 
-import { Container, Title, Url } from './SubscriptionType.style'
+import { Container, Title, Url, AddButton } from './SubscriptionType.style'
 
 import Icons from 'assets/icons'
 
@@ -78,9 +76,9 @@ const SubscriptionType = ({ type, item }: Props) => {
             {type === 'subscription/private' ? (
               <PrivateFeedItemPopover item={item as Subscription} />
             ) : (
-              <Image
+              <AddButton
                 src={Icons.AddMono}
-                style={{ cursor: 'pointer' }}
+                // style={{ cursor: 'pointer' }}
                 onClick={() => addChannel(item)}
                 width={20}
                 height={20}
