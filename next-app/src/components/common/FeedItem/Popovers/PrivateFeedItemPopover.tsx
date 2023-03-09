@@ -11,6 +11,7 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import { deleteSubscription } from 'services/subscriptions'
 import Toast from 'components/common/Toast'
 import type { Subscription } from 'types/subscriptions'
+import { PopoverIcons } from './icons'
 
 import Icons from 'assets/icons'
 
@@ -55,57 +56,33 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
           </button>
         </Dialog.Actions>
       </Dialog>
+
       <Popover
         placement="bottom-start"
         render={() => (
           <Popover.Layout>
             <Anchor href={'/channels/' + item.id.toString()}>
-              <Popover.Item
-                icon={
-                  <Image
-                    src={Icons.Folder}
-                    width={20}
-                    height={20}
-                    alt="채널 상세"
-                    priority
-                  />
-                }
-              >
+              <Popover.Item icon={PopoverIcons.채널_상세}>
                 채널 상세
               </Popover.Item>
             </Anchor>
             <Popover.Item
               onClick={() => copyToClipboard(item.url)}
-              icon={
-                <Image
-                  src={Icons.Link}
-                  width={20}
-                  height={20}
-                  alt="링크 복사"
-                  priority
-                />
-              }
+              icon={PopoverIcons.링크_복사}
             >
               링크 복사
             </Popover.Item>
             <Popover.Item
               onClick={() => setIsOpenDeleteChannelModal(true)}
               color={colors.error}
-              icon={
-                <Image
-                  src={Icons.TrashCan}
-                  width={20}
-                  height={20}
-                  alt="채널 삭제"
-                  priority
-                />
-              }
+              icon={PopoverIcons.채널_삭제}
             >
               채널 삭제
             </Popover.Item>
           </Popover.Layout>
         )}
       >
+        {/* TODO: 내부의 open state를 외부로 노출 시키는 방법 (ex. render props) */}
         <span>
           <Image
             alt="옵션 메뉴"

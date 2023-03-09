@@ -4,6 +4,7 @@ import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import { copyToClipboard } from '../FeedItem.utils'
 import type { PrivateSubscription } from 'types/subscriptions'
+import { PopoverIcons } from './icons'
 
 import Icons from 'assets/icons'
 
@@ -19,31 +20,13 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
         render={() => (
           <Popover.Layout>
             <Anchor href={'/channels/' + item.id.toString()}>
-              <Popover.Item
-                icon={
-                  <Image
-                    src={Icons.Folder}
-                    width={20}
-                    height={20}
-                    alt="채널 상세"
-                    priority
-                  />
-                }
-              >
+              <Popover.Item icon={PopoverIcons.채널_상세}>
                 채널 상세
               </Popover.Item>
             </Anchor>
             <Popover.Item
               onClick={() => copyToClipboard(item.url)}
-              icon={
-                <Image
-                  src={Icons.Link}
-                  width={20}
-                  height={20}
-                  alt="링크 복사"
-                  priority
-                />
-              }
+              icon={PopoverIcons.링크_복사}
             >
               링크 복사
             </Popover.Item>
