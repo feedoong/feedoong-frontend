@@ -1,9 +1,11 @@
 module.exports = {
   extends: 'next/core-web-vitals',
+  plugins: ['unused-imports'],
   rules: {
     // next/image에서 외부 이미지 가져올 때 에러 발생
     '@next/next/no-img-element': 'off',
     'no-multiple-empty-lines': 'off',
+    'unused-imports/no-unused-imports': 'error',
     'import/order': [
       'error',
       {
