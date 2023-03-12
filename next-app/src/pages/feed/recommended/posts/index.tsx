@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
 export default Home
 
-export const getServerSideProps = async (context: GetServerSideProps) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const api = createApi()
     const cookies = parseCookies(context as typeof parseCookies['arguments'])

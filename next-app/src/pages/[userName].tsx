@@ -1,33 +1,30 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
-import Head from 'next/head'
 import { parseCookies } from 'nookies'
+import { useRouter } from 'next/router'
 
-import RssInputView from 'components/views/RssInput'
-import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
 import { getUserInfoServerSide, UserProfile } from 'services/auth'
+import MyPageContainer from 'components/views/MyPage'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { AccessToken } from 'constants/auth'
-import { createApi } from 'services/api'
-import { getFeedsServerSide } from 'services/feeds'
-import { useGetUserProfile } from 'features/user/userProfile'
 import { setAuthorizationHeader } from 'features/auth/token'
+import { createApi } from 'services/api'
+import { AccessToken } from 'constants/auth'
+import { useGetUserProfile } from 'features/user/userProfile'
 
-const Home: NextPage = () => {
-  useGetUserProfile()
+const UserProfile: NextPage = () => {
+  const router = useRouter()
+  const { data: me } = useGetUserProfile()
 
-  return (
-    <>
-      <Head>
-        <title>내 피드 | 인사이트가 피둥피둥</title>
-      </Head>
-      <RssInputView />
-      <FeedsContainerView />
-    </>
-  )
+  const myUserNamePath = `/${me?.username}`
+
+  if (router.asPath === myUserNamePath) {
+    return <MyPageContainer />
+  }
+
+  return <div>public profile</div>
 }
 
-export default Home
+export default UserProfile
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -43,10 +40,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       {
         staleTime: Infinity,
       }
-    )
-    await queryClient.prefetchInfiniteQuery(
-      CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeedsServerSide(api)(pageParam)
     )
 
     return {
