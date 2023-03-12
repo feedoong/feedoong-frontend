@@ -1,5 +1,6 @@
 import Axios, { AxiosError, AxiosResponse } from 'axios'
 import humps from 'humps'
+import httpStatus from 'http-status-codes'
 
 import { getApiEndpoint } from 'envs'
 import { refreshAccessToken } from 'services/auth'
@@ -15,7 +16,8 @@ export const createApi = () => {
 
   const _api = Axios.create({
     baseURL: getApiEndpoint(),
-    validateStatus: (status) => status >= 200 && status < 400,
+    validateStatus: (status) =>
+      status >= httpStatus.OK && status < httpStatus.BAD_REQUEST, // 200 ~ 399
     headers: {
       ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
     },
@@ -31,7 +33,11 @@ export const createApi = () => {
     // catch
     async (error) => {
       if (error instanceof AxiosError) {
-        if (error.response?.status === 401 || error.response?.status === 403) {
+        const errorStatus = error.response?.status ?? 0
+
+        if (
+          [httpStatus.UNAUTHORIZED, httpStatus.FORBIDDEN].includes(errorStatus)
+        ) {
           // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
           if (getRefreshTokenFromCookie()) {
             return refreshAccessToken(error, _api)

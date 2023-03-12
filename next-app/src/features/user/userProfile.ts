@@ -1,7 +1,6 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 
-import { HOUR, MINUTE } from 'constants/dateTime'
 import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
 import { getUserInfo, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'

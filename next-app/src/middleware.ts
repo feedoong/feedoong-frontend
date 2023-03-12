@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
+import httpStatus from 'http-status-codes'
 
 import { ROUTE } from 'constants/route'
 import { isLoginValidServerSide } from 'utils/auth'
@@ -7,7 +8,7 @@ export function middleware(request: NextRequest, response: NextResponse) {
   if (!isLoginValidServerSide(request)) {
     return NextResponse.redirect(
       new URL(ROUTE.RECOMMENDED_CHANNELS, request.url),
-      302
+      httpStatus.MOVED_TEMPORARILY
     )
   }
 

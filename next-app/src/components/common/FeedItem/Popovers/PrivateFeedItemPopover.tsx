@@ -13,8 +13,6 @@ import Toast from 'components/common/Toast'
 import type { Subscription } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 
-import Icons from 'assets/icons'
-
 interface Props {
   item: Subscription
 }
@@ -83,16 +81,7 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
         )}
       >
         {/* TODO: 내부의 open state를 외부로 노출 시키는 방법 (ex. render props) */}
-        <span>
-          <Image
-            alt="옵션 메뉴"
-            src={Icons.DotsVertical}
-            width={16}
-            height={16}
-            style={{ cursor: 'pointer' }}
-            priority
-          />
-        </span>
+        <span>{PopoverIcons.옵션_메뉴}</span>
       </Popover>
     </>
   )

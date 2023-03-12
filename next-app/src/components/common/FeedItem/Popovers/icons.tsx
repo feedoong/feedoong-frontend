@@ -18,4 +18,14 @@ export const PopoverIcons = {
       priority
     />
   ),
+  옵션_메뉴: (
+    <Image
+      alt="옵션 메뉴"
+      src={Icons.DotsVertical}
+      width={16}
+      height={16}
+      style={{ cursor: 'pointer' }}
+      priority
+    />
+  ),
 }
