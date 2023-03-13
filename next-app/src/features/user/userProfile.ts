@@ -2,7 +2,7 @@ import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 
 import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
-import { getUserInfo, UserProfile } from 'services/auth'
+import { getUserInfo, getUserInfoByUsername, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 
 export const useGetUserProfile = (
@@ -17,4 +17,24 @@ export const useGetUserProfile = (
     /** @NOTE 로그인 했을 때 얻은 유저 정보를 계속 사용하도록 함. 만약 직접 쿼리 무효화를 했을 경우에만 사라짐. */
     staleTime: Infinity,
   })
+}
+
+export const useGetUserProfileByUsername = (
+  username: string,
+  options: UseQueryOptions<UserProfile> = {}
+) => {
+  return useQuery<UserProfile>(
+    [CACHE_KEYS.user, username],
+    () => getUserInfoByUsername(username),
+    {
+      staleTime: Infinity,
+      ...options,
+    }
+  )
+}
+
+export const useGetUsernameFromPath = () => {
+  const router = useRouter()
+
+  return router.query.userName as string
 }

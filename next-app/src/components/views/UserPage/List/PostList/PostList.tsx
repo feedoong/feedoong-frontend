@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import List from '..'
-import usePostList from './hooks/usePostList'
+import usePostListByUsername from './hooks/usePostListByUsername'
 import { ITEMS_PER_PAGE } from 'components/views/MyPost/PostContainer.const'
 import Flex from 'components/common/Flex'
 import Paging from 'components/common/Paging'
@@ -10,10 +10,14 @@ import { SkeletonCardType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
 import type { PrivateItem } from 'types/feeds'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
+import { useGetUsernameFromPath } from 'features/user/userProfile'
 
 const PostList = () => {
   const router = useRouter()
-  const { listData, isLoading, isEmptyList, totalCount } = usePostList()
+  const username = useGetUsernameFromPath()
+
+  const { listData, isLoading, isEmptyList, totalCount } =
+    usePostListByUsername(username)
   const isMyProfile = useCheckIsMyProfile()
 
   const totalPage = totalCount ? Math.ceil(totalCount / ITEMS_PER_PAGE) : 1

@@ -36,6 +36,12 @@ export const getUserInfo = () => {
   return api.get<null, UserProfile>(`/users/me`)
 }
 
+export const getUserInfoByUsername = (username: string) => {
+  return api.get<null, Exclude<UserProfile, 'username'>>(
+    `/users/${username}/info`
+  )
+}
+
 export const getUserInfoServerSide = (_api: AxiosInstance) => () => {
   return _api.get<null, UserProfile>(`/users/me`)
 }

@@ -83,3 +83,9 @@ export const getLikedItems = (page: number) => {
 export const submitViewedItem = (id: number) => {
   return api.post<null, SubmitViewedItem>(`/items/view/${id}`)
 }
+
+export const getLikedItemsByUsername = (page: number, username?: string) => {
+  return api.get<null, Feed>(`/users/${username}/liked-items`, {
+    params: { page },
+  })
+}

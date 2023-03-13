@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import List from '..'
-import useChannelList from './hooks/useChannelList'
+import useChannelListByUsername from './hooks/useChannelListByUsername'
 import { ITEMS_PER_PAGE } from 'components/views/MyPost/PostContainer.const'
 import Flex from 'components/common/Flex'
 import Paging from 'components/common/Paging'
@@ -10,10 +10,14 @@ import FeedItem from 'components/common/FeedItem'
 import EmptyContents from 'components/common/EmptyContents'
 import type { PrivateSubscription } from 'types/subscriptions'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
+import { useGetUsernameFromPath } from 'features/user/userProfile'
 
 const ChannelList = () => {
   const router = useRouter()
-  const { listData, isLoading, isEmptyList, totalCount } = useChannelList()
+  const username = useGetUsernameFromPath()
+
+  const { listData, isLoading, isEmptyList, totalCount } =
+    useChannelListByUsername(username)
   const isMyProfile = useCheckIsMyProfile()
 
   const totalPage = totalCount ? Math.ceil(totalCount / ITEMS_PER_PAGE) : 1

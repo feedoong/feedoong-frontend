@@ -13,7 +13,7 @@ import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 import PageContainer from 'components/common/PageContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
-import { getFeedoongUrl } from '../UserPage/MyPageContainer.utils'
+import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
 
 import * as S from './MyAccountContainer.style'
 

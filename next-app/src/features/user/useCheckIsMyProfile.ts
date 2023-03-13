@@ -6,7 +6,5 @@ export const useCheckIsMyProfile = () => {
   const router = useRouter()
   const { data: me } = useGetUserProfile()
 
-  const myUserNamePath = `/${me?.username}`
-
-  return router.asPath === myUserNamePath
+  return router.query.userName === me?.username
 }

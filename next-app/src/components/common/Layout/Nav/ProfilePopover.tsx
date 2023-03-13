@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 import Icons from 'assets/icons'
 
@@ -10,12 +11,14 @@ interface Props {
 }
 
 const ProfilePopover = ({ children }: Props) => {
+  const { data: me } = useGetUserProfile()
+
   return (
     <Popover
       placement="bottom-start"
       render={() => (
         <Popover.Layout>
-          <Anchor href={'/mypage'}>
+          <Anchor href={`/${me?.username}`}>
             <Popover.Item
               icon={
                 <Image
