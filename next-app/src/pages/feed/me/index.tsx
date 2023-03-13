@@ -1,17 +1,15 @@
-import type { GetServerSideProps, NextPage } from 'next'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
+import type { NextPage } from 'next'
 import Head from 'next/head'
-import { parseCookies } from 'nookies'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import { getUserInfoServerSide, UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { AccessToken } from 'constants/auth'
-import { createApi } from 'services/api'
 import { getFeedsServerSide } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
-import { setAuthorizationHeader } from 'features/auth/token'
+import {
+  GetServerSidePropsContextWithAuthClient,
+  withAuthQueryServerSideProps,
+} from 'features/auth/withAuthQueryServerSideProps'
 
 const Home: NextPage = () => {
   useGetUserProfile()
@@ -29,36 +27,15 @@ const Home: NextPage = () => {
 
 export default Home
 
-export const getServerSideProps = async (context: GetServerSideProps) => {
-  try {
-    const api = createApi()
-    const cookies = parseCookies(context as typeof parseCookies['arguments'])
+export const getServerSideProps = withAuthQueryServerSideProps(
+  async (context) => {
+    const _context = context as GetServerSidePropsContextWithAuthClient
 
-    setAuthorizationHeader(api, cookies[AccessToken], { type: 'Bearer' })
-
-    const queryClient = new QueryClient()
-    await queryClient.prefetchQuery<UserProfile>(
-      CACHE_KEYS.me,
-      getUserInfoServerSide(api),
-      {
-        staleTime: Infinity,
-      }
-    )
-    await queryClient.prefetchInfiniteQuery(
+    await _context.queryClient.prefetchInfiniteQuery(
       CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeedsServerSide(api)(pageParam)
+      ({ pageParam = 1 }) => getFeedsServerSide(_context.api)(pageParam)
     )
 
-    return {
-      props: {
-        /** @link https://github.com/TanStack/query/issues/1458#issuecomment-1022396964 */
-        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-      },
-    }
-  } catch (error) {
-    console.log(error)
-    return {
-      props: {},
-    }
+    return { props: {} }
   }
-}
+)

@@ -1,9 +1,7 @@
-import React, { ReactNode } from 'react'
-import Image from 'next/image'
+import React from 'react'
 
 import Flex from '../Flex'
 import { Z_INDEX } from 'styles/constants'
-import { clear } from '../Toast/methods'
 
 import * as S from './Notification.style'
 

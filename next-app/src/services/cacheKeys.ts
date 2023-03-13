@@ -10,4 +10,5 @@ export const CACHE_KEYS = {
   me: ['me'],
   viewItem: (id: number) => ['viewItem', id],
   recommended: (slug: string[] = []) => ['recommended', ...slug],
+  user: (username: string) => ['user', username],
 }

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
@@ -13,7 +13,7 @@ import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 import PageContainer from 'components/common/PageContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
-import { getFeedoongUrl } from '../MyPage/MyPageContainer.utils'
+import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
 
 import * as S from './MyAccountContainer.style'
 
@@ -90,7 +90,7 @@ const MyAccountContainer = () => {
             readOnly={!isEditMode}
             labelName={'피둥 닉네임'}
             // FIXME: production에서는 닉네임 편집 기능 일단 보류 (API 생성 후 추가)
-            // buttonName={isEditMode ? '저장' : '편집'} 
+            // buttonName={isEditMode ? '저장' : '편집'}
             buttonAction={() => setIsEditMode((prev) => !prev)}
           />
         </S.InfoItemContainer>

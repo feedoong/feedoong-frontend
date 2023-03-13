@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState, RefObject } from 'react'
+import { type ChangeEvent, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
