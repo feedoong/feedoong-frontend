@@ -1,21 +1,16 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/router'
+import MyPageContainer from 'components/views/UserPage/MyPage'
 
 import type { UserProfile } from 'services/auth'
-import MyPageContainer from 'components/views/MyPage'
-import { useGetUserProfile } from 'features/user/userProfile'
 import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
+import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 
 const UserProfile: NextPage = () => {
-  const router = useRouter()
-  const { data: me } = useGetUserProfile()
+  const isMyProfile = useCheckIsMyProfile()
 
-  const myUserNamePath = `/${me?.username}`
-
-  if (router.asPath === myUserNamePath) {
+  if (isMyProfile) {
     return <MyPageContainer />
   }
-
   return <div>public profile</div>
 }
 
