@@ -31,7 +31,7 @@ export const globalQueryErrorHandler = (
 const goToIntroducePage = () => {
   const isClient = !isServer()
   if (isClient) {
-    window.location.href = ROUTE.RECOMMENDED_CHANNELS
+    window.location.href = ROUTE.INTRODUCE
   }
 }
 
