@@ -4,7 +4,6 @@ import {
   QueryClient,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { RecoilRoot } from 'recoil'
 
 import { globalQueryErrorHandler } from 'features/errors/globalQueryErrorHandler'
 
@@ -29,9 +28,7 @@ const queryClient: QueryClient = new QueryClient({
 const Providers = ({ pageProps, children }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <RecoilRoot>{children}</RecoilRoot>
-      </Hydrate>
+      <Hydrate state={pageProps.dehydratedState}>{children}</Hydrate>
       <ReactQueryDevtools />
     </QueryClientProvider>
   )
