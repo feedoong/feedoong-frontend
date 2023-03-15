@@ -30,10 +30,7 @@ export const withAuthQueryServerSideProps = (
 
       await queryClient.prefetchQuery<UserProfile>(
         CACHE_KEYS.me,
-        getUserInfoServerSide(api),
-        {
-          staleTime: Infinity,
-        }
+        getUserInfoServerSide(api)
       )
 
       if (!getServerSidePropsFunc) {
