@@ -1,3 +1,4 @@
+import { useDebounce } from '@toss/react'
 import { forwardRef } from 'react'
 
 import * as S from './Button.style'
@@ -18,7 +19,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     as = 'button',
     size = 'small',
     buttonStyle = 'normal',
-    ...props
+    onClick,
+    ...rest
   }: Props,
   ref
 ) {
@@ -27,8 +29,9 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       as={as}
       size={size}
       buttonStyle={buttonStyle}
-      {...props}
+      onClick={useDebounce((e) => onClick && onClick(e), 500)}
       ref={ref}
+      {...rest}
     >
       {children}
     </S.Container>
