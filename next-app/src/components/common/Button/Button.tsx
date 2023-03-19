@@ -7,7 +7,7 @@ export type ButtonStyle = 'primary' | 'secondary' | 'normal' | 'disabled'
 export type ButtonSize = 'large' | 'medium' | 'small' | 'tiny'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode
+  children?: React.ReactNode
   as?: keyof JSX.IntrinsicElements
   buttonStyle?: ButtonStyle
   size?: ButtonSize

@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios'
+import Image from 'next/image'
 
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
@@ -11,11 +12,11 @@ import { submitRssUrl } from 'services/feeds'
 import Toast from '../Toast'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
+import { ErrorBody, getAxiosError } from 'utils/errors'
 
-import { Container, Title, Url, AddButton } from './SubscriptionType.style'
+import { AddButton, Container, Title, Url } from './SubscriptionType.style'
 
 import Icons from 'assets/icons'
-import { ErrorBody, getAxiosError } from 'utils/errors'
 
 type Props =
   | {
@@ -76,14 +77,15 @@ const SubscriptionType = ({ type, item }: Props) => {
             {type === 'subscription/private' ? (
               <PrivateFeedItemPopover item={item as Subscription} />
             ) : (
-              <AddButton
-                src={Icons.AddMono}
-                onClick={() => addChannel(item)}
-                width={20}
-                height={20}
-                alt="채널 추가"
-                priority
-              />
+              <AddButton onClick={() => addChannel(item)}>
+                <Image
+                  src={Icons.AddMono}
+                  width={20}
+                  height={20}
+                  alt="채널 추가"
+                  priority
+                />
+              </AddButton>
             )}
           </Flex>
           <Anchor href={item.url} target="_blank" style={{ width: '90%' }}>

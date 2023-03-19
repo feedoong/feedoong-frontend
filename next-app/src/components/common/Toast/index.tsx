@@ -14,7 +14,7 @@ const show = ({
   option?: any
   type?: 'success' | 'error' | 'loading' | 'promise'
   fetchFn?: any
-  promiseContent?: { loading: string; error: Function}
+  promiseContent?: { loading: string; error: any }
 }) => {
   const toastOption = {
     icon: (

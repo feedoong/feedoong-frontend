@@ -3,6 +3,7 @@ import Image from 'next/legacy/image'
 
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 import { colors } from 'styles/colors'
+import Button from '../Button'
 
 export const Container = styled.div`
   background-color: ${colors.white};
@@ -29,6 +30,7 @@ export const Url = styled.span`
   color: ${colors.gray600};
 `
 
-export const AddButton = styled(Image)`
+export const AddButton = styled(Button)`
+  all: unset;
   cursor: pointer;
 `
