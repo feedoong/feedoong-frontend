@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import Skeleton from 'react-loading-skeleton'
 
 import Flex from 'components/common/Flex'
 import Tab, { getSelectedTab } from 'components/common/Tab/Tab'
@@ -32,7 +33,8 @@ const UserPageContainer = () => {
   const router = useRouter()
   const username = useGetUsernameFromPath()
 
-  const { data: userProfile } = useGetUserProfileByUsername(username)
+  const { data: userProfile, isLoading: isLoadingUserProfile } =
+    useGetUserProfileByUsername(username)
 
   const isMyProfile = useCheckIsMyProfile()
 
@@ -66,9 +68,13 @@ const UserPageContainer = () => {
                 </S.SettingButton>
               )}
             </Flex>
-            <S.FeedoongUrl onClick={() => copyToClipboard(profileURL)}>
-              {profileURL}
-            </S.FeedoongUrl>
+            {isLoadingUserProfile ? (
+              <Skeleton width={100} height={10} />
+            ) : (
+              <S.FeedoongUrl onClick={() => copyToClipboard(profileURL)}>
+                {profileURL}
+              </S.FeedoongUrl>
+            )}
           </Flex>
         </S.Header>
 

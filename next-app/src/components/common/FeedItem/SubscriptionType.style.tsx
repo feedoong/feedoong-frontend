@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Image from 'next/legacy/image'
 
 import { getTypographyStyles, ellipsis } from 'styles/fonts'
 import { colors } from 'styles/colors'
