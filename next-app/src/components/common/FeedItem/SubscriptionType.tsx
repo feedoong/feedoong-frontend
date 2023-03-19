@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios'
+
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
 import Anchor from '../Anchor'
@@ -6,7 +8,6 @@ import PrivateFeedItemPopover from './Popovers/PrivateFeedItemPopover'
 import LogoIcon from '../LogoIcon'
 import { getDiameterByType } from './FeedItem.utils'
 import { submitRssUrl } from 'services/feeds'
-import { getAxiosError, isAxiosError } from 'utils/errors'
 import Toast from '../Toast'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
@@ -14,6 +15,7 @@ import { useCheckLoginModal } from 'features/auth/checkLogin'
 import { Container, Title, Url, AddButton } from './SubscriptionType.style'
 
 import Icons from 'assets/icons'
+import { ErrorBody, getAxiosError } from 'utils/errors'
 
 type Props =
   | {
@@ -30,23 +32,21 @@ const SubscriptionType = ({ type, item }: Props) => {
   const { handleOpen, renderModal } = useCheckLoginModal()
 
   const addChannel = async (item: Subscription) => {
-    try {
-      if (!user) {
-        handleOpen()
-        return
-      }
-      await submitRssUrl({ url: item.url, feedUrl: item.feedUrl })
-
-      Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
-    } catch (error) {
-      if (isAxiosError(error)) {
-        const errorMessage = getAxiosError(error).message
-        Toast.show({
-          type: 'error',
-          content: `채널 추가에 실패했습니다. ${errorMessage}`,
-        })
-      }
+    if (!user) {
+      return handleOpen()
     }
+
+    Toast.show({
+      type: 'promise',
+      fetchFn: submitRssUrl({ url: item.url, feedUrl: item.feedUrl }),
+      content: '새로운 채널이 추가되었어요!',
+      promiseContent: {
+        loading: '채널을 등록중이에요',
+        error: (err: AxiosError<ErrorBody, any>) =>
+          `채널 추가에 실패했어요 😅 ${getAxiosError(err).message}`,
+      },
+      option: { duration: 3000 },
+    })
   }
 
   return (
@@ -78,7 +78,6 @@ const SubscriptionType = ({ type, item }: Props) => {
             ) : (
               <AddButton
                 src={Icons.AddMono}
-                // style={{ cursor: 'pointer' }}
                 onClick={() => addChannel(item)}
                 width={20}
                 height={20}

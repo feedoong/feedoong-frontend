@@ -7,10 +7,14 @@ const show = ({
   content,
   option,
   type = 'success',
+  fetchFn,
+  promiseContent,
 }: {
   content: string
   option?: any
-  type?: 'success' | 'error' | 'loading'
+  type?: 'success' | 'error' | 'loading' | 'promise'
+  fetchFn?: any
+  promiseContent?: { loading: string; error: Function}
 }) => {
   const toastOption = {
     icon: (
@@ -27,6 +31,7 @@ const show = ({
       padding: '8px 20px',
       fontWeight: '600',
       fontSize: '14px',
+      maxWidth: '700px',
     },
     type,
     ...option,
@@ -35,6 +40,16 @@ const show = ({
   switch (type) {
     case 'loading':
       return toast.loading(content, toastOption)
+    case 'promise':
+      return toast.promise(
+        fetchFn,
+        {
+          loading: promiseContent?.loading || '로딩 중입니다.',
+          success: content,
+          error: promiseContent?.error || '실패했습니다',
+        },
+        toastOption
+      )
     case 'error':
       return toast.error(content, toastOption)
     case 'success':
