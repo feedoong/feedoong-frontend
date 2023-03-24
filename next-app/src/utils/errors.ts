@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 
-interface ErrorBody {
+export interface ErrorBody {
   status: string
   message: string
   exceptions: string[]

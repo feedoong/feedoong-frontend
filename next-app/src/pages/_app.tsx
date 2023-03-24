@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { Toaster } from 'react-hot-toast'
 
 import { getDomainName } from 'envs'
 import Layout from 'components/common/Layout'
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GoogleAnalytics />
       <Providers pageProps={pageProps}>
         <Layout>
+          <Toaster containerStyle={{ bottom: '60px' }} />
           <Component {...pageProps} />
         </Layout>
       </Providers>

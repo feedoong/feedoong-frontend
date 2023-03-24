@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios'
 import Image from 'next/image'
 
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
@@ -8,12 +9,12 @@ import PrivateFeedItemPopover from './Popovers/PrivateFeedItemPopover'
 import LogoIcon from '../LogoIcon'
 import { getDiameterByType } from './FeedItem.utils'
 import { submitRssUrl } from 'services/feeds'
-import { getAxiosError, isAxiosError } from 'utils/errors'
 import Toast from '../Toast'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
+import { ErrorBody, getAxiosError } from 'utils/errors'
 
-import { Container, Title, Url } from './SubscriptionType.style'
+import { AddButton, Container, Title, Url } from './SubscriptionType.style'
 
 import Icons from 'assets/icons'
 
@@ -32,23 +33,21 @@ const SubscriptionType = ({ type, item }: Props) => {
   const { handleOpen, renderModal } = useCheckLoginModal()
 
   const addChannel = async (item: Subscription) => {
-    try {
-      if (!user) {
-        handleOpen()
-        return
-      }
-      await submitRssUrl({ url: item.url, feedUrl: item.feedUrl })
-
-      Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
-    } catch (error) {
-      if (isAxiosError(error)) {
-        const errorMessage = getAxiosError(error).message
-        Toast.show({
-          type: 'error',
-          content: `채널 추가에 실패했습니다. ${errorMessage}`,
-        })
-      }
+    if (!user) {
+      return handleOpen()
     }
+
+    Toast.show({
+      type: 'promise',
+      fetchFn: submitRssUrl({ url: item.url, feedUrl: item.feedUrl }),
+      content: '새로운 채널이 추가되었어요!',
+      promiseContent: {
+        loading: '채널을 등록중이에요',
+        error: (err: AxiosError<ErrorBody, any>) =>
+          `채널 추가에 실패했어요 😅 ${getAxiosError(err).message}`,
+      },
+      option: { duration: 3000 },
+    })
   }
 
   return (
@@ -78,15 +77,15 @@ const SubscriptionType = ({ type, item }: Props) => {
             {type === 'subscription/private' ? (
               <PrivateFeedItemPopover item={item as Subscription} />
             ) : (
-              <Image
-                src={Icons.AddMono}
-                style={{ cursor: 'pointer' }}
-                onClick={() => addChannel(item)}
-                width={20}
-                height={20}
-                alt="채널 추가"
-                priority
-              />
+              <AddButton onClick={() => addChannel(item)}>
+                <Image
+                  src={Icons.AddMono}
+                  width={20}
+                  height={20}
+                  alt="채널 추가"
+                  priority
+                />
+              </AddButton>
             )}
           </Flex>
           <Anchor href={item.url} target="_blank" style={{ width: '90%' }}>
