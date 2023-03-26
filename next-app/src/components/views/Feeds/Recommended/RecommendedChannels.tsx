@@ -21,7 +21,15 @@ const RecommendedChannels = () => {
           return <SkeletonSubscriptionType key={idx} />
         })}
       {data?.channels.map((channel) => {
-        return <FeedItem key={channel.id} type="subscription" item={channel} />
+        return (
+          <FeedItem
+            key={channel.id}
+            type="subscription"
+            item={channel}
+            // TODO: 추후 로그인 시 각 채널 구독 여부 확인 가능해지면 제거
+            isPrivate={false}
+          />
+        )
       })}
     </S.CardContainer>
   )
