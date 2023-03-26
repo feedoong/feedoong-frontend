@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Nav from './Nav'
 import { ROUTE } from 'constants/route'
 
-import { Container } from './Layout.style'
+import { Container, TestContainer } from './Layout.style'
 
 interface Props {
   children: React.ReactNode
@@ -17,9 +17,16 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-      {hasGNB && <Nav />}
+      {/* {hasGNB && <Nav />}
       <Container fullHeight={!hasGNB}>
         <main>{children}</main>
+      </Container> */}
+
+      {hasGNB && <Nav />}
+      <Container fullHeight={!hasGNB}>
+        <TestContainer>
+          <main>{children}</main>
+        </TestContainer>
       </Container>
     </>
   )

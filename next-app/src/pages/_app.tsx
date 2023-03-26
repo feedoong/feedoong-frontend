@@ -17,6 +17,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, viewport-fit=cover, minimal-ui"
+          key="viewport"
+        />
+        <meta
           name="description"
           content="여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기! 크롬 새 탭에서 바로 시작하세요!"
         />
