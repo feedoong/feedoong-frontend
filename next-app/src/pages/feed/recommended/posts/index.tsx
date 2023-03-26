@@ -5,9 +5,12 @@ import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
+import { getRefreshTokenFromCookie } from 'features/auth/token'
 
 const Home: NextPage = () => {
-  useGetUserProfile()
+  useGetUserProfile({
+    enabled: !!getRefreshTokenFromCookie(),
+  })
 
   return (
     <>

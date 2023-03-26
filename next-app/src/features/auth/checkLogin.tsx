@@ -41,7 +41,7 @@ export const useCheckLoginModal = () => {
   })
 
   return {
-    handleOpen,
+    openLoginModal: handleOpen,
     renderModal,
   }
 }
