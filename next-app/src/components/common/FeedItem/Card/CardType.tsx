@@ -1,30 +1,19 @@
 import { useRouter } from 'next/router'
-import { SwitchCase } from '@toss/react'
 
 import type { Item, PrivateItem } from 'types/feeds'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
-import { copyToClipboard, getDiameterByType } from './FeedItem.utils'
-import Flex from '../Flex'
-import Divider from '../Divider'
-import Anchor from '../Anchor'
-import useToggleLike from './hooks/useToggleLike'
-import useReadPost from './hooks/useReadPost'
-import LogoIcon from '../LogoIcon'
+import { copyToClipboard, getDiameterByType } from '../FeedItem.utils'
+import Flex from 'components/common/Flex'
+import Divider from 'components/common/Divider'
+import Anchor from 'components/common/Anchor'
+import useToggleLike from '../hooks/useToggleLike'
+import useReadPost from '../hooks/useReadPost'
+import LogoIcon from 'components/common/LogoIcon'
+import * as S from '../FeedItem.style'
 
-import * as S from './FeedItem.style'
 import { Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
-
-type Props =
-  | {
-      type: 'card'
-      item: Item
-    }
-  | {
-      type: 'card/private'
-      item: PrivateItem
-    }
 
 /**
  * TODO: 북마크 상태 변경 시 깜빡임 문제
@@ -32,24 +21,13 @@ type Props =
  * @constructor
  */
 
-const CardType = ({ type, item }: Props) => {
-  return (
-    <SwitchCase
-      value={type}
-      caseBy={{
-        card: <PublicCardType item={item as Item} />,
-        'card/private': <PrivateCardType item={item as PrivateItem} />,
-      }}
-    />
-  )
-}
-
-const PrivateCardType = ({ item }: { item: PrivateItem }) => {
+export const PrivateCardType = ({ item }: { item: PrivateItem }) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
 
   const { pathname } = useRouter()
-  const isChannelPage = pathname === '/channels/[id]'
+
+  const { channelHref, target } = routerBranch(pathname, item)
 
   return (
     <Container>
@@ -83,15 +61,9 @@ const PrivateCardType = ({ item }: { item: PrivateItem }) => {
             diameter={getDiameterByType('card')}
             src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
           />
-          {isChannelPage ? (
-            <S.Author href={item.link} target="_blank">
-              {item.channelTitle}
-            </S.Author>
-          ) : (
-            <S.Author href={'/channels/' + item.channelId.toString()}>
-              {item.channelTitle}
-            </S.Author>
-          )}
+          <S.Author href={channelHref} target={target}>
+            {item.channelTitle}
+          </S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
         <Flex gap={12} align="center">
@@ -117,9 +89,10 @@ const PrivateCardType = ({ item }: { item: PrivateItem }) => {
   )
 }
 
-const PublicCardType = ({ item }: { item: Item }) => {
+export const PublicCardType = ({ item }: { item: Item }) => {
   const { pathname } = useRouter()
-  const isChannelPage = pathname === '/channels/[id]'
+
+  const { channelHref, target } = routerBranch(pathname, item)
 
   return (
     <Container>
@@ -145,7 +118,7 @@ const PublicCardType = ({ item }: { item: Item }) => {
             diameter={getDiameterByType('card')}
             src={item.channelImageUrl ?? getWellKnownChannelImg(item.link)}
           />
-          <S.Author href={item.link} target="_blank">
+          <S.Author href={channelHref} target={target}>
             {item.channelTitle}
           </S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
@@ -165,4 +138,12 @@ const PublicCardType = ({ item }: { item: Item }) => {
   )
 }
 
-export default CardType
+const routerBranch = (pathname: string, item: Item) => {
+  const isDetailPage = pathname.includes('[id]')
+  return {
+    target: isDetailPage ? '_blank' : undefined,
+    channelHref: isDetailPage
+      ? item.link
+      : '/channels/' + item.channelId.toString(),
+  }
+}

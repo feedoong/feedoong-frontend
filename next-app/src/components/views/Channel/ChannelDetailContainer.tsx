@@ -13,8 +13,6 @@ import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
 import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
 import LogoIcon from 'components/common/LogoIcon'
-import type { Item, PrivateItem } from 'types/feeds'
-import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 import * as S from 'components/views/MyPost/PostContainer.style'
 
 function PostContainer() {
@@ -28,8 +26,6 @@ function PostContainer() {
     () => getChannel(id, currentPage),
     { enabled: !!id }
   )
-
-  const userProfile = useGetUserProfileIfHasToken()
 
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
@@ -67,17 +63,9 @@ function PostContainer() {
             ? Array.from({ length: 10 }).map((_, idx) => {
                 return <SkeletonCardType key={idx} />
               })
-            : data?.items.map((item) =>
-                userProfile ? (
-                  <FeedItem
-                    key={item.id}
-                    type="card/private"
-                    item={item as PrivateItem}
-                  />
-                ) : (
-                  <FeedItem key={item.id} type="card" item={item as Item} />
-                )
-              )}
+            : data?.items.map((item) => (
+                <FeedItem key={item.id} type="card" item={item} />
+              ))}
         </S.CardContainer>
         <Flex justify="center" style={{ width: '100%', padding: '44px 0' }}>
           <Paging

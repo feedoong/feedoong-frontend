@@ -5,8 +5,6 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import { getRecommendedPosts } from 'services/recommendations'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import * as S from '../FeedsContainer.style'
-import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
-import type { Item, PrivateItem } from 'types/feeds'
 
 const RecommendedPosts = () => {
   const { data, isFetching } = useQuery(
@@ -15,7 +13,6 @@ const RecommendedPosts = () => {
   )
 
   const showSkeleton = isFetching && !data
-  const { data: userProfile } = useGetUserProfileIfHasToken()
 
   return (
     <S.CardContainer>
@@ -23,17 +20,9 @@ const RecommendedPosts = () => {
         Array.from({ length: 10 }).map((_, idx) => {
           return <SkeletonCardType key={idx} />
         })}
-      {data?.items.map((item) => {
-        return userProfile ? (
-          <FeedItem
-            key={item.id}
-            type={userProfile ? 'card/private' : 'card'}
-            item={item as PrivateItem}
-          />
-        ) : (
-          <FeedItem key={item.id} type="card" item={item as Item} />
-        )
-      })}
+      {data?.items.map((item) => (
+        <FeedItem key={item.id} type="card" item={item} />
+      ))}
     </S.CardContainer>
   )
 }

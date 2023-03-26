@@ -10,7 +10,6 @@ import { ITEMS_PER_PAGE } from './PostContainer.const'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import EmptyContents from 'components/common/EmptyContents'
 import * as S from 'components/views/MyPost/PostContainer.style'
-import type { PrivateItem } from 'types/feeds'
 
 function PostContainer() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -38,11 +37,7 @@ function PostContainer() {
                 return <SkeletonCardType key={idx} />
               })
             : data?.items.map((item) => (
-                <FeedItem
-                  key={item.id}
-                  type="card/private"
-                  item={item as PrivateItem}
-                />
+                <FeedItem key={item.id} type="card" item={item} />
               ))}
         </S.CardContainer>
         {isEmpty && <EmptyContents content="저장된 게시물이 없습니다!" />}
