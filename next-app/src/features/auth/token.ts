@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import type { AxiosInstance } from 'axios'
+import dayjs from 'dayjs'
 
 import { AccessToken, RefreshToken } from 'constants/auth'
 
@@ -9,7 +10,7 @@ export const getRefreshTokenFromCookie = () => {
 
 export const setRefreshTokenToCookie = (token: string) => {
   Cookies.set(RefreshToken, token, {
-    expires: 20,
+    expires: dayjs().add(6, 'month').toDate(),
     sameSite: 'lax',
   })
 }
@@ -20,7 +21,7 @@ export const getAccessTokenFromCookie = () => {
 
 export const setAccessTokenToCookie = (token: string) => {
   Cookies.set(AccessToken, token, {
-    expires: 7,
+    expires: dayjs().add(2, 'hours').toDate(),
     secure: true,
     sameSite: 'lax',
   })
