@@ -14,9 +14,8 @@ import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
 import LogoIcon from 'components/common/LogoIcon'
 import type { Item, PrivateItem } from 'types/feeds'
-import { useGetUserProfile } from 'features/user/userProfile'
+import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 import * as S from 'components/views/MyPost/PostContainer.style'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
 
 function PostContainer() {
   const { query } = useRouter()
@@ -30,9 +29,7 @@ function PostContainer() {
     { enabled: !!id }
   )
 
-  const userProfile = useGetUserProfile({
-    enabled: !!getRefreshTokenFromCookie(),
-  })
+  const userProfile = useGetUserProfileIfHasToken()
 
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 

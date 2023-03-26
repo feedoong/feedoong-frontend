@@ -5,9 +5,8 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import { getRecommendedPosts } from 'services/recommendations'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import * as S from '../FeedsContainer.style'
-import { useGetUserProfile } from 'features/user/userProfile'
+import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 import type { Item, PrivateItem } from 'types/feeds'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
 
 const RecommendedPosts = () => {
   const { data, isFetching } = useQuery(
@@ -16,9 +15,7 @@ const RecommendedPosts = () => {
   )
 
   const showSkeleton = isFetching && !data
-  const { data: userProfile } = useGetUserProfile({
-    enabled: !!getRefreshTokenFromCookie(),
-  })
+  const { data: userProfile } = useGetUserProfileIfHasToken()
 
   return (
     <S.CardContainer>

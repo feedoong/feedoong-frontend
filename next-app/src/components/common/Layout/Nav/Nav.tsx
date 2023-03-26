@@ -1,10 +1,9 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
 
-import { useGetUserProfile } from 'features/user/userProfile'
+import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 import ProfilePopover from './ProfilePopover'
 import { ROUTE } from 'constants/route'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
 
 import * as S from './Nav.style'
 
@@ -12,10 +11,7 @@ import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  console.log(getRefreshTokenFromCookie())
-  const { data: userProfile } = useGetUserProfile({
-    enabled: !!getRefreshTokenFromCookie(),
-  })
+  const { data: userProfile } = useGetUserProfileIfHasToken()
 
   return (
     <S.TopNavContainer ref={ref}>

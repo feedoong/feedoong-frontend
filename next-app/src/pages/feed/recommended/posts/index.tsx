@@ -3,14 +3,11 @@ import Head from 'next/head'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import { useGetUserProfile } from 'features/user/userProfile'
 import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
+import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 
 const Home: NextPage = () => {
-  useGetUserProfile({
-    enabled: !!getRefreshTokenFromCookie(),
-  })
+  useGetUserProfileIfHasToken()
 
   return (
     <>

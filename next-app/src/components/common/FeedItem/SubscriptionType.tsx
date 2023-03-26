@@ -11,7 +11,7 @@ import { getDiameterByType } from './FeedItem.utils'
 import { submitRssUrl } from 'services/feeds'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 import Toast from '../Toast'
-import { useGetUserProfile } from 'features/user/userProfile'
+import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 
 import { Container, Title, Url } from './SubscriptionType.style'
@@ -30,9 +30,7 @@ type Props =
 
 const SubscriptionType = ({ type, item }: Props) => {
   const router = useRouter()
-  const { data: user } = useGetUserProfile({
-    enabled: type === 'subscription/private',
-  })
+  const { data: user } = useGetUserProfileIfHasToken()
   const { openLoginModal, renderModal } = useCheckLoginModal()
 
   const addChannel = async (item: Subscription) => {
