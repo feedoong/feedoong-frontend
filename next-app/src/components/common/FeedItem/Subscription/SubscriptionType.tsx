@@ -4,14 +4,14 @@ import Image from 'next/image'
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import Flex from 'components/common/Flex'
 import Anchor from 'components/common/Anchor'
-import { getWellKnownChannelImg } from 'utils'
+import Toast from 'components/common/Toast'
+import LogoIcon from 'components/common/LogoIcon'
 import PrivateFeedItemPopover from '../Popovers/PrivateFeedItemPopover'
 import { submitRssUrl } from 'services/feeds'
-import Toast from 'components/common/Toast'
 import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
+import { getWellKnownChannelImg } from 'utils'
 import { ErrorBody, getAxiosError } from 'utils/errors'
-import LogoIcon from 'components/common/LogoIcon'
 import { getDiameterByType } from '../FeedItem.utils'
 
 import { AddButton, Container, Title, Url } from './SubscriptionType.style'
@@ -34,7 +34,7 @@ const SubscriptionType = ({ item, url, renderAction }: Props) => {
   const routerBranch = () => {
     return {
       target: undefined,
-      href: '/channels/' + item.id.toString(),
+      channelHref: '/channels/' + item.id.toString(),
     }
   }
   return (
@@ -51,14 +51,17 @@ const SubscriptionType = ({ item, url, renderAction }: Props) => {
             gap={8}
             style={{ width: '100%' }}
           >
-            <Anchor target={routerBranch().target} href={routerBranch().href}>
+            <Anchor
+              target={routerBranch().target}
+              href={routerBranch().channelHref}
+            >
               <Title>{item.title}</Title>
             </Anchor>
             {renderAction()}
           </Flex>
           <Anchor
             target={routerBranch().target}
-            href={routerBranch().href}
+            href={routerBranch().channelHref}
             style={{ width: '90%' }}
           >
             <Url>{url}</Url>
