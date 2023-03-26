@@ -15,7 +15,6 @@ interface Props {
 const queryClient: QueryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false,
       retryOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
