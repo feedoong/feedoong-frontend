@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import Flex from '../Flex'
@@ -28,13 +29,16 @@ type Props =
     }
 
 const SubscriptionType = ({ type, item }: Props) => {
-  const { data: user } = useGetUserProfile()
-  const { handleOpen, renderModal } = useCheckLoginModal()
+  const router = useRouter()
+  const { data: user } = useGetUserProfile({
+    enabled: type === 'subscription/private',
+  })
+  const { openLoginModal, renderModal } = useCheckLoginModal()
 
   const addChannel = async (item: Subscription) => {
     try {
       if (!user) {
-        handleOpen()
+        openLoginModal()
         return
       }
       await submitRssUrl({ url: item.url, feedUrl: item.feedUrl })
@@ -48,6 +52,14 @@ const SubscriptionType = ({ type, item }: Props) => {
           content: `채널 추가에 실패했습니다. ${errorMessage}`,
         })
       }
+    }
+  }
+
+  const routerBranch = () => {
+    const isDetailPage = router.pathname.includes('[id]')
+    return {
+      target: isDetailPage ? '_blank' : '_self',
+      href: isDetailPage ? item.url : '/channels/' + item.id.toString(),
     }
   }
 
@@ -65,14 +77,7 @@ const SubscriptionType = ({ type, item }: Props) => {
             gap={8}
             style={{ width: '100%' }}
           >
-            <Anchor
-              target={type === 'subscription' ? '_blank' : '_self'}
-              href={
-                type === 'subscription'
-                  ? item.url
-                  : '/channels/' + item.id.toString()
-              }
-            >
+            <Anchor target={routerBranch().href} href={routerBranch().target}>
               <Title>{item.title}</Title>
             </Anchor>
             {type === 'subscription/private' ? (
@@ -89,7 +94,11 @@ const SubscriptionType = ({ type, item }: Props) => {
               />
             )}
           </Flex>
-          <Anchor href={item.url} target="_blank" style={{ width: '90%' }}>
+          <Anchor
+            target={routerBranch().target}
+            href={routerBranch().href}
+            style={{ width: '90%' }}
+          >
             <Url>
               {type === 'subscription/private' ? item.description : item.url}
             </Url>
