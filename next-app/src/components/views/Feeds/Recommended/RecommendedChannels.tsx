@@ -26,8 +26,7 @@ const RecommendedChannels = () => {
             key={channel.id}
             type="subscription"
             item={channel}
-            // TODO: 추후 로그인 시 각 채널 구독 여부 확인 가능해지면 제거
-            isPrivate={false}
+            isPrivate={channel.isSubscribed}
           />
         )
       })}

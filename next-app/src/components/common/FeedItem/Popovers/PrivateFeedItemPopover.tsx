@@ -29,7 +29,8 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
       onSuccess: () => {
         Toast.show({ content: '구독이 해제되었습니다.' })
         client.invalidateQueries({
-          predicate: ({ queryKey }) => queryKey[0] === CACHE_KEYS.subscriptions,
+          // TODO: 외부에서 무효화 할 키값을 전달할 아이디어가 없어서 일단 피드 형태 cache key에 feeds를 넣어두고 이를 이용해 무효화
+          predicate: ({ queryKey }) => queryKey.includes(CACHE_KEYS.feeds[0]),
         })
       },
     }
@@ -48,7 +49,13 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
           <button onClick={() => setIsOpenDeleteChannelModal(false)}>
             취소
           </button>
-          <button className="confirm" onClick={() => mutate()}>
+          <button
+            className="confirm"
+            onClick={() => {
+              mutate()
+              setIsOpenDeleteChannelModal(false)
+            }}
+          >
             삭제
           </button>
         </Dialog.Actions>
