@@ -1,6 +1,6 @@
 import { SwitchCase } from '@toss/react'
 
-import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
+import { useGetUserProfile } from 'features/user/userProfile'
 import type { Item, PrivateItem } from 'types/feeds'
 import type { PrivateSubscription, Subscription } from 'types/subscriptions'
 import { PrivateCardType, PublicCardType } from './Card/CardType'
@@ -8,8 +8,6 @@ import {
   PrivateSubscriptionType,
   PublicSubscriptionType,
 } from './Subscription/SubscriptionType'
-
-export type FeedType = 'card' | 'subscription'
 
 type Props =
   | {
@@ -24,7 +22,7 @@ type Props =
     }
 
 const FeedItem = ({ type, item, isPrivate }: Props) => {
-  const { data: userProfile } = useGetUserProfileIfHasToken()
+  const { data: userProfile } = useGetUserProfile()
   const _isPrivate = isPrivate ?? userProfile
 
   if (type === 'card') {

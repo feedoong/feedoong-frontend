@@ -77,6 +77,19 @@ const ProfilePopover = ({ children }: Props) => {
               커뮤니티로 이동
             </Popover.Item>
           </a>
+          <Popover.Item
+            icon={
+              <Image
+                src={Icons.Close}
+                width={20}
+                height={20}
+                alt="로그아웃"
+                priority
+              />
+            }
+          >
+            로그아웃
+          </Popover.Item>
         </Popover.Layout>
       )}
     >

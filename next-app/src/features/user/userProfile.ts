@@ -9,16 +9,8 @@ export const useGetUserProfile = (
   options: UseQueryOptions<UserProfile> = {}
 ) => {
   return useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
-    ...options,
-  })
-}
-
-export const useGetUserProfileIfHasToken = (
-  options: UseQueryOptions<UserProfile> = {}
-) => {
-  return useGetUserProfile({
-    ...options,
     enabled: !!getRefreshTokenFromCookie(),
+    ...options,
   })
 }
 

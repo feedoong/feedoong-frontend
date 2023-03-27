@@ -8,7 +8,7 @@ import Toast from 'components/common/Toast'
 import LogoIcon from 'components/common/LogoIcon'
 import PrivateFeedItemPopover from '../Popovers/PrivateFeedItemPopover'
 import { submitRssUrl } from 'services/feeds'
-import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
+import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 import { getWellKnownChannelImg } from 'utils'
 import { ErrorBody, getAxiosError } from 'utils/errors'
@@ -74,7 +74,7 @@ const SubscriptionType = ({ item, url, renderAction }: Props) => {
 
 export const PublicSubscriptionType = ({ item }: { item: Subscription }) => {
   const { openLoginModal, renderModal } = useCheckLoginModal()
-  const { data: user } = useGetUserProfileIfHasToken()
+  const { data: user } = useGetUserProfile()
 
   const addChannel = async (item: Subscription) => {
     if (!user) {

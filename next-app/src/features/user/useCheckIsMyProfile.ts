@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 
-import { useGetUserProfileIfHasToken } from './userProfile'
+import { useGetUserProfile } from './userProfile'
 
 export const useCheckIsMyProfile = () => {
   const router = useRouter()
-  const { data: me } = useGetUserProfileIfHasToken()
+  const { data: me } = useGetUserProfile()
 
   return router.query.userName === me?.username
 }

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
 
-import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
+import { useGetUserProfile } from 'features/user/userProfile'
 import ProfilePopover from './ProfilePopover'
 import { ROUTE } from 'constants/route'
 
@@ -11,7 +11,7 @@ import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  const { data: userProfile } = useGetUserProfileIfHasToken()
+  const { data: userProfile } = useGetUserProfile()
 
   return (
     <S.TopNavContainer ref={ref}>

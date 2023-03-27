@@ -4,10 +4,10 @@ import Head from 'next/head'
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
 import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
-import { useGetUserProfileIfHasToken } from 'features/user/userProfile'
+import { useGetUserProfile } from 'features/user/userProfile'
 
 const Home: NextPage = () => {
-  useGetUserProfileIfHasToken()
+  useGetUserProfile()
 
   return (
     <>

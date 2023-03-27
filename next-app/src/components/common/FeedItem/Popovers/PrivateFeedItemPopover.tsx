@@ -81,7 +81,7 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
               color={colors.error}
               icon={PopoverIcons.구독_해제}
             >
-              구독_해제
+              구독 해제
             </Popover.Item>
           </Popover.Layout>
         )}
