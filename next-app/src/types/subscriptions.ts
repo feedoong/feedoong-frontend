@@ -5,6 +5,7 @@ export interface Subscription {
   title: string
   url: string
   imageUrl: string
+  isSubscribed: boolean
 }
 
 export interface PrivateSubscription extends Subscription {
