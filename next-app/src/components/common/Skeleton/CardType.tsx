@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton'
 
-import { Container } from 'components/common/FeedItem/Card/CardType.style'
+import { Container } from 'components/common/FeedItem/Post/Post.style'
 import * as S from '../FeedItem/FeedItem.style'
 import Flex from 'components/common/Flex'
 import Divider from 'components/common/Divider'

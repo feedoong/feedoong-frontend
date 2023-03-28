@@ -11,7 +11,7 @@ import useToggleLike from '../hooks/useToggleLike'
 import useReadPost from '../hooks/useReadPost'
 import * as S from '../FeedItem.style'
 
-import { CardActions, Container, Title } from './CardType.style'
+import { CardActions, Container, Title } from './Post.style'
 
 import Icons from 'assets/icons'
 

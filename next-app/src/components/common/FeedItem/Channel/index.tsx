@@ -14,7 +14,7 @@ import { getWellKnownChannelImg } from 'utils'
 import { ErrorBody, getAxiosError } from 'utils/errors'
 import { getDiameterByType } from '../FeedItem.utils'
 
-import { AddButton, Container, Title, Url } from './SubscriptionType.style'
+import { AddButton, Container, Title, Url } from './Channel.style'
 
 import Icons from 'assets/icons'
 
