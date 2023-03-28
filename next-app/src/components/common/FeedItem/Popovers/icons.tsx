@@ -9,12 +9,12 @@ export const PopoverIcons = {
   링크_복사: (
     <Image src={Icons.Link} width={20} height={20} alt="링크 복사" priority />
   ),
-  채널_삭제: (
+  구독_해제: (
     <Image
       src={Icons.TrashCan}
       width={20}
       height={20}
-      alt="채널 삭제"
+      alt="구독 해제"
       priority
     />
   ),

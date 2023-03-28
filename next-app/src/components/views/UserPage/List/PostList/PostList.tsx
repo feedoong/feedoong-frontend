@@ -8,7 +8,6 @@ import Paging from 'components/common/Paging'
 import EmptyContents from 'components/common/EmptyContents'
 import { SkeletonCardType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
-import type { PrivateItem } from 'types/feeds'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { useGetUsernameFromPath } from 'features/user/userProfile'
 
@@ -33,8 +32,9 @@ const PostList = () => {
             : listData?.map((item) => (
                 <FeedItem
                   key={item.id}
-                  type={isMyProfile ? 'card/private' : 'card'}
-                  item={item as PrivateItem}
+                  type="card"
+                  item={item}
+                  isPrivate={isMyProfile}
                 />
               ))
         }

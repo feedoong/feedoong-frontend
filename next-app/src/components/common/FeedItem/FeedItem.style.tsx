@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { colors } from 'styles/colors'
 import { ellipsis, getTypographyStyles } from 'styles/fonts'
+import { mediaQuery } from 'styles/mediaQuery'
 import Anchor from '../Anchor'
 
 export const Footer = styled.div`
@@ -21,17 +22,15 @@ export const PostMeta = styled.div`
   }
 `
 
-export const Author = styled(Anchor)<{ isGridType?: boolean }>`
+export const Author = styled(Anchor)`
   ${getTypographyStyles('Body2_B')}
-  ${(props) =>
-    // TODO: ellipsis 유틸 함수로 대체 가능한지 체크
-    props.isGridType &&
-    `
-    display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 120px;
+  ${ellipsis(1)}
+  max-width: 75%;
+  word-break: break-all;
+
+  ${mediaQuery.mobileL`
+    ${ellipsis(1)}
+    max-width: 55%;
   `}
 `
 

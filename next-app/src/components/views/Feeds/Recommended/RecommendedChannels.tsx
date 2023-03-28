@@ -21,7 +21,14 @@ const RecommendedChannels = () => {
           return <SkeletonSubscriptionType key={idx} />
         })}
       {data?.channels.map((channel) => {
-        return <FeedItem key={channel.id} type="subscription" item={channel} />
+        return (
+          <FeedItem
+            key={channel.id}
+            type="subscription"
+            item={channel}
+            isPrivate={channel.isSubscribed}
+          />
+        )
       })}
     </S.CardContainer>
   )

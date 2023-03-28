@@ -8,7 +8,6 @@ import Paging from 'components/common/Paging'
 import { SkeletonSubscriptionType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
 import EmptyContents from 'components/common/EmptyContents'
-import type { PrivateSubscription } from 'types/subscriptions'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { useGetUsernameFromPath } from 'features/user/userProfile'
 
@@ -33,8 +32,9 @@ const ChannelList = () => {
             : listData?.map((item) => (
                 <FeedItem
                   key={item.id}
-                  type={isMyProfile ? 'subscription/private' : 'subscription'}
-                  item={item as PrivateSubscription}
+                  type="subscription"
+                  item={item}
+                  isPrivate={isMyProfile}
                 />
               ))
         }

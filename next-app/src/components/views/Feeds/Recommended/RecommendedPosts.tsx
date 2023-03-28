@@ -20,9 +20,9 @@ const RecommendedPosts = () => {
         Array.from({ length: 10 }).map((_, idx) => {
           return <SkeletonCardType key={idx} />
         })}
-      {data?.items.map((item) => {
-        return <FeedItem key={item.id} type="card" item={item} />
-      })}
+      {data?.items.map((item) => (
+        <FeedItem key={item.id} type="card" item={item} />
+      ))}
     </S.CardContainer>
   )
 }

@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 
 import Nav from './Nav'
-import { requiredAuthMatcher } from 'features/auth/requiredAuthMatcher'
-import { isErrorPage } from 'features/errors/errors'
 import { ROUTE } from 'constants/route'
 
 import { Container } from './Layout.style'
@@ -14,13 +12,13 @@ interface Props {
 const Layout = ({ children }: Props) => {
   const router = useRouter()
 
-  const { isErrorPage, isSignUpPage } = routerBranch(router.pathname)
-  const disappearGNB = isSignUpPage
+  const { isSignUpPage } = routerBranch(router.pathname)
+  const hasGNB = !isSignUpPage
 
   return (
     <>
-      {!disappearGNB && <Nav />}
-      <Container fullHeight={disappearGNB || isErrorPage}>
+      {hasGNB && <Nav />}
+      <Container fullHeight={!hasGNB}>
         <main>{children}</main>
       </Container>
     </>
@@ -31,9 +29,9 @@ export default Layout
 
 const routerBranch = (pathname: string) => {
   return {
-    isRequiredAuthPage: requiredAuthMatcher(pathname),
-    isIntroducePage: pathname === ROUTE.RECOMMENDED_CHANNELS,
     isSignUpPage: pathname === ROUTE.SIGN_UP,
-    isErrorPage: isErrorPage(pathname),
+    // isRequiredAuthPage: requiredAuthMatcher(pathname),
+    // isIntroducePage: pathname === ROUTE.RECOMMENDED_CHANNELS,
+    // isErrorPage: isErrorPage(pathname),
   }
 }

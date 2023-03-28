@@ -5,7 +5,6 @@ import Skeleton from 'react-loading-skeleton'
 
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
-import * as S from 'components/views/MyPost/PostContainer.style'
 import { getChannel } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
@@ -14,12 +13,14 @@ import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
 import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
 import LogoIcon from 'components/common/LogoIcon'
+import * as S from 'components/views/MyPost/PostContainer.style'
 
 function PostContainer() {
   const { query } = useRouter()
   const id = query.id as string
 
   const [currentPage, setCurrentPage] = useState(1)
+  // TODO: public api로 전환?
   const { data, isLoading } = useQuery(
     [CACHE_KEYS.likedItems, { page: currentPage, channel: id }],
     () => getChannel(id, currentPage),

@@ -3,12 +3,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
-import { copyToClipboard } from '../FeedItem.utils'
 import Dialog from 'components/common/Dialog'
+import Toast from 'components/common/Toast'
+import { copyToClipboard } from '../FeedItem.utils'
 import { colors } from 'styles/colors'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { deleteSubscription } from 'services/subscriptions'
-import Toast from 'components/common/Toast'
 import type { Subscription } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 
@@ -29,7 +29,8 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
       onSuccess: () => {
         Toast.show({ content: '구독이 해제되었습니다.' })
         client.invalidateQueries({
-          predicate: ({ queryKey }) => queryKey[0] === CACHE_KEYS.subscriptions,
+          // TODO: 외부에서 무효화 할 키값을 전달할 아이디어가 없어서 일단 피드 형태 cache key에 feeds를 넣어두고 이를 이용해 무효화
+          predicate: ({ queryKey }) => queryKey.includes(CACHE_KEYS.feeds[0]),
         })
       },
     }
@@ -48,7 +49,13 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
           <button onClick={() => setIsOpenDeleteChannelModal(false)}>
             취소
           </button>
-          <button className="confirm" onClick={() => mutate()}>
+          <button
+            className="confirm"
+            onClick={() => {
+              mutate()
+              setIsOpenDeleteChannelModal(false)
+            }}
+          >
             삭제
           </button>
         </Dialog.Actions>
@@ -72,9 +79,9 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
             <Popover.Item
               onClick={() => setIsOpenDeleteChannelModal(true)}
               color={colors.error}
-              icon={PopoverIcons.채널_삭제}
+              icon={PopoverIcons.구독_해제}
             >
-              채널 삭제
+              구독 해제
             </Popover.Item>
           </Popover.Layout>
         )}

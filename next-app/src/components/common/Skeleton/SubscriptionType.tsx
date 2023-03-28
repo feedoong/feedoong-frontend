@@ -2,7 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 
 import Flex from '../Flex'
 import Anchor from '../Anchor'
-import { Container } from '../FeedItem/SubscriptionType.style'
+import { Container } from '../FeedItem/Subscription/SubscriptionType.style'
 
 const SubscriptionType = () => {
   return (

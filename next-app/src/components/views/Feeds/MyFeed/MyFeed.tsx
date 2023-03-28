@@ -8,7 +8,6 @@ import { getFeeds } from 'services/feeds'
 import FeedItem from 'components/common/FeedItem'
 import Loading from 'components/common/Loading'
 import * as S from '../FeedsContainer.style'
-import type { PrivateItem } from 'types/feeds'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
@@ -42,11 +41,7 @@ const MyFeed = () => {
           })}
         {data?.pages.map((page) =>
           page.items.map((item) => (
-            <FeedItem
-              key={item.id}
-              type="card/private"
-              item={item as PrivateItem}
-            />
+            <FeedItem key={item.id} type="card" item={item} />
           ))
         )}
       </S.CardContainer>

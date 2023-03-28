@@ -1,5 +1,6 @@
+import { getDomainName } from 'envs'
 import type { UserProfile } from 'services/auth'
 
 export const getFeedoongUrl = (userProfile?: UserProfile) => {
-  return `https://feedoong.io/${userProfile?.username}`
+  return `${getDomainName()}/${userProfile?.username}`
 }

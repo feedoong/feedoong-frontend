@@ -35,6 +35,11 @@ const nextConfig = {
         destination: '/feed/recommended/channels',
         permanent: true,
       },
+      {
+        source: '/mypage',
+        destination: '/404',
+        permanent: true,
+      },
     ]
   },
 }

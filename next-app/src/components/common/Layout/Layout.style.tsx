@@ -9,7 +9,7 @@ export const Container = styled.div<{ fullHeight: boolean }>`
       padding-top: 0;
 
       main {
-        height: 100vh;
+        height: 100dvh;
       }
     `};
 `
