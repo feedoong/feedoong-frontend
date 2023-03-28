@@ -11,7 +11,7 @@ import useToggleLike from '../hooks/useToggleLike'
 import useReadPost from '../hooks/useReadPost'
 import * as S from '../FeedItem.style'
 
-import { Container, Title } from './CardType.style'
+import { CardActions, Container, Title } from './CardType.style'
 
 import Icons from 'assets/icons'
 
@@ -66,7 +66,7 @@ export const PrivateCardType = ({ item }: { item: PrivateItem }) => {
           </S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
-        <Flex gap={12} align="center">
+        <CardActions>
           <S.CopyLinkButton
             alt="링크 복사"
             src={Icons.Link}
@@ -83,7 +83,7 @@ export const PrivateCardType = ({ item }: { item: PrivateItem }) => {
             onClick={() => handleLike(String(item.id))}
             priority
           />
-        </Flex>
+        </CardActions>
       </S.Footer>
     </Container>
   )
@@ -123,7 +123,7 @@ export const PublicCardType = ({ item }: { item: Item }) => {
           </S.Author>
           <S.Date>{getFormatDate(item.publishedAt, 'YYYY.MM.DD')}</S.Date>
         </S.PostMeta>
-        <Flex gap={12} align="center">
+        <CardActions>
           <S.CopyLinkButton
             alt="링크 복사"
             src={Icons.Link}
@@ -132,7 +132,7 @@ export const PublicCardType = ({ item }: { item: Item }) => {
             onClick={() => copyToClipboard(item.link)}
             priority
           />
-        </Flex>
+        </CardActions>
       </S.Footer>
     </Container>
   )

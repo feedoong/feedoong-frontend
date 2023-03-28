@@ -27,6 +27,7 @@ export const Url = styled.span`
   ${getTypographyStyles('Body2_M')}
   ${ellipsis(1)}
   color: ${colors.gray600};
+  word-break: break-all;
 `
 
 export const AddButton = styled(Button)`

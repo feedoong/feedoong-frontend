@@ -20,3 +20,10 @@ export const Title = styled.h2`
 
   color: ${colors.gray800};
 `
+
+export const CardActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+`

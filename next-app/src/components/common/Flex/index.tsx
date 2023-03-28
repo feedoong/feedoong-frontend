@@ -4,7 +4,7 @@ type Justify = 'start' | 'end' | 'center' | 'between' | 'around'
 type Align = 'start' | 'end' | 'center' | 'baseline'
 type Direction = 'row' | 'column'
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   gap?: number
   justify?: Justify
