@@ -1,4 +1,4 @@
-export interface Subscription {
+export interface Channel {
   description: string
   feedUrl: string
   id: number
@@ -8,16 +8,16 @@ export interface Subscription {
   isSubscribed: boolean
 }
 
-export interface PrivateSubscription extends Subscription {
+export interface PrivateChannel extends Channel {
   isViewed: boolean
   isLiked: boolean
 }
 
-export interface Subscriptions {
-  channels: Subscription[]
+export interface Channels {
+  channels: Channel[]
   totalCount: number
 }
 
-export const isSubscription = (obj: any): obj is Subscription => {
+export const isChannel = (obj: any): obj is Channel => {
   return obj.feedUrl
 }

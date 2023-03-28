@@ -1,18 +1,18 @@
 import api from 'services/api'
-import type { Subscriptions } from 'types/subscriptions'
+import type { Channels } from 'types/subscriptions'
 
-export const getSubscriptions = (page: number) => {
-  return api.get<null, Subscriptions>(`/subscriptions`, {
+export const getChannels = (page: number) => {
+  return api.get<null, Channels>(`/subscriptions`, {
     params: { page },
   })
 }
 
-export const deleteSubscription = (channelId: number) => {
+export const deleteChannel = (channelId: number) => {
   return api.delete(`/subscriptions/${channelId}`)
 }
 
-export const getSubscriptionsByUsername = (page: number, username?: string) => {
-  return api.get<null, Subscriptions>(`/users/${username}/subscriptions`, {
+export const getChannelsByUsername = (page: number, username?: string) => {
+  return api.get<null, Channels>(`/users/${username}/subscriptions`, {
     params: { page },
   })
 }

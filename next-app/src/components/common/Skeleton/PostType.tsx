@@ -5,7 +5,7 @@ import * as S from '../FeedItem/FeedItem.style'
 import Flex from 'components/common/Flex'
 import Divider from 'components/common/Divider'
 
-const SkeletonCardType = () => {
+const SkeletonPostType = () => {
   return (
     <Container>
       <S.Body>
@@ -33,4 +33,4 @@ const SkeletonCardType = () => {
   )
 }
 
-export default SkeletonCardType
+export default SkeletonPostType

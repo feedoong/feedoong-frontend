@@ -1,11 +1,11 @@
 export interface Feed {
-  items: Item[]
+  items: Post[]
   next: number | null
   prev: number | null
   totalCount: 0
 }
 
-export interface Item {
+export interface Post {
   imageUrl: string
   description: string
   guid: string
@@ -18,7 +18,7 @@ export interface Item {
   channelId: string
 }
 
-export interface PrivateItem extends Item {
+export interface PrivatePost extends Post {
   isLiked: boolean
   isViewed: boolean
 }
@@ -42,12 +42,12 @@ export interface SubmitRssUrlResponse {
   link: string
 }
 
-export interface LikeItemResponse {
+export interface LikePostResponse {
   isLiked: boolean
   itemId: number
 }
 
-export interface SubmitViewedItem {
+export interface SubmitViewedPost {
   id: number
   isViewed: boolean
 }

@@ -3,20 +3,20 @@ import { useQuery } from '@tanstack/react-query'
 
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
-import { getLikedItems } from 'services/feeds'
+import { getLikedPosts } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { ITEMS_PER_PAGE } from './PostContainer.const'
-import { SkeletonCardType } from 'components/common/Skeleton'
+import { SkeletonPostType } from 'components/common/Skeleton'
 import EmptyContents from 'components/common/EmptyContents'
 import * as S from 'components/views/MyPost/PostContainer.style'
 
 function PostContainer() {
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery(
-    [CACHE_KEYS.likedItems, { page: currentPage }],
+    [CACHE_KEYS.likedPosts, { page: currentPage }],
     () => {
-      return getLikedItems(currentPage)
+      return getLikedPosts(currentPage)
     }
   )
 
@@ -34,10 +34,10 @@ function PostContainer() {
         <S.CardContainer>
           {isLoading
             ? Array.from({ length: 10 }).map((_, idx) => {
-                return <SkeletonCardType key={idx} />
+                return <SkeletonPostType key={idx} />
               })
             : data?.items.map((item) => (
-                <FeedItem key={item.id} type="card" item={item} />
+                <FeedItem key={item.id} type="post" item={item} />
               ))}
         </S.CardContainer>
         {isEmpty && <EmptyContents content="저장된 게시물이 없습니다!" />}

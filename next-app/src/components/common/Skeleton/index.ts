@@ -1,4 +1,4 @@
-import SkeletonCardType from './CardType'
-import SkeletonSubscriptionType from './SubscriptionType'
+import SkeletonPostType from './PostType'
+import SkeletonChannelType from './ChannelType'
 
-export { SkeletonCardType, SkeletonSubscriptionType }
+export { SkeletonPostType, SkeletonChannelType }

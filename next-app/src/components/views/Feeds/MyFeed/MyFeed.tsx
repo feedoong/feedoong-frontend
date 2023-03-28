@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { SkeletonCardType } from 'components/common/Skeleton'
+import { SkeletonPostType } from 'components/common/Skeleton'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getFeeds } from 'services/feeds'
 import FeedItem from 'components/common/FeedItem'
@@ -37,11 +37,11 @@ const MyFeed = () => {
       <S.CardContainer>
         {showSkeleton &&
           Array.from({ length: 10 }).map((_, idx) => {
-            return <SkeletonCardType key={idx} />
+            return <SkeletonPostType key={idx} />
           })}
         {data?.pages.map((page) =>
           page.items.map((item) => (
-            <FeedItem key={item.id} type="card" item={item} />
+            <FeedItem key={item.id} type="post" item={item} />
           ))
         )}
       </S.CardContainer>

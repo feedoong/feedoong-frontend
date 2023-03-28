@@ -4,7 +4,7 @@ import Flex from '../Flex'
 import Anchor from '../Anchor'
 import { Container } from '../FeedItem/Channel/Channel.style'
 
-const SubscriptionType = () => {
+const ChannelType = () => {
   return (
     <Container>
       <Flex justify="between">
@@ -21,4 +21,4 @@ const SubscriptionType = () => {
   )
 }
 
-export default SubscriptionType
+export default ChannelType

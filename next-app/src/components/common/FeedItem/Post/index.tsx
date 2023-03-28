@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import type { Item, PrivateItem } from 'types/feeds'
+import type { Post, PrivatePost } from 'types/feeds'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
 import { copyToClipboard, getDiameterByType } from '../FeedItem.utils'
 import Flex from 'components/common/Flex'
@@ -21,7 +21,7 @@ import Icons from 'assets/icons'
  * @constructor
  */
 
-export const PrivateCardType = ({ item }: { item: PrivateItem }) => {
+export const PrivatePostType = ({ item }: { item: PrivatePost }) => {
   const { handleLike } = useToggleLike(item)
   const { handleRead } = useReadPost(item)
 
@@ -89,7 +89,7 @@ export const PrivateCardType = ({ item }: { item: PrivateItem }) => {
   )
 }
 
-export const PublicCardType = ({ item }: { item: Item }) => {
+export const PublicPostType = ({ item }: { item: Post }) => {
   const { pathname } = useRouter()
 
   const { channelHref, target } = routerBranch(pathname, item)
@@ -138,7 +138,7 @@ export const PublicCardType = ({ item }: { item: Item }) => {
   )
 }
 
-const routerBranch = (pathname: string, item: Item) => {
+const routerBranch = (pathname: string, item: Post) => {
   const isDetailPage = pathname.includes('[id]')
   return {
     target: isDetailPage ? '_blank' : undefined,

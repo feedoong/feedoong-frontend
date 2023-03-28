@@ -5,7 +5,7 @@ import useChannelListByUsername from './hooks/useChannelListByUsername'
 import { ITEMS_PER_PAGE } from 'components/views/MyPost/PostContainer.const'
 import Flex from 'components/common/Flex'
 import Paging from 'components/common/Paging'
-import { SkeletonSubscriptionType } from 'components/common/Skeleton'
+import { SkeletonChannelType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
 import EmptyContents from 'components/common/EmptyContents'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
@@ -27,12 +27,12 @@ const ChannelList = () => {
         renderList={() =>
           isLoading
             ? Array.from({ length: ITEMS_PER_PAGE }).map((_, idx) => {
-                return <SkeletonSubscriptionType key={idx} />
+                return <SkeletonChannelType key={idx} />
               })
             : listData?.map((item) => (
                 <FeedItem
                   key={item.id}
-                  type="subscription"
+                  type="channel"
                   item={item}
                   isPrivate={isMyProfile}
                 />

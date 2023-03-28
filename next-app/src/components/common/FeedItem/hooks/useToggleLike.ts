@@ -2,15 +2,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Toast from 'components/common/Toast'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { likeItem, unlikeItem } from 'services/feeds'
-import type { PrivateItem } from 'types/feeds'
+import { likePost, unlikePost } from 'services/feeds'
+import type { PrivatePost } from 'types/feeds'
 
-const useToggleLike = (item: PrivateItem) => {
+const useToggleLike = (item: PrivatePost) => {
   const client = useQueryClient()
 
   const { mutate: handleLike } = useMutation(
-    CACHE_KEYS.likeItem(item.id),
-    !item.isLiked ? likeItem : unlikeItem,
+    CACHE_KEYS.likePost(item.id),
+    !item.isLiked ? likePost : unlikePost,
     {
       onSuccess: async (data) => {
         client.invalidateQueries(CACHE_KEYS.feeds)
