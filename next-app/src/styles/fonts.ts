@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-export const ellipsis = (lineLimit: number = 2) => css`
+export const ellipsis = (lineLimit = 2) => css`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

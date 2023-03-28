@@ -1,4 +1,5 @@
-import { css, CSSProp } from 'styled-components'
+import type { CSSProp } from 'styled-components'
+import { css } from 'styled-components'
 
 const breakpoints: {
   [key: string]: number

@@ -35,7 +35,7 @@ export const Input = styled.input`
   border-radius: 100px;
   outline: none;
   padding: 11px 20px;
-  
+
   &:read-only {
     cursor: default;
     color: ${colors.gray600};

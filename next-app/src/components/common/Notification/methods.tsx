@@ -1,4 +1,5 @@
-import { NotificationProps, Notification } from './Notification'
+import type { NotificationProps } from './Notification'
+import { Notification } from './Notification'
 import { renderImperatively, type ImperativeHandler } from 'utils/popUp'
 
 let currentHandler: ImperativeHandler | null = null
@@ -8,9 +9,9 @@ export type NotificationHandler = {
   close: () => void
 }
 
-const NotificationInner = (props: NotificationProps & { onClose?: () => void }) => (
-  <Notification {...props} />
-)
+const NotificationInner = (
+  props: NotificationProps & { onClose?: () => void }
+) => <Notification {...props} />
 
 const defaultProps: Partial<NotificationProps> = {
   duration: 5000,
@@ -56,7 +57,9 @@ export const clear = () => {
   currentHandler = null
 }
 
-export const config = (props: Pick<NotificationProps, 'duration' | 'position'>) => {
+export const config = (
+  props: Pick<NotificationProps, 'duration' | 'position'>
+) => {
   if (props.duration !== undefined) {
     defaultProps.duration = props.duration
   }

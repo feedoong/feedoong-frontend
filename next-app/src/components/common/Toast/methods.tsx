@@ -1,4 +1,5 @@
-import { ToastProps, ToastElement } from './Toast'
+import type { ToastProps } from './Toast'
+import { ToastElement } from './Toast'
 import { renderImperatively, type ImperativeHandler } from 'utils/popUp'
 
 let currentHandler: ImperativeHandler | null = null

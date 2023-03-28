@@ -1,6 +1,6 @@
 import React, { cloneElement, useMemo, useState } from 'react'
+import type { Placement } from '@floating-ui/react-dom-interactions'
 import {
-  Placement,
   offset,
   flip,
   shift,

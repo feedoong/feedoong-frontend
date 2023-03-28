@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import { isServer } from 'utils'
 

@@ -6,10 +6,8 @@ import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getFeedsServerSide } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
-import {
-  GetServerSidePropsContextWithAuthClient,
-  withAuthQueryServerSideProps,
-} from 'features/auth/withAuthQueryServerSideProps'
+import type { GetServerSidePropsContextWithAuthClient } from 'features/auth/withAuthQueryServerSideProps'
+import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
 
 const Home: NextPage = () => {
   useGetUserProfile()

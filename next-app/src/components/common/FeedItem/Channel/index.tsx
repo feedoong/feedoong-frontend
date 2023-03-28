@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios'
+import type { AxiosError } from 'axios'
 import Image from 'next/image'
 
 import type { PrivateChannel, Channel } from 'types/subscriptions'
@@ -11,7 +11,8 @@ import { submitRssUrl } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 import { getWellKnownChannelImg } from 'utils'
-import { ErrorBody, getAxiosError } from 'utils/errors'
+import type { ErrorBody } from 'utils/errors'
+import { getAxiosError } from 'utils/errors'
 import { getDiameterByType } from '../FeedItem.utils'
 
 import { AddButton, Container, Title, Url } from './Channel.style'

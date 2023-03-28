@@ -2,7 +2,8 @@ import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { parseCookies } from 'nookies'
 
-import { getUserInfoServerSide, UserProfile } from 'services/auth'
+import type { UserProfile } from 'services/auth'
+import { getUserInfoServerSide } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { setAuthorizationHeader } from 'features/auth/token'
 import { createApi } from 'services/api'
@@ -21,7 +22,9 @@ export const withAuthQueryServerSideProps = (
     try {
       const api = createApi()
       context.api = api
-      const cookies = parseCookies(context as typeof parseCookies['arguments'])
+      const cookies = parseCookies(
+        context as (typeof parseCookies)['arguments']
+      )
 
       setAuthorizationHeader(api, cookies[AccessToken], { type: 'Bearer' })
 

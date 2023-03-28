@@ -13,7 +13,7 @@ export const Background = styled.div`
   left: 0;
   top: 0;
   text-align: center;
-  background: rgba(0, 0, 0, 0.5); ;
+  background: rgba(0, 0, 0, 0.5);
 `
 
 export const DialogContainer = styled.div<{ width?: string }>`

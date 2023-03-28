@@ -65,5 +65,5 @@ const Content = styled.div`
   left: 50%;
   padding: 30px;
   transform: translate(-50%, -50%);
-  border-radius: 10px; ;
+  border-radius: 10px;
 `

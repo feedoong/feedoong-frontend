@@ -1,11 +1,15 @@
 module.exports = {
-  extends: 'next/core-web-vitals',
-  plugins: ['unused-imports'],
+  extends: [
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+  ],
   rules: {
+    '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     // next/image에서 외부 이미지 가져올 때 에러 발생
     '@next/next/no-img-element': 'off',
     'no-multiple-empty-lines': 'off',
-    'unused-imports/no-unused-imports': 'error',
     'import/order': [
       'error',
       {

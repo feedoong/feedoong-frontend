@@ -2,7 +2,8 @@ import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 
 import { getRefreshTokenFromCookie } from 'features/auth/token'
-import { getUserInfo, getUserInfoByUsername, UserProfile } from 'services/auth'
+import type { UserProfile } from 'services/auth'
+import { getUserInfo, getUserInfoByUsername } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 
 export const useGetUserProfile = (

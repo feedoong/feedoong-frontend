@@ -1,8 +1,8 @@
 import type { AxiosInstance } from 'axios'
 
 import api from 'services/api'
-import { Post } from 'types/feeds'
-import { Channel } from 'types/subscriptions'
+import type { Post } from 'types/feeds'
+import type { Channel } from 'types/subscriptions'
 
 export const getRecommendedChannels = () => {
   return api.get<null, { channels: Channel[] }>(`/channels/recommended`)
