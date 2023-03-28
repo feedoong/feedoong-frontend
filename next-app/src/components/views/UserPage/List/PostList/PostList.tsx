@@ -6,7 +6,7 @@ import { ITEMS_PER_PAGE } from 'components/views/MyPost/PostContainer.const'
 import Flex from 'components/common/Flex'
 import Paging from 'components/common/Paging'
 import EmptyContents from 'components/common/EmptyContents'
-import { SkeletonCardType } from 'components/common/Skeleton'
+import { SkeletonPostType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { useGetUsernameFromPath } from 'features/user/userProfile'
@@ -27,12 +27,12 @@ const PostList = () => {
         renderList={() =>
           isLoading
             ? Array.from({ length: ITEMS_PER_PAGE }).map((_, idx) => {
-                return <SkeletonCardType key={idx} />
+                return <SkeletonPostType key={idx} />
               })
             : listData?.map((item) => (
                 <FeedItem
                   key={item.id}
-                  type="card"
+                  type="post"
                   item={item}
                   isPrivate={isMyProfile}
                 />

@@ -8,12 +8,12 @@ import Toast from 'components/common/Toast'
 import { copyToClipboard } from '../FeedItem.utils'
 import { colors } from 'styles/colors'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { deleteSubscription } from 'services/subscriptions'
-import type { Subscription } from 'types/subscriptions'
+import { deleteChannel } from 'services/subscriptions'
+import type { Channel } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 
 interface Props {
-  item: Subscription
+  item: Channel
 }
 
 const PrivateFeedItemPopover = ({ item }: Props) => {
@@ -23,8 +23,8 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
   const client = useQueryClient()
 
   const { mutate } = useMutation(
-    CACHE_KEYS.subscription(item.id),
-    () => deleteSubscription(item.id),
+    CACHE_KEYS.channel(item.id),
+    () => deleteChannel(item.id),
     {
       onSuccess: () => {
         Toast.show({ content: '구독이 해제되었습니다.' })

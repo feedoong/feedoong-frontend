@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image'
 
 import * as S from './Paging.style'
 
@@ -11,19 +11,19 @@ interface Props {
   pageNumber: number
   onClick: (pageNumber: number) => void
 }
-const Page = ({ isActive, pageNumber, pageText, onClick, disabled, image }: Props) => {
+const Page = ({ isActive, pageNumber, pageText, onClick, image }: Props) => {
   const renderTextOrImage = () => {
     if (image) {
-      return <Image src={image} alt="arrow" />;
+      return <Image src={image} alt="arrow" />
     } else {
-      return pageText;
+      return pageText
     }
-  };
+  }
 
-  return ( 
-    <S.Page 
+  return (
+    <S.Page
       isImage={!!image}
-      isActive={isActive} 
+      isActive={isActive}
       onClick={() => onClick(pageNumber)}
     >
       {renderTextOrImage()}
@@ -31,4 +31,4 @@ const Page = ({ isActive, pageNumber, pageText, onClick, disabled, image }: Prop
   )
 }
 
-export default Page;
+export default Page

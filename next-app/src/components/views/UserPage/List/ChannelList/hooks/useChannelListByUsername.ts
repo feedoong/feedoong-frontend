@@ -3,10 +3,7 @@ import { useRouter } from 'next/router'
 
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import {
-  getSubscriptions,
-  getSubscriptionsByUsername,
-} from 'services/subscriptions'
+import { getChannels, getChannelsByUsername } from 'services/subscriptions'
 
 const useChannelListByUsername = (username?: string) => {
   const router = useRouter()
@@ -14,11 +11,11 @@ const useChannelListByUsername = (username?: string) => {
   const isMyProfile = useCheckIsMyProfile()
 
   const { data, isLoading } = useQuery(
-    [CACHE_KEYS.subscriptions, { page: currentPage }],
+    [CACHE_KEYS.channels, { page: currentPage }],
     () =>
       isMyProfile
-        ? getSubscriptions(currentPage)
-        : getSubscriptionsByUsername(currentPage, username),
+        ? getChannels(currentPage)
+        : getChannelsByUsername(currentPage, username),
     {
       enabled: !!username,
     }

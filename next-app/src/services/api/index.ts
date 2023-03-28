@@ -1,4 +1,5 @@
-import Axios, { AxiosError, AxiosResponse } from 'axios'
+import type { AxiosResponse } from 'axios'
+import Axios, { AxiosError } from 'axios'
 import humps from 'humps'
 import httpStatus from 'http-status-codes'
 

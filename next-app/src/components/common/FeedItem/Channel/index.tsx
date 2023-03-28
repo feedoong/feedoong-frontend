@@ -1,7 +1,7 @@
-import { AxiosError } from 'axios'
+import type { AxiosError } from 'axios'
 import Image from 'next/image'
 
-import type { PrivateSubscription, Subscription } from 'types/subscriptions'
+import type { PrivateChannel, Channel } from 'types/subscriptions'
 import Flex from 'components/common/Flex'
 import Anchor from 'components/common/Anchor'
 import Toast from 'components/common/Toast'
@@ -11,26 +11,27 @@ import { submitRssUrl } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 import { getWellKnownChannelImg } from 'utils'
-import { ErrorBody, getAxiosError } from 'utils/errors'
+import type { ErrorBody } from 'utils/errors'
+import { getAxiosError } from 'utils/errors'
 import { getDiameterByType } from '../FeedItem.utils'
 
-import { AddButton, Container, Title, Url } from './SubscriptionType.style'
+import { AddButton, Container, Title, Url } from './Channel.style'
 
 import Icons from 'assets/icons'
 
 type Props =
   | {
-      item: Subscription
+      item: Channel
       renderAction: () => JSX.Element
       url: string
     }
   | {
-      item: PrivateSubscription
+      item: PrivateChannel
       renderAction: () => JSX.Element
       url: string
     }
 
-const SubscriptionType = ({ item, url, renderAction }: Props) => {
+const ChannelType = ({ item, url, renderAction }: Props) => {
   const routerBranch = () => {
     return {
       target: undefined,
@@ -72,11 +73,11 @@ const SubscriptionType = ({ item, url, renderAction }: Props) => {
   )
 }
 
-export const PublicSubscriptionType = ({ item }: { item: Subscription }) => {
+export const PublicChannelType = ({ item }: { item: Channel }) => {
   const { openLoginModal, renderModal } = useCheckLoginModal()
   const { data: user } = useGetUserProfile()
 
-  const addChannel = async (item: Subscription) => {
+  const addChannel = async (item: Channel) => {
     if (!user) {
       return openLoginModal()
     }
@@ -96,7 +97,7 @@ export const PublicSubscriptionType = ({ item }: { item: Subscription }) => {
 
   return (
     <>
-      <SubscriptionType
+      <ChannelType
         item={item}
         renderAction={() => (
           <AddButton onClick={() => addChannel(item)}>
@@ -116,14 +117,10 @@ export const PublicSubscriptionType = ({ item }: { item: Subscription }) => {
   )
 }
 
-export const PrivateSubscriptionType = ({
-  item,
-}: {
-  item: PrivateSubscription
-}) => (
-  <SubscriptionType
+export const PrivateChannelType = ({ item }: { item: PrivateChannel }) => (
+  <ChannelType
     item={item}
-    renderAction={() => <PrivateFeedItemPopover item={item as Subscription} />}
+    renderAction={() => <PrivateFeedItemPopover item={item as Channel} />}
     url={item.description}
   />
 )

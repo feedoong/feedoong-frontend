@@ -24,10 +24,10 @@ export const MY_PAGE_TABS = [
   { label: '저장한 게시물', value: 'post', TabComponent: PostList },
 ]
 
-export type MyPageTabOption = typeof MY_PAGE_TABS[number] & {
+export type MyPageTabOption = (typeof MY_PAGE_TABS)[number] & {
   TabComponent: React.FC
 }
-export type MyPageListType = typeof MY_PAGE_TABS[number]['value']
+export type MyPageListType = (typeof MY_PAGE_TABS)[number]['value']
 
 const UserPageContainer = () => {
   const router = useRouter()

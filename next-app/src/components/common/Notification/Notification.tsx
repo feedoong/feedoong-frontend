@@ -23,7 +23,7 @@ export const Notification = ({
   content,
   duration = 5000,
   position = 'bottom',
-  onClose
+  onClose,
 }: NotificationProps) => {
   return (
     <Flex style={{ zIndex: Z_INDEX.toast }}>

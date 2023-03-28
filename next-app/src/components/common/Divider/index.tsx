@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { colors } from 'styles/colors'
 
 interface Props {
-  color?: string;
+  color?: string
   thickness?: number
   mt?: number
   mb?: number

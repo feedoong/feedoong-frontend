@@ -3,11 +3,11 @@ import type { AxiosInstance } from 'axios'
 import api from 'services/api'
 import type {
   Feed,
-  LikeItemResponse,
+  LikePostResponse,
   PreviewResponse,
   SubmitRssUrlParams,
   SubmitRssUrlResponse,
-  SubmitViewedItem,
+  SubmitViewedPost,
 } from 'types/feeds'
 
 export const getFeeds = (page = 1, size = 10) => {
@@ -66,25 +66,25 @@ export const submitRssUrl = (params: Partial<SubmitRssUrlParams>) => {
   })
 }
 
-export const likeItem = (id: string) => {
-  return api.post<null, LikeItemResponse>(`/likes/${id}`)
+export const likePost = (id: string) => {
+  return api.post<null, LikePostResponse>(`/likes/${id}`)
 }
 
-export const unlikeItem = (id: string) => {
-  return api.delete<null, LikeItemResponse>(`/likes/${id}`)
+export const unlikePost = (id: string) => {
+  return api.delete<null, LikePostResponse>(`/likes/${id}`)
 }
 
-export const getLikedItems = (page: number) => {
+export const getLikedPosts = (page: number) => {
   return api.get<null, Feed>(`/items/liked`, {
     params: { page },
   })
 }
 
-export const submitViewedItem = (id: number) => {
-  return api.post<null, SubmitViewedItem>(`/items/view/${id}`)
+export const submitViewedPost = (id: number) => {
+  return api.post<null, SubmitViewedPost>(`/items/view/${id}`)
 }
 
-export const getLikedItemsByUsername = (page: number, username?: string) => {
+export const getLikedPostsByUsername = (page: number, username?: string) => {
   return api.get<null, Feed>(`/users/${username}/liked-items`, {
     params: { page },
   })

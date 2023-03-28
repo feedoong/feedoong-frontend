@@ -1,8 +1,8 @@
 import * as ReactDOM from 'react-dom/client'
 import type { Root } from 'react-dom/client'
+import type { ReactElement } from 'react'
 import React, {
   forwardRef,
-  ReactElement,
   useEffect,
   useImperativeHandle,
   useRef,

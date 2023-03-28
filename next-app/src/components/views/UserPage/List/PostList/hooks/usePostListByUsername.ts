@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { getLikedItems, getLikedItemsByUsername } from 'services/feeds'
+import { getLikedPosts, getLikedPostsByUsername } from 'services/feeds'
 
 const usePostListByUsername = (username?: string) => {
   const router = useRouter()
@@ -11,11 +11,11 @@ const usePostListByUsername = (username?: string) => {
   const isMyProfile = useCheckIsMyProfile()
 
   const { data, isLoading } = useQuery(
-    [CACHE_KEYS.likedItems, { page: currentPage }],
+    [CACHE_KEYS.likedPosts, { page: currentPage }],
     () =>
       isMyProfile
-        ? getLikedItems(currentPage)
-        : getLikedItemsByUsername(currentPage, username),
+        ? getLikedPosts(currentPage)
+        : getLikedPostsByUsername(currentPage, username),
     {
       enabled: !!username,
     }

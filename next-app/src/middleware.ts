@@ -9,7 +9,7 @@ export const config = {
   matcher: ['/feed/me', '/mypage/:path*'],
 }
 
-export function middleware(request: NextRequest, response: NextResponse) {
+export function middleware(request: NextRequest) {
   if (!isLoginValidServerSide(request)) {
     return NextResponse.redirect(
       new URL(ROUTE.INTRODUCE, request.url),

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
-export const Page = styled.div<{isActive?: boolean, isImage: boolean }>`
+export const Page = styled.div<{ isActive?: boolean; isImage: boolean }>`
   ${getTypographyStyles('Body1_M')}
   width: 28px;
   height: 28px;
@@ -14,14 +14,18 @@ export const Page = styled.div<{isActive?: boolean, isImage: boolean }>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  
-  ${({ isActive }) => isActive && css`
-    ${getTypographyStyles('Body1_B')}
-    color: ${colors.white};
-    background-color: ${colors.mainPink};
-  `}
 
-  ${({ isImage }) => isImage && css`
-    background: none;
-  `}
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      ${getTypographyStyles('Body1_B')}
+      color: ${colors.white};
+      background-color: ${colors.mainPink};
+    `}
+
+  ${({ isImage }) =>
+    isImage &&
+    css`
+      background: none;
+    `}
 `

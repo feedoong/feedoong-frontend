@@ -1,11 +1,11 @@
 import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import { copyToClipboard } from '../FeedItem.utils'
-import type { PrivateSubscription } from 'types/subscriptions'
+import type { PrivateChannel } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 
 interface Props {
-  item: PrivateSubscription
+  item: PrivateChannel
 }
 
 const PublicFeedItemPopover = ({ item }: Props) => {
