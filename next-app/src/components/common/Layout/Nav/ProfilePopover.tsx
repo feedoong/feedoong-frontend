@@ -1,8 +1,10 @@
 import Image from 'next/image'
+import { useQueryClient } from '@tanstack/react-query'
 
 import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import { useGetUserProfile } from 'features/user/userProfile'
+import { logoutAction } from 'features/auth/logout'
 
 import Icons from 'assets/icons'
 
@@ -12,6 +14,7 @@ interface Props {
 
 const ProfilePopover = ({ children }: Props) => {
   const { data: me } = useGetUserProfile()
+  const client = useQueryClient()
 
   return (
     <Popover
@@ -78,6 +81,7 @@ const ProfilePopover = ({ children }: Props) => {
             </Popover.Item>
           </a>
           <Popover.Item
+            onClick={() => logoutAction(client)}
             icon={
               <Image
                 src={Icons.Close}

@@ -14,6 +14,7 @@ import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 import PageContainer from 'components/common/PageContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
+import { logoutAction } from 'features/auth/logout'
 
 import * as S from './MyAccountContainer.style'
 
@@ -37,13 +38,6 @@ const MyAccountContainer = () => {
 
   const client = useQueryClient()
   const { data: userProfile, isLoading } = useGetUserProfile()
-
-  const logoutAction = () => {
-    client.invalidateQueries(CACHE_KEYS.me)
-
-    destroyTokensClientSide()
-    window.location.href = '/'
-  }
 
   useEffect(() => {
     if (nickNameRef.current && userProfile) {
@@ -118,7 +112,7 @@ const MyAccountContainer = () => {
           <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
             회원탈퇴
           </S.Button>
-          <S.Button onClick={() => logoutAction()}>로그아웃</S.Button>
+          <S.Button onClick={() => logoutAction(client)}>로그아웃</S.Button>
         </S.ButtonContainer>
       </S.Contents>
 
