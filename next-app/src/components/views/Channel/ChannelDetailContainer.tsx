@@ -14,6 +14,7 @@ import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
 import LogoIcon from 'components/common/LogoIcon'
 import * as S from 'components/views/MyPost/PostContainer.style'
+import ChannelSubscription from './ChannalSubscription'
 
 function PostContainer() {
   const { query } = useRouter()
@@ -54,6 +55,7 @@ function PostContainer() {
                 </Flex>
               )}
             </S.Title>
+            {data && <ChannelSubscription channel={data.channel} />}
           </S.TitleWrapper>
         </S.Header>
         <S.CardContainer>

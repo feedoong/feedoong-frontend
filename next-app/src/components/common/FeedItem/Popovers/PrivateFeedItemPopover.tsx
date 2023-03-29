@@ -8,6 +8,7 @@ import { colors } from 'styles/colors'
 import type { Channel } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 import { useUnsubscribeChannel } from 'features/channel'
+import { CACHE_KEYS } from 'services/cacheKeys'
 
 interface Props {
   item: Channel
@@ -17,7 +18,9 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
   const [isOpenDeleteChannelModal, setIsOpenDeleteChannelModal] =
     useState(false)
 
-  const unsubscribeChannel = useUnsubscribeChannel(item)
+  const unsubscribeChannel = useUnsubscribeChannel(item, ({ queryKey }) =>
+    queryKey.includes(CACHE_KEYS.feeds[0])
+  )
 
   return (
     <>

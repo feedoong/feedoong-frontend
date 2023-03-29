@@ -1,3 +1,4 @@
+import type { QueryFilters } from '@tanstack/react-query'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 
@@ -23,7 +24,10 @@ export const subscribeChannel = async (item: Channel) => {
   })
 }
 
-export const useUnsubscribeChannel = (item: Channel) => {
+export const useUnsubscribeChannel = (
+  item: Channel,
+  predicate: QueryFilters['predicate']
+) => {
   const client = useQueryClient()
 
   const { mutate } = useMutation(
@@ -32,10 +36,7 @@ export const useUnsubscribeChannel = (item: Channel) => {
     {
       onSuccess: () => {
         Toast.show({ content: '구독이 해제되었습니다.' })
-        client.invalidateQueries({
-          // TODO: 외부에서 무효화 할 키값을 전달할 아이디어가 없어서 일단 피드 형태 cache key에 feeds를 넣어두고 이를 이용해 무효화
-          predicate: ({ queryKey }) => queryKey.includes(CACHE_KEYS.feeds[0]),
-        })
+        client.invalidateQueries({ predicate })
       },
     }
   )

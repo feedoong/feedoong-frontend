@@ -32,8 +32,10 @@ export const Header = styled.div`
 `
 
 export const TitleWrapper = styled.div`
+  width: 100%;
   display: flex;
   gap: 20px;
+  justify-content: space-between;
 `
 
 export const Title = styled.h1`

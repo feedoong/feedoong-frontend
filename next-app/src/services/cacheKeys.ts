@@ -1,3 +1,4 @@
+// TODO: 키값 정리 필요
 export const CACHE_KEYS = {
   feeds: ['feeds'],
   likedPosts: ['likedPosts'],
