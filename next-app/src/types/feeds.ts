@@ -1,5 +1,8 @@
+import type { Channel } from './subscriptions'
+
 export interface Feed {
   items: Post[]
+  channel: Channel
   next: number | null
   prev: number | null
   totalCount: 0

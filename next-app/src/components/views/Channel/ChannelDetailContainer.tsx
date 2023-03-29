@@ -14,6 +14,7 @@ import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
 import LogoIcon from 'components/common/LogoIcon'
 import * as S from 'components/views/MyPost/PostContainer.style'
+import ChannelSubscription from './ChannalSubscription'
 
 function PostContainer() {
   const { query } = useRouter()
@@ -29,8 +30,7 @@ function PostContainer() {
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   const isChannelProfileImageExist =
-    data?.items[0]?.channelImageUrl ||
-    getWellKnownChannelImg(data?.items[0]?.link ?? '')
+    data?.channel.imageUrl || getWellKnownChannelImg(data?.channel.url ?? '')
 
   return (
     <PageContainer>
@@ -46,15 +46,16 @@ function PostContainer() {
                     <LogoIcon
                       diameter={20}
                       src={
-                        data?.items[0].channelImageUrl ??
-                        getWellKnownChannelImg(data?.items[0].link ?? '')
+                        data?.channel.imageUrl ??
+                        getWellKnownChannelImg(data?.channel.url ?? '')
                       }
                     />
                   )}
-                  {data?.items[0]?.channelTitle ?? ''}
+                  {data?.channel.title ?? ''}
                 </Flex>
               )}
             </S.Title>
+            {data && <ChannelSubscription channel={data.channel} />}
           </S.TitleWrapper>
         </S.Header>
         <S.CardContainer>
