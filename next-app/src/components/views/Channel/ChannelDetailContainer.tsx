@@ -29,8 +29,7 @@ function PostContainer() {
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 
   const isChannelProfileImageExist =
-    data?.items[0]?.channelImageUrl ||
-    getWellKnownChannelImg(data?.items[0]?.link ?? '')
+    data?.channel.imageUrl || getWellKnownChannelImg(data?.channel.url ?? '')
 
   return (
     <PageContainer>
@@ -46,12 +45,12 @@ function PostContainer() {
                     <LogoIcon
                       diameter={20}
                       src={
-                        data?.items[0].channelImageUrl ??
-                        getWellKnownChannelImg(data?.items[0].link ?? '')
+                        data?.channel.imageUrl ??
+                        getWellKnownChannelImg(data?.channel.url ?? '')
                       }
                     />
                   )}
-                  {data?.items[0]?.channelTitle ?? ''}
+                  {data?.channel.title ?? ''}
                 </Flex>
               )}
             </S.Title>
