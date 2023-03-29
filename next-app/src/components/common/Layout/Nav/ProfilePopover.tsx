@@ -5,6 +5,7 @@ import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { logoutAction } from 'features/auth/logout'
+import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 
 import Icons from 'assets/icons'
 
@@ -78,6 +79,28 @@ const ProfilePopover = ({ children }: Props) => {
               }
             >
               커뮤니티로 이동
+            </Popover.Item>
+          </a>
+          <a
+            target="_blank"
+            href={FEEDOONG_EXTENSION_URL}
+            rel="noreferrer"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <Popover.Item
+              icon={
+                <Image
+                  src={Icons.LogoDesktop}
+                  width={20}
+                  height={20}
+                  alt="FAQ"
+                  priority
+                />
+              }
+            >
+              피둥을 새 탭으로 등록
             </Popover.Item>
           </a>
           <Popover.Item

@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기! 크롬 새 탭에서 바로 시작하세요!"
         />
         <meta property="og:image" content={`${getDomainName()}/og_image.png`} />
+        <link rel="shortcut icon" href="/logo-desktop.svg" />
       </Head>
       <Scripts />
       <GoogleAnalytics />
