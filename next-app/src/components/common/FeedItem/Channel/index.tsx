@@ -1,19 +1,15 @@
-import type { AxiosError } from 'axios'
 import Image from 'next/image'
 
 import type { PrivateChannel, Channel } from 'types/subscriptions'
 import Flex from 'components/common/Flex'
 import Anchor from 'components/common/Anchor'
-import Toast from 'components/common/Toast'
 import LogoIcon from 'components/common/LogoIcon'
 import PrivateFeedItemPopover from '../Popovers/PrivateFeedItemPopover'
-import { submitRssUrl } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 import { getWellKnownChannelImg } from 'utils'
-import type { ErrorBody } from 'utils/errors'
-import { getAxiosError } from 'utils/errors'
 import { getDiameterByType } from '../FeedItem.utils'
+import { addChannel } from 'features/channel'
 
 import { AddButton, Container, Title, Url } from './Channel.style'
 
@@ -77,30 +73,19 @@ export const PublicChannelType = ({ item }: { item: Channel }) => {
   const { openLoginModal, renderModal } = useCheckLoginModal()
   const { data: user } = useGetUserProfile()
 
-  const addChannel = async (item: Channel) => {
-    if (!user) {
-      return openLoginModal()
-    }
-
-    Toast.show({
-      type: 'promise',
-      fetchFn: submitRssUrl({ url: item.url, feedUrl: item.feedUrl }),
-      content: '새로운 채널이 추가되었어요!',
-      promiseContent: {
-        loading: '채널을 등록중이에요',
-        error: (err: AxiosError<ErrorBody, any>) =>
-          `채널 추가에 실패했어요 😅 ${getAxiosError(err).message}`,
-      },
-      option: { duration: 3000 },
-    })
-  }
-
   return (
     <>
       <ChannelType
         item={item}
         renderAction={() => (
-          <AddButton onClick={() => addChannel(item)}>
+          <AddButton
+            onClick={() => {
+              if (!user) {
+                return openLoginModal()
+              }
+              addChannel(item)
+            }}
+          >
             <Image
               src={Icons.AddMono}
               width={20}
