@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 
-import UserPagePageContainer from 'components/views/UserPage'
+import UserPageContainer from 'components/views/UserPage'
 
 const UserProfile: NextPage = () => {
-  return <UserPagePageContainer />
+  return <UserPageContainer />
 }
 
 export default UserProfile

@@ -20,9 +20,8 @@ const Container = styled.div<{
   backgroundColor?: string
 }>`
   width: 100%;
-  height: 100%;
-  overflow: auto;
-  padding: ${({ padding }) => padding || '60px 0 80px'};
+  min-height: calc(100dvh - 75px);
+  padding: ${({ padding }) => padding || '60px 0 40px'};
   background-color: ${({ backgroundColor }) =>
     backgroundColor || colors.mainBG};
 `
