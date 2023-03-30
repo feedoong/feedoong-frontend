@@ -12,7 +12,7 @@ export const Container = styled.div`
 `
 
 export const FeedWrapper = styled.div`
-  margin: 40px 20px;
+  margin: 40px 20px 60px;
   padding: 0 12px;
   max-width: 650px;
   width: 100%;
