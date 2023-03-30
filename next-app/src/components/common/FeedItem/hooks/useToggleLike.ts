@@ -16,7 +16,10 @@ const useToggleLike = (item: PrivatePost) => {
         client.invalidateQueries(CACHE_KEYS.feeds)
         client.invalidateQueries({
           predicate: ({ queryHash }) => {
-            if (queryHash.includes('likedItems')) {
+            if (
+              queryHash.includes('likedItems') ||
+              queryHash.includes('likedPosts')
+            ) {
               return true
             }
             return false
