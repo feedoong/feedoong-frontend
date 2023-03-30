@@ -10,14 +10,15 @@ import { SkeletonPostType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { useGetUsernameFromPath } from 'features/user/userProfile'
+import { getRefreshTokenFromCookie } from 'features/auth/token'
 
 const PostList = () => {
   const router = useRouter()
   const username = useGetUsernameFromPath()
+  const isSomeoneLoggedIn = !!getRefreshTokenFromCookie()
 
   const { listData, isLoading, isEmptyList, totalCount } =
     usePostListByUsername(username)
-  const isMyProfile = useCheckIsMyProfile()
 
   const totalPage = totalCount ? Math.ceil(totalCount / ITEMS_PER_PAGE) : 1
 
@@ -34,7 +35,7 @@ const PostList = () => {
                   key={item.id}
                   type="post"
                   item={item}
-                  isPrivate={isMyProfile}
+                  isPrivate={isSomeoneLoggedIn}
                 />
               ))
         }
