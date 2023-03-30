@@ -5,8 +5,9 @@ import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  min-height: calc(100dvh - 203px);
   background-color: ${colors.mainBG};
 `
 
