@@ -5,13 +5,14 @@ import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  min-height: calc(100dvh - 203px);
   background-color: ${colors.mainBG};
 `
 
 export const FeedWrapper = styled.div`
-  margin: 40px 20px;
+  margin: 40px 20px 60px;
   padding: 0 12px;
   max-width: 650px;
   width: 100%;

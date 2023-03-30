@@ -18,9 +18,7 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       {hasGNB && <Nav />}
-      <Container fullHeight={!hasGNB}>
-        <main>{children}</main>
-      </Container>
+      <Container fullHeight={!hasGNB}>{children}</Container>
     </>
   )
 }
