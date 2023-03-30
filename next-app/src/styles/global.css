@@ -1,0 +1,21 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Pretendard', 'sans-serif';
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  overflow: unset;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+}

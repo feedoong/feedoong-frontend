@@ -107,16 +107,12 @@ section {
   display: block;
 }
 html, body {
-  overflow: scroll;
-  /* height: 100%; */
-  /* overflow: hidden; */
+
 }
 body {
   line-height: 1;
 }
 main {
-  /* height: calc(100dvh - 75px);
-  overflow: auto; */
 }
 ol,
 ul {

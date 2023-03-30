@@ -4,15 +4,14 @@ import { colors } from 'styles/colors'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Wrapper = styled.div`
-  margin: 100px 0;
-
+  padding: 100px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 100px;
 
   ${mediaQuery.tablet`
-    margin: 40px 20px;
+    padding: 40px 20px;
   `}
 `
 export const Container = styled.div`
