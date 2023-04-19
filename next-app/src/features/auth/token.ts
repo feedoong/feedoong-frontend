@@ -21,7 +21,7 @@ export const getAccessTokenFromCookie = () => {
 
 export const setAccessTokenToCookie = (token: string) => {
   Cookies.set(AccessToken, token, {
-    expires: dayjs().add(2, 'hours').toDate(),
+    expires: dayjs().add(1, 'month').toDate(),
     secure: true,
     sameSite: 'lax',
   })

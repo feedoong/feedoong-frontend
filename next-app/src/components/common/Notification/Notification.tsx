@@ -18,11 +18,9 @@ export type NotificationProps = {
 }
 
 export const Notification = ({
-  type = 'basic',
   title,
   content,
   duration = 5000,
-  position = 'bottom',
   onClose,
 }: NotificationProps) => {
   return (

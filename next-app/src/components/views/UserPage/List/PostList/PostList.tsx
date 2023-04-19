@@ -8,7 +8,6 @@ import Paging from 'components/common/Paging'
 import EmptyContents from 'components/common/EmptyContents'
 import { SkeletonPostType } from 'components/common/Skeleton'
 import FeedItem from 'components/common/FeedItem'
-import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { useGetUsernameFromPath } from 'features/user/userProfile'
 import { getRefreshTokenFromCookie } from 'features/auth/token'
 
