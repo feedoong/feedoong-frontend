@@ -18,4 +18,5 @@ body {
   overflow: unset;
   /* mobile viewport bug fix */
   min-height: -webkit-fill-available;
+  overscroll-behavior-y: none;
 }
