@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/gtag.js", "npm:0.0.12"],\
             ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
+            ["@types/lodash-es", "npm:4.17.7"],\
             ["@types/node", "npm:18.7.9"],\
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -56,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["immer", "npm:9.0.19"],\
             ["js-cookie", "npm:3.0.1"],\
+            ["lodash-es", "npm:4.17.21"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
             ["nookies", "npm:2.5.2"],\
             ["prettier", "npm:2.8.7"],\
@@ -1248,6 +1250,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/keyv", "npm:3.1.4"],\
             ["@types/node", "npm:18.7.20"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/lodash", [\
+        ["npm:4.14.194", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.194-f099c0742e-113f34831c.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.194"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/lodash-es", [\
+        ["npm:4.17.7", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-es-npm-4.17.7-7322f70ff2-4b1f39fd1d.zip/node_modules/@types/lodash-es/",\
+          "packageDependencies": [\
+            ["@types/lodash-es", "npm:4.17.7"],\
+            ["@types/lodash", "npm:4.14.194"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3432,6 +3453,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/gtag.js", "npm:0.0.12"],\
             ["@types/humps", "npm:2.0.2"],\
             ["@types/js-cookie", "npm:3.0.2"],\
+            ["@types/lodash-es", "npm:4.17.7"],\
             ["@types/node", "npm:18.7.9"],\
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -3451,6 +3473,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["immer", "npm:9.0.19"],\
             ["js-cookie", "npm:3.0.1"],\
+            ["lodash-es", "npm:4.17.21"],\
             ["next", "virtual:cfc59bf0cc13e83beece5a337cf83201e52e99120aa4de040893e292bd77c44351f34070d7d42a1f9b3e1d62f51128495a9861de7a9b4b5c0abb8e71e9d72105#npm:13.0.0"],\
             ["nookies", "npm:2.5.2"],\
             ["prettier", "npm:2.8.7"],\
@@ -4517,6 +4540,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
           "packageDependencies": [\
             ["lodash", "npm:4.17.21"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash-es", [\
+        ["npm:4.17.21", {\
+          "packageLocation": "./.yarn/cache/lodash-es-npm-4.17.21-b45832dfce-05cbffad6e.zip/node_modules/lodash-es/",\
+          "packageDependencies": [\
+            ["lodash-es", "npm:4.17.21"]\
           ],\
           "linkType": "HARD"\
         }]\

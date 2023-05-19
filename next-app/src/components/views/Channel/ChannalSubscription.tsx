@@ -3,17 +3,16 @@ import Image from 'next/image'
 import { AddButton } from 'components/common/FeedItem/Channel/Channel.style'
 import PrivateFeedItemPopover from 'components/common/FeedItem/Popovers/PrivateFeedItemPopover'
 import { subscribeChannel } from 'features/channel'
-import type { Channel } from 'types/subscriptions'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
+import { useGetFeed } from './hooks/useGetFeed'
 
 import Icons from 'assets/icons'
 
-interface Props {
-  channel: Channel
-}
+const ChannelSubscription = () => {
+  const { data: feed } = useGetFeed()
+  const channel = feed.channel
 
-const ChannelSubscription = ({ channel }: Props) => {
   const { openLoginModal, renderModal } = useCheckLoginModal()
   const { data: user } = useGetUserProfile()
 
@@ -24,6 +23,7 @@ const ChannelSubscription = ({ channel }: Props) => {
       <AddButton
         onClick={() => {
           if (!user) {
+            // TODO: 일관되게 로그인 모달을 띄우는 방법을 정의하기
             return openLoginModal()
           }
           subscribeChannel(channel)
@@ -37,6 +37,7 @@ const ChannelSubscription = ({ channel }: Props) => {
           priority
         />
       </AddButton>
+      {/* TODO: @toss/use-overlay */}
       {renderModal()}
     </>
   )
