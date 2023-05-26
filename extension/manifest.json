@@ -1,7 +1,7 @@
 {
   "name": "Feedoong: RSS Feed Reader",
   "description": "여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기! 크롬 새 탭에서 바로 시작하세요!",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "manifest_version": 3,
   "chrome_url_overrides": {
     "newtab": "index.html"
