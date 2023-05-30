@@ -11,8 +11,6 @@ export const Container = styled.div`
   gap: 4px;
   padding: 40px 0;
   background-color: var(--color-surface);
-
-  /* border-top: 1px solid ${colors.gray900}; */
 `
 
 export const Form = styled.form`
@@ -42,14 +40,15 @@ export const InputWrapper = styled.div<{
 
   padding: 13px 20px;
   border: ${({ isError }) =>
-    isError ? `1px solid ${colors.error}` : `1px solid ${colors.white}`};
+    isError ? `1px solid ${colors.error}` : `1px solid var(--color-divider)`};
   border-radius: 100px;
-  background-color: ${colors.white};
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-font-primary);
 
-  &:focus-within {
+  /* &:focus-within {
     border: 1px solid
       ${({ isError }) => (isError ? colors.error : colors.black)};
-  }
+  } */
 
   ${({ inputStyle }) => {
     return css`
@@ -78,7 +77,9 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
   justify-content: center;
   align-items: center;
   background-color: ${({ isValid, disabled }) =>
-    isValid === true && !disabled ? colors.mainPink : colors.gray500};
+    isValid === true && !disabled
+      ? 'var(--color-primary-500)'
+      : colors.gray500};
   cursor: pointer;
 `
 
