@@ -13,16 +13,16 @@ export const Tab = styled.button<{ isSelected: boolean }>`
   padding: 8px 16px;
   line-height: 24px;
   border-radius: 50px;
-  color: ${colors.gray500};
-  background-color: ${colors.white};
+  color: var(--color-gray-500);
+  background-color: var(--color-gray-50);
 
   ${getTypographyStyles('Body1_M')};
 
   ${({ isSelected }) =>
     isSelected &&
     css`
-      color: ${colors.white};
-      background-color: ${colors.black};
+      color: var(--color-black-fixed);
+      background-color: var(--color-gray-900);
       ${getTypographyStyles('Body1_B')};
     `}
 `
