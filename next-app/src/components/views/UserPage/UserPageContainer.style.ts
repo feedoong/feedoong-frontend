@@ -31,7 +31,7 @@ export const UserImage = styled(Image)`
 
 export const NickName = styled.span`
   ${getTypographyStyles('Headline1_B')}
-  color: ${colors.gray900};
+  color: var(--color-gray-900);
 `
 
 export const SettingButton = styled.button`
@@ -41,7 +41,7 @@ export const SettingButton = styled.button`
 
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
-  color: ${colors.gray500};
+  color: var(--color-gray-600);
   cursor: pointer;
 
   &:hover {

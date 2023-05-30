@@ -23,5 +23,5 @@ const Container = styled.div<{
   min-height: calc(100dvh - 75px);
   padding: ${({ padding }) => padding || '60px 0 40px'};
   background-color: ${({ backgroundColor }) =>
-    backgroundColor || colors.mainBG};
+    backgroundColor || 'var(--color-surface)'};
 `
