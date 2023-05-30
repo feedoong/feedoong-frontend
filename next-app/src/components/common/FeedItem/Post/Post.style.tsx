@@ -5,7 +5,7 @@ import { getTypographyStyles, ellipsis } from 'styles/fonts'
 
 export const Container = styled.div`
   width: 100%;
-  background-color: ${colors.white};
+  background-color: var(--color-surface-container-lowest);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ export const Title = styled.h2`
   ${getTypographyStyles('Headline3_B')}
   ${ellipsis(1)}
 
-  color: ${colors.gray800};
+  color: var(--color-font-primary);
 `
 
 export const CardActions = styled.div`

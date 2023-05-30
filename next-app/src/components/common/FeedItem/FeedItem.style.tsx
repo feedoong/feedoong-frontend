@@ -9,7 +9,7 @@ import Anchor from '../Anchor'
 export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
-  color: ${colors.gray600};
+  color: var(--color-font-tertiary);
 `
 
 export const PostMeta = styled.div`
@@ -61,7 +61,7 @@ export const Contents = styled.p`
   ${getTypographyStyles('Body1_M')}
   ${ellipsis(2)}
 
-  color: ${colors.gray600};
+  color: var(--color-font-secondary);
   word-break: break-all;
 `
 

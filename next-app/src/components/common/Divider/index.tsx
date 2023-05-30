@@ -12,7 +12,7 @@ interface Props {
 const Divider = ({ thickness = 1, mt, mb, color }: Props) => {
   return (
     <Container
-      color={color ?? colors.gray200}
+      color={color ?? 'var(--color-divider)'}
       thickness={thickness}
       marginTop={mt ?? 0}
       marginBottom={mb ?? 0}
