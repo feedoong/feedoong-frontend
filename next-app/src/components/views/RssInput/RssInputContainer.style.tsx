@@ -10,9 +10,9 @@ export const Container = styled.div`
   align-items: center;
   gap: 4px;
   padding: 40px 0;
-  background-color: ${colors.black};
+  background-color: var(--color-surface);
 
-  border-top: 1px solid ${colors.gray900};
+  /* border-top: 1px solid ${colors.gray900}; */
 `
 
 export const Form = styled.form`

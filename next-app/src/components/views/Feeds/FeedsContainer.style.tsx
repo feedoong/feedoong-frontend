@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Container = styled.div`
@@ -8,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   min-height: calc(100dvh - 203px);
-  background-color: ${colors.mainBG};
+  background-color: var(--color-surface);
 `
 
 export const FeedWrapper = styled.div`

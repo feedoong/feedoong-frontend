@@ -12,7 +12,7 @@ export const TopNavContainer = styled.div`
   width: 100%;
   height: 75px;
   padding: 18px 100px;
-  background-color: ${colors.black};
+  background-color: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,7 +54,7 @@ export const MyPageButton = styled.div`
 
   display: flex;
   align-items: center;
-  color: ${colors.white};
+  color: var(--color-font-secondary);
   cursor: pointer;
   gap: 12px;
 `

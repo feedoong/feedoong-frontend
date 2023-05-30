@@ -1,0 +1,22 @@
+body.light,
+.light *:after,
+.light *:before {
+  --color-surface-dim: rgba(0, 0, 0, 0.5);;
+  --color-surface: #ECE9EA;
+  --color-surface-bright: #ECE9EA;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-container-low: #F9F7F8;
+  --color-surface-container: #F1EFF0;
+  --color-surface-container-high: #E9E5E7;
+  --color-surface-container-highest: #D4CDD1;
+  --color-font-primary: #423C3F;
+  --color-font-secondary: #71646A;
+  --color-font-tertiary: #897981;
+  --color-font-disabled: #A1929A;
+  --color-divider: #E9E5E7;
+  --color-varients: #F1EFF0;
+  --color-error: #A12027;
+  --color-error-container: #F9DBD7;
+  --color-on-error: #FFFFFF;
+  --color-on-error-container: #A12027;
+}
