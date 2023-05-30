@@ -1,19 +1,24 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Toaster } from 'react-hot-toast'
+import { useEffect } from 'react'
 
 import { getDomainName } from 'envs'
 import Layout from 'components/common/Layout'
 import Scripts from 'components/common/Scripts'
 import Providers from 'components/common/Providers'
 import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks'
-
 import 'styles/reset.css'
 import 'styles/font.css'
 import 'styles/global.css'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { setColorMode } from 'utils/colorMode'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    setColorMode()
+  }, [])
+
   return (
     <>
       <Head>
