@@ -12,8 +12,9 @@ export const Container = styled.button<{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${colors.white};
-  border-radius: 30px;
+  color: var(--color-primary-50);
+  background: var(--color-primary-500);
+  border-radius: 40px;
   cursor: pointer;
 
   ${({ size }) => sizeMap[size]}
@@ -24,37 +25,34 @@ const sizeMap = {
   large: css`
     ${getTypographyStyles('Headline3_B')}
     width: 335px;
-    height: 54px;
+    height: 56px;
   `,
   medium: css`
-    ${getTypographyStyles('Body1_M')}
-    width: 105px;
+    ${getTypographyStyles('Body1_B')}
+    width: 172px;
     height: 44px;
   `,
   small: css`
-    ${getTypographyStyles('Body2_M')}
-    width: 95px;
+    ${getTypographyStyles('Body2_B')}
+    width: 145px;
     height: 40px;
   `,
   tiny: css`
     ${getTypographyStyles('Caption_B')}
-    width: 86px;
+    width: 126px;
     height: 32px;
   `,
 }
 
 const styleMap = {
   primary: css`
-    background: ${colors.primary};
-    color: ${colors.white};
+    background: var(--color-primary-600);
   `,
   secondary: css`
-    background: ${colors.gray900};
-    color: ${colors.white};
+    background: var(--color-primary-800);
   `,
   normal: css`
-    background: ${colors.white};
-    color: ${colors.gray900};
+    background: var(--color-primary-500);
   `,
   disabled: css`
     // TODO: disabled attribute랑 합칠지 판단 필요
