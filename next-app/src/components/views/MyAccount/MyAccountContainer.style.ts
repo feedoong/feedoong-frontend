@@ -25,7 +25,7 @@ export const Contents = styled.div`
 
 export const PageTitle = styled.p`
   ${getTypographyStyles('Headline2_B')};
-  color: ${colors.gray900};
+  color: var(--color-gray-900);
   margin-bottom: 60px;
 `
 
@@ -35,17 +35,17 @@ export const ProfileImage = styled(Image)`
 `
 
 export const Item = styled.div`
-  gap: 12px;
+  gap: 8px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 30px;
   .label {
     ${getTypographyStyles('Headline3_B')}
-    color: ${colors.gray900};
+    color: var(--color-gray-900);
   }
   .desc {
     ${getTypographyStyles('Body1_M')}
-    color: ${colors.gray700};
+    color: var(--color-gray-700);
   }
 
   ${mediaQuery.mobileL`
@@ -100,8 +100,14 @@ export const TabWrapper = styled.div`
 export const InfoItemContainer = styled.div`
   display: flex;
   gap: 20px;
+  margin-bottom: 24px;
 
   ${mediaQuery.mobileL`
     flex-direction: column;
   `}
+`
+
+export const Label = styled.span`
+  ${getTypographyStyles('Body1_B')}
+  color: var(--color-font-secondary);
 `

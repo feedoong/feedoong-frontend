@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
@@ -6,15 +6,12 @@ import Toast from 'components/common/Toast'
 import { deleteAccount } from 'services/account'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { destroyTokensClientSide } from 'utils/auth'
-import InfoItem from './InfoItem'
-import { Label } from './InfoItem/InfoItem.style'
-import Divider from 'components/common/Divider'
-import { colors } from 'styles/colors'
 import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
 import PageContainer from 'components/common/PageContainer'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
 import { logoutAction } from 'features/auth/logout'
+import Input from 'components/common/Input/Input'
 
 import * as S from './MyAccountContainer.style'
 
@@ -39,11 +36,11 @@ const MyAccountContainer = () => {
   const client = useQueryClient()
   const { data: userProfile, isLoading } = useGetUserProfile()
 
-  useEffect(() => {
-    if (nickNameRef.current && userProfile) {
-      nickNameRef.current.value = userProfile.name
-    }
-  }, [userProfile])
+  // useEffect(() => {
+  //   if (nickNameRef.current && userProfile) {
+  //     nickNameRef.current.value = userProfile.name
+  //   }
+  // }, [userProfile])
 
   if (isLoading || !userProfile) {
     return null
@@ -62,7 +59,7 @@ const MyAccountContainer = () => {
           </span>
         </S.Item>
 
-        <Label style={{ display: 'block', marginLeft: '12px' }}>사진</Label>
+        <S.Label style={{ display: 'block', marginLeft: '12px' }}>사진</S.Label>
         <S.ProfileImage
           // TODO: 프로필 이미지 변경 기능 추가 (이미지 사진도 API로 따로 받아 노출해야 함)
           src={userProfile.profileImageUrl}
@@ -71,25 +68,24 @@ const MyAccountContainer = () => {
           alt={'profileImage'}
         />
         <S.InfoItemContainer>
-          <InfoItem
+          <Input
             readOnly
             value={profileURL}
-            labelName={'피둥 주소'}
+            label={'피둥 주소'}
             buttonName={'주소 복사'}
             buttonAction={() => copyToClipboard(profileURL)}
           />
-          <InfoItem
+          <Input
             // TODO: 사용자 이름 편집 기능 추가 (사용자 이름 값을 API로 따로 받아 노출해야 함)
-            ref={nickNameRef}
+            // ref={nickNameRef}
+            value={userProfile.name}
             readOnly={!isEditMode}
-            labelName={'피둥 닉네임'}
+            label={'피둥 닉네임'}
             // FIXME: production에서는 닉네임 편집 기능 일단 보류 (API 생성 후 추가)
             // buttonName={isEditMode ? '저장' : '편집'}
             buttonAction={() => setIsEditMode((prev) => !prev)}
           />
         </S.InfoItemContainer>
-
-        <Divider color={colors.gray400} mt={30} mb={30} />
 
         <S.Item>
           <span className="label">계정 정보</span>
@@ -98,15 +94,9 @@ const MyAccountContainer = () => {
           </span>
         </S.Item>
         <S.InfoItemContainer>
-          <InfoItem
-            readOnly
-            value={userProfile.email}
-            labelName={'로그인 계정'}
-          />
-          <InfoItem readOnly value={userProfile.name} labelName={'이름'} />
+          <Input readOnly value={userProfile.email} label={'로그인 계정'} />
+          <Input readOnly value={userProfile.name} label={'이름'} />
         </S.InfoItemContainer>
-
-        <Divider color={colors.gray400} mt={30} mb={30} />
 
         <S.ButtonContainer>
           <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
