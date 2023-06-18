@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Page = styled.div<{ isActive?: boolean; isImage: boolean }>`
@@ -8,8 +7,8 @@ export const Page = styled.div<{ isActive?: boolean; isImage: boolean }>`
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  color: ${colors.white};
-  background-color: ${colors.gray400};
+  color: var(--color-white-fixed);
+  background-color: var(--color-gray-500);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,8 +18,8 @@ export const Page = styled.div<{ isActive?: boolean; isImage: boolean }>`
     isActive &&
     css`
       ${getTypographyStyles('Body1_B')}
-      color: ${colors.white};
-      background-color: ${colors.mainPink};
+      color: var(--color-white-fixed);
+      background-color: var(--color-primary-500);
     `}
 
   ${({ isImage }) =>
