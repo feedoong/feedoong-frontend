@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 interface Props extends React.HTMLAttributes<HTMLLIElement> {
@@ -28,7 +27,7 @@ const Container = styled.li`
   cursor: pointer;
 
   :hover {
-    background: ${colors.gray100};
+    background: var(--color-gray-100);
   }
 `
 
@@ -37,5 +36,5 @@ const Text = styled.span<{
 }>`
   ${getTypographyStyles('Headline3_M')};
   white-space: nowrap;
-  color: ${({ color }) => color ?? colors.gray900};
+  color: ${({ color }) => color ?? 'var(--color-font-primary)'};
 `
