@@ -12,6 +12,7 @@ import { useGetUserProfile } from 'features/user/userProfile'
 import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
 import { logoutAction } from 'features/auth/logout'
 import Input from 'components/common/Input/Input'
+import Button from 'components/common/Button/Button'
 
 import * as S from './MyAccountContainer.style'
 
@@ -99,10 +100,10 @@ const MyAccountContainer = () => {
         </S.InfoItemContainer>
 
         <S.ButtonContainer>
-          <S.Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
+          <Button outline onClick={() => setIsOpenDeleteAccountModal(true)}>
             회원탈퇴
-          </S.Button>
-          <S.Button onClick={() => logoutAction(client)}>로그아웃</S.Button>
+          </Button>
+          <Button onClick={() => logoutAction(client)}>로그아웃</Button>
         </S.ButtonContainer>
       </S.Contents>
 

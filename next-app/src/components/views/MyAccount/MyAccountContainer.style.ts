@@ -71,22 +71,22 @@ export const ButtonContainer = styled.div`
   justify-content: flex-end;
 `
 
-export const Button = styled.button<{ outline?: boolean }>`
-  ${getTypographyStyles('Headline3_M')}
-  color: ${colors.white};
-  background: ${colors.black};
-  padding: 14px 40px;
-  border-radius: 30px;
-  border: 0;
-  cursor: pointer;
-  ${({ outline }) =>
-    outline &&
-    css`
-      border: 1px solid ${colors.gray500};
-      color: ${colors.black};
-      background-color: ${colors.white};
-    `}
-`
+// export const Button = styled.button<{ outline?: boolean }>`
+//   ${getTypographyStyles('Headline3_M')}
+//   color: ${colors.white};
+//   background: ${colors.black};
+//   padding: 14px 40px;
+//   border-radius: 30px;
+//   border: 0;
+//   cursor: pointer;
+//   ${({ outline }) =>
+//     outline &&
+//     css`
+//       border: 1px solid ${colors.gray500};
+//       color: ${colors.black};
+//       background-color: ${colors.white};
+//     `}
+// `
 
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
