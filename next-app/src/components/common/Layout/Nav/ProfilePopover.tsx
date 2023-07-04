@@ -8,6 +8,7 @@ import { logoutAction } from 'features/auth/logout'
 import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 
 import Icons from 'assets/icons'
+import { ToggleColorMode } from 'utils/colorMode'
 
 interface Props {
   children: JSX.Element
@@ -116,6 +117,20 @@ const ProfilePopover = ({ children }: Props) => {
             }
           >
             로그아웃
+          </Popover.Item>
+          <Popover.Item
+            onClick={ToggleColorMode}
+            icon={
+              <Image
+                src={Icons.Close}
+                width={20}
+                height={20}
+                alt="로그아웃"
+                priority
+              />
+            }
+          >
+            컬러모드 변경
           </Popover.Item>
         </Popover.Layout>
       )}

@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Toaster } from 'react-hot-toast'
-import { useEffect } from 'react'
 
 import { getDomainName } from 'envs'
 import Layout from 'components/common/Layout'
@@ -14,13 +13,8 @@ import 'styles/global.css'
 import 'styles/dark.css'
 import 'styles/light.css'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { setColorMode } from 'utils/colorMode'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    setColorMode()
-  }, [])
-
   return (
     <>
       <Head>
