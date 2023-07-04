@@ -19,7 +19,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
         <S.LogoImage
           priority
           src={Icons.LogoDesktop}
-          alt="close-icon"
+          alt="logo"
           width={32}
           height={32}
         />

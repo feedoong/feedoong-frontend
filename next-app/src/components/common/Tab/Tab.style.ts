@@ -20,7 +20,7 @@ export const Tab = styled.button<{ isSelected: boolean }>`
   ${({ isSelected }) =>
     isSelected &&
     css`
-      color: var(--color-black-fixed);
+      color: var(--color-white);
       background-color: var(--color-gray-900);
       ${getTypographyStyles('Body1_B')};
     `}
