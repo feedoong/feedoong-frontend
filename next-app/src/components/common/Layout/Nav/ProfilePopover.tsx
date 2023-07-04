@@ -6,9 +6,9 @@ import Popover from 'components/common/Popover'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { logoutAction } from 'features/auth/logout'
 import { FEEDOONG_EXTENSION_URL } from 'constants/url'
+import { ToggleColorMode, isDarkMode } from 'utils/colorMode'
 
 import Icons from 'assets/icons'
-import { ToggleColorMode } from 'utils/colorMode'
 
 interface Props {
   children: JSX.Element
@@ -130,7 +130,7 @@ const ProfilePopover = ({ children }: Props) => {
               />
             }
           >
-            컬러모드 변경
+            {`${isDarkMode() ? '라이트' : '다크'} 모드로 보기`}
           </Popover.Item>
         </Popover.Layout>
       )}

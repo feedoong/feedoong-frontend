@@ -1,32 +1,25 @@
-import { colorModeKey } from 'constants/colorMode'
+import { COLOR_MODE } from 'constants/colorMode'
 
-export const getPreferredColorMode = () => {
-  return localStorage.getItem(`${colorModeKey}`)
-}
+// export const getPreferredColorMode = () => {
+//   return localStorage.getItem(`${colorModeKey}`)
+// }
 
-export const getColorMode = () => {
-  const preferredColorMode = localStorage.getItem(`${colorModeKey}`)
+export const isDarkMode = () => {
+  const preferredColorMode = localStorage.getItem(`${COLOR_MODE}`)
   const systemColorMode = window.matchMedia('(prefers-color-scheme: dark)')
     .matches
     ? 'dark'
     : 'light'
-  return preferredColorMode ?? systemColorMode
-}
-
-export const setInitialColorMode = () => {
-  const colorMode = getColorMode()
-  document.body.className = colorMode
-  return
+  const colorMode = preferredColorMode ?? systemColorMode
+  return colorMode === 'dark'
 }
 
 export const ToggleColorMode = () => {
-  const presentColorMode = getColorMode()
-
-  if (presentColorMode === 'dark') {
-    localStorage.setItem(`${colorModeKey}`, 'light')
+  if (isDarkMode()) {
+    localStorage.setItem(`${COLOR_MODE}`, 'light')
     document.body.className = 'light'
   } else {
-    localStorage.setItem(`${colorModeKey}`, 'dark')
+    localStorage.setItem(`${COLOR_MODE}`, 'dark')
     document.body.className = 'dark'
   }
 }
