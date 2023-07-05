@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useGetUserProfile } from 'features/user/userProfile'
 import ProfilePopover from './ProfilePopover'
 import { ROUTE } from 'constants/route'
+import Button from 'components/common/Button/Button'
 
 import * as S from './Nav.style'
 
@@ -42,9 +43,9 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
           </S.MyPageButton>
         </ProfilePopover>
       ) : (
-        <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
-          시작하기
-        </S.GoToSignUpButton>
+        <Button onClick={() => router.push(ROUTE.SIGN_UP)}>
+          피둥 시작하기
+        </Button>
       )}
     </S.TopNavContainer>
   )
