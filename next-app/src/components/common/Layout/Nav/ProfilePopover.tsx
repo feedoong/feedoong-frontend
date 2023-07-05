@@ -6,7 +6,7 @@ import Popover from 'components/common/Popover'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { logoutAction } from 'features/auth/logout'
 import { FEEDOONG_EXTENSION_URL } from 'constants/url'
-import { ToggleColorMode, isDarkMode } from 'utils/colorMode'
+import { useColorMode } from 'utils/hooks'
 
 import Icons from 'assets/icons'
 
@@ -17,6 +17,7 @@ interface Props {
 const ProfilePopover = ({ children }: Props) => {
   const { data: me } = useGetUserProfile()
   const client = useQueryClient()
+  const { isDarkMode, ToggleColorMode } = useColorMode()
 
   return (
     <Popover
@@ -130,7 +131,7 @@ const ProfilePopover = ({ children }: Props) => {
               />
             }
           >
-            {`${isDarkMode() ? '라이트' : '다크'} 모드로 보기`}
+            {`${isDarkMode ? '라이트' : '다크'} 모드로 보기`}
           </Popover.Item>
         </Popover.Layout>
       )}

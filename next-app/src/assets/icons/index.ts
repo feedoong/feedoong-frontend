@@ -28,7 +28,6 @@ import RssCircle from './rss-circle.svg'
 import LogoDesktop from './logo-desktop.svg'
 import SettingIcon from './setting-icon.svg'
 import NotificationIcon from './notification_icon.svg'
-import LogoDesktopLight from './logo-desktop-light.svg'
 
 export const Icons = {
   NaverIcon,
@@ -61,7 +60,6 @@ export const Icons = {
   LogoDesktop,
   SettingIcon,
   NotificationIcon,
-  LogoDesktopLight,
 }
 
 export default Icons
