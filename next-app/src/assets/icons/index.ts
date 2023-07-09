@@ -29,6 +29,8 @@ import LogoDesktop from './logo-desktop.svg'
 import SettingIcon from './setting-icon.svg'
 import NotificationIcon from './notification_icon.svg'
 import LogoDesktopNoBackground from './logo-desktop-no-background.svg'
+import DarkMode from './Darkmode.svg'
+import LightMode from './Lightmode.svg'
 
 export const Icons = {
   NaverIcon,
@@ -62,6 +64,8 @@ export const Icons = {
   SettingIcon,
   NotificationIcon,
   LogoDesktopNoBackground,
+  DarkMode,
+  LightMode,
 }
 
 export default Icons

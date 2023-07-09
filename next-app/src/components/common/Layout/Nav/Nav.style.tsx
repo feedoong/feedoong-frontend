@@ -34,11 +34,6 @@ export const LogoButton = styled.button`
   cursor: pointer;
 `
 
-export const LogoImage = styled(Image)`
-  width: 32px;
-  height: 32px;
-`
-
 export const Feedoong = styled.span`
   font-size: 20px;
   font-weight: 700;

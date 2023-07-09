@@ -7,6 +7,8 @@ import { useGetUserProfile } from 'features/user/userProfile'
 import { logoutAction } from 'features/auth/logout'
 import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 import { useColorMode } from 'utils/hooks'
+import LogoDesktopNoBackground from 'components/common/LogoDesktop'
+import { Icon } from 'components/common/Notification/Notification.style'
 
 import Icons from 'assets/icons'
 
@@ -24,6 +26,44 @@ const ProfilePopover = ({ children }: Props) => {
       placement="bottom-start"
       render={() => (
         <Popover.Layout>
+          <a
+            target="_blank"
+            href={FEEDOONG_EXTENSION_URL}
+            rel="noreferrer"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <Popover.Item
+              icon={
+                <Image
+                  src={Icons.LogoDesktop}
+                  width={20}
+                  height={20}
+                  alt="FAQ"
+                  priority
+                />
+              }
+            >
+              피둥을 시작화면으로 하기
+            </Popover.Item>
+          </a>
+
+          <Popover.Item
+            onClick={ToggleColorMode}
+            icon={
+              <Image
+                src={isDarkMode ? Icons.LightMode : Icons.DarkMode}
+                width={20}
+                height={20}
+                alt="로그아웃"
+                priority
+              />
+            }
+          >
+            {`${isDarkMode ? '라이트' : '다크'} 모드로 보기`}
+          </Popover.Item>
+
           <Anchor href={`/${me?.username}`}>
             <Popover.Item
               icon={
@@ -39,6 +79,7 @@ const ProfilePopover = ({ children }: Props) => {
               내 프로필
             </Popover.Item>
           </Anchor>
+
           <a
             target="_blank"
             href="https://oj8mm.notion.site/FAQ-081c373d745f411e91d47689c2bb53e3"
@@ -61,6 +102,7 @@ const ProfilePopover = ({ children }: Props) => {
               FAQ
             </Popover.Item>
           </a>
+
           <a
             target="_blank"
             href="https://discord.gg/jdvnSCjjSx"
@@ -80,31 +122,10 @@ const ProfilePopover = ({ children }: Props) => {
                 />
               }
             >
-              커뮤니티로 이동
+              커뮤니티 참여하기
             </Popover.Item>
           </a>
-          <a
-            target="_blank"
-            href={FEEDOONG_EXTENSION_URL}
-            rel="noreferrer"
-            style={{
-              textDecoration: 'none',
-            }}
-          >
-            <Popover.Item
-              icon={
-                <Image
-                  src={Icons.LogoDesktop}
-                  width={20}
-                  height={20}
-                  alt="FAQ"
-                  priority
-                />
-              }
-            >
-              피둥을 새 탭으로 등록
-            </Popover.Item>
-          </a>
+
           <Popover.Item
             onClick={() => logoutAction(client)}
             icon={
@@ -118,20 +139,6 @@ const ProfilePopover = ({ children }: Props) => {
             }
           >
             로그아웃
-          </Popover.Item>
-          <Popover.Item
-            onClick={ToggleColorMode}
-            icon={
-              <Image
-                src={Icons.Close}
-                width={20}
-                height={20}
-                alt="로그아웃"
-                priority
-              />
-            }
-          >
-            {`${isDarkMode ? '라이트' : '다크'} 모드로 보기`}
           </Popover.Item>
         </Popover.Layout>
       )}
