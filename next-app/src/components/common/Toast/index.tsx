@@ -25,12 +25,17 @@ const show = ({
     ),
     position: 'bottom-center',
     style: {
-      borderRadius: '16px',
-      background: 'rgba(0, 0, 0, 0.6)',
-      color: 'white',
+      borderRadius: '32px',
+      background:
+        type === 'error'
+          ? 'var(--color-error-container)'
+          : 'var(--color-surface-container-highest)',
+      color:
+        type === 'error' ? 'var(--color-error)' : 'var(--color-font-primary)',
       padding: '8px 20px',
       fontWeight: '600',
       fontSize: '14px',
+      minWidth: '80px',
       maxWidth: '700px',
     },
     type,

@@ -43,7 +43,7 @@ export const ToastWrapper = styled.div<{
   ${getTypographyStyles('Body2_M')};
 
   min-height: 40px;
-  padding: 8px 20px;
+  /* padding: 8px 20px; */
   border-radius: 16px;
   color: ${colors.white};
   background: ${({ type }) =>
@@ -74,4 +74,11 @@ export const ToastWrapper = styled.div<{
 
 export const ToastIcon = styled(Image)`
   margin-right: 8px;
+`
+
+//////////////////////////////////////////////////////
+
+export const Container = styled.div`
+  border: 1px solid red;
+  background-color: var(--color-surface-container-highest);
 `

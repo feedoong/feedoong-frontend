@@ -6,7 +6,6 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import Toast from 'components/common/Toast'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 import Notification from 'components/common/Notification'
-import { colors } from 'styles/colors'
 
 const useRssInput = () => {
   const client = useQueryClient()
@@ -22,16 +21,12 @@ const useRssInput = () => {
       onSuccess: () => {
         setUrl('')
         client.invalidateQueries(CACHE_KEYS.feeds)
-        // Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
         Notification.show({
           title: '채널 등록 완료',
           content: (
             <p>
-              등록 완료된 채널은{' '}
-              <span style={{ color: `${colors.black}` }}>
-                내 프로필 &gt; 등록한 채널
-              </span>
-              에서 확인할 수 있습니다.
+              등록 완료된 채널은 내 프로필 &gt; 등록한 채널 에서 확인할 수
+              있습니다.
             </p>
           ),
         })
