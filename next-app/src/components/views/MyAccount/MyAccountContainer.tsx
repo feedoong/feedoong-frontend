@@ -116,18 +116,17 @@ const MyAccountContainer = () => {
           </p>
         </Dialog.Content>
         <Dialog.Actions>
-          <button onClick={() => setIsOpenDeleteAccountModal(false)}>
+          <Button outline onClick={() => setIsOpenDeleteAccountModal(false)}>
             취소
-          </button>
-          <button
-            className="secondary"
+          </Button>
+          <Button
             onClick={() => {
               deleteAccountAction()
               setIsOpenDeleteAccountModal(false)
             }}
           >
             회원탈퇴
-          </button>
+          </Button>
         </Dialog.Actions>
       </Dialog>
     </PageContainer>

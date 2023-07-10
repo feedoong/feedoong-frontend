@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useGetUserProfile } from 'features/user/userProfile'
 import ProfilePopover from './ProfilePopover'
 import { ROUTE } from 'constants/route'
-import Button from 'components/common/Button/Button'
 import LogoDesktopNoBackground from 'components/common/LogoDesktop'
 
 import * as S from './Nav.style'

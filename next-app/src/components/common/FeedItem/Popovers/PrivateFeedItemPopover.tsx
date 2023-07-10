@@ -9,6 +9,7 @@ import type { Channel } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 import { useUnsubscribeChannel } from 'features/channel'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import Button from 'components/common/Button/Button'
 
 interface Props {
   item: Channel
@@ -32,18 +33,17 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
           </p>
         </Dialog.Content>
         <Dialog.Actions>
-          <button onClick={() => setIsOpenDeleteChannelModal(false)}>
+          <Button outline onClick={() => setIsOpenDeleteChannelModal(false)}>
             취소
-          </button>
-          <button
-            className="confirm"
+          </Button>
+          <Button
             onClick={() => {
               unsubscribeChannel()
               setIsOpenDeleteChannelModal(false)
             }}
           >
             삭제
-          </button>
+          </Button>
         </Dialog.Actions>
       </Dialog>
 

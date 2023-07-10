@@ -26,13 +26,13 @@ export const DialogContainer = styled.div<{ width?: string }>`
 
 export const Title = styled.p`
   ${getTypographyStyles('Headline2_B')};
-  color: ${colors.gray900};
-  margin-bottom: 8px;
+  color: var(--color-font-primary);
+  margin-bottom: 12px;
 `
 
 export const Content = styled.div`
   ${getTypographyStyles('Body1_M')};
-  color: ${colors.gray600};
+  color: var(--color-font-secondary);
 `
 
 export const ActionContainer = styled.div`
@@ -40,7 +40,7 @@ export const ActionContainer = styled.div`
   margin-top: 32px;
   gap: 10px;
 
-  button {
+  /* button {
     ${getTypographyStyles('Body1_M')};
     display: flex;
     flex-direction: row;
@@ -55,7 +55,7 @@ export const ActionContainer = styled.div`
     background-color: ${colors.gray400};
     color: ${colors.gray600};
     cursor: pointer;
-  }
+  } */
 
   .confirm {
     background-color: ${colors.black};
