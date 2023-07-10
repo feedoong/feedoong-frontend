@@ -26,7 +26,7 @@ export const NotificationWrapper = styled.div<{
   height: 90px;
   padding: 16px 20px;
   border-radius: 32px;
-  color: ${colors.gray600};
+  /* color: ${colors.gray600}; */
   background-color: var(--color-surface-container-highest);
 
   position: fixed;

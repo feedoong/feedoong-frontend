@@ -57,7 +57,7 @@ export const ActionContainer = styled.div`
     cursor: pointer;
   } */
 
-  .confirm {
+  /* .confirm {
     background-color: ${colors.black};
     color: ${colors.white};
   }
@@ -65,5 +65,5 @@ export const ActionContainer = styled.div`
   .secondary {
     background-color: ${colors.error};
     color: ${colors.white};
-  }
+  } */
 `

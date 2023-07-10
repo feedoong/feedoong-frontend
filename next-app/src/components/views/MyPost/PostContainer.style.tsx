@@ -11,6 +11,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: ${colors.mainBG};
+  border: 1px solid red;
 `
 
 export const FeedWrapper = styled.div`

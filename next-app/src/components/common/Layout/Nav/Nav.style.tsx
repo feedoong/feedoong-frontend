@@ -27,7 +27,6 @@ export const LogoButton = styled.button`
   ${getTypographyStyles('Body1_B')}
 
   all: unset;
-  color: ${colors.white};
   border: 0;
   background: none;
   display: flex;

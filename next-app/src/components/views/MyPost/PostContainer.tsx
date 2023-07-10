@@ -22,7 +22,7 @@ function PostContainer() {
 
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
   const isEmpty = !isLoading && data?.items.length === 0
-
+  // TODO: 해당 Container 사용하는 곳이 없는 것 같음. 확인하고 삭제하기
   return (
     <S.Container>
       <S.FeedWrapper>
