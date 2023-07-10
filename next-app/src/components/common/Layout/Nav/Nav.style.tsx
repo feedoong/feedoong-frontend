@@ -5,6 +5,7 @@ import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
+import Button from 'components/common/Button/Button'
 
 export const TopNavContainer = styled.div`
   position: fixed;
@@ -66,8 +67,8 @@ export const UserImage = styled(Image)`
   border-radius: 50%;
 `
 
-export const GoToSignUpButton = styled.span`
+export const GoToSignUpButton = styled(Button)`
   ${getTypographyStyles('Body1_B')};
-  color: ${colors.white};
-  cursor: pointer;
+  width: 108px;
+  height: 35px;
 `

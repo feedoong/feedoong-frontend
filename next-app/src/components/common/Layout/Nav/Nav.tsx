@@ -36,9 +36,9 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
           </S.MyPageButton>
         </ProfilePopover>
       ) : (
-        <Button onClick={() => router.push(ROUTE.SIGN_UP)}>
+        <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
           피둥 시작하기
-        </Button>
+        </S.GoToSignUpButton>
       )}
     </S.TopNavContainer>
   )
