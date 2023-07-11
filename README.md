@@ -6,7 +6,5 @@
 
 ## 👨‍💻 만든 사람들
 
-- 신영재 [:octocat:](https://github.com/Yeongjae-Shin) [📚](https://yeongjae-shin.github.io/)
-- 신은선 [:octocat:](https://github.com/eunsonny) [📚]()
+- 신은선 [:octocat:](https://github.com/eunsonny) [📚](https://eunsonny.github.io/)
 - 오종택 [:octocat:](https://github.com/saengmotmi) [📚](https://saengmotmi.netlify.app/)
-- 서동찬 [:octocat:](https://github.com/seo337dc) [📚]()
