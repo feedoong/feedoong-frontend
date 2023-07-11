@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const Background = styled.div`
@@ -20,7 +19,7 @@ export const DialogContainer = styled.div<{ width?: string }>`
   width: ${({ width }) => width || '320px'};
   min-height: 190px;
   border-radius: 10px;
-  background-color: ${colors.white};
+  background-color: var(--color-surface-container-lowest);
   padding: 32px 16px 20px;
 `
 

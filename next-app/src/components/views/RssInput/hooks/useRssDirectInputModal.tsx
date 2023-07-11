@@ -12,7 +12,6 @@ import { checkUrlAsDirectRss, submitRssUrl } from 'services/feeds'
 import Flex from 'components/common/Flex'
 import Input from '../Input'
 import { isRssUrlValid } from '../RssInputContainer.utils'
-import { colors } from 'styles/colors'
 
 import Icons from 'assets/icons'
 
@@ -106,7 +105,7 @@ const useRssDirectInputModal = () => {
           <Flex justify="end">
             <Button
               type="submit"
-              buttonStyle={isSubmitEnabled ? 'secondary' : 'disabled'}
+              buttonStyle={isSubmitEnabled ? 'normal' : 'disabled'}
               disabled={!isSubmitEnabled}
             >
               RSS 추가하기
@@ -149,7 +148,7 @@ const BlogUrlInput = ({
     isError={!!rssDirectChannelUrl && !isRssUrlValid(rssDirectChannelUrl)}
     onChange={onChange}
     value={rssDirectChannelUrl}
-    inputStyle={{ width: '100%', backgroundColor: colors.gray100 }}
+    inputStyle={{ width: '100%' }}
     renderInputIcon={({ selectedValue, clearValue }) =>
       selectedValue && (
         <Image
@@ -177,7 +176,7 @@ const RssUrlInput = ({
     isError={!!rssDirectRssUrl && !isRssUrlValid(rssDirectRssUrl)}
     onChange={onChange}
     value={rssDirectRssUrl}
-    inputStyle={{ width: '100%', backgroundColor: colors.gray100 }}
+    inputStyle={{ width: '100%' }}
     renderInputIcon={({ selectedValue, clearValue }) =>
       selectedValue && (
         <Image
