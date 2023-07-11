@@ -39,31 +39,4 @@ export const ActionContainer = styled.div`
   display: flex;
   margin-top: 32px;
   gap: 10px;
-
-  /* button {
-    ${getTypographyStyles('Body1_M')};
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 16px;
-    width: 139px;
-    height: 48px;
-    outline: none;
-    border: none;
-    border-radius: 30px;
-    background-color: ${colors.gray400};
-    color: ${colors.gray600};
-    cursor: pointer;
-  } */
-
-  /* .confirm {
-    background-color: ${colors.black};
-    color: ${colors.white};
-  }
-
-  .secondary {
-    background-color: ${colors.error};
-    color: ${colors.white};
-  } */
 `

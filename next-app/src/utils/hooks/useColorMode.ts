@@ -18,10 +18,10 @@ export const useColorMode = () => {
   }, [])
 
   const toggleColorMode = () => {
-    const newMode = !isDarkMode
-    localStorage.setItem(`${COLOR_MODE}`, newMode ? 'dark' : 'light')
-    document.body.className = newMode ? 'dark' : 'light'
-    setIsDarkMode(newMode)
+    const toggledColorMode = !isDarkMode
+    localStorage.setItem(COLOR_MODE, toggledColorMode ? 'dark' : 'light')
+    document.body.className = toggledColorMode ? 'dark' : 'light'
+    setIsDarkMode(toggledColorMode)
   }
 
   return {

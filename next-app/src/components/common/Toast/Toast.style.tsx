@@ -79,6 +79,5 @@ export const ToastIcon = styled(Image)`
 //////////////////////////////////////////////////////
 
 export const Container = styled.div`
-  border: 1px solid red;
   background-color: var(--color-surface-container-highest);
 `

@@ -19,7 +19,7 @@ interface Props {
 const ProfilePopover = ({ children }: Props) => {
   const { data: me } = useGetUserProfile()
   const client = useQueryClient()
-  const { isDarkMode, ToggleColorMode } = useColorMode()
+  const { isDarkMode, toggleColorMode } = useColorMode()
 
   return (
     <Popover
@@ -50,7 +50,7 @@ const ProfilePopover = ({ children }: Props) => {
           </a>
 
           <Popover.Item
-            onClick={ToggleColorMode}
+            onClick={toggleColorMode}
             icon={
               <Image
                 src={isDarkMode ? Icons.LightMode : Icons.DarkMode}
