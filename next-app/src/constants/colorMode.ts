@@ -1,1 +1,1 @@
-export const COLOR_MODE = 'colorMode'
+export const COLOR_MODE = 'colorMode' as const
