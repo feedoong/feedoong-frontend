@@ -6,7 +6,7 @@ export const useColorMode = () => {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
-    const preferredColorMode = localStorage.getItem(`${COLOR_MODE}`)
+    const preferredColorMode = localStorage.getItem(COLOR_MODE)
     const systemColorMode = window.matchMedia('(prefers-color-scheme: dark)')
       .matches
       ? 'dark'
