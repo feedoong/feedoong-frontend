@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import Flex from 'components/common/Flex'
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
@@ -25,7 +24,7 @@ export const Container = styled.div<{
         `
     }
   }}
-  background-color: ${colors.white};
+  background-color: var(--color-surface-container-lowest);
   border-radius: 12px;
 
   ${mediaQuery.mobileL`
@@ -40,7 +39,7 @@ export const Header = styled(Flex)`
 export const Title = styled.h2`
   ${getTypographyStyles('Headline2_B')}
 
-  color: ${colors.gray900};
+  color: var(--color-font-primary);
 `
 
 export const Body = styled.div`

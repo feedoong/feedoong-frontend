@@ -10,9 +10,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 4px;
   padding: 40px 0;
-  background-color: ${colors.black};
-
-  border-top: 1px solid ${colors.gray900};
+  background-color: var(--color-surface);
 `
 
 export const Form = styled.form`
@@ -39,16 +37,18 @@ export const InputWrapper = styled.div<{
   justify-content: space-between;
   flex: auto;
   height: 48px;
-
   padding: 13px 20px;
-  border: ${({ isError }) =>
-    isError ? `1px solid ${colors.error}` : `1px solid ${colors.white}`};
+  border: 1px solid
+    ${({ isError }) =>
+      isError ? 'var(--color-error)' : 'var(--color-divider)'};
   border-radius: 100px;
-  background-color: ${colors.white};
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-font-primary);
 
   &:focus-within {
     border: 1px solid
-      ${({ isError }) => (isError ? colors.error : colors.black)};
+      ${({ isError }) =>
+        isError ? 'var(--color-error)' : 'var(--color-divider)'};
   }
 
   ${({ inputStyle }) => {
@@ -78,7 +78,9 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
   justify-content: center;
   align-items: center;
   background-color: ${({ isValid, disabled }) =>
-    isValid === true && !disabled ? colors.mainPink : colors.gray500};
+    isValid === true && !disabled
+      ? 'var(--color-primary-500)'
+      : 'var(--color-gray-500)'};
   cursor: pointer;
 `
 
@@ -89,7 +91,7 @@ export const Error = styled.div`
   top: calc(48px + 4px);
   left: 20px;
   padding-right: 48px;
-  color: ${colors.error};
+  color: var(--color-error);
 `
 
 export const UnderLine = styled.span`

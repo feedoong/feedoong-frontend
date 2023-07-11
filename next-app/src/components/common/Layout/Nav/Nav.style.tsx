@@ -5,6 +5,7 @@ import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
+import Button from 'components/common/Button/Button'
 
 export const TopNavContainer = styled.div`
   position: fixed;
@@ -12,7 +13,7 @@ export const TopNavContainer = styled.div`
   width: 100%;
   height: 75px;
   padding: 18px 100px;
-  background-color: ${colors.black};
+  background-color: var(--color-surface);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,17 +27,11 @@ export const LogoButton = styled.button`
   ${getTypographyStyles('Body1_B')}
 
   all: unset;
-  color: ${colors.white};
   border: 0;
   background: none;
   display: flex;
   align-items: center;
   cursor: pointer;
-`
-
-export const LogoImage = styled(Image)`
-  width: 32px;
-  height: 32px;
 `
 
 export const Feedoong = styled.span`
@@ -45,7 +40,7 @@ export const Feedoong = styled.span`
   line-height: 24px;
   font-family: 'Satoshi-Bold';
   margin-left: 4px;
-  color: ${colors.white};
+  color: var(--color-black);
   cursor: pointer;
 `
 
@@ -54,7 +49,7 @@ export const MyPageButton = styled.div`
 
   display: flex;
   align-items: center;
-  color: ${colors.white};
+  color: var(--color-font-secondary);
   cursor: pointer;
   gap: 12px;
 `
@@ -71,8 +66,8 @@ export const UserImage = styled(Image)`
   border-radius: 50%;
 `
 
-export const GoToSignUpButton = styled.span`
+export const GoToSignUpButton = styled(Button)`
   ${getTypographyStyles('Body1_B')};
-  color: ${colors.white};
-  cursor: pointer;
+  width: 108px;
+  height: 35px;
 `

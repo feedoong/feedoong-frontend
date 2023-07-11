@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
+import type { ColorModeColorKey } from 'types/colorMode'
 
 interface Props {
-  color?: string
+  color?: ColorModeColorKey
   thickness?: number
   mt?: number
   mb?: number
@@ -12,7 +12,7 @@ interface Props {
 const Divider = ({ thickness = 1, mt, mb, color }: Props) => {
   return (
     <Container
-      color={color ?? colors.gray200}
+      color={color ? `var(${color})` : 'var(--color-divider)'}
       thickness={thickness}
       marginTop={mt ?? 0}
       marginBottom={mb ?? 0}

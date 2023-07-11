@@ -4,10 +4,9 @@ import { useRouter } from 'next/router'
 import { useGetUserProfile } from 'features/user/userProfile'
 import ProfilePopover from './ProfilePopover'
 import { ROUTE } from 'constants/route'
+import LogoDesktopNoBackground from 'components/common/LogoDesktop'
 
 import * as S from './Nav.style'
-
-import Icons from 'assets/icons'
 
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
@@ -16,13 +15,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   return (
     <S.TopNavContainer ref={ref}>
       <S.LogoButton onClick={() => router.push('/')}>
-        <S.LogoImage
-          priority
-          src={Icons.LogoDesktop}
-          alt="close-icon"
-          width={32}
-          height={32}
-        />
+        <LogoDesktopNoBackground color={'var(--color-black)'} />
         <S.Feedoong>Feedoong</S.Feedoong>
       </S.LogoButton>
 
@@ -43,7 +36,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
         </ProfilePopover>
       ) : (
         <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
-          시작하기
+          피둥 시작하기
         </S.GoToSignUpButton>
       )}
     </S.TopNavContainer>

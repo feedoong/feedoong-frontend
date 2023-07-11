@@ -6,11 +6,12 @@ import * as S from './Button.style'
 export type ButtonStyle = 'primary' | 'secondary' | 'normal' | 'disabled'
 export type ButtonSize = 'large' | 'medium' | 'small' | 'tiny'
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode
   as?: keyof JSX.IntrinsicElements
   buttonStyle?: ButtonStyle
   size?: ButtonSize
+  outline?: boolean
 }
 
 const Button = forwardRef<HTMLButtonElement, Props>(function Button(
@@ -19,6 +20,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     as = 'button',
     size = 'small',
     buttonStyle = 'normal',
+    outline = false,
     onClick,
     ...rest
   }: Props,
@@ -29,6 +31,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       as={as}
       size={size}
       buttonStyle={buttonStyle}
+      outline={outline}
       onClick={useDebounce((e) => onClick && onClick(e), 500)}
       ref={ref}
       {...rest}

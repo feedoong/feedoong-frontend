@@ -1,7 +1,6 @@
 import toast from 'react-hot-toast'
-import Image from 'next/image'
 
-import Icons from 'assets/icons'
+import ToastIcon from '../ToastIcon'
 
 const show = ({
   content,
@@ -18,19 +17,29 @@ const show = ({
 }) => {
   const toastOption = {
     icon: (
-      <Image
-        src={type === 'error' ? Icons.ToastError : Icons.ToastBasic}
-        alt="toast_icon"
+      <ToastIcon
+        color={
+          type === 'error'
+            ? 'var(--color-on-error-container)'
+            : 'var(--color-font-primary)'
+        }
       />
     ),
     position: 'bottom-center',
     style: {
-      borderRadius: '16px',
-      background: 'rgba(0, 0, 0, 0.6)',
-      color: 'white',
+      borderRadius: '32px',
+      background:
+        type === 'error'
+          ? 'var(--color-error-container)'
+          : 'var(--color-surface-container-highest)',
+      color:
+        type === 'error'
+          ? 'var(--color-on-error-container)'
+          : 'var(--color-font-primary)',
       padding: '8px 20px',
       fontWeight: '600',
       fontSize: '14px',
+      minWidth: '80px',
       maxWidth: '700px',
     },
     type,

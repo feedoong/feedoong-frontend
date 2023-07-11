@@ -7,10 +7,11 @@ import Layout from 'components/common/Layout'
 import Scripts from 'components/common/Scripts'
 import Providers from 'components/common/Providers'
 import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks'
-
 import 'styles/reset.css'
 import 'styles/font.css'
 import 'styles/global.css'
+import 'styles/dark.css'
+import 'styles/light.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 function MyApp({ Component, pageProps }: AppProps) {

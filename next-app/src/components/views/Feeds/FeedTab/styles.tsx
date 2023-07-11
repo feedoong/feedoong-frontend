@@ -11,11 +11,11 @@ export const TabContainer = styled.div`
 export const Tab = styled.div<{ isSelected: boolean; fullWidth?: boolean }>`
   all: unset;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 8px 20px;
   line-height: 24px;
-  border-radius: 50px;
-  color: ${colors.gray500};
-  background-color: ${colors.white};
+  border-radius: 20px;
+  color: var(--color-gray-500);
+  background-color: var(--color-gray-50);
   white-space: nowrap;
 
   ${getTypographyStyles('Body1_M')};
@@ -23,8 +23,8 @@ export const Tab = styled.div<{ isSelected: boolean; fullWidth?: boolean }>`
   ${({ isSelected }) =>
     isSelected &&
     css`
-      color: ${colors.white};
-      background-color: ${colors.black};
+      color: var(--color-white);
+      background-color: var(--color-gray-900);
       ${getTypographyStyles('Body1_B')};
     `}
 
@@ -49,7 +49,7 @@ export const SubTab = styled.button<{ isSelected: boolean }>`
   ${({ isSelected }) =>
     isSelected &&
     css`
-      color: ${colors.white};
+      color: var(--color-white);
       ${getTypographyStyles('Body2_B')};
     `}
 `

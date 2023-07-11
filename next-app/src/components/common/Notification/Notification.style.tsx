@@ -22,12 +22,12 @@ export const NotificationWrapper = styled.div<{
 }>`
   ${getTypographyStyles('Body2_M')};
 
-  width: 366px;
-  height: 87px;
-  padding: 16px 18px;
-  border-radius: 16px;
-  color: ${colors.gray600};
-  background-color: white;
+  width: 420px;
+  height: 90px;
+  padding: 16px 20px;
+  border-radius: 32px;
+  /* color: ${colors.gray600}; */
+  background-color: var(--color-surface-container-highest);
 
   position: fixed;
   bottom: 40px;
@@ -36,16 +36,20 @@ export const NotificationWrapper = styled.div<{
   animation-duration: ${({ duration }) => `${duration}ms`};
   animation-fill-mode: forwards;
   z-index: ${Z_INDEX.toast};
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `
 
 export const Title = styled.p`
-  color: ${colors.primary};
-  ${getTypographyStyles('Body1_B')};
+  color: var(--color-font-primary);
+  ${getTypographyStyles('Headline2_B')};
 `
 
 export const Content = styled.div`
-  ${getTypographyStyles('Body2_M')};
-  margin-top: 12px;
+  ${getTypographyStyles('Body1_M')};
+  color: var(--color-font-primary);
 `
 
 export const Icon = styled(Image)`
