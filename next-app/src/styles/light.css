@@ -1,4 +1,4 @@
-body.light,
+html.light,
 .light *:after,
 .light *:before {
   --color-surface-dim: rgba(0, 0, 0, 0.5);

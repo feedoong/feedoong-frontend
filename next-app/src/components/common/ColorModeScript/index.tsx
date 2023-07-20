@@ -13,7 +13,7 @@ const ColorModeScript = () => {
           : 'light'
         const colorMode = preferredColorMode ?? systemColorMode
       
-        document.body.className = colorMode
+        document.documentElement.className = colorMode
         return
       })();
   `

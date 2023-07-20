@@ -12,6 +12,7 @@
 
 html {
   height: -webkit-fill-available;
+  background-color: var(--color-surface);
 }
 
 body {
