@@ -64,7 +64,7 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
             </Popover.Item>
             <Popover.Item
               onClick={() => setIsOpenDeleteChannelModal(true)}
-              color={colors.error}
+              color="var(--color-error)"
               icon={PopoverIcons.구독_해제}
             >
               구독 해제
