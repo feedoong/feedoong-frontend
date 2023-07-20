@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import Image from 'next/image'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { Z_INDEX } from 'styles/constants'
 

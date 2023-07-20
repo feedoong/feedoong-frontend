@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 export const TabContainer = styled.div`

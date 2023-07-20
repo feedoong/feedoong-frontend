@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 

@@ -1,11 +1,8 @@
 import { forwardRef } from 'react'
-import Image from 'next/image'
 
 import Flex from '../Flex'
 
 import * as S from './Input.style'
-
-import Icons from 'assets/icons'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string

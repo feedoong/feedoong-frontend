@@ -5,7 +5,6 @@ import Button from 'components/common/Button'
 import Flex from 'components/common/Flex'
 import { ModalLayout, useModal } from 'components/common/Modal'
 import { getTypographyStyles } from 'styles/fonts'
-import { colors } from 'styles/colors'
 import { ROUTE } from 'constants/route'
 
 export const useCheckLoginModal = () => {

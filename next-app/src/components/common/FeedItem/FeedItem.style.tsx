@@ -1,7 +1,6 @@
 import Image from 'next/legacy/image'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { ellipsis, getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 import Anchor from '../Anchor'

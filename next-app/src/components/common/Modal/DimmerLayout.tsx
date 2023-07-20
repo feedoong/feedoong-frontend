@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { useLockBodyScroll } from 'utils/hooks'
 

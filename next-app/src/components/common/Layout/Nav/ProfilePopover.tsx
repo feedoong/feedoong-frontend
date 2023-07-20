@@ -7,8 +7,6 @@ import { useGetUserProfile } from 'features/user/userProfile'
 import { logoutAction } from 'features/auth/logout'
 import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 import { useColorMode } from 'utils/hooks'
-import LogoDesktopNoBackground from 'components/common/LogoDesktop'
-import { Icon } from 'components/common/Notification/Notification.style'
 
 import Icons from 'assets/icons'
 
