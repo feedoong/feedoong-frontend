@@ -3,18 +3,21 @@ import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import Skeleton from 'react-loading-skeleton'
 
+// import * as S from 'components/views/MyPost/PostContainer.style'
+
 import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
 import { getChannel } from 'services/feeds'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import Paging from 'components/common/Paging'
 import { SkeletonPostType } from 'components/common/Skeleton'
-import { ITEMS_PER_PAGE } from '../MyPost/PostContainer.const'
+import { ITEMS_PER_PAGE } from 'constants/pagination'
 import { getWellKnownChannelImg } from 'utils'
 import PageContainer from 'components/common/PageContainer'
 import LogoIcon from 'components/common/LogoIcon'
-import * as S from 'components/views/MyPost/PostContainer.style'
 import ChannelSubscription from './ChannalSubscription'
+
+import * as S from './ChannelDetailContainer.style'
 
 function PostContainer() {
   const { query } = useRouter()

@@ -9,19 +9,19 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: ${colors.gray900};
+  background: var(--color-gray-900);
 `
 export const Title = styled.h1`
   margin-bottom: 11px;
   font-size: 40px;
   font-weight: 700;
   line-height: 48px;
-  color: ${colors.white};
+  color: var(--color-white);
   text-align: center;
 `
 
 export const Subtitle = styled.h2`
-  color: ${colors.gray400};
+  color: var(--color-gray-400);
   text-align: center;
   ${getTypographyStyles('Headline3_M')}
 `
@@ -33,7 +33,8 @@ export const GoogleLoginButton = styled.button`
   padding: 14px 50px;
   border-radius: 30px;
   border: 0;
-  background: ${colors.white};
+  background: var(--color-white);
+  color: var(--color-black);
   cursor: pointer;
 
   ${getTypographyStyles('Headline3_B')}

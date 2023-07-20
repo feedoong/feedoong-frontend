@@ -1,16 +1,8 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
-
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: ${colors.mainBG};
-`
 
 export const Contents = styled.div`
   width: 650px;
@@ -54,16 +46,6 @@ export const Item = styled.div`
   `}
 `
 
-export const SubLabel = styled.span`
-  ${getTypographyStyles('Body1_B')}
-  color: ${colors.gray600};
-`
-
-export const BorderLine = styled.div`
-  border: 1px solid ${colors.gray400};
-  margin: 30px 0;
-`
-
 export const ButtonContainer = styled.div`
   gap: 10px;
   display: flex;
@@ -73,7 +55,7 @@ export const ButtonContainer = styled.div`
 
 export const FeedoongUrl = styled.span`
   ${getTypographyStyles('Body1_M')}
-  color: ${colors.gray500};
+  color: var(--color-gray-500);
 `
 
 export const TabWrapper = styled.div`

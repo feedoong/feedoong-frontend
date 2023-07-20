@@ -15,8 +15,10 @@ export const useCheckLoginModal = () => {
     content: (
       <ModalLayout size="small" hasHeader={false}>
         <Flex direction="column" gap={12}>
-          <Headline2_B color={colors.gray900}>로그인이 필요합니다</Headline2_B>
-          <Body1_M color={colors.gray600}>
+          <Headline2_B color="var(--color-gray-900)">
+            로그인이 필요합니다
+          </Headline2_B>
+          <Body1_M color="var(--color-gray-600)">
             로그인 페이지로 이동하시겠습니까?
           </Body1_M>
         </Flex>

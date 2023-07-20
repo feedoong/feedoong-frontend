@@ -65,7 +65,7 @@ export const Input = styled.input`
 
   ::placeholder {
     ${getTypographyStyles('Headline3_M')};
-    color: ${colors.gray500};
+    color: var(--color-gray-500);
   }
 `
 

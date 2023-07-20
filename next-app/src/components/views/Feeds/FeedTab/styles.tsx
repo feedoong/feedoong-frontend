@@ -39,7 +39,7 @@ export const SubTab = styled.button<{ isSelected: boolean }>`
   all: unset;
 
   ${getTypographyStyles('Body2_M')};
-  color: ${colors.gray500};
+  color: var(--color-font-disabled);
 
   display: inline-block;
   width: 40px;
@@ -57,5 +57,5 @@ export const SubTab = styled.button<{ isSelected: boolean }>`
 export const VerticalDivider = styled.div`
   width: 1px;
   height: 20px;
-  background-color: ${colors.gray800};
+  background-color: var(--color-divider);
 `
