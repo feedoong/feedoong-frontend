@@ -41,7 +41,7 @@ export const TitleWrapper = styled.div`
 export const Title = styled.h1`
   ${getTypographyStyles('Headline2_B')}
 
-  color: ${colors.gray900};
+  color: var(--color-gray-900);
   cursor: pointer;
 `
 
