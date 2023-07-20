@@ -17,6 +17,7 @@ import { mergeRefs } from 'react-merge-refs'
 
 import PopoverLayout from './PopoverLayout'
 import PopoverItem from './PopoverItem'
+import { Z_INDEX } from 'styles/constants'
 
 interface Props {
   render: (data: {
@@ -73,6 +74,7 @@ const Popover = ({ children, render, placement }: Props) => {
               position: strategy,
               top: y ?? 0,
               left: x ?? 0,
+              zIndex: Z_INDEX.popOver,
             }}
             aria-labelledby={labelId}
             aria-describedby={descriptionId}
