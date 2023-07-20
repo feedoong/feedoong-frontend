@@ -4,7 +4,6 @@ import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import Dialog from 'components/common/Dialog'
 import { copyToClipboard } from '../FeedItem.utils'
-import { colors } from 'styles/colors'
 import type { Channel } from 'types/subscriptions'
 import { PopoverIcons } from './icons'
 import { useUnsubscribeChannel } from 'features/channel'
@@ -64,7 +63,7 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
             </Popover.Item>
             <Popover.Item
               onClick={() => setIsOpenDeleteChannelModal(true)}
-              color={colors.error}
+              color="var(--color-error)"
               icon={PopoverIcons.구독_해제}
             >
               구독 해제

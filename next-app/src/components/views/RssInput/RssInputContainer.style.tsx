@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 
@@ -65,7 +64,7 @@ export const Input = styled.input`
 
   ::placeholder {
     ${getTypographyStyles('Headline3_M')};
-    color: ${colors.gray500};
+    color: var(--color-gray-500);
   }
 `
 

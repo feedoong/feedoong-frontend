@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 
 interface Props {
@@ -30,5 +29,5 @@ const Container = styled.div`
   justify-content: center;
   gap: 12px;
 
-  color: ${colors.gray900};
+  color: var(--color-gray-900);
 `

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Wrapper = styled.div`
@@ -57,10 +56,10 @@ export const Title = styled.h1`
   font-size: 32px;
   font-weight: 700;
 
-  color: ${colors.gray700};
+  color: var(--color-gray-700);
 `
 export const Text = styled.div`
-  color: ${colors.gray500};
+  color: var(--color-gray-500);
 
   span {
     font-weight: 400;

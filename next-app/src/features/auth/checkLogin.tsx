@@ -5,7 +5,6 @@ import Button from 'components/common/Button'
 import Flex from 'components/common/Flex'
 import { ModalLayout, useModal } from 'components/common/Modal'
 import { getTypographyStyles } from 'styles/fonts'
-import { colors } from 'styles/colors'
 import { ROUTE } from 'constants/route'
 
 export const useCheckLoginModal = () => {
@@ -15,8 +14,10 @@ export const useCheckLoginModal = () => {
     content: (
       <ModalLayout size="small" hasHeader={false}>
         <Flex direction="column" gap={12}>
-          <Headline2_B color={colors.gray900}>로그인이 필요합니다</Headline2_B>
-          <Body1_M color={colors.gray600}>
+          <Headline2_B color="var(--color-gray-900)">
+            로그인이 필요합니다
+          </Headline2_B>
+          <Body1_M color="var(--color-gray-600)">
             로그인 페이지로 이동하시겠습니까?
           </Body1_M>
         </Flex>

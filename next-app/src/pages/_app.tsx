@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Toaster } from 'react-hot-toast'
+import { SkeletonTheme } from 'react-loading-skeleton'
 
 import { getDomainName } from 'envs'
 import Layout from 'components/common/Layout'
@@ -40,7 +41,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Providers pageProps={pageProps}>
         <Layout>
           <Toaster containerStyle={{ bottom: '60px' }} />
-          <Component {...pageProps} />
+          <SkeletonTheme
+            baseColor="var(--color-gray-200)"
+            highlightColor="var(--color-gray-200)"
+          >
+            <Component {...pageProps} />
+          </SkeletonTheme>
         </Layout>
       </Providers>
     </>

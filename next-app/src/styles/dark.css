@@ -1,4 +1,4 @@
-body.dark,
+html.dark,
 .dark *:after,
 .dark *:before {
   --color-surface-dim: #000000;

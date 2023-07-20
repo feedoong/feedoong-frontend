@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
-
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: ${colors.gray100};
+  background-color: var(--color-surface);
   opacity: 0.25;
 
   > :not(:last-child) {
@@ -27,10 +25,10 @@ export const Container = styled.div`
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid ${colors.gray900};
+    border: 8px solid var(--color-gray-900);
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: ${colors.gray900} transparent transparent transparent;
+    border-color: var(--color-gray-900) transparent transparent transparent;
   }
   .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;

@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import Image from 'next/image'
 
-import { colors } from 'styles/colors'
 import { getTypographyStyles } from 'styles/fonts'
 import { Z_INDEX } from 'styles/constants'
 
@@ -26,7 +25,6 @@ export const NotificationWrapper = styled.div<{
   height: 90px;
   padding: 16px 20px;
   border-radius: 32px;
-  /* color: ${colors.gray600}; */
   background-color: var(--color-surface-container-highest);
 
   position: fixed;

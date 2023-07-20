@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 
+import { ITEMS_PER_PAGE } from 'constants/pagination'
 import List from '..'
 import useChannelListByUsername from './hooks/useChannelListByUsername'
-import { ITEMS_PER_PAGE } from 'components/views/MyPost/PostContainer.const'
 import Flex from 'components/common/Flex'
 import Paging from 'components/common/Paging'
 import { SkeletonChannelType } from 'components/common/Skeleton'

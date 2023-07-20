@@ -1,7 +1,6 @@
 import Image from 'next/legacy/image'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { ellipsis, getTypographyStyles } from 'styles/fonts'
 import { mediaQuery } from 'styles/mediaQuery'
 import Anchor from '../Anchor'
@@ -65,25 +64,9 @@ export const Contents = styled.p`
   word-break: break-all;
 `
 
-// export const ReadStatus = styled.span`
-//   ${getTypographyStyles('Body2_M')}
-
-//   color: ${colors.gray600};
-// `
-
 export const Bookmark = styled(Image)`
   cursor: pointer;
 `
-
-// export const PostContainer = styled.div`
-//   width: 100%;
-//   padding: 20px;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 10px;
-//   border-radius: 20px;
-//   background-color: ${colors.gray100};
-// `
 
 export const PostBody = styled.div`
   display: flex;
@@ -101,21 +84,7 @@ export const LeftContainer = styled.div`
   gap: 10px;
 `
 
-// export const ImageContainer = styled.div`
-//   min-width: 80px;
-//   height: 80px;
-//   background-color: ${colors.gray300};
-//   border-radius: 10px;
-// `
-
 export const Thumbnail = styled.img`
   border-radius: 10px;
   object-fit: cover;
 `
-
-// export const ThumbnailEmpty = styled.div`
-//   min-width: 80px;
-//   height: 80px;
-//   background-color: ${colors.gray300};
-//   border-radius: 10px;
-// `

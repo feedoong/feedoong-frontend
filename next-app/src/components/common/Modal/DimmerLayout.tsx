@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
 import { Z_INDEX } from 'styles/constants'
 import { useLockBodyScroll } from 'utils/hooks'
 
@@ -55,7 +54,7 @@ const Dimmer = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: ${colors.black};
+  background-color: var(--color-fixed-black);
   opacity: 0.25;
 `
 
