@@ -9,6 +9,7 @@ import FeedItem from 'components/common/FeedItem'
 import Loading from 'components/common/Loading'
 import * as S from '../FeedsContainer.style'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
+import useInfiniteScroll from 'hooks/useInfiniteScroll'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
@@ -21,20 +22,34 @@ const MyFeed = () => {
           lastPage.items.length === 10 ? lastPage.next : undefined,
       }
     )
-  const onIntersect: IntersectionObserverCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // intersecting때 원하는 액션
-        fetchNextPage()
-        observer.unobserve(entry.target)
-      }
-    })
-  }
 
-  // observe가 필요한 영역 ref에 setTarget
-  const { setTarget } = useIntersectionObserver({
-    onIntersect,
-  })
+  const { setTarget } = useInfiniteScroll({ fetchNextPage })
+  // const onIntersect: IntersectionObserverCallback = (entries, observer) => {
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       // intersecting때 원하는 액션
+
+  //       fetchNextPage()
+  //       observer.unobserve(entry.target)
+  //     }
+  //   })
+  // }
+
+  // // observe가 필요한 영역 ref에 setTarget
+  // const { setTarget } = useIntersectionObserver({
+  //   onIntersect,
+  // })
+
+  ///////////////////////////////////////////////
+  // const { ref, inView } = useInView({
+  //   rootMargin: '25px',
+  // })
+
+  // useEffect(() => {
+  //   if (inView) {
+  //     fetchNextPage()
+  //   }
+  // }, [inView, fetchNextPage])
 
   const showSkeleton = isFetching && !data
 
