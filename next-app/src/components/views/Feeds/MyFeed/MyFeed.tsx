@@ -8,6 +8,7 @@ import { getFeeds } from 'services/feeds'
 import FeedItem from 'components/common/FeedItem'
 import Loading from 'components/common/Loading'
 import * as S from '../FeedsContainer.style'
+import useIntersectionObserver from 'hooks/useIntersectionObserver'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
@@ -20,15 +21,20 @@ const MyFeed = () => {
           lastPage.items.length === 10 ? lastPage.next : undefined,
       }
     )
-  const { ref, inView } = useInView({
-    rootMargin: '25px',
-  })
+  const onIntersect: IntersectionObserverCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // intersecting때 원하는 액션
+        fetchNextPage()
+        observer.unobserve(entry.target)
+      }
+    })
+  }
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage()
-    }
-  }, [inView, fetchNextPage])
+  // observe가 필요한 영역 ref에 setTarget
+  const { setTarget } = useIntersectionObserver({
+    onIntersect,
+  })
 
   const showSkeleton = isFetching && !data
 
@@ -46,7 +52,7 @@ const MyFeed = () => {
         )}
       </S.CardContainer>
       {isFetchingNextPage && <Loading />}
-      {hasNextPage && <span ref={ref} />}
+      {hasNextPage && <span ref={setTarget} />}
     </>
   )
 }
