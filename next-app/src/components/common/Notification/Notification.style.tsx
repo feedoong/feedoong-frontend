@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { getTypographyStyles } from 'styles/fonts'
 import { Z_INDEX } from 'styles/constants'
+import { mediaQuery } from 'styles/mediaQuery'
 
 const FadeOut = keyframes`
   0% {
@@ -38,6 +39,13 @@ export const NotificationWrapper = styled.div<{
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  ${mediaQuery.tablet`
+    width: 100%;
+    height: min-content;
+    left: 50%;
+    transform: translateX(-50%);
+  `}
 `
 
 export const Title = styled.p`

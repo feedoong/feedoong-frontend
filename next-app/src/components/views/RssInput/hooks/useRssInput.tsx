@@ -58,10 +58,8 @@ const useRssInput = () => {
 
       setIsPreviewLoading(true)
       const { url: siteUrl, feedUrl } = await checkUrlAsRss(url)
-      mutate({
-        url: siteUrl,
-        feedUrl,
-      })
+
+      mutate({ url: siteUrl, feedUrl })
     } catch (error) {
       if (isAxiosError(error)) {
         const errorMessage = getAxiosError(error).message
