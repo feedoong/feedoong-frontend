@@ -1,19 +1,17 @@
-import type { Dispatch, SetStateAction } from 'react'
-import { type ChangeEvent, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import Image from 'next/image'
+import type { Dispatch, SetStateAction } from 'react'
+import { useState, type ChangeEvent } from 'react'
 
+import Button from 'components/common/Button'
+import Flex from 'components/common/Flex'
 import { ModalLayout, useModal } from 'components/common/Modal'
 import Toast from 'components/common/Toast'
-import Button from 'components/common/Button'
-import { getAxiosError, isAxiosError } from 'utils/errors'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { checkUrlAsDirectRss, submitRssUrl } from 'services/feeds'
-import Flex from 'components/common/Flex'
-import Input from '../Input'
+import { getAxiosError, isAxiosError } from 'utils/errors'
+import BlogUrlInput from '../BlogUrlInput'
 import { isRssUrlValid } from '../RssInputContainer.utils'
-
-import Icons from 'assets/icons'
+import RssUrlInput from '../RssUrlInput'
 
 const useRssDirectInputModal = () => {
   const client = useQueryClient()
@@ -36,10 +34,7 @@ const useRssDirectInputModal = () => {
         homeUrl: rssDirectChannelUrl,
         rssFeedUrl: rssDirectRssUrl,
       })
-      mutateRss({
-        url: siteUrl,
-        feedUrl,
-      })
+      mutateRss({ url: siteUrl, feedUrl })
     } catch (error) {
       if (isAxiosError(error)) {
         const errorMessage = getAxiosError(error).message
@@ -135,59 +130,3 @@ const handleInput =
     }
     setState(e.target.value)
   }
-
-const BlogUrlInput = ({
-  url: rssDirectChannelUrl,
-  onChange,
-}: {
-  url: string
-  onChange: (e: ChangeEvent<HTMLInputElement> | string) => void
-}) => (
-  <Input
-    placeholder="블로그 URL을 입력해주세요"
-    isError={!!rssDirectChannelUrl && !isRssUrlValid(rssDirectChannelUrl)}
-    onChange={onChange}
-    value={rssDirectChannelUrl}
-    inputStyle={{ width: '100%' }}
-    renderInputIcon={({ selectedValue, clearValue }) =>
-      selectedValue && (
-        <Image
-          style={{ cursor: 'pointer' }}
-          alt="삭제 버튼"
-          src={Icons.CancelCircle}
-          width={24}
-          height={24}
-          onClick={clearValue}
-        />
-      )
-    }
-  />
-)
-
-const RssUrlInput = ({
-  url: rssDirectRssUrl,
-  onChange,
-}: {
-  url: string
-  onChange: (e: ChangeEvent<HTMLInputElement> | string) => void
-}) => (
-  <Input
-    placeholder="RSS URL을 입력해주세요"
-    isError={!!rssDirectRssUrl && !isRssUrlValid(rssDirectRssUrl)}
-    onChange={onChange}
-    value={rssDirectRssUrl}
-    inputStyle={{ width: '100%' }}
-    renderInputIcon={({ selectedValue, clearValue }) =>
-      selectedValue && (
-        <Image
-          style={{ cursor: 'pointer' }}
-          alt="삭제 버튼"
-          src={Icons.CancelCircle}
-          width={24}
-          height={24}
-          onClick={clearValue}
-        />
-      )
-    }
-  />
-)
