@@ -2,14 +2,16 @@ import Image from 'next/image'
 
 import * as S from 'components/views/Introduce/Introduce.style'
 
-import Images from 'assets/images'
-
 // TODO: 이미지는 교체하기
 const Introduce = () => {
   return (
     <S.Wrapper>
       <S.Container>
-        <S.Contents>
+        <S.HeaderTitle>
+          여기저기 둥둥💭 떠있는 나의 인사이트💡 콘텐츠📚를{' '}
+          <S.PinkFeedoong>피둥🐽</S.PinkFeedoong>으로 모아보세요.
+        </S.HeaderTitle>
+        {/* <S.Contents>
           <S.ImageWrapper>
             <Image src={Images.Introduce2} alt="온보딩 1" fill />
           </S.ImageWrapper>
@@ -28,12 +30,11 @@ const Introduce = () => {
               </span>
             </S.Text>
           </S.BoardWrapper>
-        </S.Contents>
+        </S.Contents> */}
       </S.Container>
 
       <S.Container>
-        <S.Contents>
-          {/* TODO: 반응형 지그재그 해결 필요 */}
+        {/* <S.Contents>
           <S.ImageWrapper>
             <Image src={Images.Introduce2} alt="온보딩 2" fill />
           </S.ImageWrapper>
@@ -51,11 +52,11 @@ const Introduce = () => {
               </span>
             </S.Text>
           </S.BoardWrapper>
-        </S.Contents>
+        </S.Contents> */}
       </S.Container>
 
       <S.Container>
-        <S.Contents>
+        {/* <S.Contents>
           <S.ImageWrapper>
             <Image src={Images.Introduce2} alt="온보딩 3" fill />
           </S.ImageWrapper>
@@ -75,7 +76,7 @@ const Introduce = () => {
               </span>
             </S.Text>
           </S.BoardWrapper>
-        </S.Contents>
+        </S.Contents> */}
       </S.Container>
     </S.Wrapper>
   )
