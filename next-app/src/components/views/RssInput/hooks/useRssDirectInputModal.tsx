@@ -5,12 +5,11 @@ import { useState, type ChangeEvent } from 'react'
 import Button from 'components/common/Button'
 import Flex from 'components/common/Flex'
 import { ModalLayout, useModal } from 'components/common/Modal'
-import Toast from 'components/common/Toast'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { checkUrlAsDirectRss, submitRssUrl } from 'services/feeds'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 import BlogUrlInput from '../BlogUrlInput'
-import { isRssUrlValid } from '../RssInputContainer.utils'
+import { ChannelToast, isRssUrlValid } from '../RssInputContainer.utils'
 import RssUrlInput from '../RssUrlInput'
 
 const useRssDirectInputModal = () => {
@@ -23,10 +22,7 @@ const useRssDirectInputModal = () => {
     try {
       e?.preventDefault()
       if (!rssDirectChannelUrl || !rssDirectRssUrl) {
-        Toast.show({
-          type: 'error',
-          content: 'URL을 입력해주세요.',
-        })
+        ChannelToast.emptyUrl()
         return
       }
       setIsPreviewLoading(true)
@@ -38,10 +34,8 @@ const useRssDirectInputModal = () => {
     } catch (error) {
       if (isAxiosError(error)) {
         const errorMessage = getAxiosError(error).message
-        Toast.show({
-          type: 'error',
-          content: `채널 추가에 실패했습니다. ${errorMessage}`,
-        })
+
+        ChannelToast.failAddChannel(errorMessage)
       }
     } finally {
       setIsPreviewLoading(false)
@@ -57,15 +51,14 @@ const useRssDirectInputModal = () => {
         setRssDirectRssUrl('')
 
         client.invalidateQueries(CACHE_KEYS.feeds)
-        Toast.show({ content: '새로운 채널이 추가 되었습니다.' })
+
+        ChannelToast.addChannel()
       },
       onError: (err) => {
         if (isAxiosError(err)) {
           const errorMessage = getAxiosError(err).message
-          Toast.show({
-            type: 'error',
-            content: `채널 추가에 실패했습니다. ${errorMessage}`,
-          })
+
+          ChannelToast.failAddChannel(errorMessage)
         }
       },
     }
