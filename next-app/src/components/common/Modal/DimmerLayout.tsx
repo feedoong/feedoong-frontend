@@ -54,7 +54,7 @@ const Dimmer = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--color-fixed-black);
+  background-color: var(--color-black-fixed);
   opacity: 0.25;
 `
 
