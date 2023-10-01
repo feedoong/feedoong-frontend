@@ -60,7 +60,19 @@ const Introduce = () => {
                   있어요.
                 </S.CardDescription>
               </Flex>
-              <img src={Images.Introduce1.src} width="100%" alt="온보딩 1" />{' '}
+              <div style={{ position: 'relative' }}>
+                <Image
+                  src={Images.HeartSticker}
+                  alt="focus"
+                  style={{
+                    left: '-90px',
+                    bottom: '-60px',
+                    width: '30%',
+                    position: 'absolute',
+                  }}
+                />
+                <img src={Images.Introduce1.src} width="100%" alt="온보딩 1" />{' '}
+              </div>
             </Flex>
           </S.FeatureCard>
           <S.FeatureCard>
