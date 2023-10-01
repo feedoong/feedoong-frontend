@@ -148,3 +148,12 @@ export const IntroduceHeaderImage = styled.img`
   height: 100%;
   object-fit: contain;
 `
+
+export const StartFeedoongDescription = styled.p`
+  color: var(--light-txt-secondary, #71646a);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 150%;
+`

@@ -27,7 +27,9 @@ const StartFeedoongWithGoogle = () => {
       >
         구글 계정으로 시작하기
       </Button>
-      <p>여기저기 즐겨찾기 해둔 링크들을 피둥에 추가해보세요</p>
+      <S.StartFeedoongDescription>
+        여기저기 즐겨찾기 해둔 링크들을 피둥에 추가해보세요
+      </S.StartFeedoongDescription>
     </Flex>
   )
 }
