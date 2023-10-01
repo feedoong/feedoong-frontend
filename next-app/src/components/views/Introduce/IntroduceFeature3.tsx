@@ -1,7 +1,6 @@
-import Image from 'next/image'
-
 import Flex from 'components/common/Flex'
 import * as S from 'components/views/Introduce/Introduce.style'
+import FeedoongSticker from './FeedoongSticker'
 
 import Images from 'assets/images'
 
@@ -19,9 +18,7 @@ const IntroduceFeature3 = () => {
             복사해서 쉽게 공유할 수 있어요.
           </S.CardDescription>
         </Flex>
-        <Image
-          src={Images.SurpriseSticker}
-          alt="focus"
+        <FeedoongSticker.Surprise
           style={{
             right: '-40px',
             bottom: '-90px',

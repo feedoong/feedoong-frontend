@@ -1,7 +1,6 @@
-import Image from 'next/image'
-
 import Flex from 'components/common/Flex'
 import * as S from 'components/views/Introduce/Introduce.style'
+import FeedoongSticker from './FeedoongSticker'
 
 import Images from 'assets/images'
 
@@ -21,13 +20,11 @@ const IntroduceFeature2 = () => {
             있어요.
           </S.CardDescription>
         </Flex>
-        <Image
-          src={Images.MobileSticker}
-          alt="focus"
+        <FeedoongSticker.Mobile
           style={{
             right: '-15px',
-            top: '-90px',
-            width: '30%',
+            top: '-10%',
+            width: '20%',
             position: 'absolute',
           }}
         />

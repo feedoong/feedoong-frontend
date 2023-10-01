@@ -1,7 +1,6 @@
-import Image from 'next/image'
-
 import Flex from 'components/common/Flex'
 import * as S from 'components/views/Introduce/Introduce.style'
+import FeedoongSticker from './FeedoongSticker'
 
 import Images from 'assets/images'
 
@@ -20,9 +19,7 @@ const IntroduceFeature1 = () => {
             브라우저 첫 페이지에서 한눈에 확인할 수 있어요.
           </S.CardDescription>
         </Flex>
-        <Image
-          src={Images.HeartSticker}
-          alt="focus"
+        <FeedoongSticker.Heart
           style={{
             left: '-10%',
             bottom: '-5%',

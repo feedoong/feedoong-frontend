@@ -1,13 +1,12 @@
 import * as S from 'components/views/Introduce/Introduce.style'
+import FeedoongSticker from './FeedoongSticker'
 
 import Images from 'assets/images'
 
 const IntroduceHeaderBanner = () => {
   return (
     <S.ImageWrapper>
-      <img
-        src={Images.Fly2Sticker.src}
-        alt="focus"
+      <FeedoongSticker.Fly
         style={{
           right: 0,
           top: '5%',
@@ -15,9 +14,7 @@ const IntroduceHeaderBanner = () => {
           position: 'absolute',
         }}
       />
-      <img
-        src={Images.FocusSticker.src}
-        alt="focus"
+      <FeedoongSticker.Focus
         style={{
           left: '5%',
           bottom: '5%',
