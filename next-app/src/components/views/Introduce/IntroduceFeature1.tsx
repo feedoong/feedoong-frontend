@@ -24,8 +24,8 @@ const IntroduceFeature1 = () => {
           src={Images.HeartSticker}
           alt="focus"
           style={{
-            left: '-90px',
-            bottom: '-60px',
+            left: '-10%',
+            bottom: '-5%',
             width: '30%',
             position: 'absolute',
           }}

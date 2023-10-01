@@ -13,7 +13,7 @@ const StartFeedoongWithGoogle = () => {
       direction="column"
       align="center"
       gap={24}
-      style={{ margin: '50px 0 100px' }}
+      style={{ margin: '150px 0 100px' }}
     >
       <S.HeaderTitle>
         무료로 손쉽게 만드는

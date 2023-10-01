@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import Flex from 'components/common/Flex'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Wrapper = styled.div`
@@ -57,11 +58,19 @@ export const PinkFeedoong = styled.div`
   `}
 `
 
+export const FeatureWrapper = styled(Flex)`
+  flex-direction: column;
+  gap: 200px;
+
+  ${mediaQuery.tablet`
+    gap: 100px;
+  `}
+`
+
 export const FeatureCard = styled.div`
   border-radius: 16px;
   background: var(--color-surface-container-lowest);
   padding: 10px;
-  margin: 100px 0;
 
   ${mediaQuery.tablet`
     width: 100%;
@@ -125,9 +134,13 @@ export const CardDescription = styled.p`
 
 export const ImageWrapper = styled.div`
   padding: 50px 0 0;
+  margin-bottom: 150px;
   max-width: 850px;
-
   position: relative;
+
+  ${mediaQuery.tablet`
+    margin-bottom: 100px;
+  `}
 `
 
 export const IntroduceHeaderImage = styled.img`

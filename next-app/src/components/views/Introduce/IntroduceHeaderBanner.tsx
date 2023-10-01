@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import * as S from 'components/views/Introduce/Introduce.style'
 
 import Images from 'assets/images'
@@ -7,22 +5,22 @@ import Images from 'assets/images'
 const IntroduceHeaderBanner = () => {
   return (
     <S.ImageWrapper>
-      <Image
-        src={Images.Fly2Sticker}
+      <img
+        src={Images.Fly2Sticker.src}
         alt="focus"
         style={{
           right: 0,
-          top: '-35px',
+          top: '5%',
           width: '25%',
           position: 'absolute',
         }}
       />
-      <Image
-        src={Images.FocusSticker}
+      <img
+        src={Images.FocusSticker.src}
         alt="focus"
         style={{
-          left: '30px',
-          bottom: '20px',
+          left: '5%',
+          bottom: '5%',
           width: '20%',
           position: 'absolute',
         }}

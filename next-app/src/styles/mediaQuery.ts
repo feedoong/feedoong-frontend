@@ -1,7 +1,7 @@
 import type { CSSProp } from 'styled-components'
 import { css } from 'styled-components'
 
-const breakpoints: {
+export const breakpoints: {
   [key: string]: number
 } = {
   mobile: 0,
