@@ -26,7 +26,7 @@ export const Container = styled.div`
 export const HeaderTitle = styled.h1`
   display: inline-block;
 
-  color: var(--light-gray-1000, #2a2528);
+  color: var(--color-gray-1000, #2a2528);
   font-family: Satoshi;
   font-size: 60px;
   font-weight: 700;
