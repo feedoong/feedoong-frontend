@@ -47,7 +47,7 @@ export const HeaderTitle = styled.h1`
 
 export const PinkFeedoong = styled.div`
   display: inline-block;
-  color: var(--dark-primary-500, #d4608f);
+  color: var(--color-primary-500, #d4608f);
   font-family: Satoshi;
   font-size: 60px;
   font-weight: 700;
@@ -78,7 +78,7 @@ export const FeatureCard = styled.div`
 `
 
 export const CardTitle = styled.h2`
-  color: var(--light-txt-primary, #423c3f);
+  color: var(--color-font-primary, #423c3f);
   font-family: Satoshi;
   font-size: 34px;
   font-style: normal;
@@ -86,7 +86,7 @@ export const CardTitle = styled.h2`
   line-height: 150%;
 
   ${mediaQuery.tablet`
-    color: var(--light-txt-primary, #423C3F);
+    color: var(--color-font-primary, #423C3F);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Pretendard;
     font-size: 26px;
@@ -97,7 +97,7 @@ export const CardTitle = styled.h2`
 `
 
 export const CardSubTitle = styled.h3`
-  color: var(--light-txt-primary, #423c3f);
+  color: var(--color-font-primary, #423c3f);
   font-family: Satoshi;
   font-size: 20px;
   font-style: normal;
@@ -105,7 +105,7 @@ export const CardSubTitle = styled.h3`
   line-height: 150%;
 
   ${mediaQuery.tablet`
-    color: var(--light-txt-primary, #423C3F);
+    color: var(--color-font-primary, #423C3F);
     font-family: Satoshi;
     font-size: 20px;
     font-style: normal;
@@ -115,7 +115,7 @@ export const CardSubTitle = styled.h3`
 `
 
 export const CardDescription = styled.p`
-  color: var(--light-txt-secondary, #71646a);
+  color: var(--color-font-secondary, #71646a);
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 20px;
   font-style: normal;
@@ -123,7 +123,7 @@ export const CardDescription = styled.p`
   line-height: 150%;
 
   ${mediaQuery.tablet`
-    color: var(--light-txt-secondary, #71646A);
+    color: var(--color-font-secondary, #71646A);
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 20px;
     font-style: normal;
@@ -150,7 +150,7 @@ export const IntroduceHeaderImage = styled.img`
 `
 
 export const StartFeedoongDescription = styled.p`
-  color: var(--light-txt-secondary, #71646a);
+  color: var(--color-font-secondary, #71646a);
   text-align: center;
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 20px;
