@@ -35,7 +35,7 @@ export const HeaderTitle = styled.h1`
   word-break: break-all;
 
   ${mediaQuery.tablet`
-    color: var(--light-gray-1000, #2A2528);
+    color: var(--color-gray-1000, #2A2528);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Pretendard;
     font-size: 30px;
