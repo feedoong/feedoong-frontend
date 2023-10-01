@@ -126,6 +126,8 @@ export const CardDescription = styled.p`
 export const ImageWrapper = styled.div`
   padding: 50px 0 0;
   max-width: 850px;
+
+  position: relative;
 `
 
 export const IntroduceHeaderImage = styled.img`
