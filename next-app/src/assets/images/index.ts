@@ -1,6 +1,6 @@
 import Custom404 from './404.svg'
 import Custom500 from './500.svg'
-import IntroduceHeader from './introduce_header.png'
+import IntroduceHeader from './introduce_header.webp'
 import Introduce1 from './introduce_1.webp'
 import Introduce2 from './introduce_2.webp'
 import Introduce3 from './introduce_3.webp'
