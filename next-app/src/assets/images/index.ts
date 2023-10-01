@@ -7,6 +7,8 @@ import Introduce3 from './introduce_3.webp'
 import FocusSticker from './focus.svg'
 import Fly2Sticker from './fly-2.svg'
 import HeartSticker from './heart.svg'
+import MobileSticker from './mobile.svg'
+import SurpriseSticker from './surprise.svg'
 
 export const Images = {
   Custom404,
@@ -18,6 +20,8 @@ export const Images = {
   FocusSticker,
   Fly2Sticker,
   HeartSticker,
+  MobileSticker,
+  SurpriseSticker,
 }
 
 export default Images

@@ -1,11 +1,16 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import * as S from 'components/views/Introduce/Introduce.style'
 import Flex from 'components/common/Flex'
+import Button from 'components/common/Button/Button'
+import { ROUTE } from 'constants/route'
 
 import Images from 'assets/images'
 
 const Introduce = () => {
+  const router = useRouter()
+
   return (
     <S.Wrapper>
       <S.Container>
@@ -13,7 +18,7 @@ const Introduce = () => {
           여기저기 둥둥💭 떠있는 나의 인사이트💡 콘텐츠📚를{' '}
           <S.PinkFeedoong>피둥🐽</S.PinkFeedoong>으로 모아보세요.
         </S.HeaderTitle>
-        <div>
+        <Flex direction="column" gap={100}>
           <S.ImageWrapper>
             <Image
               src={Images.Fly2Sticker}
@@ -31,7 +36,7 @@ const Introduce = () => {
               style={{
                 left: '30px',
                 bottom: '20px',
-                width: '17%',
+                width: '20%',
                 position: 'absolute',
               }}
             />
@@ -40,7 +45,7 @@ const Introduce = () => {
               alt="온보딩 1"
             />
           </S.ImageWrapper>
-          <S.FeatureCard>
+          <S.FeatureCard style={{ position: 'relative' }}>
             <Flex gap={40} direction="column">
               <Flex
                 direction="column"
@@ -60,22 +65,20 @@ const Introduce = () => {
                   있어요.
                 </S.CardDescription>
               </Flex>
-              <div style={{ position: 'relative' }}>
-                <Image
-                  src={Images.HeartSticker}
-                  alt="focus"
-                  style={{
-                    left: '-90px',
-                    bottom: '-60px',
-                    width: '30%',
-                    position: 'absolute',
-                  }}
-                />
-                <img src={Images.Introduce1.src} width="100%" alt="온보딩 1" />{' '}
-              </div>
+              <Image
+                src={Images.HeartSticker}
+                alt="focus"
+                style={{
+                  left: '-90px',
+                  bottom: '-60px',
+                  width: '30%',
+                  position: 'absolute',
+                }}
+              />
+              <img src={Images.Introduce1.src} width="100%" alt="온보딩 1" />{' '}
             </Flex>
           </S.FeatureCard>
-          <S.FeatureCard>
+          <S.FeatureCard style={{ position: 'relative' }}>
             <Flex gap={40} direction="column">
               <Flex
                 direction="column"
@@ -93,10 +96,20 @@ const Introduce = () => {
                   관리할 수 있어요.
                 </S.CardDescription>
               </Flex>
+              <Image
+                src={Images.MobileSticker}
+                alt="focus"
+                style={{
+                  right: '-15px',
+                  top: '-90px',
+                  width: '30%',
+                  position: 'absolute',
+                }}
+              />
               <img src={Images.Introduce2.src} width="100%" alt="온보딩 2" />{' '}
             </Flex>
           </S.FeatureCard>
-          <S.FeatureCard>
+          <S.FeatureCard style={{ position: 'relative' }}>
             <Flex gap={40} direction="column">
               <Flex
                 direction="column"
@@ -112,10 +125,36 @@ const Introduce = () => {
                   복사해서 쉽게 공유할 수 있어요.
                 </S.CardDescription>
               </Flex>
+              <Image
+                src={Images.SurpriseSticker}
+                alt="focus"
+                style={{
+                  right: '-40px',
+                  bottom: '-90px',
+                  width: '30%',
+                  position: 'absolute',
+                }}
+              />
               <img src={Images.Introduce3.src} width="100%" alt="온보딩 3" />{' '}
             </Flex>
           </S.FeatureCard>
-        </div>
+        </Flex>
+        <Flex
+          direction="column"
+          align="center"
+          gap={24}
+          style={{ margin: '50px 0 100px' }}
+        >
+          <S.HeaderTitle>
+            무료로 손쉽게 만드는
+            <br />
+            나만의 인사이트 피드
+          </S.HeaderTitle>
+          <Button onClick={() => router.push(ROUTE.SIGN_UP)}>
+            구글 계정으로 시작하기
+          </Button>
+          <p>구글 계정으로 간단하게 시작해 보세요.</p>
+        </Flex>
       </S.Container>
     </S.Wrapper>
   )
