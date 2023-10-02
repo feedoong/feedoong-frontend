@@ -17,11 +17,16 @@ interface Props {
 }
 
 const PrivateFeedItemPopover = ({ item }: Props) => {
-  const { query } = useRouter()
+  const { query, pathname } = useRouter()
   const [isOpenDeleteChannelModal, setIsOpenDeleteChannelModal] =
     useState(false)
+  const isRecommendedFeed = pathname.includes('recommended')
 
-  const unsubscribeChannel = useUnsubscribeChannel(item, ({ queryKey }) => {
+  const isMatchedKeyForRecommendedFeed = (queryKey: QueryKey) => {
+    return queryKey.includes(CACHE_KEYS.feeds[0])
+  }
+
+  const isMatchedKeyForPersonalFeed = (queryKey: QueryKey) => {
     if (isQueryMatched(queryKey)) {
       return isPageMatched(queryKey, query.page ? Number(query.page) : 1)
     }
@@ -39,6 +44,13 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
       const pageQuery = queryKey[1] as { page: number }
       return pageQuery.page === Number(currentPage)
     }
+  }
+
+  const unsubscribeChannel = useUnsubscribeChannel(item, ({ queryKey }) => {
+    if (isRecommendedFeed) {
+      return isMatchedKeyForRecommendedFeed(queryKey)
+    }
+    return isMatchedKeyForPersonalFeed(queryKey)
   })
 
   return (
