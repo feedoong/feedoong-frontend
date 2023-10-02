@@ -51,10 +51,15 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
           </p>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button outline onClick={() => setIsOpenDeleteChannelModal(false)}>
+          <Button
+            style={{ width: '50%' }}
+            outline
+            onClick={() => setIsOpenDeleteChannelModal(false)}
+          >
             취소
           </Button>
           <Button
+            style={{ width: '50%' }}
             onClick={() => {
               unsubscribeChannel()
               setIsOpenDeleteChannelModal(false)
