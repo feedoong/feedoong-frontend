@@ -3,11 +3,14 @@ import styled from 'styled-components'
 import { getTypographyStyles } from 'styles/fonts'
 import Flex from 'components/common/Flex'
 
-export const ContentWrapper = styled(Flex)`
+export const ContentWrapper = styled(Flex)<{
+  errorType?: '404' | '500'
+}>`
   width: 100%;
   height: calc(100dvh - 75px);
   background-color: var(--color-surface);
-  padding-top: calc((100dvh - 400px) * 0.4);
+  padding-top: ${({ errorType }) =>
+    `calc((100dvh - ${errorType === '500' ? 300 : 400}px) * 0.44)`};
 `
 
 export const ContentContainer = styled(Flex)``
