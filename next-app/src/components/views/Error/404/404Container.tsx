@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 
 import Button from 'components/common/Button'
 import * as Error from '../error.style'
-import { ROUTE } from 'constants/route'
 
 import * as S from './404Container.style'
 

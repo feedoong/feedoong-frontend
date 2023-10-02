@@ -14,4 +14,5 @@ export const ContentContainer = styled(Flex)``
 
 export const MainDescription = styled.p`
   ${getTypographyStyles('Headline1_B')};
+  color: var(--color-font-primary);
 `
