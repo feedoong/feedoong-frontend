@@ -1,7 +1,5 @@
 import type { QueryFilters } from '@tanstack/react-query'
-import { useQuery } from '@tanstack/react-query'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { AxiosError } from 'axios'
 
 import Toast from 'components/common/Toast'
 import { CACHE_KEYS } from 'services/cacheKeys'
