@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import Button from 'components/common/Button'
-import * as S from '../common.style'
+import * as S from '../error.style'
 
 import Images from 'assets/images'
 

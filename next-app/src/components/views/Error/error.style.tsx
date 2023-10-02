@@ -5,8 +5,9 @@ import Flex from 'components/common/Flex'
 
 export const ContentWrapper = styled(Flex)`
   width: 100%;
-  height: 100%;
+  height: calc(100dvh - 75px);
   background-color: var(--color-surface);
+  padding-top: calc((100dvh - 400px) * 0.4);
 `
 
 export const ContentContainer = styled(Flex)``

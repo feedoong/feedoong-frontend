@@ -25,23 +25,19 @@ export const Container = styled.button<{
 export const sizeMap = {
   large: css`
     ${getTypographyStyles('Headline3_B')}
-    width: 335px;
-    height: 56px;
+    padding: 16px 20px;
   `,
   medium: css`
     ${getTypographyStyles('Body1_B')}
-    width: 172px;
-    height: 44px;
+    padding: 10px 16px;
   `,
   small: css`
     ${getTypographyStyles('Body2_B')}
-    width: 145px;
-    height: 40px;
+    padding: 12px 16px;
   `,
   tiny: css`
     ${getTypographyStyles('Caption_B')}
-    width: 126px;
-    height: 32px;
+    padding: 8px 16px;
   `,
 }
 
