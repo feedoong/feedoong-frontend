@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
+import Flex from 'components/common/Flex'
 import { mediaQuery } from 'styles/mediaQuery'
 
 export const Wrapper = styled.div`
-  padding: 100px 0;
+  padding: 50px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,57 +14,146 @@ export const Wrapper = styled.div`
     padding: 40px 20px;
   `}
 `
+
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 860px;
 `
 
-export const Contents = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 80px;
-  max-width: 786px;
+export const HeaderTitle = styled.h1`
+  display: inline-block;
 
-  span {
-    line-break: anywhere;
-  }
+  color: var(--color-gray-1000, #2a2528);
+  font-family: Satoshi;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: normal;
+
+  word-break: break-all;
 
   ${mediaQuery.tablet`
-    flex-direction: column;
-    gap: 40px;
+    color: var(--color-gray-1000, #2A2528);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Pretendard;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+  `}
+`
+
+export const PinkFeedoong = styled.div`
+  display: inline-block;
+  color: var(--color-primary-500, #d4608f);
+  font-family: Satoshi;
+  font-size: 60px;
+  font-weight: 700;
+
+  ${mediaQuery.tablet`
+    font: inherit;
+    color: inherit;
+  `}
+`
+
+export const FeatureWrapper = styled(Flex)`
+  flex-direction: column;
+  gap: 200px;
+
+  ${mediaQuery.tablet`
+    gap: 100px;
+  `}
+`
+
+export const FeatureCard = styled.div`
+  border-radius: 16px;
+  background: var(--color-surface-container-lowest);
+  padding: 10px;
+
+  ${mediaQuery.tablet`
+    width: 100%;
+  `}
+`
+
+export const CardTitle = styled.h2`
+  color: var(--color-font-primary, #423c3f);
+  font-family: Satoshi;
+  font-size: 34px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+
+  ${mediaQuery.tablet`
+    color: var(--color-font-primary, #423C3F);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Pretendard;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%; /* 39px */
+  `}
+`
+
+export const CardSubTitle = styled.h3`
+  color: var(--color-font-primary, #423c3f);
+  font-family: Satoshi;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+
+  ${mediaQuery.tablet`
+    color: var(--color-font-primary, #423C3F);
+    font-family: Satoshi;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+  `}
+`
+
+export const CardDescription = styled.p`
+  color: var(--color-font-secondary, #71646a);
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+
+  ${mediaQuery.tablet`
+    color: var(--color-font-secondary, #71646A);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
   `}
 `
 
 export const ImageWrapper = styled.div`
+  padding: 50px 0 0;
+  margin-bottom: 150px;
+  max-width: 850px;
   position: relative;
-  overflow: hidden;
-  min-height: 400px;
-  flex: 1;
 
-  img {
-    object-fit: cover;
-  }
-`
-export const BoardWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  ${mediaQuery.tablet`
+    margin-bottom: 100px;
+  `}
 `
 
-export const Title = styled.h1`
-  margin: 11px 0 20px 0;
-  font-size: 32px;
-  font-weight: 700;
-
-  color: var(--color-gray-700);
+export const IntroduceHeaderImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `
-export const Text = styled.div`
-  color: var(--color-gray-500);
 
-  span {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 26px;
-  }
+export const StartFeedoongDescription = styled.p`
+  color: var(--color-font-secondary, #71646a);
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 150%;
 `

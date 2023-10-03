@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Dialog from 'components/common/Dialog'
@@ -20,7 +20,7 @@ const MyAccountContainer = () => {
   const [isOpenDeleteAccountModal, setIsOpenDeleteAccountModal] =
     useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
-  const nickNameRef = useRef<HTMLInputElement>(null)
+  // const nickNameRef = useRef<HTMLInputElement>(null)
   const { mutate: deleteAccountAction } = useMutation(
     ['deleteAccount'],
     deleteAccount,

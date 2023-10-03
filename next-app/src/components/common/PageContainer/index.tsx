@@ -1,8 +1,6 @@
 import type { ReactNode } from 'react'
 import styled from 'styled-components'
 
-import { colors } from 'styles/colors'
-
 interface Props {
   children: ReactNode
   padding?: string

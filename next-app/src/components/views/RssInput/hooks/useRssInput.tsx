@@ -1,11 +1,11 @@
-import { type ChangeEvent, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useState, type ChangeEvent } from 'react'
 
-import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import Toast from 'components/common/Toast'
-import { getAxiosError, isAxiosError } from 'utils/errors'
 import Notification from 'components/common/Notification'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
+import { getAxiosError, isAxiosError } from 'utils/errors'
+import { ChannelToast } from '../RssInputContainer.utils'
 
 const useRssInput = () => {
   const client = useQueryClient()
@@ -34,10 +34,8 @@ const useRssInput = () => {
       onError: (err) => {
         if (isAxiosError(err)) {
           const errorMessage = getAxiosError(err).message
-          Toast.show({
-            type: 'error',
-            content: `채널 추가에 실패했습니다. ${errorMessage}`,
-          })
+
+          ChannelToast.failAddChannel(errorMessage)
         }
       },
     }
@@ -60,17 +58,13 @@ const useRssInput = () => {
 
       setIsPreviewLoading(true)
       const { url: siteUrl, feedUrl } = await checkUrlAsRss(url)
-      mutate({
-        url: siteUrl,
-        feedUrl,
-      })
+
+      mutate({ url: siteUrl, feedUrl })
     } catch (error) {
       if (isAxiosError(error)) {
         const errorMessage = getAxiosError(error).message
-        Toast.show({
-          type: 'error',
-          content: `채널 추가에 실패했습니다. ${errorMessage}`,
-        })
+
+        ChannelToast.failAddChannel(errorMessage)
       }
     } finally {
       setIsPreviewLoading(false)
