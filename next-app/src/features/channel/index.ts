@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 
 import Toast from 'components/common/Toast'
+import { ChannelToast } from 'components/views/RssInput/RssInputContainer.utils'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { submitRssUrl } from 'services/feeds'
 import { deleteChannel } from 'services/subscriptions'
@@ -15,7 +16,7 @@ export const useSubscribeChannel = () => {
 
   return useMutation(submitRssUrl, {
     onSuccess: () => {
-      Toast.show({ content: '새로운 채널이 추가되었어요!' })
+      ChannelToast.addChannel()
       client.invalidateQueries(CACHE_KEYS.recommended(['channels']))
     },
   })
