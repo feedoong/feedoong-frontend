@@ -3,12 +3,24 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 
 import Toast from 'components/common/Toast'
+import { ChannelToast } from 'components/views/RssInput/RssInputContainer.utils'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { submitRssUrl } from 'services/feeds'
 import { deleteChannel } from 'services/subscriptions'
 import type { Channel } from 'types/subscriptions'
 import type { ErrorBody } from 'utils/errors'
 import { getAxiosError } from 'utils/errors'
+
+export const useSubscribeChannel = () => {
+  const client = useQueryClient()
+
+  return useMutation(submitRssUrl, {
+    onSuccess: () => {
+      ChannelToast.addChannel()
+      client.invalidateQueries(CACHE_KEYS.recommended(['channels']))
+    },
+  })
+}
 
 export const subscribeChannel = async (item: Channel) => {
   Toast.show({

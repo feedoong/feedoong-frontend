@@ -22,7 +22,7 @@ const ProfilePopover = ({ children }: Props) => {
   return (
     <Popover
       placement="bottom-start"
-      render={() => (
+      render={({ close }) => (
         <Popover.Layout>
           <a
             target="_blank"
@@ -48,7 +48,10 @@ const ProfilePopover = ({ children }: Props) => {
           </a>
 
           <Popover.Item
-            onClick={toggleColorMode}
+            onClick={() => {
+              toggleColorMode()
+              close()
+            }}
             icon={
               <Image
                 src={isDarkMode ? Icons.LightMode : Icons.DarkMode}

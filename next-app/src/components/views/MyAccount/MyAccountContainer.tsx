@@ -116,10 +116,15 @@ const MyAccountContainer = () => {
           </p>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button outline onClick={() => setIsOpenDeleteAccountModal(false)}>
+          <Button
+            outline
+            style={{ width: '50%' }}
+            onClick={() => setIsOpenDeleteAccountModal(false)}
+          >
             취소
           </Button>
           <Button
+            style={{ width: '50%' }}
             onClick={() => {
               deleteAccountAction()
               setIsOpenDeleteAccountModal(false)

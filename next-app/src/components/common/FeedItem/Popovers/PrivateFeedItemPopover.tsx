@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
+import type { QueryKey } from '@tanstack/react-query'
 
 import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
@@ -15,33 +17,67 @@ interface Props {
 }
 
 const PrivateFeedItemPopover = ({ item }: Props) => {
+  const { query, pathname } = useRouter()
   const [isOpenDeleteChannelModal, setIsOpenDeleteChannelModal] =
     useState(false)
+  const isRecommendedFeed = pathname.includes('recommended')
 
-  const unsubscribeChannel = useUnsubscribeChannel(item, ({ queryKey }) =>
-    queryKey.includes(CACHE_KEYS.feeds[0])
-  )
+  const isMatchedKeyForRecommendedFeed = (queryKey: QueryKey) => {
+    return queryKey.includes(CACHE_KEYS.feeds[0])
+  }
+
+  const isMatchedKeyForPersonalFeed = (queryKey: QueryKey) => {
+    if (isQueryMatched(queryKey)) {
+      return isPageMatched(queryKey, query.page ? Number(query.page) : 1)
+    }
+    return false
+
+    function isQueryMatched(queryKey: QueryKey) {
+      return (
+        Array.isArray(queryKey[0]) &&
+        typeof queryKey[1] === 'object' &&
+        queryKey[0].includes(CACHE_KEYS.feeds[0])
+      )
+    }
+
+    function isPageMatched(queryKey: QueryKey, currentPage = 1) {
+      const pageQuery = queryKey[1] as { page: number }
+      return pageQuery.page === Number(currentPage)
+    }
+  }
+
+  const unsubscribeChannel = useUnsubscribeChannel(item, ({ queryKey }) => {
+    if (isRecommendedFeed) {
+      return isMatchedKeyForRecommendedFeed(queryKey)
+    }
+    return isMatchedKeyForPersonalFeed(queryKey)
+  })
 
   return (
     <>
       <Dialog isOpen={isOpenDeleteChannelModal}>
-        <Dialog.Title>채널을 삭제하시겠습니까?</Dialog.Title>
+        <Dialog.Title>채널 구독을 해제하시겠습니까?</Dialog.Title>
         <Dialog.Content>
           <p>
-            채널을 삭제하더라도<br></br>저장한 게시물은 남아있게 됩니다.
+            구독을 해제하더라도<br></br>저장한 게시물은 남아있게 됩니다.
           </p>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button outline onClick={() => setIsOpenDeleteChannelModal(false)}>
+          <Button
+            style={{ width: '50%' }}
+            outline
+            onClick={() => setIsOpenDeleteChannelModal(false)}
+          >
             취소
           </Button>
           <Button
+            style={{ width: '50%' }}
             onClick={() => {
               unsubscribeChannel()
               setIsOpenDeleteChannelModal(false)
             }}
           >
-            삭제
+            구독 해제
           </Button>
         </Dialog.Actions>
       </Dialog>

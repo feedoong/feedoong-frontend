@@ -18,7 +18,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   {
     children,
     as = 'button',
-    size = 'small',
+    size = 'medium',
     buttonStyle = 'normal',
     outline = false,
     onClick,

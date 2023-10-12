@@ -15,6 +15,7 @@ interface Props {
 
 const ChannelSubscription = ({ channel }: Props) => {
   const { openLoginModal, renderModal } = useCheckLoginModal()
+
   const { data: user } = useGetUserProfile()
 
   return channel.isSubscribed ? (

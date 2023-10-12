@@ -42,7 +42,7 @@ const UserPageContainer = () => {
     MY_PAGE_TABS,
     router.query.tab as MyPageListType
   ) as MyPageTabOption
-  const { TabComponent } = selectedTab
+  const { TabComponent: SelectedTabList } = selectedTab
 
   const profileURL = getFeedoongUrl(userProfile)
 
@@ -96,7 +96,7 @@ const UserPageContainer = () => {
             }}
           />
         </S.TabWrapper>
-        <TabComponent />
+        <SelectedTabList />
       </S.Contents>
     </PageContainer>
   )

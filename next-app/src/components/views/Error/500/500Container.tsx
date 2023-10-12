@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import Button from 'components/common/Button'
-import * as S from '../common.style'
+import * as S from '../error.style'
 
 import Images from 'assets/images'
 
@@ -13,8 +13,8 @@ const Custom500Container = () => {
     <S.ContentWrapper
       gap={24}
       align="center"
-      justify="center"
       direction="column"
+      errorType="500"
     >
       <S.ContentContainer
         gap={20}
@@ -22,17 +22,12 @@ const Custom500Container = () => {
         justify="center"
         direction="column"
       >
-        <Image src={Images.Custom500} alt="500Error" />
+        <Image src={Images.error} alt="500Error" />
         <S.MainDescription>페이지를 표시할 수 없습니다.</S.MainDescription>
+        <Button onClick={() => router.push('/')} size="large">
+          메인으로 이동하기
+        </Button>
       </S.ContentContainer>
-      <Button
-        onClick={() => router.push('/')}
-        buttonStyle="secondary"
-        style={{ padding: '0px 16px', margin: '0 auto' }}
-        size="medium"
-      >
-        메인으로 이동하기
-      </Button>
     </S.ContentWrapper>
   )
 }

@@ -9,7 +9,7 @@ import { useGetUserProfile } from 'features/user/userProfile'
 import { useCheckLoginModal } from 'features/auth/checkLogin'
 import { getWellKnownChannelImg } from 'utils'
 import { getDiameterByType } from '../FeedItem.utils'
-import { subscribeChannel } from 'features/channel'
+import { useSubscribeChannel } from 'features/channel'
 
 import { AddButton, Container, Title, Url } from './Channel.style'
 
@@ -71,6 +71,7 @@ const ChannelType = ({ item, url, renderAction }: Props) => {
 
 export const PublicChannelType = ({ item }: { item: Channel }) => {
   const { openLoginModal, renderModal } = useCheckLoginModal()
+  const { mutate: subscribeChannel } = useSubscribeChannel()
   const { data: user } = useGetUserProfile()
 
   return (
