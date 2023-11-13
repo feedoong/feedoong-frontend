@@ -7,7 +7,7 @@ import GridViewIconDeactive from './grid_view-deactive.svg'
 import Bookmark from './bookmark.svg'
 import BookmarkDeactive from './bookmark-deactive.svg'
 import Logo from './Feedoong.svg'
-import GoogleIcon from './google_icon.svg'
+// import GoogleIcon from './google_icon.svg'
 import Add from './add.svg'
 import AddMono from './add-mono.svg'
 import CancelCircle from './cancel.svg'
@@ -42,7 +42,7 @@ export const Icons = {
   Bookmark,
   BookmarkDeactive,
   Logo,
-  GoogleIcon,
+  // GoogleIcon,
   Add,
   AddMono,
   CancelCircle,

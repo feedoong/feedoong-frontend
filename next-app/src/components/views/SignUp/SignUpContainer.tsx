@@ -24,12 +24,12 @@ const SignUpContainer = () => {
       </S.Subtitle>
       <S.GoogleLoginButton onClick={signUp}>
         <S.ButtonContentsWrapper>
-          <Image
+          {/* <Image
             src={Icons.GoogleIcon}
             width={16}
             height={16}
             alt="구글 아이콘"
-          />
+          /> */}
           <p>구글 계정으로 3초 만에 시작하기</p>
         </S.ButtonContentsWrapper>
       </S.GoogleLoginButton>

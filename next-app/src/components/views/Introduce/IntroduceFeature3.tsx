@@ -2,7 +2,7 @@ import Flex from 'components/common/Flex'
 import * as S from 'components/views/Introduce/Introduce.style'
 import FeedoongSticker from './FeedoongSticker'
 
-import Images from 'assets/images'
+// import Images from 'assets/images'
 
 const IntroduceFeature3 = () => {
   return (
@@ -26,7 +26,7 @@ const IntroduceFeature3 = () => {
             position: 'absolute',
           }}
         />
-        <img src={Images.Introduce3.src} width="100%" alt="온보딩 3" />{' '}
+        {/* <img src={Images.Introduce3.src} width="100%" alt="온보딩 3" />{' '} */}
       </Flex>
     </S.FeatureCard>
   )

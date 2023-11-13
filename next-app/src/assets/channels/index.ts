@@ -1,27 +1,27 @@
 import NaverBlog from './naver_blog.ico'
 import Brunch from './brunch.ico'
 import Vercel from './vercel.png'
-import Kakao from './kakao.ico'
+// import Kakao from './kakao.ico'
 // import toss from './toss.ico'
-import Tistory from './tistory.ico'
+// import Tistory from './tistory.ico'
 // import Vscode from './vscode.ico'
 import Chrome from './chrome.png'
 import Hyperconnect from './hyperconnect.ico'
-import NhnToast from './nhnToast.ico'
-import Velog from './velog.ico'
+// import NhnToast from './nhnToast.ico'
+// import Velog from './velog.ico'
 import Youtube from './youtube.ico'
 
 export const getIconByHostname = (hostname: string) => {
   // 로직으로 처리할 경우
-  if (hostname.includes('kakao')) {
-    return Kakao.src
-  }
+  // if (hostname.includes('kakao')) {
+  //   return Kakao.src
+  // }
   // if (hostname.includes('toss')) {
   //   return toss.src
   // }
-  if (hostname.includes('tistory')) {
-    return Tistory.src
-  }
+  // if (hostname.includes('tistory')) {
+  //   return Tistory.src
+  // }
   if (hostname.includes('youtube')) {
     return Youtube.src
   }
@@ -39,10 +39,10 @@ export const getIconByHostname = (hostname: string) => {
       return Chrome.src
     case 'hyperconnect.github.io':
       return Hyperconnect.src
-    case 'meetup.toast.com':
-      return NhnToast.src
-    case 'velog.io':
-      return Velog.src
+    // case 'meetup.toast.com':
+    //   return NhnToast.src
+    // case 'velog.io':
+    //   return Velog.src
   }
   return
 }
