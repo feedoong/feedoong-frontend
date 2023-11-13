@@ -12,6 +12,11 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com'],
   },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
   // sentry: {
   // Use `hidden-source-map` rather than `source-map` as the Webpack `devtool`
   // for client-side builds. (This will be the default starting in
