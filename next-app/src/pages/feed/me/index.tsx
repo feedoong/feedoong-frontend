@@ -37,3 +37,7 @@ export const getServerSideProps = withAuthQueryServerSideProps(
     return { props: {} }
   }
 )
+
+export const config = {
+  runtime: 'edge',
+}
