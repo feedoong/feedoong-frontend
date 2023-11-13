@@ -1,7 +1,7 @@
 import * as S from 'components/views/Introduce/Introduce.style'
 import FeedoongSticker from './FeedoongSticker'
 
-import Images from 'assets/images'
+// import Images from 'assets/images'
 
 const IntroduceHeaderBanner = () => {
   return (
@@ -22,7 +22,7 @@ const IntroduceHeaderBanner = () => {
           position: 'absolute',
         }}
       />
-      <S.IntroduceHeaderImage src={Images.IntroduceHeader.src} alt="온보딩 1" />
+      {/* <S.IntroduceHeaderImage src={Images.IntroduceHeader.src} alt="온보딩 1" /> */}
     </S.ImageWrapper>
   )
 }
