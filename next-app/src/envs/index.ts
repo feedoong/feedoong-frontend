@@ -17,7 +17,8 @@ export const getApiEndpoint = () => {
 export const getDomainName = () => {
   switch (getAppEnv()) {
     case 'production':
-      return 'https://feedoong.io'
+      // return 'https://feedoong.io'
+      return 'https://feedoong-frontend.pages.dev'
     case 'staging':
       return 'https://dev.feedoong.io'
     case 'development':
