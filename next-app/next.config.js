@@ -2,6 +2,9 @@ const { withSentryConfig } = require('@sentry/nextjs')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    runtime: 'experimental-edge',
+  },
   reactStrictMode: true,
   compiler: {
     styledComponents: true,

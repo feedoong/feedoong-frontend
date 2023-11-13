@@ -39,5 +39,5 @@ export const getServerSideProps = withAuthQueryServerSideProps(
 )
 
 export const config = {
-  runtime: 'edge',
+  runtime: 'experimental-edge',
 }
