@@ -2,9 +2,9 @@ import NaverBlog from './naver_blog.ico'
 import Brunch from './brunch.ico'
 import Vercel from './vercel.png'
 import Kakao from './kakao.ico'
-import toss from './toss.ico'
+// import toss from './toss.ico'
 import Tistory from './tistory.ico'
-import Vscode from './vscode.ico'
+// import Vscode from './vscode.ico'
 import Chrome from './chrome.png'
 import Hyperconnect from './hyperconnect.ico'
 import NhnToast from './nhnToast.ico'
@@ -16,9 +16,9 @@ export const getIconByHostname = (hostname: string) => {
   if (hostname.includes('kakao')) {
     return Kakao.src
   }
-  if (hostname.includes('toss')) {
-    return toss.src
-  }
+  // if (hostname.includes('toss')) {
+  //   return toss.src
+  // }
   if (hostname.includes('tistory')) {
     return Tistory.src
   }
@@ -33,8 +33,8 @@ export const getIconByHostname = (hostname: string) => {
       return Brunch.src
     case 'vercel.com':
       return Vercel.src
-    case 'code.visualstudio.com':
-      return Vscode.src
+    // case 'code.visualstudio.com':
+    //   return Vscode.src
     case 'developer.chrome.com':
       return Chrome.src
     case 'hyperconnect.github.io':
