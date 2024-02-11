@@ -9,7 +9,7 @@ COPY .yarn                     .yarn
 
 RUN yarn install
 
-COPY . .
+COPY ./apps/next-app .
 
 RUN yarn build:app
 
