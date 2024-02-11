@@ -10,7 +10,7 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build
+RUN yarn build:app
 
 EXPOSE 3000
 
