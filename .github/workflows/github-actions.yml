@@ -40,3 +40,4 @@ jobs:
         push: true
         tags: jamessoun93/feedoong-frontend:latest
         platforms: linux/arm64/v8
+        
