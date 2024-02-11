@@ -27,7 +27,7 @@ export const HeaderTitle = styled.h1`
   display: inline-block;
 
   color: var(--color-gray-1000, #2a2528);
-  font-family: Satoshi;
+  font-family: Satoshi-Bold;
   font-size: 60px;
   font-weight: 700;
   line-height: normal;
@@ -37,7 +37,7 @@ export const HeaderTitle = styled.h1`
   ${mediaQuery.tablet`
     color: var(--color-gray-1000, #2A2528);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Pretendard;
+    font-family: Satoshi-Bold;
     font-size: 30px;
     font-style: normal;
     font-weight: 700;
@@ -48,7 +48,7 @@ export const HeaderTitle = styled.h1`
 export const PinkFeedoong = styled.div`
   display: inline-block;
   color: var(--color-primary-500, #d4608f);
-  font-family: Satoshi;
+  font-family: Satoshi-Bold;
   font-size: 60px;
   font-weight: 700;
 
@@ -79,7 +79,7 @@ export const FeatureCard = styled.div`
 
 export const CardTitle = styled.h2`
   color: var(--color-font-primary, #423c3f);
-  font-family: Satoshi;
+  font-family: Satoshi-Bold;
   font-size: 34px;
   font-style: normal;
   font-weight: 700;
@@ -88,7 +88,7 @@ export const CardTitle = styled.h2`
   ${mediaQuery.tablet`
     color: var(--color-font-primary, #423C3F);
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Pretendard;
+    font-family: Satoshi-Bold;
     font-size: 26px;
     font-style: normal;
     font-weight: 700;
@@ -98,7 +98,7 @@ export const CardTitle = styled.h2`
 
 export const CardSubTitle = styled.h3`
   color: var(--color-font-primary, #423c3f);
-  font-family: Satoshi;
+  font-family: Satoshi-Bold;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -106,7 +106,7 @@ export const CardSubTitle = styled.h3`
 
   ${mediaQuery.tablet`
     color: var(--color-font-primary, #423C3F);
-    font-family: Satoshi;
+    font-family: Satoshi-Bold;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -116,7 +116,10 @@ export const CardSubTitle = styled.h3`
 
 export const CardDescription = styled.p`
   color: var(--color-font-secondary, #71646a);
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'Pretendard Variable';
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -152,7 +155,10 @@ export const IntroduceHeaderImage = styled.img`
 export const StartFeedoongDescription = styled.p`
   color: var(--color-font-secondary, #71646a);
   text-align: center;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: 'Pretendard Variable';
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
   font-size: 20px;
   font-weight: 500;
   line-height: 150%;

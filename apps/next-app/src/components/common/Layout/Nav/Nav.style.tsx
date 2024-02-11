@@ -37,7 +37,7 @@ export const Feedoong = styled.span`
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  font-family: 'Satoshi-Bold';
+  font-family: Satoshi-Bold;
   margin-left: 4px;
   color: var(--color-black);
   cursor: pointer;
