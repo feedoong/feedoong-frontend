@@ -1,8 +1,11 @@
 name: build & push docker image
 
 on:
+  workflow_dispatch:
   push:
     branches: [dev]
+    paths:  
+      - 'apps/next-app/**'
 
 jobs:
   build-and-push:
