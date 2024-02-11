@@ -6,7 +6,7 @@ COPY package* yarn.lock .pnp*  ./
 COPY .yarnrc.yml               ./
 COPY .yarn                     .yarn
 
-RUN yarn install --immutable
+RUN yarn install
 
 COPY . .
 
