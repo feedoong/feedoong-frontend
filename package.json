@@ -1,0 +1,17 @@
+{
+  "name": "feedoong-frontend",
+  "packageManager": "yarn@4.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:app": "yarn workspace feedoong-app dev",
+    "build:app": "yarn workspace feedoong-app build"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  }
+}
