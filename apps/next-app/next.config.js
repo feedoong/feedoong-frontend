@@ -1,7 +1,8 @@
 const { withSentryConfig } = require('@sentry/nextjs')
+const stylexPlugin = require('@stylexjs/nextjs-plugin')
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = stylexPlugin({
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
@@ -42,7 +43,7 @@ const nextConfig = {
       },
     ]
   },
-}
+})
 
 const sentryWebpackPluginOptions = {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that
