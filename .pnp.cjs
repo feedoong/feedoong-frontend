@@ -1264,6 +1264,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@stylexjs/eslint-plugin", [\
+      ["npm:0.5.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/@stylexjs-eslint-plugin-npm-0.5.1-8244559966-10c0.zip/node_modules/@stylexjs/eslint-plugin/",\
+        "packageDependencies": [\
+          ["@stylexjs/eslint-plugin", "npm:0.5.1"],\
+          ["micromatch", "npm:4.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@stylexjs/nextjs-plugin", [\
       ["npm:0.5.1", {\
         "packageLocation": "../../../.yarn/berry/cache/@stylexjs-nextjs-plugin-npm-0.5.1-d37b5a3d53-10c0.zip/node_modules/@stylexjs/nextjs-plugin/",\
@@ -4006,6 +4016,7 @@ const RAW_RUNTIME_STATE =
           ["@floating-ui/react-dom-interactions", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:0.10.3"],\
           ["@sentry/nextjs", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:7.100.1"],\
           ["@stylexjs/babel-plugin", "npm:0.5.1"],\
+          ["@stylexjs/eslint-plugin", "npm:0.5.1"],\
           ["@stylexjs/nextjs-plugin", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:0.5.1"],\
           ["@stylexjs/stylex", "npm:0.5.1"],\
           ["@tanstack/react-query", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:4.36.1"],\

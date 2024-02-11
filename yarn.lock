@@ -950,6 +950,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stylexjs/eslint-plugin@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@stylexjs/eslint-plugin@npm:0.5.1"
+  dependencies:
+    micromatch: "npm:^4.0.5"
+  checksum: 10c0/9c83927def3b8537030c4e34db9ec3cbde82181dbb7acb552592e27414b632167b9954ed9d53a41089d1212c54267abdb40daf93bd6a8a44204d4401b0efd002
+  languageName: node
+  linkType: hard
+
 "@stylexjs/nextjs-plugin@npm:^0.5.1":
   version: 0.5.1
   resolution: "@stylexjs/nextjs-plugin@npm:0.5.1"
@@ -3093,6 +3102,7 @@ __metadata:
     "@floating-ui/react-dom-interactions": "npm:^0.10.2"
     "@sentry/nextjs": "npm:^7.45.0"
     "@stylexjs/babel-plugin": "npm:^0.5.1"
+    "@stylexjs/eslint-plugin": "npm:^0.5.1"
     "@stylexjs/nextjs-plugin": "npm:^0.5.1"
     "@stylexjs/stylex": "npm:^0.5.1"
     "@tanstack/react-query": "npm:^4.6.0"
@@ -4339,7 +4349,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4":
+"micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5"
   dependencies:
