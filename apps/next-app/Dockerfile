@@ -7,11 +7,11 @@ COPY yarn.lock .pnp*           ./
 COPY .yarnrc.yml               ./
 COPY .yarn                     .yarn
 
-RUN yarn install
+RUN yarn install --immutable
 
 COPY ./apps/next-app .
 
-RUN yarn build
+RUN yarn build 
 
 EXPOSE 3000
 
