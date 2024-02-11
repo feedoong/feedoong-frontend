@@ -35,9 +35,8 @@ jobs:
     - name: Build and Push Docker Image for ARM64
       uses: docker/build-push-action@v2
       with:
-        context: ./apps/next-app
+        context: ./
         file: ./apps/next-app/Dockerfile
         push: true
         tags: jamessoun93/feedoong-frontend:latest
         platforms: linux/arm64/v8
-        
