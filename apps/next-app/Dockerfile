@@ -3,11 +3,11 @@ FROM node:20-alpine
 WORKDIR /app
 
 COPY ./apps/next-app/package*  ./
-COPY .pnp*                     ./
+COPY yarn.lock .pnp*           ./
 COPY .yarnrc.yml               ./
 COPY .yarn                     .yarn
 
-RUN yarn install --immutable
+RUN yarn install
 
 COPY ./apps/next-app .
 
