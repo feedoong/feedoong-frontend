@@ -36,6 +36,8 @@
   },
   "devDependencies": {
     "@sentry/nextjs": "^7.45.0",
+    "@stylexjs/babel-plugin": "^0.5.1",
+    "@stylexjs/nextjs-plugin": "^0.5.1",
     "@types/gtag.js": "^0.0.12",
     "@types/humps": "^2.0.2",
     "@types/js-cookie": "^3",
