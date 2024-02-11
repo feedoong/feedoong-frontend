@@ -30,7 +30,7 @@ jobs:
         echo 'NEXT_PUBLIC_GA_TRACKING_ID=${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}' >> .env
         echo 'NEXT_PUBLIC_SENTRY_DSN=${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}' >> .env
         echo 'NEXT_PUBLIC_APP_ENV=production' >> .env
-      working-directory: ./next-app
+      working-directory: ./apps/next-app
 
     - name: Build and Push Docker Image for ARM64
       uses: docker/build-push-action@v2
