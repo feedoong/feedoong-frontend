@@ -1,16 +1,17 @@
-FROM node:16.18.0-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package* yarn.lock .pnp*  ./
+COPY ./apps/next-app/package*  ./
+COPY yarn.lock .pnp*           ./
 COPY .yarnrc.yml               ./
 COPY .yarn                     .yarn
 
-RUN yarn install --immutable
+RUN yarn install
 
-COPY . .
+COPY ./apps/next-app .
 
-RUN yarn build
+RUN yarn build 
 
 EXPOSE 3000
 
