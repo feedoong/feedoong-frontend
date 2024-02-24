@@ -1259,7 +1259,8 @@ const RAW_RUNTIME_STATE =
           ["@babel/traverse", "npm:7.23.9"],\
           ["@babel/types", "npm:7.23.9"],\
           ["@stylexjs/shared", "npm:0.5.1"],\
-          ["@stylexjs/stylex", "npm:0.5.1"]\
+          ["@stylexjs/stylex", "npm:0.5.1"],\
+          ["postcss-value-parser", "npm:4.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4046,6 +4047,7 @@ const RAW_RUNTIME_STATE =
           ["js-cookie", "npm:3.0.5"],\
           ["next", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:14.1.0"],\
           ["nookies", "npm:2.5.2"],\
+          ["postcss-value-parser", "npm:4.2.0"],\
           ["prettier", "npm:2.8.8"],\
           ["query-string", "npm:7.1.3"],\
           ["react", "npm:18.2.0"],\

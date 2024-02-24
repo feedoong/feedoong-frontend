@@ -3132,6 +3132,7 @@ __metadata:
     js-cookie: "npm:^3.0.1"
     next: "npm:^14.1.0"
     nookies: "npm:^2.5.2"
+    postcss-value-parser: "npm:^4.2.0"
     prettier: "npm:^2.8.7"
     query-string: "npm:^7.1.1"
     react: "npm:^18.2.0"
@@ -4925,7 +4926,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-value-parser@npm:^4.0.2, postcss-value-parser@npm:^4.1.0":
+"postcss-value-parser@npm:*, postcss-value-parser@npm:^4.0.2, postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
   checksum: 10c0/f4142a4f56565f77c1831168e04e3effd9ffcc5aebaf0f538eee4b2d465adfd4b85a44257bb48418202a63806a7da7fe9f56c330aebb3cac898e46b4cbf49161
