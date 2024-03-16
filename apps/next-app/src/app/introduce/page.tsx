@@ -1,10 +1,11 @@
 'use client'
-import IntroduceHeaderBanner from 'components/views/Introduce/IntroduceHeaderBanner'
-import IntroduceHeaderTitle from 'components/views/Introduce/IntroduceHeaderTitle'
-import IntroduceFeature1 from 'components/views/Introduce/IntroduceFeature1'
+import IntroduceHeaderBanner from 'app/introduce/_components/IntroduceHeaderBanner'
+import IntroduceHeaderTitle from 'app/introduce/_components/IntroduceHeaderTitle'
+import IntroduceFeature1 from 'app/introduce/_components/IntroduceFeature1'
+import IntroduceFeature2 from 'app/introduce/_components/IntroduceFeature2'
+import IntroduceFeature3 from 'app/introduce/_components/IntroduceFeature3'
+import StartFeedoongWithGoogle from 'app/introduce/_components/StartFeedoongWithGoogle'
 import * as S from './Introduce.style'
-import IntroduceFeature2 from 'components/views/Introduce/IntroduceFeature2'
-import IntroduceFeature3 from 'components/views/Introduce/IntroduceFeature3'
 
 const IntroducePage = () => {
   return (
@@ -14,8 +15,9 @@ const IntroducePage = () => {
       <S.FeatureWrapper>
         <IntroduceFeature1 />
         <IntroduceFeature2 />
-        <IntroduceFeature3/>
+        <IntroduceFeature3 />
       </S.FeatureWrapper>
+      <StartFeedoongWithGoogle />
     </>
   )
 }

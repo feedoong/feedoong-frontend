@@ -1,5 +1,5 @@
 import Flex from 'components/common/Flex'
-import * as S from 'components/views/Introduce/Introduce.style'
+import * as S from '../Introduce.style'
 import FeedoongSticker from './FeedoongSticker'
 
 import Images from 'assets/images'

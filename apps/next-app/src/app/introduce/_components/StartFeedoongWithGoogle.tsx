@@ -1,9 +1,9 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 import Button from 'components/common/Button/Button'
 import Flex from 'components/common/Flex'
 import { ROUTE } from 'constants/route'
-import * as S from 'components/views/Introduce/Introduce.style'
+import * as S from '../Introduce.style'
 
 const StartFeedoongWithGoogle = () => {
   const router = useRouter()

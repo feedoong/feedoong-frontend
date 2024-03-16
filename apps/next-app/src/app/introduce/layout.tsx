@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import * as S from './Introduce.style'
-import Layout from 'components/common/Layout'
 
 interface Props {
   children: ReactNode
