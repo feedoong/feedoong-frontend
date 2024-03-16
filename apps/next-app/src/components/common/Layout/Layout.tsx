@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import Nav from './Nav'
 import { ROUTE } from 'constants/route'
@@ -11,9 +11,9 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
-  const router = useRouter()
+  const pathname = usePathname()
 
-  const { isSignUpPage } = routerBranch(router.pathname)
+  const { isSignUpPage } = routerBranch(pathname)
   const hasGNB = !isSignUpPage
 
   return (
@@ -26,7 +26,7 @@ const Layout = ({ children }: Props) => {
 
 export default Layout
 
-const routerBranch = (pathname: string) => {
+const routerBranch = (pathname: string | null) => {
   return {
     isSignUpPage: pathname === ROUTE.SIGN_UP,
     // isRequiredAuthPage: requiredAuthMatcher(pathname),
