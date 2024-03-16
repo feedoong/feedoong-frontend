@@ -49,7 +49,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <ColorModeScript />
+          {/* <ColorModeScript /> */}
           <Main />
           <div id="dialog" />
           <div id="modal" />
