@@ -6,7 +6,7 @@ import { getDomainName } from 'envs'
 import Scripts from 'components/common/Scripts'
 import Layout from 'components/common/Layout'
 import ColorModeScript from 'components/common/ColorModeScript'
-import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks'
+// import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks' // TODO: app dir로 전부 전환 후 수정 필요
 
 import StyledComponentsRegistry from '../styles/registry'
 import Providers from './providers'
