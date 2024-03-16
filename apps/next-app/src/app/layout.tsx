@@ -1,5 +1,5 @@
 import { SkeletonTheme } from 'react-loading-skeleton'
-// import { Metadata } from 'next'
+import { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
 
 import { getDomainName } from 'envs'
@@ -17,10 +17,25 @@ import 'styles/font.css'
 import 'styles/global.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-// export const metadata: Metadata = {
-//   title: 'Home',
-//   description: 'Welcome to Next.js',
-// }
+export const metadata: Metadata = {
+  title: 'Feedoong',
+  description:
+    '여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기!',
+  icons: {
+    icon: '/logo-desktop.svg',
+    shortcut: '/logo-desktop.svg',
+  },
+  viewport:
+    'width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, viewport-fit=cover',
+  openGraph: {
+    title: '피둥피둥',
+    description:
+      '여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기! 크롬 새 탭에서 바로 시작하세요!',
+    images: `${getDomainName()}/og_image.png`,
+    locale: 'ko_KR',
+    type: 'website',
+  },
+}
 
 export default function RootLayout({
   children,
@@ -30,22 +45,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, viewport-fit=cover"
-          key="viewport"
-        />
-        <meta
-          name="description"
-          content="여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기! 크롬 새 탭에서 바로 시작하세요!"
-        />
-        <meta property="og:title" content="피둥피둥" />
-        <meta
-          property="og:description"
-          content="여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기! 크롬 새 탭에서 바로 시작하세요!"
-        />
-        <meta property="og:image" content={`${getDomainName()}/og_image.png`} />
-        <link rel="shortcut icon" href="/logo-desktop.svg" />
         <link
           rel="stylesheet"
           as="style"
