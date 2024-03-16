@@ -4,12 +4,18 @@ import { Toaster } from 'react-hot-toast'
 
 import { getDomainName } from 'envs'
 import Scripts from 'components/common/Scripts'
-// import Layout from 'components/common/Layout'
-// import ColorModeScript from 'components/common/ColorModeScript'
-// import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks'
+import Layout from 'components/common/Layout'
+import ColorModeScript from 'components/common/ColorModeScript'
+import { useGoogleAnalytics as GoogleAnalytics } from 'utils/hooks'
 
 import StyledComponentsRegistry from '../styles/registry'
 import Providers from './providers'
+import 'styles/dark.css'
+import 'styles/light.css'
+import 'styles/reset.css'
+import 'styles/font.css'
+import 'styles/global.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 // export const metadata: Metadata = {
 //   title: 'Home',
@@ -48,9 +54,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {/* <ColorModeScript /> */}
+        <ColorModeScript />
         <Providers>
-          {/* <Layout> */}
+          <Layout>
             <Toaster containerStyle={{ bottom: '60px' }} />
             <SkeletonTheme
               baseColor="var(--color-gray-200)"
@@ -62,7 +68,7 @@ export default function RootLayout({
                 <div id="modal" />
               </StyledComponentsRegistry>
             </SkeletonTheme>
-          {/* </Layout> */}
+          </Layout>
         </Providers>
         <Scripts />
         {/* <GoogleAnalytics /> */}

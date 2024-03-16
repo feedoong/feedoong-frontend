@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 import { useGetUserProfile } from 'features/user/userProfile'
 import ProfilePopover from './ProfilePopover'

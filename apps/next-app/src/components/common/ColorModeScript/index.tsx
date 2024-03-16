@@ -1,3 +1,7 @@
+'use client'
+
+import Script from 'next/script'
+
 /**
  *
  * @see useColorMode의 내부 로직을 참고한 스크립트
@@ -18,7 +22,7 @@ const ColorModeScript = () => {
       })();
   `
   return (
-    <script
+    <Script
       dangerouslySetInnerHTML={{
         __html: themeInitializerScript,
       }}

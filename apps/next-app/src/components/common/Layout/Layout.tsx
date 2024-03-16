@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router'
+'use client'
+import { useRouter } from 'next/navigation'
 
 import Nav from './Nav'
 import { ROUTE } from 'constants/route'
