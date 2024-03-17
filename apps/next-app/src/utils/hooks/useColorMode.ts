@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect } from 'react'
 
 import { COLOR_MODE } from 'constants/colorMode'

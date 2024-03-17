@@ -1,4 +1,4 @@
-import * as S from 'components/views/Introduce/Introduce.style'
+import * as S from '../Introduce.style'
 
 const IntroduceHeaderTitle = () => {
   return (

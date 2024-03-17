@@ -14,6 +14,7 @@ import 'styles/global.css'
 import 'styles/dark.css'
 import 'styles/light.css'
 import 'react-loading-skeleton/dist/skeleton.css'
+import ColorModeScript from 'components/common/ColorModeScript'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -37,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/logo-desktop.svg" />
       </Head>
       <Scripts />
+      <ColorModeScript />
       <GoogleAnalytics />
       <Providers pageProps={pageProps}>
         <Layout>
