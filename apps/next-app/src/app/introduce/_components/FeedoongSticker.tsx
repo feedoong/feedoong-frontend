@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'styled-components'
-
 import Images from 'assets/images'
 
 const FeedoongSticker = {
