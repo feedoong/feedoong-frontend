@@ -48,10 +48,9 @@ const Container = styled.div<{
   flex-direction: ${({ direction = 'row' }) => direction};
   justify-content: ${({ justify = 'start' }) => justifyContent[justify]};
   align-items: ${({ align = 'start' }) => alignItems[align]};
-  ${({ gap }) =>
-    css`
-      gap: ${gap}px;
-    `}
+  ${({ gap }) => css`
+    gap: ${gap}px;
+  `}
 `
 
 const justifyContent = {
