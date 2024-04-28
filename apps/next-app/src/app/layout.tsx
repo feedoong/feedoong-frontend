@@ -1,7 +1,6 @@
 import { SkeletonTheme } from 'react-loading-skeleton'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { Toaster } from 'react-hot-toast'
-
 import { getDomainName } from 'envs'
 import Scripts from 'components/common/Scripts'
 import Layout from 'components/common/Layout'

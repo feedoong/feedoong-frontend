@@ -1,6 +1,5 @@
 'use client'
 import styled from 'styled-components'
-
 import Flex from 'components/common/Flex'
 import { mediaQuery } from 'styles/mediaQuery'
 
