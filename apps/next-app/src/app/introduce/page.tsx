@@ -5,6 +5,7 @@ import IntroduceFeature1 from 'app/introduce/_components/IntroduceFeature1'
 import IntroduceFeature2 from 'app/introduce/_components/IntroduceFeature2'
 import IntroduceFeature3 from 'app/introduce/_components/IntroduceFeature3'
 import StartFeedoongWithGoogle from 'app/introduce/_components/StartFeedoongWithGoogle'
+
 import * as S from './Introduce.style'
 
 const IntroducePage = () => {

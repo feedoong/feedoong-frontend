@@ -1,4 +1,5 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+
 import * as S from './Introduce.style'
 
 interface Props {

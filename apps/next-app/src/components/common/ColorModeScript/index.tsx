@@ -24,6 +24,7 @@ const ColorModeScript = () => {
   `
   return (
     <Script
+      id="colorModeScript"
       dangerouslySetInnerHTML={{
         __html: themeInitializerScript,
       }}
