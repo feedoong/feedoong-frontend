@@ -45,6 +45,9 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+    - name: Check Out Repository
+      uses: actions/checkout@v2
+      
     - name: Prepare deployment bundle
       run: |
         mkdir deployment_bundle
