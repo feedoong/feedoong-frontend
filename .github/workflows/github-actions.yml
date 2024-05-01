@@ -40,3 +40,21 @@ jobs:
         push: true
         tags: jamessoun93/feedoong-frontend:latest
         platforms: linux/arm64/v8
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: Deploy with CodeDeploy
+      run: |
+        aws deploy create-deployment \
+        --application-name frontend-deployments \
+        --deployment-group-name frontend-deployment-group \
+    
