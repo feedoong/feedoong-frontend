@@ -1,4 +1,4 @@
-name: build & push docker image
+name: Build & Deploy Feedoong-frontend
 
 on:
   workflow_dispatch:
@@ -45,16 +45,28 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
+    - name: Prepare deployment bundle
+      run: |
+        mkdir deployment_bundle
+        cp deploy.sh deployment_bundle/deploy.sh
+        cp appspec.yml deployment_bundle/appspec.yml
+        zip -r deployment_bundle.zip deployment_bundle/
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-2
+  
+    - name: Upload to S3
+      run: |
+        aws s3 cp deployment_bundle.zip s3://${{ secrets.AWS_S3_BUCKET }}/deployment_bundle.zip
 
     - name: Deploy with CodeDeploy
       run: |
         aws deploy create-deployment \
         --application-name frontend-deployments \
         --deployment-group-name frontend-deployment-group \
+        --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=deployment_bundle.zip,bundleType=zip
     
