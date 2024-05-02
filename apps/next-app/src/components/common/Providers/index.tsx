@@ -1,5 +1,5 @@
 import {
-  Hydrate,
+  HydrationBoundary,
   QueryClientProvider,
   QueryClient,
 } from '@tanstack/react-query'
@@ -32,7 +32,9 @@ const Providers = ({ pageProps, children }: Props) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>{children}</Hydrate>
+      <HydrationBoundary state={pageProps.dehydratedState}>
+        {children}
+      </HydrationBoundary>
       <ReactQueryDevtools />
     </QueryClientProvider>
   )
