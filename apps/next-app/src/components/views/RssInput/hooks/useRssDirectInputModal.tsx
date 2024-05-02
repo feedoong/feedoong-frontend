@@ -42,27 +42,26 @@ const useRssDirectInputModal = () => {
     }
   }
 
-  const { mutate: mutateRss, isLoading: isRssSubmitting } = useMutation(
-    ['/channels'], // 키 값 바꿔야 하나?
-    submitRssUrl,
-    {
-      onSuccess: () => {
-        setRssDirectChannelUrl('')
-        setRssDirectRssUrl('')
+  const { mutate: mutateRss, isLoading: isRssSubmitting } = useMutation({
+    mutationKey: ['/channels'], // 키 값 바꿔야 하나
 
-        client.invalidateQueries(CACHE_KEYS.feeds)
+    mutationFn: submitRssUrl,
+    onSuccess: () => {
+      setRssDirectChannelUrl('')
+      setRssDirectRssUrl('')
 
-        ChannelToast.addChannel()
-      },
-      onError: (err) => {
-        if (isAxiosError(err)) {
-          const errorMessage = getAxiosError(err).message
+      client.invalidateQueries(CACHE_KEYS.feeds)
 
-          ChannelToast.failAddChannel(errorMessage)
-        }
-      },
-    }
-  )
+      ChannelToast.addChannel()
+    },
+    onError: (err) => {
+      if (isAxiosError(err)) {
+        const errorMessage = getAxiosError(err).message
+
+        ChannelToast.failAddChannel(errorMessage)
+      }
+    },
+  })
 
   const isSubmitEnabled =
     !isRssSubmitting &&

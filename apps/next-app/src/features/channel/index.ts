@@ -45,16 +45,14 @@ export const useUnsubscribeChannel = (
 ) => {
   const client = useQueryClient()
 
-  const { mutate } = useMutation(
-    CACHE_KEYS.channel(item.id),
-    () => deleteChannel(item.id),
-    {
-      onSuccess: () => {
-        Toast.show({ content: '구독이 해제되었습니다.' })
-        client.invalidateQueries({ predicate })
-      },
-    }
-  )
+  const { mutate } = useMutation({
+    mutationKey: CACHE_KEYS.channel(item.id),
+    mutationFn: () => deleteChannel(item.id),
+    onSuccess: () => {
+      Toast.show({ content: '구독이 해제되었습니다.' })
+      client.invalidateQueries({ predicate })
+    },
+  })
 
   return mutate
 }

@@ -19,11 +19,11 @@ export const useGetUserProfileByUsername = (
   username: string,
   options: UseQueryOptions<UserProfile> = {}
 ) => {
-  return useQuery<UserProfile>(
-    [CACHE_KEYS.user, username],
-    () => getUserInfoByUsername(username),
-    { ...options }
-  )
+  return useQuery({
+    queryKey: [CACHE_KEYS.user, username],
+    queryFn: () => getUserInfoByUsername(username),
+    ...options,
+  })
 }
 
 export const useGetUsernameFromPath = () => {

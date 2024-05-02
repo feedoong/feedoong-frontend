@@ -10,16 +10,16 @@ const usePostListByUsername = (username?: string) => {
   const currentPage = Number(router.query.page) || 1
   const isMyProfile = useCheckIsMyProfile()
 
-  const { data, isLoading } = useQuery(
-    [CACHE_KEYS.likedPosts, { page: currentPage }],
-    () =>
+  const { data, isLoading } = useQuery({
+    queryKey: [CACHE_KEYS.likedPosts, { page: currentPage }],
+
+    queryFn: () =>
       isMyProfile
         ? getLikedPosts(currentPage)
         : getLikedPostsByUsername(currentPage, username),
-    {
-      enabled: !!username,
-    }
-  )
+
+    enabled: !!username,
+  })
 
   return {
     listData: data?.items,
