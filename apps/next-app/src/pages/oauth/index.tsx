@@ -16,27 +16,26 @@ const Oauth = () => {
   const router = useRouter()
   const client = useQueryClient()
   // TODO: fix
-  useQuery(
-    {
-      queryKey: CACHE_KEYS.signup,
-      queryFn: () => submitAccessToken(parseAccessToken(router.asPath)),
-    },
-    // {
-    //   onSuccess: (response) => {
-    //     setRefreshTokenToCookie(response.refreshToken)
-    //     setAccessTokenToCookie(response.accessToken)
+  // const { data } = useQuery({
+  //   queryKey: CACHE_KEYS.signup,
+  //   queryFn: () => submitAccessToken(parseAccessToken(router.asPath)),
+  // })
+  // console.log(data)
+  // {
+  //   onSuccess: (response) => {
+  //     setRefreshTokenToCookie(response.refreshToken)
+  //     setAccessTokenToCookie(response.accessToken)
 
-    //     setAuthorizationHeader(api, response.accessToken, { type: 'Bearer' })
+  //     setAuthorizationHeader(api, response.accessToken, { type: 'Bearer' })
 
-    //     client.setQueryData(CACHE_KEYS.me, response)
-    //     router.replace('/')
-    //   },
-    //   onError: () => {
-    //     alert('로그인에 실패했습니다. 다시 시도해주세요.')
-    //     router.replace('/')
-    //   },
-    // }
-  )
+  //     client.setQueryData(CACHE_KEYS.me, response)
+  //     router.replace('/')
+  //   },
+  //   onError: () => {
+  //     alert('로그인에 실패했습니다. 다시 시도해주세요.')
+  //     router.replace('/')
+  //   },
+  // }
 
   return null
 }

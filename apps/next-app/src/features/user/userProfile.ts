@@ -9,7 +9,9 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 export const useGetUserProfile = (
   options: UseQueryOptions<UserProfile> = {}
 ) => {
-  return useQuery<UserProfile>(CACHE_KEYS.me, getUserInfo, {
+  return useQuery<UserProfile>({
+    queryKey: CACHE_KEYS.me,
+    queryFn: getUserInfo,
     enabled: !!getRefreshTokenFromCookie(),
     ...options,
   })
