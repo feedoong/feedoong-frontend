@@ -14,20 +14,18 @@ interface PrevDataType {
 const useReadPost = (item: Post) => {
   const client = useQueryClient()
 
-  const { mutate: handleRead } = useMutation(
-    CACHE_KEYS.viewItem(item.id),
-    submitViewedPost,
-    {
-      onSuccess: (data, variables) => {
-        client.setQueryData<PrevDataType>(CACHE_KEYS.feeds, (prev) => {
-          if (!prev) {
-            return
-          }
-          return getAfterReadData(prev, data, variables)
-        })
-      },
-    }
-  )
+  const { mutate: handleRead } = useMutation({
+    mutationKey: CACHE_KEYS.viewItem(item.id),
+    mutationFn: submitViewedPost,
+    onSuccess: (data, variables) => {
+      client.setQueryData<PrevDataType>(CACHE_KEYS.feeds, (prev) => {
+        if (!prev) {
+          return
+        }
+        return getAfterReadData(prev, data, variables)
+      })
+    },
+  })
 
   return {
     handleRead,

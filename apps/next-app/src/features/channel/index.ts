@@ -14,7 +14,8 @@ import { getAxiosError } from 'utils/errors'
 export const useSubscribeChannel = () => {
   const client = useQueryClient()
 
-  return useMutation(submitRssUrl, {
+  return useMutation({
+    mutationFn: submitRssUrl,
     onSuccess: () => {
       ChannelToast.addChannel()
       client.invalidateQueries(CACHE_KEYS.recommended(['channels']))
