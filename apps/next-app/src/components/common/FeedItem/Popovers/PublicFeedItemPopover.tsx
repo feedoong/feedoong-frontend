@@ -1,7 +1,7 @@
-import Anchor from 'components/common/Anchor'
+import { AnchorNext } from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
-import { copyToClipboard } from '../FeedItem.utils'
 import type { PrivateChannel } from 'types/subscriptions'
+import { copyToClipboard } from '../FeedItem.utils'
 import { PopoverIcons } from './icons'
 
 interface Props {
@@ -14,9 +14,9 @@ const PublicFeedItemPopover = ({ item }: Props) => {
       placement="bottom-start"
       render={() => (
         <Popover.Layout>
-          <Anchor href={'/channels/' + item.id.toString()}>
+          <AnchorNext href={'/channels/' + item.id.toString()} shallow>
             <Popover.Item icon={PopoverIcons.채널_상세}>채널 상세</Popover.Item>
-          </Anchor>
+          </AnchorNext>
           <Popover.Item
             onClick={() => copyToClipboard(item.url)}
             icon={PopoverIcons.링크_복사}

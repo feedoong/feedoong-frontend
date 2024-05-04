@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
 import type { QueryKey } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
-import Anchor from 'components/common/Anchor'
-import Popover from 'components/common/Popover'
+import { AnchorNext } from 'components/common/Anchor'
+import Button from 'components/common/Button/Button'
 import Dialog from 'components/common/Dialog'
-import { copyToClipboard } from '../FeedItem.utils'
-import type { Channel } from 'types/subscriptions'
-import { PopoverIcons } from './icons'
+import Popover from 'components/common/Popover'
 import { useUnsubscribeChannel } from 'features/channel'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import Button from 'components/common/Button/Button'
+import type { Channel } from 'types/subscriptions'
+import { copyToClipboard } from '../FeedItem.utils'
+import { PopoverIcons } from './icons'
 
 interface Props {
   item: Channel
@@ -86,11 +86,11 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
         placement="bottom-start"
         render={() => (
           <Popover.Layout>
-            <Anchor href={'/channels/' + item.id.toString()}>
+            <AnchorNext href={'/channels/' + item.id.toString()} shallow>
               <Popover.Item icon={PopoverIcons.채널_상세}>
                 채널 상세
               </Popover.Item>
-            </Anchor>
+            </AnchorNext>
             <Popover.Item
               onClick={() => copyToClipboard(item.url)}
               icon={PopoverIcons.링크_복사}
