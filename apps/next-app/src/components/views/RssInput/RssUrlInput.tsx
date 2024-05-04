@@ -15,7 +15,7 @@ const RssUrlInput = ({
 }) => (
   <Input
     placeholder="RSS URL을 입력해주세요"
-    isError={!!rssDirectRssUrl && !isRssUrlValid(rssDirectRssUrl)}
+    $isError={!!rssDirectRssUrl && !isRssUrlValid(rssDirectRssUrl)}
     onChange={onChange}
     value={rssDirectRssUrl}
     inputStyle={{ width: '100%' }}

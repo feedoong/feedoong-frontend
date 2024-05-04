@@ -14,7 +14,7 @@ const Portal = ({ children, selector }: Props) => {
   }
 
   const targetDOM = !isServer() && document.querySelector(selector)
-  return !!targetDOM ? ReactDOM.createPortal(children, targetDOM) : null
+  return !!targetDOM ? ReactDOM.createPortal(<>{children}</>, targetDOM) : null
 }
 
 export default Portal

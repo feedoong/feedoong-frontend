@@ -7,7 +7,7 @@ import * as S from './RssInputContainer.style'
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string
   defaultValue?: string
-  isError?: boolean
+  $isError?: boolean
   onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => void
   /**
    * @description 현재 background-color, color만 지원합니다.
@@ -27,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     {
       value,
       defaultValue,
-      isError,
+      $isError,
       onChange,
       inputStyle,
       renderInputIcon,
@@ -53,7 +53,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     }
 
     return (
-      <S.InputWrapper isError={isError} inputStyle={inputStyle}>
+      <S.InputWrapper $isError={$isError} inputStyle={inputStyle}>
         <S.Input
           {...rest}
           ref={forwardedRef}

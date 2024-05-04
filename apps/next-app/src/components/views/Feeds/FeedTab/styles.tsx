@@ -7,7 +7,7 @@ export const TabContainer = styled.div`
   width: 100%;
 `
 
-export const Tab = styled.div<{ isSelected: boolean; fullWidth?: boolean }>`
+export const Tab = styled.div<{ $isSelected: boolean; $fullWidth?: boolean }>`
   all: unset;
   cursor: pointer;
   padding: 8px 20px;
@@ -19,22 +19,22 @@ export const Tab = styled.div<{ isSelected: boolean; fullWidth?: boolean }>`
 
   ${getTypographyStyles('Body1_M')};
 
-  ${({ isSelected }) =>
-    isSelected &&
+  ${({ $isSelected }) =>
+    $isSelected &&
     css`
       color: var(--color-white);
       background-color: var(--color-gray-900);
       ${getTypographyStyles('Body1_B')};
     `}
 
-  ${({ fullWidth }) =>
-    fullWidth &&
+  ${({ $fullWidth }) =>
+    $fullWidth &&
     css`
       width: 100%;
     `}
 `
 
-export const SubTab = styled.button<{ isSelected: boolean }>`
+export const SubTab = styled.button<{ $isSelected: boolean }>`
   all: unset;
 
   ${getTypographyStyles('Body2_M')};
@@ -45,8 +45,8 @@ export const SubTab = styled.button<{ isSelected: boolean }>`
   text-align: center;
   cursor: pointer;
 
-  ${({ isSelected }) =>
-    isSelected &&
+  ${({ $isSelected }) =>
+    $isSelected &&
     css`
       color: var(--color-white);
       ${getTypographyStyles('Body2_B')};

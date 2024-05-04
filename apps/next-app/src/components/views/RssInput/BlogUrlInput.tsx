@@ -15,7 +15,7 @@ const BlogUrlInput = ({
 }) => (
   <Input
     placeholder="블로그 URL을 입력해주세요"
-    isError={!!rssDirectChannelUrl && !isRssUrlValid(rssDirectChannelUrl)}
+    $isError={!!rssDirectChannelUrl && !isRssUrlValid(rssDirectChannelUrl)}
     onChange={onChange}
     value={rssDirectChannelUrl}
     inputStyle={{ width: '100%' }}

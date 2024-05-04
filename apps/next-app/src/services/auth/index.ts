@@ -69,10 +69,10 @@ export const refreshAccessToken = async (
   setAuthorizationHeader(_api, newAccessToken, { type: 'Bearer' })
 
   // 필요한 코드인지 확인 필요
-  if (!originalRequest.headers) {
-    originalRequest.headers = {} as AxiosRequestHeaders
+  if (!originalRequest?.headers) {
+    originalRequest!.headers = {} as AxiosRequestHeaders
   }
-  originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
+  originalRequest!.headers.Authorization = `Bearer ${newAccessToken}`
   // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-  return _api(originalRequest)
+  return _api(originalRequest!)
 }
