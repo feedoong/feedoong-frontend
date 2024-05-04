@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v4.0.2
         with:
           path: ./apps/next-app/.yarn
-          key: ${{ runner.os }}-modules-${{ hashFiles('../../yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-modules-
 
