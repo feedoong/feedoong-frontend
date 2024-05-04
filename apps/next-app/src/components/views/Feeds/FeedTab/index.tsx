@@ -16,7 +16,9 @@ const FeedTab = () => {
     <TabContainer>
       <Tab
         $isSelected={pathnameMatcher(FEED_ROUTE.MY_FEED)}
-        onClick={() => router.push(FEED_ROUTE.MY_FEED)}
+        onClick={() =>
+          router.push(FEED_ROUTE.MY_FEED, undefined, { shallow: true })
+        }
       >
         내 피드
       </Tab>
@@ -27,7 +29,9 @@ const FeedTab = () => {
           if (pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)) {
             return
           }
-          router.push(FEED_ROUTE.RECOMMENDED_CHANNELS)
+          router.push(FEED_ROUTE.RECOMMENDED_CHANNELS, undefined, {
+            shallow: true,
+          })
         }}
       >
         <SwitchCase
@@ -44,7 +48,9 @@ const FeedTab = () => {
                     )}
                     onClickCapture={(e) => {
                       e.stopPropagation()
-                      router.push(FEED_ROUTE.RECOMMENDED_CHANNELS)
+                      router.push(FEED_ROUTE.RECOMMENDED_CHANNELS, undefined, {
+                        shallow: true,
+                      })
                     }}
                   >
                     채널
@@ -53,7 +59,9 @@ const FeedTab = () => {
                     $isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_POSTS)}
                     onClickCapture={(e) => {
                       e.stopPropagation()
-                      router.push(FEED_ROUTE.RECOMMENDED_POSTS)
+                      router.push(FEED_ROUTE.RECOMMENDED_POSTS, undefined, {
+                        shallow: true,
+                      })
                     }}
                   >
                     게시물

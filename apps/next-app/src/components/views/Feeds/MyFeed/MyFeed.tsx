@@ -15,7 +15,7 @@ const MyFeed = () => {
       queryKey: CACHE_KEYS.feeds,
       queryFn: ({ pageParam = 1 }) => getFeeds(pageParam),
       initialPageParam: 1,
-      staleTime: 500,
+      staleTime: 1000 * 60 * 5,
       getNextPageParam: (lastPage) =>
         lastPage.items.length === 10 ? lastPage.next : undefined,
     })
