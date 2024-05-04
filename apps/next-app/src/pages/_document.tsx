@@ -1,7 +1,6 @@
 import type { DocumentContext } from 'next/document'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import ColorModeScript from 'components/common/ColorModeScript'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

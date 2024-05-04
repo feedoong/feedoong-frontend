@@ -11,15 +11,14 @@ import * as S from '../FeedsContainer.style'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
-    useInfiniteQuery(
-      CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeeds(pageParam),
-      {
-        staleTime: 500,
-        getNextPageParam: (lastPage) =>
-          lastPage.items.length === 10 ? lastPage.next : undefined,
-      }
-    )
+    useInfiniteQuery({
+      queryKey: CACHE_KEYS.feeds,
+      queryFn: ({ pageParam = 1 }) => getFeeds(pageParam),
+      initialPageParam: 1,
+      staleTime: 500,
+      getNextPageParam: (lastPage) =>
+        lastPage.items.length === 10 ? lastPage.next : undefined,
+    })
   const { ref, inView } = useInView({
     rootMargin: '25px',
   })

@@ -7,10 +7,10 @@ import { SkeletonPostType } from 'components/common/Skeleton'
 import * as S from '../FeedsContainer.style'
 
 const RecommendedPosts = () => {
-  const { data, isFetching } = useQuery(
-    CACHE_KEYS.recommended(['posts']),
-    getRecommendedPosts
-  )
+  const { data, isFetching } = useQuery({
+    queryKey: CACHE_KEYS.recommended(['posts']),
+    queryFn: getRecommendedPosts,
+  })
 
   const showSkeleton = isFetching && !data
 

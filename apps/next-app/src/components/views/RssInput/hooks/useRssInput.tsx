@@ -14,32 +14,30 @@ const useRssInput = () => {
   const [url, setUrl] = useState('')
   const [isPreviewLoading, setIsPreviewLoading] = useState(false)
 
-  const { mutate, isLoading: isSubmitting } = useMutation(
-    ['/channels'],
-    submitRssUrl,
-    {
-      onSuccess: () => {
-        setUrl('')
-        client.invalidateQueries(CACHE_KEYS.feeds)
-        Notification.show({
-          title: '채널 등록 완료',
-          content: (
-            <p>
-              등록 완료된 채널은 내 프로필 &gt; 등록한 채널 에서 확인할 수
-              있습니다.
-            </p>
-          ),
-        })
-      },
-      onError: (err) => {
-        if (isAxiosError(err)) {
-          const errorMessage = getAxiosError(err).message
+  const { mutate, isPending: isSubmitting } = useMutation({
+    mutationKey: ['/channels'],
+    mutationFn: submitRssUrl,
+    onSuccess: () => {
+      setUrl('')
+      client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })
+      Notification.show({
+        title: '채널 등록 완료',
+        content: (
+          <p>
+            등록 완료된 채널은 내 프로필 &gt; 등록한 채널 에서 확인할 수
+            있습니다.
+          </p>
+        ),
+      })
+    },
+    onError: (err) => {
+      if (isAxiosError(err)) {
+        const errorMessage = getAxiosError(err).message
 
-          ChannelToast.failAddChannel(errorMessage)
-        }
-      },
-    }
-  )
+        ChannelToast.failAddChannel(errorMessage)
+      }
+    },
+  })
 
   const handleInput = (e: ChangeEvent<HTMLInputElement> | string) => {
     if (typeof e === 'string') {
