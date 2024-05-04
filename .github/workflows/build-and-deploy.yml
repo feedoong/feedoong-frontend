@@ -17,7 +17,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Cache Node modules
+      - name: Cache .yarn Folder
         uses: actions/cache@v4.0.2
         with:
           path: ./apps/next-app/.yarn
