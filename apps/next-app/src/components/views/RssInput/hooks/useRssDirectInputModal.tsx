@@ -42,7 +42,7 @@ const useRssDirectInputModal = () => {
     }
   }
 
-  const { mutate: mutateRss, isLoading: isRssSubmitting } = useMutation({
+  const { mutate: mutateRss, isPending: isRssSubmitting } = useMutation({
     mutationKey: ['/channels'], // 키 값 바꿔야 하나
 
     mutationFn: submitRssUrl,
@@ -50,7 +50,7 @@ const useRssDirectInputModal = () => {
       setRssDirectChannelUrl('')
       setRssDirectRssUrl('')
 
-      client.invalidateQueries(CACHE_KEYS.feeds)
+      client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })
 
       ChannelToast.addChannel()
     },

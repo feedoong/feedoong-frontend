@@ -2,6 +2,7 @@ import {
   HydrationBoundary,
   QueryClientProvider,
   QueryClient,
+  QueryCache,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useState } from 'react'
@@ -22,11 +23,11 @@ const Providers = ({ pageProps, children }: Props) => {
             retryOnMount: false,
             refetchOnWindowFocus: false,
             refetchOnReconnect: false,
-
-            onError: (err: unknown) =>
-              globalQueryErrorHandler(err, queryClient),
           },
         },
+        queryCache: new QueryCache({
+          onError: (err: unknown) => globalQueryErrorHandler(err, queryClient),
+        }),
       })
   )
 

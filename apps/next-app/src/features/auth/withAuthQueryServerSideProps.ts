@@ -31,10 +31,10 @@ export const withAuthQueryServerSideProps = (
       const queryClient = new QueryClient()
       context.queryClient = queryClient
 
-      await queryClient.prefetchQuery<UserProfile>(
-        CACHE_KEYS.me,
-        getUserInfoServerSide(api)
-      )
+      await queryClient.prefetchQuery<UserProfile>({
+        queryKey: CACHE_KEYS.me,
+        queryFn: getUserInfoServerSide(api),
+      })
 
       if (!getServerSidePropsFunc) {
         const dehydratedState = JSON.parse(
