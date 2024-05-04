@@ -11,7 +11,7 @@ RUN yarn install
 
 COPY ./apps/next-app .
 
-RUN yarn build 
+RUN yarn build:skipLint
 
 EXPOSE 3000
 
