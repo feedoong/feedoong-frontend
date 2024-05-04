@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:skipLint": "next build --no-lint",
     "start": "next start",
     "deploy": "next build && next start",
     "lint": "next lint"
