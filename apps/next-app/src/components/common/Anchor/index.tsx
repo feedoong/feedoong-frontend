@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import styled from 'styled-components'
 
 interface Props extends React.HTMLAttributes<HTMLAnchorElement> {
@@ -21,10 +20,3 @@ const Container = styled.a`
   all: unset;
   cursor: pointer;
 `
-
-const LinkContainer = styled(Link)`
-  all: unset;
-  cursor: pointer;
-`
-
-export const AnchorNext = LinkContainer

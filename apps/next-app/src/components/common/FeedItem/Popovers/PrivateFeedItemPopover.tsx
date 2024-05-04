@@ -2,7 +2,7 @@ import type { QueryKey } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-import { AnchorNext } from 'components/common/Anchor'
+import Anchor from 'components/common/Anchor'
 import Button from 'components/common/Button/Button'
 import Dialog from 'components/common/Dialog'
 import Popover from 'components/common/Popover'
@@ -86,11 +86,11 @@ const PrivateFeedItemPopover = ({ item }: Props) => {
         placement="bottom-start"
         render={() => (
           <Popover.Layout>
-            <AnchorNext href={'/channels/' + item.id.toString()} shallow>
+            <Anchor href={'/channels/' + item.id.toString()}>
               <Popover.Item icon={PopoverIcons.채널_상세}>
                 채널 상세
               </Popover.Item>
-            </AnchorNext>
+            </Anchor>
             <Popover.Item
               onClick={() => copyToClipboard(item.url)}
               icon={PopoverIcons.링크_복사}
