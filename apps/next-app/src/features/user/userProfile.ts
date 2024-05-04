@@ -7,7 +7,7 @@ import { getUserInfo, getUserInfoByUsername } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 
 export const useGetUserProfile = (
-  options: UseQueryOptions<UserProfile> = {}
+  options: Omit<UseQueryOptions<UserProfile>, 'queryKey'> = {}
 ) => {
   return useQuery<UserProfile>({
     queryKey: CACHE_KEYS.me,
@@ -19,7 +19,7 @@ export const useGetUserProfile = (
 
 export const useGetUserProfileByUsername = (
   username: string,
-  options: UseQueryOptions<UserProfile> = {}
+  options: Omit<UseQueryOptions<UserProfile>, 'queryKey'> = {}
 ) => {
   return useQuery({
     queryKey: [CACHE_KEYS.user, username],

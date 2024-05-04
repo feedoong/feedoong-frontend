@@ -29,10 +29,12 @@ export const getServerSideProps = withAuthQueryServerSideProps(
   async (context) => {
     const _context = context as GetServerSidePropsContextWithAuthClient
 
-    await _context.queryClient.prefetchInfiniteQuery(
-      CACHE_KEYS.feeds,
-      ({ pageParam = 1 }) => getFeedsServerSide(_context.api)(pageParam)
-    )
+    await _context.queryClient.prefetchInfiniteQuery({
+      initialPageParam: 1,
+      queryKey: CACHE_KEYS.feeds,
+      queryFn: ({ pageParam = 1 }) =>
+        getFeedsServerSide(_context.api)(pageParam),
+    })
 
     return { props: {} }
   }
