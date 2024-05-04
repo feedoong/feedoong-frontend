@@ -27,7 +27,7 @@ const MyAccountContainer = () => {
     onSuccess: () => {
       Toast.show({ content: 'Successfully delete account' })
       destroyTokensClientSide()
-      client.invalidateQueries(CACHE_KEYS.me)
+      client.invalidateQueries({ queryKey: CACHE_KEYS.me })
       window.location.href = '/'
     },
   })

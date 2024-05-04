@@ -12,7 +12,6 @@ const useChannelListByUsername = (username?: string) => {
 
   const { data, isLoading } = useQuery({
     queryKey: [CACHE_KEYS.channels, { page: currentPage }],
-
     queryFn: () =>
       isMyProfile
         ? getChannels(currentPage)

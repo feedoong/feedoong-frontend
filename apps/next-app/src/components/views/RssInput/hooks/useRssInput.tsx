@@ -14,12 +14,12 @@ const useRssInput = () => {
   const [url, setUrl] = useState('')
   const [isPreviewLoading, setIsPreviewLoading] = useState(false)
 
-  const { mutate, isLoading: isSubmitting } = useMutation({
+  const { mutate, isPending: isSubmitting } = useMutation({
     mutationKey: ['/channels'],
     mutationFn: submitRssUrl,
     onSuccess: () => {
       setUrl('')
-      client.invalidateQueries(CACHE_KEYS.feeds)
+      client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })
       Notification.show({
         title: '채널 등록 완료',
         content: (

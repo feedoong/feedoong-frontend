@@ -14,6 +14,7 @@ const MyFeed = () => {
     useInfiniteQuery({
       queryKey: CACHE_KEYS.feeds,
       queryFn: ({ pageParam = 1 }) => getFeeds(pageParam),
+      initialPageParam: 1,
       staleTime: 500,
       getNextPageParam: (lastPage) =>
         lastPage.items.length === 10 ? lastPage.next : undefined,
