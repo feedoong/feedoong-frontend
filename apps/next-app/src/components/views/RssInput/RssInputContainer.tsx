@@ -33,6 +33,7 @@ const RssInputContainer = () => {
                 src={selectedValue ? Icons.CancelCircle : Icons.RssCircle}
                 width={24}
                 height={24}
+                priority
                 onClick={selectedValue ? clearValue : handleOpen}
               />
             )}
