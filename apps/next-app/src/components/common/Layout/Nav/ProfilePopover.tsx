@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import Image from 'next/image'
 
-import { AnchorNext } from 'components/common/Anchor'
+import Anchor from 'components/common/Anchor'
 import Popover from 'components/common/Popover'
 import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 import { logoutAction } from 'features/auth/logout'
@@ -65,7 +65,7 @@ const ProfilePopover = ({ children }: Props) => {
             {`${isDarkMode ? '라이트' : '다크'} 모드로 보기`}
           </Popover.Item>
 
-          <AnchorNext href={`/${me?.username}`} shallow>
+          <Anchor href={`/${me?.username}`}>
             <Popover.Item
               icon={
                 <Image
@@ -79,7 +79,7 @@ const ProfilePopover = ({ children }: Props) => {
             >
               내 프로필
             </Popover.Item>
-          </AnchorNext>
+          </Anchor>
 
           <a
             target="_blank"
