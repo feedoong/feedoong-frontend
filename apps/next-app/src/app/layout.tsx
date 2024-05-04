@@ -50,26 +50,26 @@ export default function RootLayout({
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/variable/pretendardvariable.css"
         />
+        <ColorModeScript />
       </head>
       <body>
-        <ColorModeScript />
-        <Providers>
-          <Layout>
-            <Toaster containerStyle={{ bottom: '60px' }} />
-            <SkeletonTheme
-              baseColor="var(--color-gray-200)"
-              highlightColor="var(--color-gray-200)"
-            >
-              <StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <Providers>
+            <Layout>
+              <Toaster containerStyle={{ bottom: '60px' }} />
+              <SkeletonTheme
+                baseColor="var(--color-gray-200)"
+                highlightColor="var(--color-gray-200)"
+              >
                 {children}
                 <div id="dialog" />
                 <div id="modal" />
-              </StyledComponentsRegistry>
-            </SkeletonTheme>
-          </Layout>
-        </Providers>
-        <Scripts />
-        {/* <GoogleAnalytics /> */}
+              </SkeletonTheme>
+            </Layout>
+          </Providers>
+          <Scripts />
+          {/* <GoogleAnalytics /> */}
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

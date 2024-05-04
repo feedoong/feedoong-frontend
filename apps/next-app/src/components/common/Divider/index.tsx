@@ -14,8 +14,8 @@ const Divider = ({ thickness = 1, mt, mb, color }: Props) => {
     <Container
       color={color ? `var(${color})` : 'var(--color-divider)'}
       thickness={thickness}
-      marginTop={mt ?? 0}
-      marginBottom={mb ?? 0}
+      $marginTop={mt ?? 0}
+      $marginBottom={mb ?? 0}
     />
   )
 }
@@ -23,12 +23,12 @@ const Divider = ({ thickness = 1, mt, mb, color }: Props) => {
 const Container = styled.div<{
   color: string
   thickness: number
-  marginTop: number
-  marginBottom: number
+  $marginTop: number
+  $marginBottom: number
 }>`
   border-bottom: ${({ thickness, color }) => `${thickness}px solid ${color}`};
-  margin-top: ${({ marginTop }) => marginTop}px;
-  margin-bottom: ${({ marginBottom }) => marginBottom}px;
+  margin-top: ${({ $marginTop }) => $marginTop}px;
+  margin-bottom: ${({ $marginBottom }) => $marginBottom}px;
 `
 
 export default Divider
