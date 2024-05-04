@@ -25,6 +25,7 @@ export const useGetUserProfileByUsername = (
     queryKey: [CACHE_KEYS.user, username],
     queryFn: () => getUserInfoByUsername(username),
     ...options,
+    enabled: !!username,
   })
 }
 
