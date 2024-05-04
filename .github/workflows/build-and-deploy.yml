@@ -4,72 +4,81 @@ on:
   workflow_dispatch:
   push:
     branches: [dev]
-    paths:  
+    paths:
       - 'apps/next-app/**'
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
-    - name: Check Out Repository
-      uses: actions/checkout@v2
+      - name: Check Out Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Cache Node modules
+        uses: actions/cache@v4.0.2
+        with:
+          path: ./apps/next-app/.yarn
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
 
-    - name: Create .env File
-      run: |
-        touch .env
-        echo 'NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}' >> .env
-        echo 'NEXT_PUBLIC_GA_TRACKING_ID=${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}' >> .env
-        echo 'NEXT_PUBLIC_SENTRY_DSN=${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}' >> .env
-        echo 'NEXT_PUBLIC_APP_ENV=production' >> .env
-      working-directory: ./apps/next-app
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-    - name: Build and Push Docker Image for ARM64
-      uses: docker/build-push-action@v2
-      with:
-        context: ./
-        file: ./apps/next-app/Dockerfile
-        push: true
-        tags: jamessoun93/feedoong-frontend:latest
-        platforms: linux/arm64/v8
+      - name: Create .env File
+        run: |
+          touch .env
+          echo 'NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}' >> .env
+          echo 'NEXT_PUBLIC_GA_TRACKING_ID=${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}' >> .env
+          echo 'NEXT_PUBLIC_SENTRY_DSN=${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}' >> .env
+          echo 'NEXT_PUBLIC_APP_ENV=production' >> .env
+        working-directory: ./apps/next-app
+
+      - name: Build and Push Docker Image for ARM64
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./apps/next-app/Dockerfile
+          push: true
+          tags: jamessoun93/feedoong-frontend:latest
+          platforms: linux/arm64/v8
+          cache-from: type=registry,ref=jamessoun93/feedoong-frontend:buildcache
+          cache-to: type=registry,ref=jamessoun93/feedoong-frontend:buildcache,mode=max
 
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-    - name: Check Out Repository
-      uses: actions/checkout@v2
-      
-    - name: Prepare deployment bundle
-      run: |
-        mkdir deployment_bundle
-        cp deploy.sh deployment_bundle/deploy.sh
-        cp appspec.yml deployment_bundle/appspec.yml
-        zip -r deployment_bundle.zip deployment_bundle/
+      - name: Check Out Repository
+        uses: actions/checkout@v2
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-northeast-2
-  
-    - name: Upload to S3
-      run: |
-        aws s3 cp deployment_bundle.zip s3://${{ secrets.AWS_S3_BUCKET }}/deployment_bundle.zip
+      - name: Prepare deployment bundle
+        run: |
+          mkdir deployment_bundle
+          cp deploy.sh deployment_bundle/deploy.sh
+          cp appspec.yml deployment_bundle/appspec.yml
+          zip -r deployment_bundle.zip deployment_bundle/
 
-    - name: Deploy with CodeDeploy
-      run: |
-        aws deploy create-deployment \
-        --application-name frontend-deployments \
-        --deployment-group-name frontend-deployment-group \
-        --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=deployment_bundle.zip,bundleType=zip
-    
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp deployment_bundle.zip s3://${{ secrets.AWS_S3_BUCKET }}/deployment_bundle.zip
+
+      - name: Deploy with CodeDeploy
+        run: |
+          aws deploy create-deployment \
+          --application-name frontend-deployments \
+          --deployment-group-name frontend-deployment-group \
+          --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=deployment_bundle.zip,bundleType=zip
