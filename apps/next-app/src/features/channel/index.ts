@@ -18,7 +18,9 @@ export const useSubscribeChannel = () => {
     mutationFn: submitRssUrl,
     onSuccess: () => {
       ChannelToast.addChannel()
-      client.invalidateQueries(CACHE_KEYS.recommended(['channels']))
+      client.invalidateQueries({
+        queryKey: CACHE_KEYS.recommended(['channels']),
+      })
     },
     onError: (err: AxiosError<ErrorBody, any>) => {
       ChannelToast.failAddChannel(getAxiosError(err).message)

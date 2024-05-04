@@ -12,7 +12,7 @@ const useToggleLike = (item: PrivatePost) => {
     mutationKey: CACHE_KEYS.likePost(item.id),
     mutationFn: !item.isLiked ? likePost : unlikePost,
     onSuccess: async (data) => {
-      client.invalidateQueries(CACHE_KEYS.feeds)
+      client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })
       client.invalidateQueries({
         predicate: ({ queryHash }) => {
           if (

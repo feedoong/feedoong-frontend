@@ -1190,17 +1190,18 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:18.7.9", {\
-        "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-18.7.9-27beffffcd-10c0.zip/node_modules/@types/node/",\
-        "packageDependencies": [\
-          ["@types/node", "npm:18.7.9"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:20.11.17", {\
         "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-20.11.17-5185bfb3de-10c0.zip/node_modules/@types/node/",\
         "packageDependencies": [\
           ["@types/node", "npm:20.11.17"],\
+          ["undici-types", "npm:5.26.5"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:20.12.8", {\
+        "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-20.12.8-f4c49e4029-10c0.zip/node_modules/@types/node/",\
+        "packageDependencies": [\
+          ["@types/node", "npm:20.12.8"],\
           ["undici-types", "npm:5.26.5"]\
         ],\
         "linkType": "HARD"\
@@ -3839,7 +3840,7 @@ const RAW_RUNTIME_STATE =
           ["@types/gtag.js", "npm:0.0.12"],\
           ["@types/humps", "npm:2.0.6"],\
           ["@types/js-cookie", "npm:3.0.6"],\
-          ["@types/node", "npm:18.7.9"],\
+          ["@types/node", "npm:20.12.8"],\
           ["@types/react", "npm:18.2.55"],\
           ["@types/react-dom", "npm:18.2.19"],\
           ["@types/styled-components", "npm:5.1.34"],\

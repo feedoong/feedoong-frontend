@@ -17,7 +17,7 @@ export const globalQueryErrorHandler = (
 
     if (isDestroyTokenError(code)) {
       destroyTokensClientSide()
-      queryClient.invalidateQueries(CACHE_KEYS.me)
+      queryClient.invalidateQueries({ queryKey: CACHE_KEYS.me })
     }
     goToIntroducePage()
 
