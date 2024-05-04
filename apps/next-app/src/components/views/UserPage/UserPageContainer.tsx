@@ -50,15 +50,13 @@ const UserPageContainer = () => {
     <PageContainer>
       <S.Contents>
         <S.Header>
-          {userProfile?.profileImageUrl && (
-            <S.UserImage
-              width={72}
-              height={72}
-              alt="프로필 사진"
-              src={userProfile.profileImageUrl}
-              priority
-            />
-          )}
+          <S.UserImage
+            width={72}
+            height={72}
+            alt="프로필 사진"
+            src={userProfile?.profileImageUrl ?? Icons.Account}
+            priority
+          />
           <Flex direction={'column'} justify={'center'}>
             <Flex align="center" gap={5}>
               <S.NickName>{userProfile?.name}</S.NickName>
