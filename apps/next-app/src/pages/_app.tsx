@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { Toaster } from 'react-hot-toast'
 import { SkeletonTheme } from 'react-loading-skeleton'
-import dynamic from 'next/dynamic'
 
 import { getDomainName } from 'envs'
 import Layout from 'components/common/Layout'
@@ -15,11 +15,6 @@ import 'styles/dark.css'
 import 'styles/light.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import ColorModeScript from 'components/common/ColorModeScript'
-
-const Toaster = dynamic(
-  () => import('react-hot-toast').then((mod) => mod.Toaster),
-  { ssr: false }
-)
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

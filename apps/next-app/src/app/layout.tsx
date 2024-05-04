@@ -1,6 +1,6 @@
 import { SkeletonTheme } from 'react-loading-skeleton'
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import { Toaster } from 'react-hot-toast'
 
 import { getDomainName } from 'envs'
 import Scripts from 'components/common/Scripts'
@@ -15,11 +15,6 @@ import 'styles/reset.css'
 import 'styles/font.css'
 import 'styles/global.css'
 import 'react-loading-skeleton/dist/skeleton.css'
-
-const Toaster = dynamic(
-  () => import('react-hot-toast').then((mod) => mod.Toaster),
-  { ssr: false }
-)
 
 export const metadata: Metadata = {
   title: 'Feedoong',
