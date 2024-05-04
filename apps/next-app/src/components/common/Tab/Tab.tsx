@@ -16,7 +16,7 @@ const Tab = ({ tabData, selectedTab, onClick }: Props) => {
         return (
           <S.Tab
             key={item.value}
-            isSelected={selectedTab.value === item.value}
+            $isSelected={selectedTab.value === item.value}
             onClick={() => onClick(item)}
           >
             {item.label}

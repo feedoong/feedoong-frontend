@@ -29,7 +29,7 @@ export const Wrapper = styled.div`
 `
 
 export const InputWrapper = styled.div<{
-  isError?: boolean
+  $isError?: boolean
   inputStyle?: React.CSSProperties
 }>`
   display: flex;
@@ -38,16 +38,16 @@ export const InputWrapper = styled.div<{
   height: 48px;
   padding: 13px 20px;
   border: 1px solid
-    ${({ isError }) =>
-      isError ? 'var(--color-error)' : 'var(--color-divider)'};
+    ${({ $isError }) =>
+      $isError ? 'var(--color-error)' : 'var(--color-divider)'};
   border-radius: 100px;
   background-color: var(--color-surface-container-lowest);
   color: var(--color-font-primary);
 
   &:focus-within {
     border: 1px solid
-      ${({ isError }) =>
-        isError ? 'var(--color-error)' : 'var(--color-divider)'};
+      ${({ $isError }) =>
+        $isError ? 'var(--color-error)' : 'var(--color-divider)'};
   }
 
   ${({ inputStyle }) => {
@@ -61,14 +61,15 @@ export const InputWrapper = styled.div<{
 export const Input = styled.input`
   all: unset;
   width: 100%;
+  text-align: left;
 
-  ::placeholder {
+  &::placeholder {
     ${getTypographyStyles('Headline3_M')};
     color: var(--color-gray-500);
   }
 `
 
-export const AddButton = styled.button<{ isValid?: boolean }>`
+export const AddButton = styled.button<{ $isValid?: boolean }>`
   all: unset;
   border-radius: 50%;
   width: 48px;
@@ -76,8 +77,8 @@ export const AddButton = styled.button<{ isValid?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ isValid, disabled }) =>
-    isValid === true && !disabled
+  background-color: ${({ $isValid, disabled }) =>
+    $isValid === true && !disabled
       ? 'var(--color-primary-500)'
       : 'var(--color-gray-500)'};
   cursor: pointer;

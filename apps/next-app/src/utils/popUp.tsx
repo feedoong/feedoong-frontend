@@ -104,7 +104,7 @@ const fullClone = { ...ReactDOM }
 
 const customRender = (node: ReactElement, container: ContainerType) => {
   const root = container[MARK] || fullClone.createRoot(container)
-  root.render(node)
+  root.render(<>{node}</>)
   container[MARK] = root
 }
 

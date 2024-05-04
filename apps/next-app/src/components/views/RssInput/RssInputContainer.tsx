@@ -23,7 +23,7 @@ const RssInputContainer = () => {
           <Input
             name="url"
             placeholder="URL을 추가해서 피드로 모아보세요!"
-            isError={isInvalidUrl}
+            $isError={isInvalidUrl}
             onChange={handleInput}
             value={url}
             renderInputIcon={({ selectedValue, clearValue }) => (
@@ -39,7 +39,7 @@ const RssInputContainer = () => {
           />
           <S.AddButton
             type="submit"
-            isValid={isRssUrlValid(url)}
+            $isValid={isRssUrlValid(url)}
             disabled={!isSubmitEnabled}
           >
             <Image

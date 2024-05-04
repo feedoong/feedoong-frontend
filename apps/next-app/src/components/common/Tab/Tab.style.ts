@@ -6,7 +6,7 @@ export const TabContainer = styled.div`
   display: flex;
 `
 
-export const Tab = styled.button<{ isSelected: boolean }>`
+export const Tab = styled.button<{ $isSelected: boolean }>`
   all: unset;
   cursor: pointer;
   padding: 8px 16px;
@@ -17,8 +17,8 @@ export const Tab = styled.button<{ isSelected: boolean }>`
 
   ${getTypographyStyles('Body1_M')};
 
-  ${({ isSelected }) =>
-    isSelected &&
+  ${({ $isSelected }) =>
+    $isSelected &&
     css`
       color: var(--color-white);
       background-color: var(--color-gray-900);

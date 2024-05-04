@@ -15,14 +15,14 @@ const FeedTab = () => {
   return (
     <TabContainer>
       <Tab
-        isSelected={pathnameMatcher(FEED_ROUTE.MY_FEED)}
+        $isSelected={pathnameMatcher(FEED_ROUTE.MY_FEED)}
         onClick={() => router.push(FEED_ROUTE.MY_FEED)}
       >
         내 피드
       </Tab>
       <Tab
-        fullWidth={pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)}
-        isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)}
+        $fullWidth={pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)}
+        $isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)}
         onClick={() => {
           if (pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)) {
             return
@@ -39,7 +39,7 @@ const FeedTab = () => {
                 <VerticalDivider />
                 <Flex gap={10}>
                   <SubTab
-                    isSelected={pathnameMatcher(
+                    $isSelected={pathnameMatcher(
                       FEED_ROUTE.RECOMMENDED_CHANNELS
                     )}
                     onClickCapture={(e) => {
@@ -50,7 +50,7 @@ const FeedTab = () => {
                     채널
                   </SubTab>
                   <SubTab
-                    isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_POSTS)}
+                    $isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_POSTS)}
                     onClickCapture={(e) => {
                       e.stopPropagation()
                       router.push(FEED_ROUTE.RECOMMENDED_POSTS)
