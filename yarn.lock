@@ -927,19 +927,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.7.9":
-  version: 18.7.9
-  resolution: "@types/node@npm:18.7.9"
-  checksum: 10c0/7394076d4f8e0356c262c0ebbf2776b5ff5c5d2fd4cd7bd50dc4cbb14ab2cf76f637afcb59364a91bfe3849e0b1634c8b64eedf5cb9e84a5bc77c67c315e67df
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:^18.17.15":
   version: 18.19.15
   resolution: "@types/node@npm:18.19.15"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10c0/442e40cbbb75f17c4dbccf0a1a19ffd4b1b6b8cbbcf52ed754c3d3a3992fd1effbe48b9d45b9aae9ac9cebc8717927348b02e009b0a2c0b06b1f813e3b2896e6
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.12.8":
+  version: 20.12.8
+  resolution: "@types/node@npm:20.12.8"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10c0/840002d20654e38a9af8cdffa215598fdb28ac4f96c5701ed672ec365ed6ccc66da299edddaa409baf13cd71bbf1128901f633b5e44e070fc236e26415805b78
   languageName: node
   linkType: hard
 
@@ -2766,7 +2768,7 @@ __metadata:
     "@types/gtag.js": "npm:^0.0.12"
     "@types/humps": "npm:^2.0.2"
     "@types/js-cookie": "npm:^3"
-    "@types/node": "npm:18.7.9"
+    "@types/node": "npm:^20.12.8"
     "@types/react": "npm:^18.2.55"
     "@types/react-dom": "npm:^18.2.19"
     "@types/styled-components": "npm:^5.1.26"
