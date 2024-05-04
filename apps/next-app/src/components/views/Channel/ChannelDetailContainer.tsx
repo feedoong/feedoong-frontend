@@ -24,11 +24,11 @@ function PostContainer() {
   const id = query.id as string
 
   const [currentPage, setCurrentPage] = useState(1)
-  const { data, isLoading } = useQuery(
-    [CACHE_KEYS.likedPosts, { page: currentPage, channel: id }],
-    () => getChannel(id, currentPage),
-    { enabled: !!id }
-  )
+  const { data, isLoading } = useQuery({
+    queryKey: [CACHE_KEYS.likedPosts, { page: currentPage, channel: id }],
+    queryFn: () => getChannel(id, currentPage),
+    enabled: !!id,
+  })
 
   const totalPage = data ? Math.ceil(data.totalCount / ITEMS_PER_PAGE) : 1
 

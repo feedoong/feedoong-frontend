@@ -21,18 +21,16 @@ const MyAccountContainer = () => {
     useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
   // const nickNameRef = useRef<HTMLInputElement>(null)
-  const { mutate: deleteAccountAction } = useMutation(
-    ['deleteAccount'],
-    deleteAccount,
-    {
-      onSuccess: () => {
-        Toast.show({ content: 'Successfully delete account' })
-        destroyTokensClientSide()
-        client.invalidateQueries(CACHE_KEYS.me)
-        window.location.href = '/'
-      },
-    }
-  )
+  const { mutate: deleteAccountAction } = useMutation({
+    mutationKey: ['deleteAccount'],
+    mutationFn: deleteAccount,
+    onSuccess: () => {
+      Toast.show({ content: 'Successfully delete account' })
+      destroyTokensClientSide()
+      client.invalidateQueries({ queryKey: CACHE_KEYS.me })
+      window.location.href = '/'
+    },
+  })
 
   const client = useQueryClient()
   const { data: userProfile, isLoading } = useGetUserProfile()

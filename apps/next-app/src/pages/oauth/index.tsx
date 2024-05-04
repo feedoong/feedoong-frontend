@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import qs from 'query-string'
 import humps from 'humps'
+import { useEffect } from 'react'
 
 import { submitAccessToken } from 'services/auth'
 import api from 'services/api'
@@ -16,25 +17,27 @@ const Oauth = () => {
   const router = useRouter()
   const client = useQueryClient()
 
-  useQuery(
-    CACHE_KEYS.signup,
-    () => submitAccessToken(parseAccessToken(router.asPath)),
-    {
-      onSuccess: (response) => {
-        setRefreshTokenToCookie(response.refreshToken)
-        setAccessTokenToCookie(response.accessToken)
+  const { data, isError } = useQuery({
+    queryKey: CACHE_KEYS.signup,
+    queryFn: () => submitAccessToken(parseAccessToken(router.asPath)),
+  })
 
-        setAuthorizationHeader(api, response.accessToken, { type: 'Bearer' })
-
-        client.setQueryData(CACHE_KEYS.me, response)
-        router.replace('/')
-      },
-      onError: () => {
-        alert('로그인에 실패했습니다. 다시 시도해주세요.')
-        router.replace('/')
-      },
+  useEffect(() => {
+    if (data) {
+      setRefreshTokenToCookie(data.refreshToken)
+      setAccessTokenToCookie(data.accessToken)
+      setAuthorizationHeader(api, data.accessToken, { type: 'Bearer' })
+      client.setQueryData(CACHE_KEYS.me, data)
+      router.replace('/')
     }
-  )
+  }, [data])
+
+  useEffect(() => {
+    if (isError) {
+      alert('로그인에 실패했습니다. 다시 시도해주세요.')
+      router.replace('/')
+    }
+  }, [isError])
 
   return null
 }

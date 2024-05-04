@@ -7,10 +7,10 @@ import { SkeletonChannelType } from 'components/common/Skeleton'
 import * as S from '../FeedsContainer.style'
 
 const RecommendedChannels = () => {
-  const { data, isFetching } = useQuery(
-    CACHE_KEYS.recommended(['channels']),
-    getRecommendedChannels
-  )
+  const { data, isFetching } = useQuery({
+    queryKey: CACHE_KEYS.recommended(['channels']),
+    queryFn: getRecommendedChannels,
+  })
 
   const showSkeleton = isFetching && !data
 

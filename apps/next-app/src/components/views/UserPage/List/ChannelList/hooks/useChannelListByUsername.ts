@@ -10,16 +10,15 @@ const useChannelListByUsername = (username?: string) => {
   const currentPage = Number(router.query.page) || 1
   const isMyProfile = useCheckIsMyProfile()
 
-  const { data, isLoading } = useQuery(
-    [CACHE_KEYS.channels, { page: currentPage }],
-    () =>
+  const { data, isLoading } = useQuery({
+    queryKey: [CACHE_KEYS.channels, { page: currentPage }],
+    queryFn: () =>
       isMyProfile
         ? getChannels(currentPage)
         : getChannelsByUsername(currentPage, username),
-    {
-      enabled: !!username,
-    }
-  )
+
+    enabled: !!username,
+  })
 
   return {
     listData: data?.channels,
