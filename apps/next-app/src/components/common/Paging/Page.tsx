@@ -22,8 +22,8 @@ const Page = ({ isActive, pageNumber, pageText, onClick, image }: Props) => {
 
   return (
     <S.Page
-      isImage={!!image}
-      isActive={isActive}
+      $isImage={!!image}
+      $isActive={isActive}
       onClick={() => onClick(pageNumber)}
     >
       {renderTextOrImage()}
