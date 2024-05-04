@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 import { getTypographyStyles } from 'styles/fonts'
 
-export const Page = styled.div<{ isActive?: boolean; isImage: boolean }>`
+export const Page = styled.div<{ $isActive?: boolean; $isImage: boolean }>`
   ${getTypographyStyles('Body1_M')}
   width: 28px;
   height: 28px;
@@ -14,16 +14,16 @@ export const Page = styled.div<{ isActive?: boolean; isImage: boolean }>`
   justify-content: center;
   cursor: pointer;
 
-  ${({ isActive }) =>
-    isActive &&
+  ${({ $isActive }) =>
+    $isActive &&
     css`
       ${getTypographyStyles('Body1_B')}
       color: var(--color-white-fixed);
       background-color: var(--color-primary-500);
     `}
 
-  ${({ isImage }) =>
-    isImage &&
+  ${({ $isImage }) =>
+    $isImage &&
     css`
       background: none;
     `}
