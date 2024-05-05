@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "${0%/*}/husky.sh"
+
+cd apps/next-app
+yarn lint
+yarn tsc
