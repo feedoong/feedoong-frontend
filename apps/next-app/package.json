@@ -8,7 +8,7 @@
     "start": "next start",
     "deploy": "next build && next start",
     "lint": "next lint",
-    "prepare": "cd .. && husky apps/next-app/.husky"
+    "prepare": "cd ../.. && husky apps/next-app/.husky"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.2",
