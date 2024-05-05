@@ -3542,7 +3542,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-prettier", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:4.2.1"],\
           ["http-status-codes", "npm:2.3.0"],\
           ["humps", "npm:2.0.1"],\
-          ["husky", "npm:9.0.11"],\
+          ["husky", "npm:8.0.1"],\
           ["immer", "npm:9.0.21"],\
           ["js-cookie", "npm:3.0.5"],\
           ["next", "virtual:f29d69f85062a03ed7bd609b4d40e9adc04add82ffc06c75c0a45531f39eb1379ffd22a0748bbd55406686765a1c241fd4e759a24923460124aed6e3dd6c4096#npm:14.2.3"],\
@@ -4064,10 +4064,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["husky", [\
-      ["npm:9.0.11", {\
-        "packageLocation": "../../../.yarn/berry/cache/husky-npm-9.0.11-227bb1e4e4-10c0.zip/node_modules/husky/",\
+      ["npm:8.0.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/husky-npm-8.0.1-85fede8470-10c0.zip/node_modules/husky/",\
         "packageDependencies": [\
-          ["husky", "npm:9.0.11"]\
+          ["husky", "npm:8.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
