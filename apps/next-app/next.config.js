@@ -3,9 +3,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
