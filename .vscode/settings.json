@@ -1,4 +1,10 @@
 {
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": [
+    "source.addMissingImports",
+    "source.fixAll.eslint"
+  ],
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true
