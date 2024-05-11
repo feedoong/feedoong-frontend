@@ -1,13 +1,15 @@
-import Image from 'next/legacy/image'
-import { useRouter } from 'next/router'
+'use client'
+import type { NextPage } from 'next'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
-import { googleAuthUrl } from './SignUpContainer.utils'
+import { googleAuthUrl } from './_utils/SignUp.utils'
 
-import * as S from './SignUpContainer.style'
+import * as S from './SignUp.style'
 
 import Icons from 'assets/icons'
 
-const SignUpContainer = () => {
+const SignUpPage: NextPage = () => {
   const router = useRouter()
 
   const signUp = () => {
@@ -15,7 +17,7 @@ const SignUpContainer = () => {
   }
 
   return (
-    <S.Wrapper>
+    <>
       <S.Title>인사이트가 피둥피둥</S.Title>
       <S.Subtitle>
         여기저기 둥둥 떠있는 나의 인사이트 컨텐츠들을 피둥에서 모아보기
@@ -39,8 +41,8 @@ const SignUpContainer = () => {
       <S.Anchor>
         서비스 이용을 위해 이메일과 이름, 프로필 이미지를 수집합니다.
       </S.Anchor>
-    </S.Wrapper>
+    </>
   )
 }
 
-export default SignUpContainer
+export default SignUpPage
