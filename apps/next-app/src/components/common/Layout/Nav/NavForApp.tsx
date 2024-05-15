@@ -10,7 +10,7 @@ import LogoDesktopNoBackground from 'components/common/LogoDesktop'
 
 import * as S from './Nav.style'
 
-const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
+const NavForApp = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
   const { data: userProfile } = useGetUserProfile()
   // const userProfile = {}
@@ -46,4 +46,4 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   )
 })
 
-export default Nav
+export default NavForApp
