@@ -3,12 +3,8 @@ import React, { forwardRef } from 'react'
 import { cookies } from 'next/headers'
 
 import ProfilePopover from 'components/common/Layout/Nav/ProfilePopover'
-import { ROUTE } from 'constants/route'
 import LogoDesktopNoBackground from 'components/common/LogoDesktop'
-
 import { getApiEndpoint } from 'envs'
-
-// import * as S from './Nav.style'
 import * as S from 'components/common/Layout/Nav/Nav.style'
 
 async function getUserProfile() {
