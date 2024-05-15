@@ -13,8 +13,8 @@ interface Props {
 const Layout = ({ children }: Props) => {
   const pathname = usePathname()
 
-  const { isSignUpPage } = routerBranch(pathname)
-  const hasGNB = !isSignUpPage
+  const { isSignUpPage, isUnderAppRouter } = routerBranch(pathname)
+  const hasGNB = !isSignUpPage && !isUnderAppRouter
 
   return (
     <>
@@ -29,6 +29,7 @@ export default Layout
 const routerBranch = (pathname: string | null) => {
   return {
     isSignUpPage: pathname === ROUTE.SIGN_UP,
+    isUnderAppRouter: pathname === ROUTE.MY_FEED,
     // isRequiredAuthPage: requiredAuthMatcher(pathname),
     // isIntroducePage: pathname === ROUTE.RECOMMENDED_CHANNELS,
     // isErrorPage: isErrorPage(pathname),
