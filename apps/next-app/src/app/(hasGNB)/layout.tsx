@@ -1,4 +1,4 @@
-import NavForApp from './_components/Nav'
+import Nav from './_components/Nav'
 
 interface HasGNBLayoutProps {
   children: React.ReactNode
@@ -7,7 +7,7 @@ interface HasGNBLayoutProps {
 const HasGNBLayout = async ({ children }: HasGNBLayoutProps) => {
   return (
     <>
-      <NavForApp />
+      <Nav />
       {children}
     </>
   )
