@@ -1,11 +1,10 @@
-import { NavForApp } from 'components/common/Layout/Nav'
+import NavForApp from './_components/Nav'
 
 interface HasGNBLayoutProps {
   children: React.ReactNode
 }
 
-const HasGNBLayout = ({ children }: HasGNBLayoutProps) => {
-  console.log('hasGNB layout')
+const HasGNBLayout = async ({ children }: HasGNBLayoutProps) => {
   return (
     <>
       <NavForApp />

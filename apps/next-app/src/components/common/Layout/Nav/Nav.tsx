@@ -13,7 +13,6 @@ import * as S from './Nav.style'
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
   const { data: userProfile } = useGetUserProfile()
-  // const userProfile = {}
 
   return (
     <S.TopNavContainer ref={ref}>
