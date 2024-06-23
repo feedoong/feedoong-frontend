@@ -9,7 +9,8 @@
     "deploy": "next build && next start",
     "lint": "next lint",
     "prepare": "cd ../.. && husky apps/next-app/.husky",
-    "codegen": "yarn node scripts/codeGen.mjs"
+    "codegen": "yarn node scripts/codeGen.mjs",
+    "codegen:sync": "yarn node scripts/syncCodeGenSpec.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.2",
