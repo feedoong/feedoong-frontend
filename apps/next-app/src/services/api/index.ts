@@ -12,7 +12,7 @@ import {
 
 const { camelizeKeys } = humps
 
-export const createApi = () => {
+export const feedoongApi = () => {
   const accessToken = getAccessTokenFromCookie()
 
   const _api = Axios.create({
@@ -57,6 +57,6 @@ export const createApi = () => {
   return _api
 }
 
-const api = createApi()
+const api = feedoongApi()
 
 export default api

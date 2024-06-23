@@ -8,7 +8,9 @@
     "start": "next start",
     "deploy": "next build && next start",
     "lint": "next lint",
-    "prepare": "cd ../.. && husky apps/next-app/.husky"
+    "prepare": "cd ../.. && husky apps/next-app/.husky",
+    "codegen": "yarn node scripts/codeGen.mjs",
+    "codegen:sync": "yarn node scripts/syncCodeGenSpec.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.2",
@@ -25,6 +27,7 @@
     "js-cookie": "^3.0.1",
     "next": "^14.2.3",
     "nookies": "^2.5.2",
+    "orval": "6.19.1",
     "query-string": "^7.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -40,7 +43,7 @@
     "@types/gtag.js": "^0.0.12",
     "@types/humps": "^2.0.2",
     "@types/js-cookie": "^3",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.14.8",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
@@ -53,6 +56,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
     "prettier": "^2.8.7",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   }
 }
