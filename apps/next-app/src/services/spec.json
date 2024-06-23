@@ -1,0 +1,1598 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Api Documentation",
+    "description": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.feedoong.io:443",
+      "description": "Inferred Url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Channel",
+      "description": "Channel Controller"
+    },
+    {
+      "name": "Item",
+      "description": "Item Controller"
+    },
+    {
+      "name": "Like",
+      "description": "Like Controller"
+    },
+    {
+      "name": "Subscription",
+      "description": "Subscription Controller"
+    },
+    {
+      "name": "User",
+      "description": "User Controller"
+    },
+    {
+      "name": "status-controller",
+      "description": "Status Controller"
+    }
+  ],
+  "paths": {
+    "/v1/channels": {
+      "post": {
+        "tags": ["Channel"],
+        "summary": "채널(RSS 피드 주소) 등록",
+        "operationId": "registerChannelUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChannelRegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChannelRegisterResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/channels/preview": {
+      "get": {
+        "tags": ["Channel"],
+        "summary": "RSS 피드 정보 확인 (블로그 링크로 등록)",
+        "operationId": "getChannelPreviewUsingGET",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "description": "확인할 주소",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChannelPreviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/channels/preview/rss": {
+      "get": {
+        "tags": ["Channel"],
+        "summary": "RSS 피드 정보 확인 (RSS Feed 주소 직접 등록)",
+        "operationId": "getChannelPreviewViaRssFeedUsingGET",
+        "parameters": [
+          {
+            "name": "homeUrl",
+            "in": "query",
+            "description": "블로그 홈 주소",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rssFeedUrl",
+            "in": "query",
+            "description": "확인할 RSS Feed 주소",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChannelPreviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/channels/recommended": {
+      "get": {
+        "tags": ["Channel"],
+        "summary": "채널 둘러보기",
+        "operationId": "getRecommendedChannelsUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendedChannelListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/items": {
+      "get": {
+        "tags": ["Item"],
+        "summary": "구독한 채널들의 아이템 리스트",
+        "operationId": "getItemsUsingGET",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserItemListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/items/channel/{channelId}": {
+      "get": {
+        "tags": ["Item"],
+        "summary": "구독한 채널마다의 아이템 리스트",
+        "operationId": "getItemsOfSubscribedChannelUsingGET",
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "채널 ID",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicItemListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/items/liked": {
+      "get": {
+        "tags": ["Item"],
+        "summary": "보관(좋아요)한 아이템 리스트",
+        "operationId": "getLikesUsingGET",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "검색 키워드, required = false",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserItemListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/items/recommended": {
+      "get": {
+        "tags": ["Item"],
+        "summary": "아이템 둘러보기",
+        "operationId": "getRecommendedItemsUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendedItemListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/items/view/{itemId}": {
+      "post": {
+        "tags": ["Item"],
+        "summary": "아이템 읽음 처리",
+        "operationId": "viewItemUsingPOST",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "읽음 처리할 아이템 ID",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemViewResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/likes/{itemId}": {
+      "post": {
+        "tags": ["Like"],
+        "summary": "아이템 보관(좋아요)",
+        "operationId": "likeUsingPOST",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "보관(좋아요)할 아이템 ID",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LikeResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Like"],
+        "summary": "아이템 보관(좋아요) 취소",
+        "operationId": "unlikeUsingDELETE",
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "보관(좋아요) 취소할 아이템 ID",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/LikeResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/status/health": {
+      "get": {
+        "tags": ["status-controller"],
+        "summary": "checkHealth",
+        "operationId": "checkHealthUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/subscriptions": {
+      "get": {
+        "tags": ["Subscription"],
+        "summary": "자신이 구독한 채널 리스트 확인",
+        "operationId": "getSubscriptionsUsingGET",
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "검색 키워드, required = false",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscriptionListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/subscriptions/{channelId}": {
+      "delete": {
+        "tags": ["Subscription"],
+        "summary": "채널 구독 취소",
+        "operationId": "unsubscribeUsingDELETE",
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "description": "구독 취소할 채널 ID",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users": {
+      "delete": {
+        "tags": ["User"],
+        "summary": "계정 탈퇴",
+        "operationId": "deactivateUserUsingDELETE",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users/login/google": {
+      "post": {
+        "tags": ["User"],
+        "summary": "구글 로그인",
+        "operationId": "loginUsingPOST",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "query",
+            "description": "리다이렉트 후 파싱한 access_token 값",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoogleLoginResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users/me": {
+      "get": {
+        "tags": ["User"],
+        "summary": "회원 정보 확인",
+        "operationId": "getUserInfoUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfoResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users/token": {
+      "post": {
+        "tags": ["User"],
+        "summary": "액세스 토큰 재발급",
+        "operationId": "reissueTokenUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenReissueRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenReissueResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users/{username}/info": {
+      "get": {
+        "tags": ["User"],
+        "summary": "특정 유저 정보 확인",
+        "operationId": "getPublicUserInfoUsingGET",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "정보를 확인할 유저의 유저네임",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicUserInfoResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users/{username}/liked-items": {
+      "get": {
+        "tags": ["User"],
+        "summary": "특정 유저가 저장한 게시글 리스트 확인",
+        "operationId": "getUserLikedItemsUsingGET",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "description": "저장한 게시글 리스트를 확인할 유저네임",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserItemListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    },
+    "/v1/users/{username}/subscriptions": {
+      "get": {
+        "tags": ["User"],
+        "summary": "특정 유저가 구독한 채널 리스트 확인",
+        "operationId": "getUserSubscriptionsUsingGET",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "username",
+            "in": "path",
+            "description": "구독한 채널 리스트를 확인할 유저네임",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSubscriptionListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": ["global"]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChannelDetailsDTO": {
+        "title": "ChannelDetailsDTO",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "feedUrl": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "isSubscribed": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "ChannelPreviewResponse": {
+        "title": "ChannelPreviewResponse",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "채널 설명"
+          },
+          "feedUrl": {
+            "type": "string",
+            "description": "RSS Feed 주소"
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "채널 이미지 URL"
+          },
+          "title": {
+            "type": "string",
+            "description": "채널 제목"
+          },
+          "url": {
+            "type": "string",
+            "description": "블로그 홈 주소"
+          }
+        }
+      },
+      "ChannelRegisterRequest": {
+        "title": "ChannelRegisterRequest",
+        "type": "object",
+        "properties": {
+          "feedUrl": {
+            "type": "string",
+            "description": "등록할 RSS Feed URL"
+          },
+          "url": {
+            "type": "string",
+            "description": "기존 홈 주소"
+          }
+        }
+      },
+      "ChannelRegisterResponse": {
+        "title": "ChannelRegisterResponse",
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "description": "등록 일시",
+            "format": "date-time"
+          },
+          "feedUrl": {
+            "type": "string",
+            "description": "RSS 피드 주소"
+          },
+          "id": {
+            "type": "integer",
+            "description": "채널 ID",
+            "format": "int64"
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "채널 이미지 url"
+          },
+          "title": {
+            "type": "string",
+            "description": "채널 제목"
+          },
+          "url": {
+            "type": "string",
+            "description": "블로그 홈 주소"
+          }
+        }
+      },
+      "GoogleLoginResponse": {
+        "title": "GoogleLoginResponse",
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "액세스 토큰"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          },
+          "name": {
+            "type": "string",
+            "description": "이름"
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "description": "프로필 이미지 url"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "리프레쉬 토큰"
+          },
+          "username": {
+            "type": "string",
+            "description": "유저네임"
+          }
+        }
+      },
+      "ItemDetailsDTO": {
+        "title": "ItemDetailsDTO",
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "channelImageUrl": {
+            "type": "string"
+          },
+          "channelTitle": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "guid": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "isLiked": {
+            "type": "boolean"
+          },
+          "isViewed": {
+            "type": "boolean"
+          },
+          "link": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "ItemViewResponse": {
+        "title": "ItemViewResponse",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "아이템 ID",
+            "format": "int64"
+          },
+          "isViewed": {
+            "type": "boolean",
+            "description": "읽음 여부 (T/F)",
+            "example": false
+          }
+        }
+      },
+      "LikeResponse": {
+        "title": "LikeResponse",
+        "type": "object",
+        "properties": {
+          "isLiked": {
+            "type": "boolean"
+          },
+          "itemId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PublicItemListResponse": {
+        "title": "PublicItemListResponse",
+        "type": "object",
+        "properties": {
+          "channel": {
+            "$ref": "#/components/schemas/ChannelDetailsDTO"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemDetailsDTO"
+            }
+          },
+          "next": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prev": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PublicUserInfoResponse": {
+        "title": "PublicUserInfoResponse",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "계정에 등록된 이름"
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "description": "프로필 이미지 URL"
+          },
+          "username": {
+            "type": "string",
+            "description": "유저네임"
+          }
+        }
+      },
+      "RecommendedChannelListResponse": {
+        "title": "RecommendedChannelListResponse",
+        "type": "object",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChannelDetailsDTO"
+            }
+          }
+        }
+      },
+      "RecommendedItemListResponse": {
+        "title": "RecommendedItemListResponse",
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemDetailsDTO"
+            }
+          }
+        }
+      },
+      "SubscriptionListResponse": {
+        "title": "SubscriptionListResponse",
+        "type": "object",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChannelDetailsDTO"
+            }
+          },
+          "next": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prev": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "TokenReissueRequest": {
+        "title": "TokenReissueRequest",
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "리프레쉬 토큰"
+          }
+        }
+      },
+      "TokenReissueResponse": {
+        "title": "TokenReissueResponse",
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "액세스 토큰"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "리프레쉬 토큰"
+          }
+        }
+      },
+      "UserInfoResponse": {
+        "title": "UserInfoResponse",
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "계정에 등록된 이메일"
+          },
+          "name": {
+            "type": "string",
+            "description": "계정에 등록된 이름"
+          },
+          "profileImageUrl": {
+            "type": "string",
+            "description": "프로필 이미지 URL"
+          },
+          "username": {
+            "type": "string",
+            "description": "유저네임"
+          }
+        }
+      },
+      "UserItemDTO": {
+        "title": "UserItemDTO",
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "channelImageUrl": {
+            "type": "string"
+          },
+          "channelTitle": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "guid": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "isLiked": {
+            "type": "boolean"
+          },
+          "isViewed": {
+            "type": "boolean"
+          },
+          "link": {
+            "type": "string"
+          },
+          "publishedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "UserItemListResponse": {
+        "title": "UserItemListResponse",
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserItemDTO"
+            }
+          },
+          "next": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prev": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "UserSubscribedChannelDTO": {
+        "title": "UserSubscribedChannelDTO",
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "feedUrl": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "isSubscribed": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "UserSubscriptionListResponse": {
+        "title": "UserSubscriptionListResponse",
+        "type": "object",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSubscribedChannelDTO"
+            }
+          },
+          "next": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prev": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Authorization": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
