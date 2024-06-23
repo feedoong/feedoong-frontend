@@ -46,7 +46,9 @@
   "paths": {
     "/v1/channels": {
       "post": {
-        "tags": ["Channel"],
+        "tags": [
+          "Channel"
+        ],
         "summary": "채널(RSS 피드 주소) 등록",
         "operationId": "registerChannelUsingPOST",
         "requestBody": {
@@ -72,14 +74,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/channels/preview": {
       "get": {
-        "tags": ["Channel"],
+        "tags": [
+          "Channel"
+        ],
         "summary": "RSS 피드 정보 확인 (블로그 링크로 등록)",
         "operationId": "getChannelPreviewUsingGET",
         "parameters": [
@@ -108,14 +114,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/channels/preview/rss": {
       "get": {
-        "tags": ["Channel"],
+        "tags": [
+          "Channel"
+        ],
         "summary": "RSS 피드 정보 확인 (RSS Feed 주소 직접 등록)",
         "operationId": "getChannelPreviewViaRssFeedUsingGET",
         "parameters": [
@@ -154,14 +164,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/channels/recommended": {
       "get": {
-        "tags": ["Channel"],
+        "tags": [
+          "Channel"
+        ],
         "summary": "채널 둘러보기",
         "operationId": "getRecommendedChannelsUsingGET",
         "responses": {
@@ -178,14 +192,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/items": {
       "get": {
-        "tags": ["Item"],
+        "tags": [
+          "Item"
+        ],
         "summary": "구독한 채널들의 아이템 리스트",
         "operationId": "getItemsUsingGET",
         "parameters": [
@@ -270,14 +288,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/items/channel/{channelId}": {
       "get": {
-        "tags": ["Item"],
+        "tags": [
+          "Item"
+        ],
         "summary": "구독한 채널마다의 아이템 리스트",
         "operationId": "getItemsOfSubscribedChannelUsingGET",
         "parameters": [
@@ -373,14 +395,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/items/liked": {
       "get": {
-        "tags": ["Item"],
+        "tags": [
+          "Item"
+        ],
         "summary": "보관(좋아요)한 아이템 리스트",
         "operationId": "getLikesUsingGET",
         "parameters": [
@@ -475,14 +501,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/items/recommended": {
       "get": {
-        "tags": ["Item"],
+        "tags": [
+          "Item"
+        ],
         "summary": "아이템 둘러보기",
         "operationId": "getRecommendedItemsUsingGET",
         "responses": {
@@ -499,14 +529,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/items/view/{itemId}": {
       "post": {
-        "tags": ["Item"],
+        "tags": [
+          "Item"
+        ],
         "summary": "아이템 읽음 처리",
         "operationId": "viewItemUsingPOST",
         "parameters": [
@@ -536,14 +570,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/likes/{itemId}": {
       "post": {
-        "tags": ["Like"],
+        "tags": [
+          "Like"
+        ],
         "summary": "아이템 보관(좋아요)",
         "operationId": "likeUsingPOST",
         "parameters": [
@@ -573,12 +611,16 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       },
       "delete": {
-        "tags": ["Like"],
+        "tags": [
+          "Like"
+        ],
         "summary": "아이템 보관(좋아요) 취소",
         "operationId": "unlikeUsingDELETE",
         "parameters": [
@@ -608,14 +650,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/status/health": {
       "get": {
-        "tags": ["status-controller"],
+        "tags": [
+          "status-controller"
+        ],
         "summary": "checkHealth",
         "operationId": "checkHealthUsingGET",
         "responses": {
@@ -632,14 +678,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/subscriptions": {
       "get": {
-        "tags": ["Subscription"],
+        "tags": [
+          "Subscription"
+        ],
         "summary": "자신이 구독한 채널 리스트 확인",
         "operationId": "getSubscriptionsUsingGET",
         "parameters": [
@@ -734,14 +784,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/subscriptions/{channelId}": {
       "delete": {
-        "tags": ["Subscription"],
+        "tags": [
+          "Subscription"
+        ],
         "summary": "채널 구독 취소",
         "operationId": "unsubscribeUsingDELETE",
         "parameters": [
@@ -764,14 +818,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users": {
       "delete": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "계정 탈퇴",
         "operationId": "deactivateUserUsingDELETE",
         "responses": {
@@ -781,14 +839,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users/login/google": {
       "post": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "구글 로그인",
         "operationId": "loginUsingPOST",
         "parameters": [
@@ -817,14 +879,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users/me": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "회원 정보 확인",
         "operationId": "getUserInfoUsingGET",
         "responses": {
@@ -841,14 +907,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users/token": {
       "post": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "액세스 토큰 재발급",
         "operationId": "reissueTokenUsingPOST",
         "requestBody": {
@@ -874,14 +944,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users/{username}/info": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "특정 유저 정보 확인",
         "operationId": "getPublicUserInfoUsingGET",
         "parameters": [
@@ -910,14 +984,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users/{username}/liked-items": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "특정 유저가 저장한 게시글 리스트 확인",
         "operationId": "getUserLikedItemsUsingGET",
         "parameters": [
@@ -1012,14 +1090,18 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
     },
     "/v1/users/{username}/subscriptions": {
       "get": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "summary": "특정 유저가 구독한 채널 리스트 확인",
         "operationId": "getUserSubscriptionsUsingGET",
         "parameters": [
@@ -1114,7 +1196,9 @@
         },
         "security": [
           {
-            "Authorization": ["global"]
+            "Authorization": [
+              "global"
+            ]
           }
         ]
       }
