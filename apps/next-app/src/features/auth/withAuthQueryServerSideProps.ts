@@ -6,13 +6,13 @@ import type { UserProfile } from 'services/auth'
 import { getUserInfoServerSide } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { setAuthorizationHeader } from 'features/auth/token'
-import { createApi } from 'services/api'
+import { feedoongApi } from 'services/api'
 import { AccessToken } from 'constants/auth'
 
 export type GetServerSidePropsContextWithAuthClient =
   GetServerSidePropsContext & {
     queryClient: QueryClient
-    api: ReturnType<typeof createApi>
+    api: ReturnType<typeof feedoongApi>
   }
 
 export const withAuthQueryServerSideProps = (
@@ -20,7 +20,7 @@ export const withAuthQueryServerSideProps = (
 ) => {
   return async (context: GetServerSidePropsContextWithAuthClient) => {
     try {
-      const api = createApi()
+      const api = feedoongApi()
       context.api = api
       const cookies = parseCookies(
         context as (typeof parseCookies)['arguments']

@@ -63,4 +63,5 @@ module.exports = {
   settings: {
     'import/external-module-folders': ['.yarn'],
   },
+  ignorePatters: ['orval.config.js', '**/_generated/**/*'],
 }
