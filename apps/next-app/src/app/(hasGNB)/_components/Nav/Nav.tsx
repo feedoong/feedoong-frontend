@@ -30,8 +30,7 @@ async function getUserProfile() {
   return res.json()
 }
 
-const Nav = forwardRef<HTMLDivElement>(
-async function Nav(props, ref) {
+const Nav = forwardRef<HTMLDivElement>(async function Nav(props, ref) {
   const userProfile = await getUserProfile()
 
   return (
