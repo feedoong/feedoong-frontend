@@ -17,6 +17,7 @@ interface Props extends UserItemDTO {
 }
 
 export const PostFeedItem = ({
+  id,
   title,
   channelImageUrl,
   link,
@@ -28,7 +29,7 @@ export const PostFeedItem = ({
   isSomeoneLoggedIn,
   ...rest
 }: Props) => {
-  const { handleLike } = useToggleLike()
+  const { handleLike } = useToggleLike({ id, isLiked })
   return (
     <FeedItem.Container>
       <FeedItem.Body>
