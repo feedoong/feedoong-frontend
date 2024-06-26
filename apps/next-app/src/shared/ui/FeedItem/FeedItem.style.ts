@@ -26,15 +26,15 @@ export const Footer = styled.div`
   border-top: 1px solid var(--color-divider);
 `
 
-export const Title = styled.p<{ line?: number }>`
+export const Title = styled.p`
   ${getTypographyStyles('Headline3_B')};
-  ${({ line = 2 }) => ellipsis(line)};
+  ${ellipsis(1)};
   color: var(--color-font-primary);
 `
 
 export const Contents = styled.p`
   ${getTypographyStyles('Body1_M')};
-  ${ellipsis(1)};
+  ${ellipsis(2)};
   color: var(--color-font-secondary);
 `
 

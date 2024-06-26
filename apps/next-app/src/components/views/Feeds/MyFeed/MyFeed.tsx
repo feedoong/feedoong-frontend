@@ -41,7 +41,7 @@ const MyFeed = () => {
           })}
         {data?.pages.map((page) =>
           page.items.map((item) => (
-            <PostFeedItem key={item.id} {...item} />
+            <PostFeedItem key={item.id} {...item} isSomeoneLoggedIn />
             // <FeedItem key={item.id} type="post" item={item} />
           ))
         )}

@@ -5,7 +5,8 @@ import { CACHE_KEYS } from 'services/cacheKeys'
 import { likePost, unlikePost } from 'services/feeds'
 import type { PrivatePost } from 'types/feeds'
 
-const useToggleLike = (item: PrivatePost) => {
+// TODO: 추후에 useToggleLike 자체를 재작성해야 함. 임시로 인자 타입 설정
+const useToggleLike = (item: { id: number; isLiked: boolean }) => {
   const client = useQueryClient()
 
   const { mutate: handleLike } = useMutation({
