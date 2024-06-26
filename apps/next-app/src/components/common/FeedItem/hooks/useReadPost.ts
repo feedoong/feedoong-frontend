@@ -11,7 +11,8 @@ interface PrevDataType {
   pageParams: Array<number | null>
 }
 
-const useReadPost = (item: Post) => {
+// TODO: 인자타입 임시 변경. 추후에 useReadPost 자체를 재작성 해야 함.
+const useReadPost = (item: { id: number }) => {
   const client = useQueryClient()
 
   const { mutate: handleRead } = useMutation({

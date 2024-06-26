@@ -4,10 +4,10 @@ import {
   copyToClipboard,
   getDiameterByType,
 } from 'components/common/FeedItem/FeedItem.utils'
+import useReadPost from 'components/common/FeedItem/hooks/useReadPost'
 import useToggleLike from 'components/common/FeedItem/hooks/useToggleLike'
 import Flex from 'components/common/Flex'
 import LogoIcon from 'components/common/LogoIcon'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
 import type { UserItemDTO } from 'services/types/_generated/apiDocumentation.schemas'
 import { FeedItem } from 'shared/ui/FeedItem'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
@@ -30,22 +30,16 @@ export const PostFeedItem = ({
   ...rest
 }: Props) => {
   const { handleLike } = useToggleLike({ id, isLiked })
+  const { handleRead } = useReadPost({ id })
+
   return (
     <FeedItem.Container>
       <FeedItem.Body>
         <Flex gap={6} direction="column" style={{ marginRight: '20px' }}>
-          <Anchor
-            href={link}
-            target="_blank"
-            // onClick={() => handleRead(item.id)}
-          >
+          <Anchor href={link} target="_blank" onClick={() => handleRead(id)}>
             <FeedItem.Title>{title}</FeedItem.Title>
           </Anchor>
-          <Anchor
-            href={link}
-            target="_blank"
-            // onClick={() => handleRead(item.id)}
-          >
+          <Anchor href={link} target="_blank" onClick={() => handleRead(id)}>
             <FeedItem.Contents>{description}</FeedItem.Contents>
           </Anchor>
         </Flex>
@@ -74,7 +68,7 @@ export const PostFeedItem = ({
               src={isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
               width={16}
               height={16}
-              onClick={() => console.log('')}
+              onClick={() => handleLike(String(id))}
               priority
             />
           )}
