@@ -8,6 +8,7 @@ import { getFeeds } from 'services/feeds'
 import FeedItem from 'components/common/FeedItem'
 import Loading from 'components/common/Loading'
 import * as S from '../FeedsContainer.style'
+import { PostFeedItem } from 'features/post/ui/PostFeedItem'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
@@ -40,7 +41,8 @@ const MyFeed = () => {
           })}
         {data?.pages.map((page) =>
           page.items.map((item) => (
-            <FeedItem key={item.id} type="post" item={item} />
+            <PostFeedItem key={item.id} {...item} />
+            // <FeedItem key={item.id} type="post" item={item} />
           ))
         )}
       </S.CardContainer>
