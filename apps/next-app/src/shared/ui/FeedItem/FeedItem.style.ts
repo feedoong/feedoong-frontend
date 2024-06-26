@@ -44,6 +44,7 @@ export const Thumbnail = styled.img`
 `
 
 export const ChannelTitle = styled.p`
+  cursor: pointer;
   ${getTypographyStyles('Body2_B')};
   color: var(--color-font-tertiary);
 `

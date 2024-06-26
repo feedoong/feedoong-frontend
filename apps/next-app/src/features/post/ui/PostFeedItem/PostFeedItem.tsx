@@ -11,6 +11,7 @@ import LogoIcon from 'components/common/LogoIcon'
 import type { UserItemDTO } from 'services/types/_generated/apiDocumentation.schemas'
 import { FeedItem } from 'shared/ui/FeedItem'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
+import { useRouter } from 'next/navigation'
 
 interface Props extends UserItemDTO {
   isSomeoneLoggedIn: boolean
@@ -19,6 +20,7 @@ interface Props extends UserItemDTO {
 export const PostFeedItem = ({
   id,
   title,
+  channelId,
   channelImageUrl,
   link,
   imageUrl,
@@ -29,8 +31,13 @@ export const PostFeedItem = ({
   isSomeoneLoggedIn,
   ...rest
 }: Props) => {
+  const router = useRouter()
   const { handleLike } = useToggleLike({ id, isLiked })
   const { handleRead } = useReadPost({ id })
+
+  const goToChannelPage = (channelId: number) => {
+    router.push(`/channels/${channelId}`)
+  }
 
   return (
     <FeedItem.Container>
@@ -54,7 +61,9 @@ export const PostFeedItem = ({
             diameter={getDiameterByType('card')}
             src={channelImageUrl ?? getWellKnownChannelImg(String(link))}
           />
-          <FeedItem.ChannelTitle>{channelTitle}</FeedItem.ChannelTitle>
+          <FeedItem.ChannelTitle onClick={() => goToChannelPage(channelId)}>
+            {channelTitle}
+          </FeedItem.ChannelTitle>
 
           <FeedItem.SubText>
             {getFormatDate(publishedAt, 'YYYY.MM.DD')}
