@@ -6,6 +6,6 @@ interface Props extends UserItemDTO {
 
 export const PostFeedItem = ({ isPrivate, ...rest }: Props) => {
   return (
-    
+   <div></div> 
   )
 }

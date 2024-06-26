@@ -8,6 +8,7 @@ import { getFeedsServerSide } from 'services/feeds'
 import { useGetUserProfile } from 'features/user/userProfile'
 import type { GetServerSidePropsContextWithAuthClient } from 'features/auth/withAuthQueryServerSideProps'
 import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
+import { FeedItem } from 'shared/ui/FeedItem'
 
 const Home: NextPage = () => {
   useGetUserProfile()
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
         <title>내 피드 | 인사이트가 피둥피둥</title>
       </Head>
       <RssInputView />
+      <FeedItem.Container />
       <FeedsContainerView />
     </>
   )
