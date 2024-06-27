@@ -11,7 +11,7 @@ interface PrevDataType {
   pageParams: Array<number | null>
 }
 
-// TODO: 인자타입 임시 변경. 추후에 useReadPost 자체를 재작성 해야 함.
+// TODO: 인자타입 임시 변경. 추후에 useReadPost 자체를 재작성 해야 함. 기존 인자타입 Post (types/feeds)
 const useReadPost = (item: { id: number }) => {
   const client = useQueryClient()
 
