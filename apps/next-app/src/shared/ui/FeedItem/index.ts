@@ -1,1 +1,1 @@
-export * from './FeedItem'
+export * as FeedItem from './FeedItem.style'
