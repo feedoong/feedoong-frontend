@@ -16,7 +16,7 @@ import { getFormatDate, getWellKnownChannelImg } from 'utils'
 import Icons from 'assets/icons'
 
 interface Props extends UserItemDTO {
-  isSomeoneLoggedIn: boolean
+  isLoggedIn: boolean
 }
 
 export const PostFeedItem = ({
@@ -30,7 +30,7 @@ export const PostFeedItem = ({
   channelTitle,
   publishedAt,
   isLiked,
-  isSomeoneLoggedIn,
+  isLoggedIn,
 }: Props) => {
   const router = useRouter()
   const { handleLike } = useToggleLike({ id, isLiked })
@@ -72,7 +72,7 @@ export const PostFeedItem = ({
         </Flex>
 
         <Flex gap={8}>
-          {isSomeoneLoggedIn && (
+          {isLoggedIn && (
             <FeedItem.ImageButton
               alt="북마크"
               src={isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
