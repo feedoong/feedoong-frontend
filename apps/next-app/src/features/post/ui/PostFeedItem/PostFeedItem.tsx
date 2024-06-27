@@ -1,4 +1,5 @@
-import Icons from 'assets/icons'
+import { useRouter } from 'next/navigation'
+
 import Anchor from 'components/common/Anchor'
 import {
   copyToClipboard,
@@ -11,7 +12,8 @@ import LogoIcon from 'components/common/LogoIcon'
 import type { UserItemDTO } from 'services/types/_generated/apiDocumentation.schemas'
 import { FeedItem } from 'shared/ui/FeedItem'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
-import { useRouter } from 'next/navigation'
+
+import Icons from 'assets/icons'
 
 interface Props extends UserItemDTO {
   isSomeoneLoggedIn: boolean
@@ -29,7 +31,6 @@ export const PostFeedItem = ({
   publishedAt,
   isLiked,
   isSomeoneLoggedIn,
-  ...rest
 }: Props) => {
   const router = useRouter()
   const { handleLike } = useToggleLike({ id, isLiked })

@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Toast from 'components/common/Toast'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { likePost, unlikePost } from 'services/feeds'
-import type { PrivatePost } from 'types/feeds'
 
 // TODO: 추후에 useToggleLike 자체를 재작성해야 함. 임시로 인자 타입 변경
 const useToggleLike = (item: { id: number; isLiked: boolean }) => {

@@ -3,7 +3,7 @@ import produce from 'immer'
 
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { submitViewedPost } from 'services/feeds'
-import type { Feed, Post, SubmitViewedPost } from 'types/feeds'
+import type { Feed, SubmitViewedPost } from 'types/feeds'
 import { mergeObjectsByMutate } from 'utils/common'
 
 interface PrevDataType {

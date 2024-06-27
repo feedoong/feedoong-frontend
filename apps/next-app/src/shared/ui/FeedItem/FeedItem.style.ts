@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styled from 'styled-components'
+
 import { ellipsis, getTypographyStyles } from 'styles/fonts'
 
 export const Container = styled.div`
