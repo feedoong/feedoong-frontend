@@ -3,4 +3,3 @@ os: linux
 hooks:
   ApplicationStart:
     - location: deploy.sh
-      timeout: 60
