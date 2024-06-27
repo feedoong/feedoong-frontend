@@ -85,7 +85,7 @@ export const getPublicUserInfoUsingGET = (
  */
 export const getUserLikedItemsUsingGET = (
     username: string,
-    params?: GetUserLikedItemsUsingGETParams,
+    params: GetUserLikedItemsUsingGETParams,
  ) => {
       return feedoongApi<UserItemListResponse>(
       {url: `/v1/users/${username}/liked-items`, method: 'get',
@@ -98,7 +98,7 @@ export const getUserLikedItemsUsingGET = (
  */
 export const getUserSubscriptionsUsingGET = (
     username: string,
-    params?: GetUserSubscriptionsUsingGETParams,
+    params: GetUserSubscriptionsUsingGETParams,
  ) => {
       return feedoongApi<UserSubscriptionListResponse>(
       {url: `/v1/users/${username}/subscriptions`, method: 'get',

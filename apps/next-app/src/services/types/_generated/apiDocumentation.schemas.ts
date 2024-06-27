@@ -6,23 +6,25 @@
  * OpenAPI spec version: 1.0
  */
 export type GetUserSubscriptionsUsingGETParams = {
-offset?: number;
-pageNumber?: number;
-pageSize?: number;
-paged?: boolean;
-'sort.sorted'?: boolean;
-'sort.unsorted'?: boolean;
-unpaged?: boolean;
+/**
+ * 페이지 번호
+ */
+page: number;
+/**
+ * 페이지당 항목 개수
+ */
+size: number;
 };
 
 export type GetUserLikedItemsUsingGETParams = {
-offset?: number;
-pageNumber?: number;
-pageSize?: number;
-paged?: boolean;
-'sort.sorted'?: boolean;
-'sort.unsorted'?: boolean;
-unpaged?: boolean;
+/**
+ * 페이지 번호
+ */
+page: number;
+/**
+ * 페이지당 항목 개수
+ */
+size: number;
 };
 
 export type LoginUsingPOSTParams = {
@@ -37,13 +39,14 @@ export type GetSubscriptionsUsingGETParams = {
  * 검색 키워드, required = false
  */
 keyword?: string;
-offset?: number;
-pageNumber?: number;
-pageSize?: number;
-paged?: boolean;
-'sort.sorted'?: boolean;
-'sort.unsorted'?: boolean;
-unpaged?: boolean;
+/**
+ * 페이지 번호
+ */
+page: number;
+/**
+ * 페이지당 항목 개수
+ */
+size: number;
 };
 
 export type CheckHealthUsingGET200 = { [key: string]: any };
@@ -53,33 +56,36 @@ export type GetLikesUsingGETParams = {
  * 검색 키워드, required = false
  */
 keyword?: string;
-offset?: number;
-pageNumber?: number;
-pageSize?: number;
-paged?: boolean;
-'sort.sorted'?: boolean;
-'sort.unsorted'?: boolean;
-unpaged?: boolean;
+/**
+ * 페이지 번호
+ */
+page: number;
+/**
+ * 페이지당 항목 개수
+ */
+size: number;
 };
 
 export type GetItemsOfSubscribedChannelUsingGETParams = {
-offset?: number;
-pageNumber?: number;
-pageSize?: number;
-paged?: boolean;
-'sort.sorted'?: boolean;
-'sort.unsorted'?: boolean;
-unpaged?: boolean;
+/**
+ * 페이지 번호
+ */
+page: number;
+/**
+ * 페이지당 항목 개수
+ */
+size: number;
 };
 
 export type GetItemsUsingGETParams = {
-offset?: number;
-pageNumber?: number;
-pageSize?: number;
-paged?: boolean;
-'sort.sorted'?: boolean;
-'sort.unsorted'?: boolean;
-unpaged?: boolean;
+/**
+ * 페이지 번호
+ */
+page: number;
+/**
+ * 페이지당 항목 개수
+ */
+size: number;
 };
 
 export type GetChannelPreviewViaRssFeedUsingGETParams = {
@@ -101,60 +107,87 @@ url: string;
 };
 
 export interface UserSubscribedChannelDTO {
-  description?: string;
-  feedUrl?: string;
-  id?: number;
-  imageUrl?: string;
-  isSubscribed?: boolean;
-  title?: string;
-  url?: string;
+  /** 채널 설명 */
+  description: string;
+  /** RSS Feed 주소 */
+  feedUrl: string;
+  /** 채널 ID */
+  id: number;
+  /** 채널 이미지 URL */
+  imageUrl: string;
+  /** 구독 여부 (T/F) */
+  isSubscribed: boolean;
+  /** 채널 제목 */
+  title: string;
+  /** 블로그 홈 주소 */
+  url: string;
 }
 
 export interface UserSubscriptionListResponse {
-  channels?: UserSubscribedChannelDTO[];
-  next?: number;
-  prev?: number;
-  totalCount?: number;
+  /** 채널 목록 */
+  channels: UserSubscribedChannelDTO[];
+  /** 다음 페이지 번호 */
+  next: number;
+  /** 이전 페이지 번호 */
+  prev: number;
+  /** 총 채널 개수 */
+  totalCount: number;
 }
 
 export interface UserItemDTO {
-  channelId?: number;
-  channelImageUrl?: string;
-  channelTitle?: string;
-  description?: string;
-  guid?: string;
-  id?: number;
-  imageUrl?: string;
-  isLiked?: boolean;
-  isViewed?: boolean;
-  link?: string;
-  publishedAt?: string;
-  title?: string;
+  /** 채널 ID */
+  channelId: number;
+  /** 채널 이미지 URL */
+  channelImageUrl: string;
+  /** 채널 제목 */
+  channelTitle: string;
+  /** 아이템 본문 내용 */
+  description: string;
+  /** guid */
+  guid: string;
+  /** 아이템 ID */
+  id: number;
+  /** 아이템 이미지 URL */
+  imageUrl: string;
+  /** 좋아요(보관) 여부 (T/F) */
+  isLiked: boolean;
+  /** 읽음 여부 (T/F) */
+  isViewed: boolean;
+  /** link */
+  link: string;
+  /** 아이템 발행 일자 */
+  publishedAt: string;
+  /** 아이템 제목 */
+  title: string;
 }
 
 export interface UserItemListResponse {
-  items?: UserItemDTO[];
-  next?: number;
-  prev?: number;
-  totalCount?: number;
+  /** 아이템 목록 */
+  items: UserItemDTO[];
+  /** 다음 페이지 번호 */
+  next: number;
+  /** 이전 페이지 번호 */
+  prev: number;
+  /** 총 아이템 개수 */
+  totalCount: number;
 }
 
 export interface UserInfoResponse {
   /** 계정에 등록된 이메일 */
-  email?: string;
+  email: string;
   /** 계정에 등록된 이름 */
-  name?: string;
+  name: string;
   /** 프로필 이미지 URL */
-  profileImageUrl?: string;
+  profileImageUrl: string;
   /** 유저네임 */
-  username?: string;
+  username: string;
 }
 
 export interface TokenReissueResponse {
   /** 액세스 토큰 */
-  accessToken?: string;
+  accessToken: string;
   /** 리프레쉬 토큰 */
-  refreshToken?: string;
+  refreshToken: string;
 }
 
 export interface TokenReissueRequest {
@@ -163,92 +196,117 @@ export interface TokenReissueRequest {
 }
 
 export interface SubscriptionListResponse {
-  channels?: ChannelDetailsDTO[];
-  next?: number;
-  prev?: number;
-  totalCount?: number;
+  /** 채널 목록 */
+  channels: ChannelDetailsDTO[];
+  /** 다음 페이지 번호 */
+  next: number;
+  /** 이전 페이지 번호 */
+  prev: number;
+  /** 총 채널 개수 */
+  totalCount: number;
 }
 
 export interface RecommendedItemListResponse {
-  items?: ItemDetailsDTO[];
+  /** 아이템 목록 */
+  items: ItemDetailsDTO[];
 }
 
 export interface RecommendedChannelListResponse {
-  channels?: ChannelDetailsDTO[];
+  /** 채널 목록 */
+  channels: ChannelDetailsDTO[];
 }
 
 export interface PublicUserInfoResponse {
   /** 계정에 등록된 이름 */
-  name?: string;
+  name: string;
   /** 프로필 이미지 URL */
-  profileImageUrl?: string;
+  profileImageUrl: string;
   /** 유저네임 */
-  username?: string;
+  username: string;
 }
 
 export interface PublicItemListResponse {
-  channel?: ChannelDetailsDTO;
-  items?: ItemDetailsDTO[];
-  next?: number;
-  prev?: number;
-  totalCount?: number;
+  /** 채널 정보 */
+  channel: ChannelDetailsDTO;
+  /** 아이템 목록 */
+  items: ItemDetailsDTO[];
+  /** 다음 페이지 번호 */
+  next: number;
+  /** 이전 페이지 번호 */
+  prev: number;
+  /** 총 아이템 개수 */
+  totalCount: number;
 }
 
 export interface LikeResponse {
-  isLiked?: boolean;
-  itemId?: number;
+  /** 좋아요(보관) 여부 (T/F) */
+  isLiked: boolean;
+  /** 아이템 ID */
+  itemId: number;
 }
 
 export interface ItemViewResponse {
   /** 아이템 ID */
-  id?: number;
+  id: number;
   /** 읽음 여부 (T/F) */
-  isViewed?: boolean;
+  isViewed: boolean;
 }
 
 export interface ItemDetailsDTO {
-  channelId?: number;
-  channelImageUrl?: string;
-  channelTitle?: string;
-  description?: string;
-  guid?: string;
-  id?: number;
-  imageUrl?: string;
-  isLiked?: boolean;
-  isViewed?: boolean;
-  link?: string;
-  publishedAt?: string;
-  title?: string;
+  /** 채널 ID */
+  channelId: number;
+  /** 채널 이미지 URL */
+  channelImageUrl: string;
+  /** 채널 제목 */
+  channelTitle: string;
+  /** 아이템 본문 내용 */
+  description: string;
+  /** guid */
+  guid: string;
+  /** 아이템 ID */
+  id: number;
+  /** 아이템 이미지 URL */
+  imageUrl: string;
+  /** 좋아요(보관) 여부 (T/F) */
+  isLiked: boolean;
+  /** 읽음 여부 (T/F) */
+  isViewed: boolean;
+  /** link */
+  link: string;
+  /** 아이템 발행 일자 */
+  publishedAt: string;
+  /** 아이템 제목 */
+  title: string;
 }
 
 export interface GoogleLoginResponse {
   /** 액세스 토큰 */
-  accessToken?: string;
+  accessToken: string;
   /** 이메일 */
-  email?: string;
+  email: string;
   /** 이름 */
-  name?: string;
+  name: string;
   /** 프로필 이미지 url */
-  profileImageUrl?: string;
+  profileImageUrl: string;
   /** 리프레쉬 토큰 */
-  refreshToken?: string;
+  refreshToken: string;
   /** 유저네임 */
-  username?: string;
+  username: string;
 }
 
 export interface ChannelRegisterResponse {
   /** 등록 일시 */
-  createdAt?: string;
+  createdAt: string;
   /** RSS 피드 주소 */
-  feedUrl?: string;
+  feedUrl: string;
   /** 채널 ID */
-  id?: number;
+  id: number;
   /** 채널 이미지 url */
-  imageUrl?: string;
+  imageUrl: string;
   /** 채널 제목 */
-  title?: string;
+  title: string;
   /** 블로그 홈 주소 */
-  url?: string;
+  url: string;
 }
 
 export interface ChannelRegisterRequest {
@@ -260,24 +318,31 @@ export interface ChannelRegisterRequest {
 
 export interface ChannelPreviewResponse {
   /** 채널 설명 */
-  description?: string;
+  description: string;
   /** RSS Feed 주소 */
-  feedUrl?: string;
+  feedUrl: string;
   /** 채널 이미지 URL */
-  imageUrl?: string;
+  imageUrl: string;
   /** 채널 제목 */
-  title?: string;
+  title: string;
   /** 블로그 홈 주소 */
-  url?: string;
+  url: string;
 }
 
 export interface ChannelDetailsDTO {
-  description?: string;
-  feedUrl?: string;
-  id?: number;
-  imageUrl?: string;
-  isSubscribed?: boolean;
-  title?: string;
-  url?: string;
+  /** 채널 설명 */
+  description: string;
+  /** RSS Feed 주소 */
+  feedUrl: string;
+  /** 채널 ID */
+  id: number;
+  /** 채널 이미지 URL */
+  imageUrl: string;
+  /** 구독 여부 (T/F) */
+  isSubscribed: boolean;
+  /** 채널 제목 */
+  title: string;
+  /** 블로그 홈 주소 */
+  url: string;
 }
 

@@ -18,7 +18,7 @@ import { feedoongApi } from '../../api/index';
  * @summary 자신이 구독한 채널 리스트 확인
  */
 export const getSubscriptionsUsingGET = (
-    params?: GetSubscriptionsUsingGETParams,
+    params: GetSubscriptionsUsingGETParams,
  ) => {
       return feedoongApi<SubscriptionListResponse>(
       {url: `/v1/subscriptions`, method: 'get',
