@@ -208,19 +208,10 @@
         "operationId": "getItemsUsingGET",
         "parameters": [
           {
-            "name": "offset",
+            "name": "page",
             "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
+            "description": "페이지 번호",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
@@ -228,49 +219,14 @@
             }
           },
           {
-            "name": "pageSize",
+            "name": "size",
             "in": "query",
-            "required": false,
+            "description": "페이지당 항목 개수",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "paged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.sorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.unsorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "unpaged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],
@@ -315,19 +271,10 @@
             }
           },
           {
-            "name": "offset",
+            "name": "page",
             "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
+            "description": "페이지 번호",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
@@ -335,49 +282,14 @@
             }
           },
           {
-            "name": "pageSize",
+            "name": "size",
             "in": "query",
-            "required": false,
+            "description": "페이지당 항목 개수",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "paged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.sorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.unsorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "unpaged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],
@@ -421,19 +333,10 @@
             }
           },
           {
-            "name": "offset",
+            "name": "page",
             "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
+            "description": "페이지 번호",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
@@ -441,49 +344,14 @@
             }
           },
           {
-            "name": "pageSize",
+            "name": "size",
             "in": "query",
-            "required": false,
+            "description": "페이지당 항목 개수",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "paged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.sorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.unsorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "unpaged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],
@@ -704,19 +572,10 @@
             }
           },
           {
-            "name": "offset",
+            "name": "page",
             "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
+            "description": "페이지 번호",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
@@ -724,49 +583,14 @@
             }
           },
           {
-            "name": "pageSize",
+            "name": "size",
             "in": "query",
-            "required": false,
+            "description": "페이지당 항목 개수",
+            "required": true,
             "style": "form",
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "paged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.sorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.unsorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "unpaged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],
@@ -1000,72 +824,6 @@
         "operationId": "getUserLikedItemsUsingGET",
         "parameters": [
           {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "paged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.sorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.unsorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "unpaged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
             "name": "username",
             "in": "path",
             "description": "저장한 게시글 리스트를 확인할 유저네임",
@@ -1073,6 +831,28 @@
             "style": "simple",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "페이지 번호",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "페이지당 항목 개수",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1106,72 +886,6 @@
         "operationId": "getUserSubscriptionsUsingGET",
         "parameters": [
           {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "paged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.sorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "sort.unsorted",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "unpaged",
-            "in": "query",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
             "name": "username",
             "in": "path",
             "description": "구독한 채널 리스트를 확인할 유저네임",
@@ -1179,6 +893,28 @@
             "style": "simple",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "페이지 번호",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "페이지당 항목 개수",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1208,34 +944,58 @@
     "schemas": {
       "ChannelDetailsDTO": {
         "title": "ChannelDetailsDTO",
+        "required": [
+          "description",
+          "feedUrl",
+          "id",
+          "imageUrl",
+          "isSubscribed",
+          "title",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 설명"
           },
           "feedUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "RSS Feed 주소"
           },
           "id": {
             "type": "integer",
+            "description": "채널 ID",
             "format": "int64"
           },
           "imageUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 이미지 URL"
           },
           "isSubscribed": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "구독 여부 (T/F)",
+            "example": false
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 제목"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "블로그 홈 주소"
           }
         }
       },
       "ChannelPreviewResponse": {
         "title": "ChannelPreviewResponse",
+        "required": [
+          "description",
+          "feedUrl",
+          "imageUrl",
+          "title",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "description": {
@@ -1276,6 +1036,14 @@
       },
       "ChannelRegisterResponse": {
         "title": "ChannelRegisterResponse",
+        "required": [
+          "createdAt",
+          "feedUrl",
+          "id",
+          "imageUrl",
+          "title",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "createdAt": {
@@ -1308,6 +1076,14 @@
       },
       "GoogleLoginResponse": {
         "title": "GoogleLoginResponse",
+        "required": [
+          "accessToken",
+          "email",
+          "name",
+          "profileImageUrl",
+          "refreshToken",
+          "username"
+        ],
         "type": "object",
         "properties": {
           "accessToken": {
@@ -1338,51 +1114,83 @@
       },
       "ItemDetailsDTO": {
         "title": "ItemDetailsDTO",
+        "required": [
+          "channelId",
+          "channelImageUrl",
+          "channelTitle",
+          "description",
+          "guid",
+          "id",
+          "imageUrl",
+          "isLiked",
+          "isViewed",
+          "link",
+          "publishedAt",
+          "title"
+        ],
         "type": "object",
         "properties": {
           "channelId": {
             "type": "integer",
+            "description": "채널 ID",
             "format": "int64"
           },
           "channelImageUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 이미지 URL"
           },
           "channelTitle": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 제목"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "아이템 본문 내용"
           },
           "guid": {
-            "type": "string"
+            "type": "string",
+            "description": "guid"
           },
           "id": {
             "type": "integer",
+            "description": "아이템 ID",
             "format": "int64"
           },
           "imageUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "아이템 이미지 URL"
           },
           "isLiked": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "좋아요(보관) 여부 (T/F)",
+            "example": false
           },
           "isViewed": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "읽음 여부 (T/F)",
+            "example": false
           },
           "link": {
-            "type": "string"
+            "type": "string",
+            "description": "link"
           },
           "publishedAt": {
             "type": "string",
+            "description": "아이템 발행 일자",
             "format": "date-time"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "아이템 제목"
           }
         }
       },
       "ItemViewResponse": {
         "title": "ItemViewResponse",
+        "required": [
+          "id",
+          "isViewed"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -1399,46 +1207,70 @@
       },
       "LikeResponse": {
         "title": "LikeResponse",
+        "required": [
+          "isLiked",
+          "itemId"
+        ],
         "type": "object",
         "properties": {
           "isLiked": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "좋아요(보관) 여부 (T/F)",
+            "example": false
           },
           "itemId": {
             "type": "integer",
+            "description": "아이템 ID",
             "format": "int64"
           }
         }
       },
       "PublicItemListResponse": {
         "title": "PublicItemListResponse",
+        "required": [
+          "channel",
+          "items",
+          "next",
+          "prev",
+          "totalCount"
+        ],
         "type": "object",
         "properties": {
           "channel": {
+            "description": "채널 정보",
             "$ref": "#/components/schemas/ChannelDetailsDTO"
           },
           "items": {
             "type": "array",
+            "description": "아이템 목록",
             "items": {
               "$ref": "#/components/schemas/ItemDetailsDTO"
             }
           },
           "next": {
             "type": "integer",
+            "description": "다음 페이지 번호",
             "format": "int32"
           },
           "prev": {
             "type": "integer",
+            "description": "이전 페이지 번호",
             "format": "int32"
           },
           "totalCount": {
             "type": "integer",
+            "description": "총 아이템 개수",
             "format": "int64"
           }
         }
       },
       "PublicUserInfoResponse": {
         "title": "PublicUserInfoResponse",
+        "required": [
+          "name",
+          "profileImageUrl",
+          "username"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -1457,10 +1289,14 @@
       },
       "RecommendedChannelListResponse": {
         "title": "RecommendedChannelListResponse",
+        "required": [
+          "channels"
+        ],
         "type": "object",
         "properties": {
           "channels": {
             "type": "array",
+            "description": "채널 목록",
             "items": {
               "$ref": "#/components/schemas/ChannelDetailsDTO"
             }
@@ -1469,10 +1305,14 @@
       },
       "RecommendedItemListResponse": {
         "title": "RecommendedItemListResponse",
+        "required": [
+          "items"
+        ],
         "type": "object",
         "properties": {
           "items": {
             "type": "array",
+            "description": "아이템 목록",
             "items": {
               "$ref": "#/components/schemas/ItemDetailsDTO"
             }
@@ -1481,24 +1321,34 @@
       },
       "SubscriptionListResponse": {
         "title": "SubscriptionListResponse",
+        "required": [
+          "channels",
+          "next",
+          "prev",
+          "totalCount"
+        ],
         "type": "object",
         "properties": {
           "channels": {
             "type": "array",
+            "description": "채널 목록",
             "items": {
               "$ref": "#/components/schemas/ChannelDetailsDTO"
             }
           },
           "next": {
             "type": "integer",
+            "description": "다음 페이지 번호",
             "format": "int32"
           },
           "prev": {
             "type": "integer",
+            "description": "이전 페이지 번호",
             "format": "int32"
           },
           "totalCount": {
             "type": "integer",
+            "description": "총 채널 개수",
             "format": "int64"
           }
         }
@@ -1515,6 +1365,10 @@
       },
       "TokenReissueResponse": {
         "title": "TokenReissueResponse",
+        "required": [
+          "accessToken",
+          "refreshToken"
+        ],
         "type": "object",
         "properties": {
           "accessToken": {
@@ -1529,6 +1383,12 @@
       },
       "UserInfoResponse": {
         "title": "UserInfoResponse",
+        "required": [
+          "email",
+          "name",
+          "profileImageUrl",
+          "username"
+        ],
         "type": "object",
         "properties": {
           "email": {
@@ -1551,121 +1411,186 @@
       },
       "UserItemDTO": {
         "title": "UserItemDTO",
+        "required": [
+          "channelId",
+          "channelImageUrl",
+          "channelTitle",
+          "description",
+          "guid",
+          "id",
+          "imageUrl",
+          "isLiked",
+          "isViewed",
+          "link",
+          "publishedAt",
+          "title"
+        ],
         "type": "object",
         "properties": {
           "channelId": {
             "type": "integer",
+            "description": "채널 ID",
             "format": "int64"
           },
           "channelImageUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 이미지 URL"
           },
           "channelTitle": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 제목"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "아이템 본문 내용"
           },
           "guid": {
-            "type": "string"
+            "type": "string",
+            "description": "guid"
           },
           "id": {
             "type": "integer",
+            "description": "아이템 ID",
             "format": "int64"
           },
           "imageUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "아이템 이미지 URL"
           },
           "isLiked": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "좋아요(보관) 여부 (T/F)",
+            "example": false
           },
           "isViewed": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "읽음 여부 (T/F)",
+            "example": false
           },
           "link": {
-            "type": "string"
+            "type": "string",
+            "description": "link"
           },
           "publishedAt": {
             "type": "string",
+            "description": "아이템 발행 일자",
             "format": "date-time"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "아이템 제목"
           }
         }
       },
       "UserItemListResponse": {
         "title": "UserItemListResponse",
+        "required": [
+          "items",
+          "next",
+          "prev",
+          "totalCount"
+        ],
         "type": "object",
         "properties": {
           "items": {
             "type": "array",
+            "description": "아이템 목록",
             "items": {
               "$ref": "#/components/schemas/UserItemDTO"
             }
           },
           "next": {
             "type": "integer",
+            "description": "다음 페이지 번호",
             "format": "int32"
           },
           "prev": {
             "type": "integer",
+            "description": "이전 페이지 번호",
             "format": "int32"
           },
           "totalCount": {
             "type": "integer",
+            "description": "총 아이템 개수",
             "format": "int64"
           }
         }
       },
       "UserSubscribedChannelDTO": {
         "title": "UserSubscribedChannelDTO",
+        "required": [
+          "description",
+          "feedUrl",
+          "id",
+          "imageUrl",
+          "isSubscribed",
+          "title",
+          "url"
+        ],
         "type": "object",
         "properties": {
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 설명"
           },
           "feedUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "RSS Feed 주소"
           },
           "id": {
             "type": "integer",
+            "description": "채널 ID",
             "format": "int64"
           },
           "imageUrl": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 이미지 URL"
           },
           "isSubscribed": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "구독 여부 (T/F)",
+            "example": false
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "description": "채널 제목"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "description": "블로그 홈 주소"
           }
         }
       },
       "UserSubscriptionListResponse": {
         "title": "UserSubscriptionListResponse",
+        "required": [
+          "channels",
+          "next",
+          "prev",
+          "totalCount"
+        ],
         "type": "object",
         "properties": {
           "channels": {
             "type": "array",
+            "description": "채널 목록",
             "items": {
               "$ref": "#/components/schemas/UserSubscribedChannelDTO"
             }
           },
           "next": {
             "type": "integer",
+            "description": "다음 페이지 번호",
             "format": "int32"
           },
           "prev": {
             "type": "integer",
+            "description": "이전 페이지 번호",
             "format": "int32"
           },
           "totalCount": {
             "type": "integer",
+            "description": "총 채널 개수",
             "format": "int64"
           }
         }

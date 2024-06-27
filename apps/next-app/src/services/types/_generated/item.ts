@@ -23,7 +23,7 @@ import { feedoongApi } from '../../api/index';
  * @summary 구독한 채널들의 아이템 리스트
  */
 export const getItemsUsingGET = (
-    params?: GetItemsUsingGETParams,
+    params: GetItemsUsingGETParams,
  ) => {
       return feedoongApi<UserItemListResponse>(
       {url: `/v1/items`, method: 'get',
@@ -36,7 +36,7 @@ export const getItemsUsingGET = (
  */
 export const getItemsOfSubscribedChannelUsingGET = (
     channelId: number,
-    params?: GetItemsOfSubscribedChannelUsingGETParams,
+    params: GetItemsOfSubscribedChannelUsingGETParams,
  ) => {
       return feedoongApi<PublicItemListResponse>(
       {url: `/v1/items/channel/${channelId}`, method: 'get',
@@ -48,7 +48,7 @@ export const getItemsOfSubscribedChannelUsingGET = (
  * @summary 보관(좋아요)한 아이템 리스트
  */
 export const getLikesUsingGET = (
-    params?: GetLikesUsingGETParams,
+    params: GetLikesUsingGETParams,
  ) => {
       return feedoongApi<UserItemListResponse>(
       {url: `/v1/items/liked`, method: 'get',
