@@ -10,8 +10,9 @@ import useToggleLike from 'components/common/FeedItem/hooks/useToggleLike'
 import Flex from 'components/common/Flex'
 import LogoIcon from 'components/common/LogoIcon'
 import type { UserItemDTO } from 'services/types/_generated/apiDocumentation.schemas'
-import { FeedItem } from 'shared/ui/FeedItem'
 import { getFormatDate, getWellKnownChannelImg } from 'utils'
+
+import * as S from './PostFeedItem.style'
 
 import Icons from 'assets/icons'
 
@@ -41,39 +42,35 @@ export const PostFeedItem = ({
   }
 
   return (
-    <FeedItem.Container>
-      <FeedItem.Body>
+    <S.Container>
+      <S.Body>
         <Flex gap={6} direction="column" style={{ marginRight: '20px' }}>
           <Anchor href={link} target="_blank" onClick={() => handleRead(id)}>
-            <FeedItem.Title>{title}</FeedItem.Title>
+            <S.Title>{title}</S.Title>
           </Anchor>
           <Anchor href={link} target="_blank" onClick={() => handleRead(id)}>
-            <FeedItem.Contents>{description}</FeedItem.Contents>
+            <S.Contents>{description}</S.Contents>
           </Anchor>
         </Flex>
-        {imageUrl && (
-          <FeedItem.Thumbnail src={imageUrl} width={90} height={90} />
-        )}
-      </FeedItem.Body>
+        {imageUrl && <S.Thumbnail src={imageUrl} width={90} height={90} />}
+      </S.Body>
 
-      <FeedItem.Footer>
+      <S.Footer>
         <Flex gap={8}>
           <LogoIcon
             diameter={getDiameterByType('card')}
             src={channelImageUrl ?? getWellKnownChannelImg(String(link))}
           />
-          <FeedItem.ChannelTitle onClick={() => goToChannelPage(channelId)}>
+          <S.ChannelTitle onClick={() => goToChannelPage(channelId)}>
             {channelTitle}
-          </FeedItem.ChannelTitle>
+          </S.ChannelTitle>
 
-          <FeedItem.SubText>
-            {getFormatDate(publishedAt, 'YYYY.MM.DD')}
-          </FeedItem.SubText>
+          <S.SubText>{getFormatDate(publishedAt, 'YYYY.MM.DD')}</S.SubText>
         </Flex>
 
         <Flex gap={8}>
           {isLoggedIn && (
-            <FeedItem.ImageButton
+            <S.ImageButton
               alt="북마크"
               src={isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
               width={16}
@@ -82,7 +79,7 @@ export const PostFeedItem = ({
               priority
             />
           )}
-          <FeedItem.ImageButton
+          <S.ImageButton
             alt="링크 복사"
             src={Icons.Link}
             width={16}
@@ -91,7 +88,7 @@ export const PostFeedItem = ({
             priority
           />
         </Flex>
-      </FeedItem.Footer>
-    </FeedItem.Container>
+      </S.Footer>
+    </S.Container>
   )
 }
