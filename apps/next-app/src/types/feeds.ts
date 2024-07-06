@@ -18,7 +18,7 @@ export interface Post {
   title: string
   channelImageUrl: string
   channelTitle: string
-  channelId: string
+  channelId: number
 }
 
 export interface PrivatePost extends Post {

@@ -3,7 +3,7 @@ import produce from 'immer'
 
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { submitViewedPost } from 'services/feeds'
-import type { Feed, Post, SubmitViewedPost } from 'types/feeds'
+import type { Feed, SubmitViewedPost } from 'types/feeds'
 import { mergeObjectsByMutate } from 'utils/common'
 
 interface PrevDataType {
@@ -11,7 +11,8 @@ interface PrevDataType {
   pageParams: Array<number | null>
 }
 
-const useReadPost = (item: Post) => {
+// TODO: 인자타입 임시 변경. 추후에 useReadPost 자체를 재작성 해야 함. 기존 인자타입 Post (types/feeds)
+const useReadPost = (item: { id: number }) => {
   const client = useQueryClient()
 
   const { mutate: handleRead } = useMutation({
