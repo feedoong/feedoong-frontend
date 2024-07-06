@@ -11,6 +11,7 @@ const FeedTab = () => {
   const pathname = usePathname()
 
   const pathnameMatcher = (path: string) => {
+    if (!pathname) return false
     return pathname.includes(path)
   }
 
@@ -18,9 +19,7 @@ const FeedTab = () => {
     <TabContainer>
       <Tab
         $isSelected={pathnameMatcher(FEED_ROUTE.MY_FEED)}
-        onClick={() =>
-          router.push(FEED_ROUTE.MY_FEED)
-        }
+        onClick={() => router.push(FEED_ROUTE.MY_FEED)}
       >
         내 피드
       </Tab>
