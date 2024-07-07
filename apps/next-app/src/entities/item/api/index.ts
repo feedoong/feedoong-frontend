@@ -10,7 +10,6 @@ export const itemQueries = {
     infiniteQueryOptions({
       queryKey: [...itemQueries.all(), 'list'],
       queryFn: ({ pageParam }) => {
-        // return getItemsUsingGET({ page: 1, size: 10 })
         if (api) {
           return getFeedsServerSide(api)(pageParam)
         }

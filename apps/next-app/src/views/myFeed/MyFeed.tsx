@@ -30,13 +30,7 @@ const MyFeed = () => {
       <S.CardContainer>
         {itemList.pages.map((page) =>
           page.items.map((item) => (
-            <PostFeedItem
-              key={item.id}
-              {...item}
-              isLoggedIn={true}
-              isLiked={false}
-              isViewed={false}
-            />
+            <PostFeedItem key={item.id} {...item} isLoggedIn={true} />
           ))
         )}
       </S.CardContainer>

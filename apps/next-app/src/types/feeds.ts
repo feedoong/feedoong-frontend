@@ -19,6 +19,8 @@ export interface Post {
   channelImageUrl: string
   channelTitle: string
   channelId: number
+  isLiked: boolean
+  isViewed: boolean
 }
 
 export interface PrivatePost extends Post {
