@@ -8,10 +8,12 @@ import MyFeed from 'views/myFeed'
 import { getQueryClient } from 'core/getQueryClient'
 import { feedoongApi } from 'services/api'
 import { setAuthorizationHeader } from 'features/auth/token'
+import { useCheckLoggedIn } from 'shared/hooks/useCheckLoggedIn'
 
 const FeedMePage: NextPage = () => {
   const api = feedoongApi()
   const cookieStore = cookies()
+  const isLoggedIn = useCheckLoggedIn(cookieStore)
   const accessToken = `${cookieStore.get('accessToken')?.value}`
 
   setAuthorizationHeader(api, accessToken, { type: 'Bearer' })
@@ -25,7 +27,7 @@ const FeedMePage: NextPage = () => {
         <title>내 피드 | 인사이트가 피둥피둥</title>
       </Head>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <MyFeed />
+        <MyFeed isLoggedIn={isLoggedIn} />
       </HydrationBoundary>
     </>
   )

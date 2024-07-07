@@ -9,7 +9,11 @@ import Loading from 'components/common/Loading'
 
 import * as S from './MyFeed.style'
 
-const MyFeed = () => {
+interface Props {
+  isLoggedIn: boolean
+}
+
+const MyFeed = ({ isLoggedIn }: Props) => {
   const {
     data: itemList,
     fetchNextPage,
@@ -30,7 +34,7 @@ const MyFeed = () => {
       <S.CardContainer>
         {itemList.pages.map((page) =>
           page.items.map((item) => (
-            <PostFeedItem key={item.id} {...item} isLoggedIn={true} />
+            <PostFeedItem key={item.id} {...item} isLoggedIn={isLoggedIn} />
           ))
         )}
       </S.CardContainer>
