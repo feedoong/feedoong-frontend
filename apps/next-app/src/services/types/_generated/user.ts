@@ -17,7 +17,8 @@ import type {
   UserItemListResponse,
   UserSubscriptionListResponse
 } from './apiDocumentation.schemas'
-import { feedoongApi } from '../../api/index';
+// import { feedoongApi } from '../../api/index';
+import { feedoongApi } from '../../api/feedoongApi'
 
 
 
