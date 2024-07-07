@@ -1,14 +1,11 @@
-import Head from 'next/head'
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
+
+import { itemQueries } from 'entities/item/api'
 
 const MyFeed = () => {
-  return (
-    <>
-      <Head>
-        <title>내 피드 | 인사이트가 피둥피둥</title>
-      </Head>
-      <div> 내 피드</div>
-    </>
-  )
+  const { data } = useSuspenseInfiniteQuery(itemQueries.list())
+  console.log(data)
+  return <div></div>
 }
 
 export default MyFeed
