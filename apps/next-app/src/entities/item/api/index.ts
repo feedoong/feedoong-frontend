@@ -17,11 +17,8 @@ export const itemQueries = {
         return getFeeds(pageParam)
       },
       initialPageParam: 1,
-      getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
-        console.log({ lastPage, lastPageParam })
-        // const hasNextPage = lastPage?.length === 20
-        // return hasNextPage ? lastPageParam + 1 : undefined
-        return 1
+      getNextPageParam: (lastPage) => {
+        return lastPage.items.length === 10 ? lastPage.next : undefined
       },
     }),
 }
