@@ -1,6 +1,5 @@
 import Nav from './_components/Nav'
 import Container from './_components/Container'
-
 interface HasGNBLayoutProps {
   children: React.ReactNode
 }
