@@ -2,6 +2,7 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { cookies } from 'next/headers'
+import { Suspense } from 'react'
 
 import { itemQueries } from 'entities/item/api'
 import MyFeed from 'views/myFeed'
@@ -9,6 +10,7 @@ import { getQueryClient } from 'core/getQueryClient'
 import { feedoongApi } from 'services/api'
 import { setAuthorizationHeader } from 'features/auth/token'
 import { useCheckLoggedIn } from 'shared/hooks/useCheckLoggedIn'
+import { SkeletonPostType } from 'components/common/Skeleton'
 
 const FeedMePage: NextPage = () => {
   const api = feedoongApi()
@@ -27,7 +29,13 @@ const FeedMePage: NextPage = () => {
         <title>내 피드 | 인사이트가 피둥피둥</title>
       </Head>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <MyFeed isLoggedIn={isLoggedIn} />
+        <Suspense
+          fallback={Array.from({ length: 10 }).map((_, index) => (
+            <SkeletonPostType key={index} />
+          ))}
+        >
+          <MyFeed isLoggedIn={isLoggedIn} />
+        </Suspense>
       </HydrationBoundary>
     </>
   )

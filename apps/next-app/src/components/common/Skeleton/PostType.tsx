@@ -1,3 +1,4 @@
+'use client'
 import Skeleton from 'react-loading-skeleton'
 
 import { Container } from 'components/common/FeedItem/Post/Post.style'
