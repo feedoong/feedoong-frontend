@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ProfilePopover = ({ children }: Props) => {
-  const { data: me } = useGetUserProfile()
+  // const { data: me } = useGetUserProfile()
   const client = useQueryClient()
   const { isDarkMode, toggleColorMode } = useColorMode()
 
