@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Toast from 'components/common/Toast'
+import { itemQueries } from 'entities/item/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { likePost, unlikePost } from 'services/feeds'
 
@@ -12,6 +13,7 @@ const useToggleLike = (item: { id: number; isLiked: boolean }) => {
     mutationKey: CACHE_KEYS.likePost(item.id),
     mutationFn: !item.isLiked ? likePost : unlikePost,
     onSuccess: async (data) => {
+      client.invalidateQueries(itemQueries.list())
       client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })
       client.invalidateQueries({
         predicate: ({ queryHash }) => {
