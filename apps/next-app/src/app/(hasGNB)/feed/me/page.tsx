@@ -1,18 +1,23 @@
-import {
-  useQueryClient,
-  HydrationBoundary,
-  dehydrate,
-} from '@tanstack/react-query'
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { cookies } from 'next/headers'
 
 import { itemQueries } from 'entities/item/api'
 import MyFeed from 'views/myFeed'
 import { getQueryClient } from 'core/getQueryClient'
+import { feedoongApi } from 'services/api'
+import { setAuthorizationHeader } from 'features/auth/token'
 
 const FeedMePage: NextPage = () => {
+  const api = feedoongApi()
+  const cookieStore = cookies()
+  const accessToken = `${cookieStore.get('accessToken')?.value}`
+
+  setAuthorizationHeader(api, accessToken, { type: 'Bearer' })
+
   const queryClient = getQueryClient()
-  void queryClient.prefetchInfiniteQuery(itemQueries.list())
+  void queryClient.prefetchInfiniteQuery(itemQueries.list(api))
 
   return (
     <>
