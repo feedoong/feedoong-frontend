@@ -9,13 +9,13 @@ import MyFeed from 'views/myFeed'
 import { getQueryClient } from 'core/getQueryClient'
 import { feedoongApi } from 'services/api'
 import { setAuthorizationHeader } from 'features/auth/token'
-import { useCheckLoggedIn } from 'shared/hooks/useCheckLoggedIn'
+import { checkLoggedIn } from 'shared/utils/checkLoggedIn'
 import { SkeletonPostType } from 'components/common/Skeleton'
 
 const FeedMePage: NextPage = () => {
   const api = feedoongApi()
   const cookieStore = cookies()
-  const isLoggedIn = useCheckLoggedIn(cookieStore)
+  const isLoggedIn = checkLoggedIn(cookieStore)
   const accessToken = `${cookieStore.get('accessToken')?.value}`
 
   setAuthorizationHeader(api, accessToken, { type: 'Bearer' })
