@@ -8,6 +8,10 @@ interface Props {
   children: ReactNode
 }
 
+export const metadata = {
+  title: '내 피드 | 인사이트가 피둥피둥',
+}
+
 const FeedLayout = ({ children }: Props) => {
   return (
     <>
