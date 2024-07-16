@@ -15,7 +15,7 @@ export const itemQueries = {
       },
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
-        return lastPage.items.length === 10 ? lastPage.next : undefined
+        return lastPage.next
       },
     }),
 }

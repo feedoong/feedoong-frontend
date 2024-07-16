@@ -9,9 +9,9 @@ import { itemQueries } from 'entities/item/api'
 import { checkLoggedIn } from 'shared/utils/checkLoggedIn'
 import MyFeed from 'views/myFeed'
 
-const FeedMePage: NextPage = () => {
+const FeedMePage: NextPage = async () => {
   const queryClient = getQueryClient()
-  void queryClient.prefetchInfiniteQuery(itemQueries.list())
+  await queryClient.prefetchInfiniteQuery(itemQueries.list())
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

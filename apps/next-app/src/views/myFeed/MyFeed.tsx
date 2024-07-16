@@ -14,12 +14,8 @@ interface Props {
 }
 
 const MyFeed = ({ isLoggedIn }: Props) => {
-  const {
-    data: itemList,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  } = useInfiniteQuery(itemQueries.list())
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useInfiniteQuery(itemQueries.list())
 
   const { ref, inView } = useInView({ rootMargin: '25px' })
 
@@ -32,7 +28,7 @@ const MyFeed = ({ isLoggedIn }: Props) => {
   return (
     <>
       <S.CardContainer>
-        {itemList?.pages.map((page) =>
+        {data?.pages.map((page) =>
           page.items.map((item) => (
             <PostFeedItem key={item.id} {...item} isLoggedIn={isLoggedIn} />
           ))
