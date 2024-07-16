@@ -8,7 +8,8 @@
 import type {
   CheckHealthUsingGET200
 } from './apiDocumentation.schemas'
-import { feedoongApi } from '../../api/index';
+// import { feedoongApi } from '../../api/index';
+import { feedoongApi } from '../../api/feedoongApi'
 
 
 

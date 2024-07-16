@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/router'
+import { useRouter, usePathname } from 'next/navigation'
 import { SwitchCase } from '@toss/react'
 
 import { SubTab, Tab, TabContainer, VerticalDivider } from './styles'
@@ -8,18 +8,18 @@ import { FEED_ROUTE } from 'constants/route'
 
 const FeedTab = () => {
   const router = useRouter()
+  const pathname = usePathname()
 
   const pathnameMatcher = (path: string) => {
-    return router.pathname.includes(path)
+    if (!pathname) return false
+    return pathname.includes(path)
   }
 
   return (
     <TabContainer>
       <Tab
         $isSelected={pathnameMatcher(FEED_ROUTE.MY_FEED)}
-        onClick={() =>
-          router.push(FEED_ROUTE.MY_FEED, undefined, { shallow: true })
-        }
+        onClick={() => router.push(FEED_ROUTE.MY_FEED)}
       >
         내 피드
       </Tab>
@@ -30,9 +30,7 @@ const FeedTab = () => {
           if (pathnameMatcher(FEED_ROUTE.RECOMMENDED_FEED)) {
             return
           }
-          router.push(FEED_ROUTE.RECOMMENDED_CHANNELS, undefined, {
-            shallow: true,
-          })
+          router.push(FEED_ROUTE.RECOMMENDED_CHANNELS)
         }}
       >
         <SwitchCase
@@ -49,9 +47,7 @@ const FeedTab = () => {
                     )}
                     onClickCapture={(e) => {
                       e.stopPropagation()
-                      router.push(FEED_ROUTE.RECOMMENDED_CHANNELS, undefined, {
-                        shallow: true,
-                      })
+                      router.push(FEED_ROUTE.RECOMMENDED_CHANNELS)
                     }}
                   >
                     채널
@@ -60,9 +56,7 @@ const FeedTab = () => {
                     $isSelected={pathnameMatcher(FEED_ROUTE.RECOMMENDED_POSTS)}
                     onClickCapture={(e) => {
                       e.stopPropagation()
-                      router.push(FEED_ROUTE.RECOMMENDED_POSTS, undefined, {
-                        shallow: true,
-                      })
+                      router.push(FEED_ROUTE.RECOMMENDED_POSTS)
                     }}
                   >
                     게시물

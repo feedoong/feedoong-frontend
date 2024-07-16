@@ -8,7 +8,8 @@
 import type {
   LikeResponse
 } from './apiDocumentation.schemas'
-import { feedoongApi } from '../../api/index';
+// import { feedoongApi } from '../../api/index';
+import { feedoongApi } from '../../api/feedoongApi'
 
 
 

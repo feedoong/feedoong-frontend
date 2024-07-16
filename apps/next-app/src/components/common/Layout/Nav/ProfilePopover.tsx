@@ -1,4 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query'
+'use client'
 import Image from 'next/image'
 
 import Anchor from 'components/common/Anchor'
@@ -7,6 +7,7 @@ import { FEEDOONG_EXTENSION_URL } from 'constants/url'
 import { logoutAction } from 'features/auth/logout'
 import { useGetUserProfile } from 'features/user/userProfile'
 import { useColorMode } from 'utils/hooks'
+import { getQueryClient } from 'core/getQueryClient'
 
 import Icons from 'assets/icons'
 
@@ -16,7 +17,7 @@ interface Props {
 
 const ProfilePopover = ({ children }: Props) => {
   const { data: me } = useGetUserProfile()
-  const client = useQueryClient()
+  const queryClient = getQueryClient()
   const { isDarkMode, toggleColorMode } = useColorMode()
 
   return (
@@ -128,7 +129,7 @@ const ProfilePopover = ({ children }: Props) => {
           </a>
 
           <Popover.Item
-            onClick={() => logoutAction(client)}
+            onClick={() => logoutAction(queryClient)}
             icon={
               <Image
                 src={Icons.Close}
