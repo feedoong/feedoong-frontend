@@ -6,13 +6,14 @@ import axios, {
 } from 'axios'
 
 import { getApiEndpoint } from 'envs'
-import api from 'services/api'
+import { feedoongApi } from 'services/api'
 import {
   getRefreshTokenFromCookie,
   setAccessTokenToCookie,
-  setAuthorizationHeader,
+  // setAuthorizationHeader,
   setRefreshTokenToCookie,
 } from 'features/auth/token'
+import type UserProfile from 'pages/[userName]'
 
 export interface UserProfile {
   email: string
@@ -27,23 +28,26 @@ export interface SignUpResponse extends UserProfile {
 }
 
 export const submitAccessToken = (token: string) => {
-  return api.post<null, SignUpResponse>(`/users/login/google`, null, {
+  return feedoongApi<SignUpResponse>({
+    method: 'POST',
+    url: '/users/login/google',
+    data: null,
     params: { accessToken: token },
   })
 }
 
 export const getUserInfo = () => {
-  return api.get<null, UserProfile>(`/users/me`)
+  return feedoongApi<UserProfile>({
+    method: 'GET',
+    url: '/users/me',
+  })
 }
 
 export const getUserInfoByUsername = (username: string) => {
-  return api.get<null, Exclude<UserProfile, 'username'>>(
-    `/users/${username}/info`
-  )
-}
-
-export const getUserInfoServerSide = (_api: AxiosInstance) => () => {
-  return _api.get<null, UserProfile>(`/users/me`)
+  return feedoongApi<Exclude<UserProfile, 'username'>>({
+    method: 'GET',
+    url: `/users/${username}/info`,
+  })
 }
 
 export const refreshAccessToken = async (
@@ -65,8 +69,6 @@ export const refreshAccessToken = async (
 
   setRefreshTokenToCookie(newRefreshToken)
   setAccessTokenToCookie(newAccessToken)
-
-  setAuthorizationHeader(_api, newAccessToken, { type: 'Bearer' })
 
   // 필요한 코드인지 확인 필요
   if (!originalRequest?.headers) {

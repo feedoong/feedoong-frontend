@@ -3,23 +3,15 @@ import type { NextPage } from 'next'
 import { cookies } from 'next/headers'
 import { Suspense } from 'react'
 
-import { itemQueries } from 'entities/item/api'
-import MyFeed from 'views/myFeed'
-import { getQueryClient } from 'core/getQueryClient'
-import { feedoongApi } from 'services/api'
-import { setAuthorizationHeader } from 'features/auth/token'
-import { checkLoggedIn } from 'shared/utils/checkLoggedIn'
 import { SkeletonPostType } from 'components/common/Skeleton'
+import { getQueryClient } from 'core/getQueryClient'
+import { itemQueries } from 'entities/item/api'
+import { checkLoggedIn } from 'shared/utils/checkLoggedIn'
+import MyFeed from 'views/myFeed'
 
 const FeedMePage: NextPage = () => {
-  const api = feedoongApi()
-  const cookieStore = cookies()
-  const accessToken = `${cookieStore.get('accessToken')?.value}`
-
-  setAuthorizationHeader(api, accessToken, { type: 'Bearer' })
-
   const queryClient = getQueryClient()
-  void queryClient.prefetchInfiniteQuery(itemQueries.list(api))
+  void queryClient.prefetchInfiniteQuery(itemQueries.list())
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -28,7 +20,7 @@ const FeedMePage: NextPage = () => {
           <SkeletonPostType key={index} />
         ))}
       >
-        <MyFeed isLoggedIn={checkLoggedIn(cookieStore)} />
+        <MyFeed isLoggedIn={checkLoggedIn(cookies())} />
       </Suspense>
     </HydrationBoundary>
   )

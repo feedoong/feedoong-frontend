@@ -1,4 +1,4 @@
-import type { AxiosResponse } from 'axios'
+import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import Axios, { AxiosError } from 'axios'
 import humps from 'humps'
 import httpStatus from 'http-status-codes'
@@ -12,7 +12,7 @@ import {
 
 const { camelizeKeys } = humps
 
-export const feedoongApi = () => {
+export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
   const accessToken = getAccessTokenFromCookie()
 
   const _api = Axios.create({
@@ -27,6 +27,11 @@ export const feedoongApi = () => {
   _api.interceptors.response.use(
     // try
     (response) => {
+      config.headers = {
+        ...config.headers,
+        Authorization: `Bearer ${accessToken}`,
+      }
+
       return Promise.resolve(
         camelizeKeys(response.data)
       ) as unknown as AxiosResponse
@@ -54,9 +59,5 @@ export const feedoongApi = () => {
     return config
   })
 
-  return _api
+  return _api(config)
 }
-
-const api = feedoongApi()
-
-export default api

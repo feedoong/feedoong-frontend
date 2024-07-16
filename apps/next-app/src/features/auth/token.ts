@@ -1,6 +1,5 @@
-import Cookies from 'js-cookie'
-import type { AxiosInstance } from 'axios'
 import dayjs from 'dayjs'
+import Cookies from 'js-cookie'
 
 import { AccessToken, RefreshToken } from 'constants/auth'
 
@@ -25,16 +24,4 @@ export const setAccessTokenToCookie = (token: string) => {
     secure: true,
     sameSite: 'lax',
   })
-}
-
-export const setAuthorizationHeader = (
-  api: AxiosInstance,
-  token: string,
-  options?: {
-    type: 'Bearer' | 'Basic'
-  }
-) => {
-  api.defaults.headers.common['Authorization'] = options?.type
-    ? `${options.type} ${token}`
-    : token
 }

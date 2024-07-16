@@ -1,13 +1,10 @@
-import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
-import { parseCookies } from 'nookies'
+import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
+import type { feedoongApi } from 'services/api'
 import type { UserProfile } from 'services/auth'
-import { getUserInfoServerSide } from 'services/auth'
+import { getUserInfo } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { setAuthorizationHeader } from 'features/auth/token'
-import { feedoongApi } from 'services/api'
-import { AccessToken } from 'constants/auth'
 
 export type GetServerSidePropsContextWithAuthClient =
   GetServerSidePropsContext & {
@@ -20,20 +17,12 @@ export const withAuthQueryServerSideProps = (
 ) => {
   return async (context: GetServerSidePropsContextWithAuthClient) => {
     try {
-      const api = feedoongApi()
-      context.api = api
-      const cookies = parseCookies(
-        context as (typeof parseCookies)['arguments']
-      )
-
-      setAuthorizationHeader(api, cookies[AccessToken], { type: 'Bearer' })
-
       const queryClient = new QueryClient()
       context.queryClient = queryClient
 
       await queryClient.prefetchQuery<UserProfile>({
         queryKey: CACHE_KEYS.me,
-        queryFn: getUserInfoServerSide(api),
+        queryFn: getUserInfo,
       })
 
       if (!getServerSidePropsFunc) {

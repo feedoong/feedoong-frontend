@@ -1,5 +1,8 @@
-import api from 'services/api'
+import { feedoongApi } from 'services/api'
 
 export const deleteAccount = () => {
-  return api.delete<null, null>('/users')
+  return feedoongApi<null>({
+    method: 'DELETE',
+    url: '/users',
+  })
 }

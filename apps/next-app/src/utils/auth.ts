@@ -1,9 +1,7 @@
-import type { NextRequest } from 'next/server'
 import Cookies from 'js-cookie'
+import type { NextRequest } from 'next/server'
 
 import { AccessToken, RefreshToken } from 'constants/auth'
-import api from 'services/api'
-import { setAuthorizationHeader } from 'features/auth/token'
 
 export const isLoginValidServerSide = (request: NextRequest) => {
   const accessToken = request.cookies.get(AccessToken)
@@ -29,6 +27,5 @@ export const destroyTokensClientSide = () => {
   Cookies.remove(RefreshToken)
   Cookies.remove(AccessToken)
 
-  setAuthorizationHeader(api, '')
   // TODO: Invalidate the tokens on the server
 }

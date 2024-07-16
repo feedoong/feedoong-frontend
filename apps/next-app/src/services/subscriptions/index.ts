@@ -1,18 +1,23 @@
-import api from 'services/api'
+import { feedoongApi } from 'services/api'
 import type { Channels } from 'types/subscriptions'
 
 export const getChannels = (page: number) => {
-  return api.get<null, Channels>(`/subscriptions`, {
+  return feedoongApi<Channels>({
+    url: `/subscriptions`,
     params: { page },
   })
 }
 
 export const deleteChannel = (channelId: number) => {
-  return api.delete(`/subscriptions/${channelId}`)
+  return feedoongApi({
+    url: `/subscriptions/${channelId}`,
+    method: 'DELETE',
+  })
 }
 
 export const getChannelsByUsername = (page: number, username?: string) => {
-  return api.get<null, Channels>(`/users/${username}/subscriptions`, {
+  return feedoongApi<Channels>({
+    url: `/users/${username}/subscriptions`,
     params: { page },
   })
 }

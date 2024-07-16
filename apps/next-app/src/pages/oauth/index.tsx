@@ -5,11 +5,9 @@ import humps from 'humps'
 import { useEffect } from 'react'
 
 import { submitAccessToken } from 'services/auth'
-import api from 'services/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import {
   setAccessTokenToCookie,
-  setAuthorizationHeader,
   setRefreshTokenToCookie,
 } from 'features/auth/token'
 
@@ -26,7 +24,6 @@ const Oauth = () => {
     if (data) {
       setRefreshTokenToCookie(data.refreshToken)
       setAccessTokenToCookie(data.accessToken)
-      setAuthorizationHeader(api, data.accessToken, { type: 'Bearer' })
       client.setQueryData(CACHE_KEYS.me, data)
       router.replace('/')
     }
