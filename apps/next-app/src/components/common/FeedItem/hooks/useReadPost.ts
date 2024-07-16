@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import produce from 'immer'
 
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { submitViewedPost } from 'services/feeds'
+import { viewItemUsingPOST } from 'services/types/_generated/item'
 import type { Feed, SubmitViewedPost } from 'types/feeds'
 import { mergeObjectsByMutate } from 'utils/common'
 
@@ -17,7 +17,7 @@ const useReadPost = (item: { id: number }) => {
 
   const { mutate: handleRead } = useMutation({
     mutationKey: CACHE_KEYS.viewItem(item.id),
-    mutationFn: submitViewedPost,
+    mutationFn: viewItemUsingPOST,
     onSuccess: (data, variables) => {
       client.setQueryData<PrevDataType>(CACHE_KEYS.feeds, (prev) => {
         if (!prev) {

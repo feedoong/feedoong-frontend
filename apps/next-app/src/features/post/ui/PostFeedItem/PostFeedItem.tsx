@@ -75,7 +75,7 @@ export const PostFeedItem = ({
               src={isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
               width={16}
               height={16}
-              onClick={() => handleLike(String(id))}
+              onClick={() => handleLike(id)}
               priority
             />
           )}

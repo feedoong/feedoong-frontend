@@ -10,7 +10,7 @@ export const getApiEndpoint = () => {
     case 'staging':
     case 'development':
     default:
-      return 'https://api.feedoong.io/v1'
+      return 'https://api.feedoong.io'
   }
 }
 

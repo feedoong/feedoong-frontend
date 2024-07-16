@@ -1,7 +1,6 @@
 import { infiniteQueryOptions } from '@tanstack/react-query'
 
-import { getFeeds } from 'services/feeds'
-// import { getItemsUsingGET } from 'services/types/_generated/item'
+import { getItemsUsingGET } from 'services/types/_generated/item'
 
 export const itemQueries = {
   all: () => ['item'],
@@ -9,7 +8,10 @@ export const itemQueries = {
     infiniteQueryOptions({
       queryKey: [...itemQueries.all(), 'list'],
       queryFn: ({ pageParam }) => {
-        return getFeeds(pageParam)
+        return getItemsUsingGET({
+          page: pageParam,
+          size: 10,
+        })
       },
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {

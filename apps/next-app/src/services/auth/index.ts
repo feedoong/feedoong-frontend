@@ -10,7 +10,6 @@ import { feedoongApi } from 'services/api'
 import {
   getRefreshTokenFromCookie,
   setAccessTokenToCookie,
-  // setAuthorizationHeader,
   setRefreshTokenToCookie,
 } from 'features/auth/token'
 import type UserProfile from 'pages/[userName]'
