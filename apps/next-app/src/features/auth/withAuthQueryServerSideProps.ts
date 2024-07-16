@@ -3,8 +3,8 @@ import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import type { feedoongApi } from 'services/api'
 import type { UserProfile } from 'services/auth'
-import { getUserInfo } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
+import { getUserInfoUsingGET } from 'services/types/_generated/user'
 
 export type GetServerSidePropsContextWithAuthClient =
   GetServerSidePropsContext & {
@@ -22,7 +22,7 @@ export const withAuthQueryServerSideProps = (
 
       await queryClient.prefetchQuery<UserProfile>({
         queryKey: CACHE_KEYS.me,
-        queryFn: getUserInfo,
+        queryFn: getUserInfoUsingGET,
       })
 
       if (!getServerSidePropsFunc) {

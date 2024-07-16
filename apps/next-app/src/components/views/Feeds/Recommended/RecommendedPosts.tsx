@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 
 import FeedItem from 'components/common/FeedItem'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getRecommendedPosts } from 'services/recommendations'
 import { SkeletonPostType } from 'components/common/Skeleton'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { getRecommendedItemsUsingGET } from 'services/types/_generated/item'
 import * as S from '../FeedsContainer.style'
 
 const RecommendedPosts = () => {
   const { data, isFetching } = useQuery({
     queryKey: CACHE_KEYS.recommended(['posts']),
-    queryFn: getRecommendedPosts,
+    queryFn: getRecommendedItemsUsingGET,
   })
 
   const showSkeleton = isFetching && !data

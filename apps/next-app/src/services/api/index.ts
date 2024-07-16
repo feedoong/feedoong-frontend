@@ -19,19 +19,16 @@ export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
     baseURL: getApiEndpoint(),
     validateStatus: (status) =>
       status >= httpStatus.OK && status < httpStatus.BAD_REQUEST, // 200 ~ 399
-    headers: {
-      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
-    },
   })
+
+  config.headers = {
+    ...config.headers,
+    Authorization: `Bearer ${accessToken}`,
+  }
 
   _api.interceptors.response.use(
     // try
     (response) => {
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${accessToken}`,
-      }
-
       return Promise.resolve(
         camelizeKeys(response.data)
       ) as unknown as AxiosResponse

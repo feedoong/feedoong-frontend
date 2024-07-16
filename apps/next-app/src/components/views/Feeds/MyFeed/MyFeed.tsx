@@ -1,4 +1,5 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
+'use client'
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -11,7 +12,7 @@ import * as S from '../FeedsContainer.style'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
-    useInfiniteQuery({
+    useSuspenseInfiniteQuery({
       queryKey: CACHE_KEYS.feeds,
       queryFn: ({ pageParam = 1 }) =>
         getItemsUsingGET({

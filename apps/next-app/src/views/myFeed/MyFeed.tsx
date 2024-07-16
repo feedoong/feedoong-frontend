@@ -1,11 +1,11 @@
 'use client'
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
-import { useInView } from 'react-intersection-observer'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
+import Loading from 'components/common/Loading'
 import { itemQueries } from 'entities/item/api'
 import { PostFeedItem } from 'features/post/ui/PostFeedItem'
-import Loading from 'components/common/Loading'
 
 import * as S from './MyFeed.style'
 
@@ -19,7 +19,7 @@ const MyFeed = ({ isLoggedIn }: Props) => {
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = useSuspenseInfiniteQuery(itemQueries.list())
+  } = useInfiniteQuery(itemQueries.list())
 
   const { ref, inView } = useInView({ rootMargin: '25px' })
 
@@ -32,7 +32,7 @@ const MyFeed = ({ isLoggedIn }: Props) => {
   return (
     <>
       <S.CardContainer>
-        {itemList.pages.map((page) =>
+        {itemList?.pages.map((page) =>
           page.items.map((item) => (
             <PostFeedItem key={item.id} {...item} isLoggedIn={isLoggedIn} />
           ))

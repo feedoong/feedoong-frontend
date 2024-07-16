@@ -4,7 +4,7 @@ import qs from 'query-string'
 import humps from 'humps'
 import { useEffect } from 'react'
 
-import { submitAccessToken } from 'services/auth'
+import { loginUsingPOST } from 'services/types/_generated/user'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import {
   setAccessTokenToCookie,
@@ -17,7 +17,8 @@ const Oauth = () => {
 
   const { data, isError } = useQuery({
     queryKey: CACHE_KEYS.signup,
-    queryFn: () => submitAccessToken(parseAccessToken(router.asPath)),
+    queryFn: () =>
+      loginUsingPOST({ accessToken: parseAccessToken(router.asPath) }),
   })
 
   useEffect(() => {

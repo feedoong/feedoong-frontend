@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 
 import FeedItem from 'components/common/FeedItem'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getRecommendedChannels } from 'services/recommendations'
 import { SkeletonChannelType } from 'components/common/Skeleton'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { getRecommendedChannelsUsingGET } from 'services/types/_generated/channel'
 import * as S from '../FeedsContainer.style'
 
 const RecommendedChannels = () => {
   const { data, isFetching } = useQuery({
     queryKey: CACHE_KEYS.recommended(['channels']),
-    queryFn: getRecommendedChannels,
+    queryFn: getRecommendedChannelsUsingGET,
   })
 
   const showSkeleton = isFetching && !data

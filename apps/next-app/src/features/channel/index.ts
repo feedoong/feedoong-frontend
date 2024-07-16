@@ -5,8 +5,8 @@ import type { AxiosError } from 'axios'
 import Toast from 'components/common/Toast'
 import { ChannelToast } from 'components/views/RssInput/RssInputContainer.utils'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { deleteChannel } from 'services/subscriptions'
 import { registerChannelUsingPOST } from 'services/types/_generated/channel'
+import { unsubscribeUsingDELETE } from 'services/types/_generated/subscription'
 import type { Channel } from 'types/subscriptions'
 import type { ErrorBody } from 'utils/errors'
 import { getAxiosError } from 'utils/errors'
@@ -50,7 +50,7 @@ export const useUnsubscribeChannel = (
 
   const { mutate } = useMutation({
     mutationKey: CACHE_KEYS.channel(item.id),
-    mutationFn: () => deleteChannel(item.id),
+    mutationFn: () => unsubscribeUsingDELETE(item.id),
     onSuccess: () => {
       Toast.show({ content: '구독이 해제되었습니다.' })
       client.invalidateQueries({ predicate })

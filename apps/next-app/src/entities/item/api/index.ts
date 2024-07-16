@@ -7,7 +7,7 @@ export const itemQueries = {
   list: () =>
     infiniteQueryOptions({
       queryKey: [...itemQueries.all(), 'list'],
-      queryFn: ({ pageParam }) => {
+      queryFn: ({ pageParam = 1 }) => {
         return getItemsUsingGET({
           page: pageParam,
           size: 10,
