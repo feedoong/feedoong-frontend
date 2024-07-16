@@ -1,18 +1,15 @@
+'use client'
 import { forwardRef } from 'react'
 
 import * as S from 'components/common/Layout/Nav/Nav.style'
 import ProfilePopover from 'components/common/Layout/Nav/ProfilePopover'
+import { useGetUserProfile } from 'features/user/userProfile'
 import { GoToSignUpButton } from './GoToSignUpButton'
 import { LogoButton } from './LogoButton'
-import { getUserInfoUsingGET } from 'services/types/_generated/user'
 
-const Nav = forwardRef<HTMLDivElement>(async function Nav(props, ref) {
-  let userProfile = null
-  try {
-    userProfile = await getUserInfoUsingGET()
-  } catch (error) {
-    console.error(error)
-  }
+// NOTE: 서버 컴포넌트로 만들면 클라 측에서 갱신이 안됨
+const Nav = forwardRef<HTMLDivElement>(function Nav(props, ref) {
+  const { data: userProfile } = useGetUserProfile()
 
   return (
     <S.TopNavContainer ref={ref}>
