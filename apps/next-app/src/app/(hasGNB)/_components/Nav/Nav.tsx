@@ -1,46 +1,35 @@
 'use client'
+import { usePathname, useRouter } from 'next/navigation'
 import { forwardRef, Suspense } from 'react'
 
 import * as S from 'components/common/Layout/Nav/Nav.style'
-// import ProfilePopover from 'components/common/Layout/Nav/ProfilePopover'
-// import { useGetUserProfile } from 'features/user/userProfile'
-// import { GoToSignUpButton } from './GoToSignUpButton'
-import { LogoButton } from './LogoButton'
 import { Profile } from 'components/common/Layout/Nav/Profile'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
+import { ROUTE } from 'constants/route'
+import { getAccessTokenFromCookie } from 'features/auth/token'
+import { LogoButton } from './LogoButton'
+
+const enableGoToSignUpButton = (pathname: string | null) =>
+  pathname === ROUTE.SIGN_UP || pathname === ROUTE.INTRODUCE
 
 // NOTE: 서버 컴포넌트로 만들면 클라 측에서 갱신이 안됨
 const Nav = forwardRef<HTMLDivElement>(function Nav(props, ref) {
-  // const { data: userProfile } = useGetUserProfile()
+  const pathname = usePathname()
+  const router = useRouter()
 
   return (
     <S.TopNavContainer ref={ref}>
       <LogoButton />
-
-      {getRefreshTokenFromCookie() && (
-        <Suspense>
-          <Profile />
-        </Suspense>
-      )}
-
-      {/* {userProfile?.name ? (
-        <ProfilePopover>
-          <S.MyPageButton>
-            <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
-            {userProfile.profileImageUrl && (
-              <S.UserImage
-                width={32}
-                height={32}
-                alt="프로필 사진"
-                src={userProfile.profileImageUrl}
-                priority
-              />
-            )}
-          </S.MyPageButton>
-        </ProfilePopover>
+      {enableGoToSignUpButton(pathname) ? (
+        <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
+          피둥 시작하기
+        </S.GoToSignUpButton>
       ) : (
-        <GoToSignUpButton />
-      )} */}
+        getAccessTokenFromCookie() && (
+          <Suspense>
+            <Profile />
+          </Suspense>
+        )
+      )}
     </S.TopNavContainer>
   )
 })

@@ -1,3 +1,4 @@
+'use client'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import router from 'next/router'
 

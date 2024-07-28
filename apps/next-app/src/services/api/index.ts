@@ -42,7 +42,7 @@ export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
           [httpStatus.UNAUTHORIZED, httpStatus.FORBIDDEN].includes(errorStatus)
         ) {
           // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
-          if (await getRefreshTokenFromCookie()) {
+          if (getRefreshTokenFromCookie()) {
             return refreshAccessToken(error, _api)
           }
         }
