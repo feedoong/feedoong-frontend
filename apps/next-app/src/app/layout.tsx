@@ -1,5 +1,5 @@
 import { SkeletonTheme } from 'react-loading-skeleton'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
 
 import { getDomainName } from 'envs'
@@ -29,8 +29,6 @@ export const metadata: Metadata = {
     icon: '/logo-desktop.svg',
     shortcut: '/logo-desktop.svg',
   },
-  viewport:
-    'width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, viewport-fit=cover',
   openGraph: {
     title: '피둥피둥',
     description:
@@ -40,6 +38,15 @@ export const metadata: Metadata = {
     type: 'website',
   },
 }
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  minimumScale: 1,
+  viewportFit: 'cover',
+}
+
 
 export default function RootLayout({
   children,
