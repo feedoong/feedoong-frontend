@@ -1,8 +1,6 @@
 'use client'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import router from 'next/router'
 
-import { ROUTE } from 'constants/route'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getUserInfoUsingGET } from 'services/types/_generated/user'
 import ProfilePopover from './ProfilePopover'
@@ -15,7 +13,7 @@ export const Profile = () => {
     queryFn: getUserInfoUsingGET,
   })
 
-  return userProfile?.name ? (
+  return (
     <ProfilePopover>
       <S.MyPageButton>
         <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
@@ -30,9 +28,5 @@ export const Profile = () => {
         )}
       </S.MyPageButton>
     </ProfilePopover>
-  ) : (
-    <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
-      피둥 시작하기
-    </S.GoToSignUpButton>
   )
 }
