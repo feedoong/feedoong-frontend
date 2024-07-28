@@ -1,5 +1,5 @@
 'use client'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
@@ -15,7 +15,7 @@ interface Props {
 
 const MyFeed = ({ isLoggedIn }: Props) => {
   const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useInfiniteQuery(itemQueries.list())
+    useSuspenseInfiniteQuery(itemQueries.list())
 
   const { ref, inView } = useInView({ rootMargin: '25px' })
 

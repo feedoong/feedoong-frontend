@@ -16,6 +16,7 @@ export const useGetUserProfile = (
   return useQuery<UserProfile>({
     queryKey: CACHE_KEYS.me,
     queryFn: getUserInfoUsingGET,
+    // NOTE: 왜 액세스 토큰이 아니라 리프레시 토큰?
     enabled: !!getRefreshTokenFromCookie(),
     ...options,
   })
