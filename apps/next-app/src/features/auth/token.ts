@@ -3,33 +3,22 @@ import Cookies from 'js-cookie'
 
 import { AccessToken, RefreshToken } from 'constants/auth'
 import { isServer } from 'utils'
-
-const isAppRouter = () => {
-  try {
-    // Throws an error if we are not in the App Router context.
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { cookies } = require('next/headers')
-    cookies()
-    return true
-  } catch (e) {
-    return false
-  }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-export const getNextCookies = () => require('next/headers').cookies()
-// import('next/headers').then((res) => res.cookies())
+import { getNextCookies, isAppRouter } from 'shared/libs/nextjs'
 
 const getIsomorphicCookies = () =>
   isServer() && isAppRouter() ? getNextCookies() : Cookies
 
-export const getRefreshTokenFromCookie = () => {
-  const cookies = getIsomorphicCookies()
-  const token = cookies.get(RefreshToken)
-
+const getIsomorphicToken = (token: ReturnType<typeof getIsomorphicCookies>) => {
   if (token instanceof Object && 'value' in token) {
     return token.value
   }
+  return token
+}
+
+export const getRefreshTokenFromCookie = () => {
+  const cookies = getIsomorphicCookies()
+  const token = getIsomorphicToken(cookies.get(RefreshToken))
+
   return token
 }
 
@@ -44,13 +33,9 @@ export const setRefreshTokenToCookie = (token: string) => {
 
 export const getAccessTokenFromCookie = () => {
   const cookies = getIsomorphicCookies()
-  const token = cookies.get(RefreshToken)
+  const token = getIsomorphicToken(cookies.get(AccessToken))
 
-  if (token instanceof Object && 'value' in token) {
-    return token.value
-  }
-
-  return cookies.get(AccessToken)
+  return token
 }
 
 export const setAccessTokenToCookie = (token: string) => {
