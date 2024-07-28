@@ -23,7 +23,7 @@ export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
 
   config.headers = {
     ...config.headers,
-    Authorization: `Bearer ${accessToken}`,
+    Authorization: accessToken ? `Bearer ${accessToken}` : undefined,
   }
 
   _api.interceptors.response.use(

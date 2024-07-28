@@ -33,8 +33,8 @@ export const getRefreshTokenFromCookie = () => {
   return token
 }
 
-export const setRefreshTokenToCookie = async (token: string) => {
-  const cookies = await getIsomorphicCookies()
+export const setRefreshTokenToCookie = (token: string) => {
+  const cookies = getIsomorphicCookies()
 
   cookies.set(RefreshToken, token, {
     expires: dayjs().add(6, 'month').toDate(),
@@ -42,8 +42,8 @@ export const setRefreshTokenToCookie = async (token: string) => {
   })
 }
 
-export const getAccessTokenFromCookie = async () => {
-  const cookies = await getIsomorphicCookies()
+export const getAccessTokenFromCookie = () => {
+  const cookies = getIsomorphicCookies()
   const token = cookies.get(RefreshToken)
 
   if (token instanceof Object && 'value' in token) {
@@ -53,8 +53,8 @@ export const getAccessTokenFromCookie = async () => {
   return cookies.get(AccessToken)
 }
 
-export const setAccessTokenToCookie = async (token: string) => {
-  const cookies = await getIsomorphicCookies()
+export const setAccessTokenToCookie = (token: string) => {
+  const cookies = getIsomorphicCookies()
 
   cookies.set(AccessToken, token, {
     expires: dayjs().add(1, 'month').toDate(),
