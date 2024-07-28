@@ -4,9 +4,9 @@ import { getTypographyStyles } from 'styles/fonts'
 import type { ButtonSize, ButtonStyle } from './Button'
 
 export const Container = styled.button<{
-  buttonStyle: ButtonStyle
+  $buttonStyle: ButtonStyle
   size: ButtonSize
-  outline: boolean
+  $outline: boolean
 }>`
   all: unset;
   display: flex;
@@ -18,8 +18,8 @@ export const Container = styled.button<{
   cursor: pointer;
 
   ${({ size }) => sizeMap[size]}
-  ${({ buttonStyle }) => styleMap[buttonStyle]}
-  ${({ outline, buttonStyle }) => outline && outlineStyleMap[buttonStyle]}
+  ${({ $buttonStyle }) => styleMap[$buttonStyle]}
+  ${({ $outline, $buttonStyle }) => $outline && outlineStyleMap[$buttonStyle]}
 `
 
 export const sizeMap = {

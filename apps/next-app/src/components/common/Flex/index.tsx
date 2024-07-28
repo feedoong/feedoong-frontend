@@ -25,9 +25,9 @@ const Flex = ({
   return (
     <Container
       {...rest}
-      gap={gap}
-      justify={justify}
-      align={align}
+      $gap={gap}
+      $justify={justify}
+      $align={align}
       direction={direction}
       style={style}
     >
@@ -39,17 +39,17 @@ const Flex = ({
 export default Flex
 
 const Container = styled.div<{
-  gap?: number
-  justify?: Justify
-  align?: Align
+  $gap?: number
+  $justify?: Justify
+  $align?: Align
   direction?: Direction
 }>`
   display: flex;
   flex-direction: ${({ direction = 'row' }) => direction};
-  justify-content: ${({ justify = 'start' }) => justifyContent[justify]};
-  align-items: ${({ align = 'start' }) => alignItems[align]};
-  ${({ gap }) => css`
-    gap: ${gap}px;
+  justify-content: ${({ $justify = 'start' }) => justifyContent[$justify]};
+  align-items: ${({ $align = 'start' }) => alignItems[$align]};
+  ${({ $gap }) => css`
+    gap: ${$gap}px;
   `}
 `
 
