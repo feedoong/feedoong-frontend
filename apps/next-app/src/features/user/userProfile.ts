@@ -28,7 +28,7 @@ export const useGetUserProfileByUsername = (
 ) => {
   return useQuery<PublicUserInfoResponse>({
     queryKey: [CACHE_KEYS.user, username],
-    queryFn: async () => getPublicUserInfoUsingGET(username),
+    queryFn: () => getPublicUserInfoUsingGET(username),
     ...options,
     enabled: !!username,
   })
