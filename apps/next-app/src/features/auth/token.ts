@@ -1,12 +1,37 @@
 import dayjs from 'dayjs'
 import Cookies from 'js-cookie'
+import { parseCookies } from 'nookies'
 
 import { AccessToken, RefreshToken } from 'constants/auth'
 import { isServer } from 'utils'
 import { getNextCookies, isAppRouter } from 'shared/libs/nextjs'
+import { asyncLocalStorage } from 'shared/libs/context'
 
-const getIsomorphicCookies = () =>
-  isServer() && isAppRouter() ? getNextCookies() : Cookies
+const getCookieAtPagesRouter = () => {
+  const store = asyncLocalStorage.getStore()
+  if (store) {
+    const cookie = parseCookies({ req: store.req })
+    if (cookie) {
+      return {
+        get: (key: string) => cookie[key],
+      }
+    }
+  }
+  return {
+    get: () => void 0,
+  }
+}
+
+export const getIsomorphicCookies = () => {
+  if (isServer()) {
+    if (isAppRouter()) {
+      return getNextCookies()
+    } else {
+      return getCookieAtPagesRouter()
+    }
+  }
+  return Cookies
+}
 
 const getIsomorphicToken = (token: ReturnType<typeof getIsomorphicCookies>) => {
   if (token instanceof Object && 'value' in token) {

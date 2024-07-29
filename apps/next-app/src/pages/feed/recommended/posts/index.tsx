@@ -3,7 +3,10 @@ import Head from 'next/head'
 
 import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
-import { withAuthQueryServerSideProps } from 'features/auth/withAuthQueryServerSideProps'
+import {
+  withAuthQueryServerSideProps,
+  withRequestContext,
+} from 'features/auth/withAuthQueryServerSideProps'
 import { useGetUserProfile } from 'features/user/userProfile'
 
 const Home: NextPage = () => {
@@ -22,4 +25,6 @@ const Home: NextPage = () => {
 
 export default Home
 
-export const getServerSideProps = withAuthQueryServerSideProps()
+export const getServerSideProps = withRequestContext(
+  withAuthQueryServerSideProps()
+)

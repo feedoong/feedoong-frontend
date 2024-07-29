@@ -1,8 +1,8 @@
-import type { QueryClient } from '@tanstack/react-query'
+import type { Query, QueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import Toast from 'components/common/Toast'
-import { ROUTE } from 'constants/route'
+import { PRIVATE_ROUTE, ROUTE } from 'constants/route'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { RESPONSE_CODE } from 'types/common'
 import { isServer } from 'utils'
@@ -10,6 +10,7 @@ import { destroyTokensClientSide } from 'utils/auth'
 
 export const globalQueryErrorHandler = (
   err: unknown,
+  query: Query<unknown, unknown, unknown>,
   queryClient: QueryClient
 ) => {
   if (err instanceof AxiosError) {
@@ -19,12 +20,19 @@ export const globalQueryErrorHandler = (
       destroyTokensClientSide()
       queryClient.invalidateQueries({ queryKey: CACHE_KEYS.me })
     }
-    goToIntroducePage()
+    const isClient = !isServer()
+    const ignoreToast = query.meta?.ignoreToast
 
-    Toast.show({
-      type: 'error',
-      content: err.response?.data.message ?? '에러가 발생했습니다.',
-    })
+    if (isClient && !ignoreToast) {
+      Toast.show({
+        type: 'error',
+        content: err.response?.data.message ?? '에러가 발생했습니다.',
+      })
+    }
+
+    if (isClient && isPrivatePath()) {
+      goToIntroducePage()
+    }
   }
 }
 
@@ -34,6 +42,11 @@ const goToIntroducePage = () => {
     window.location.href = ROUTE.INTRODUCE
   }
 }
+
+const isPrivatePath = () =>
+  Object.values(PRIVATE_ROUTE).find((path) =>
+    window.location.pathname.includes(path)
+  )
 
 const isDestroyTokenError = (code: string) =>
   [

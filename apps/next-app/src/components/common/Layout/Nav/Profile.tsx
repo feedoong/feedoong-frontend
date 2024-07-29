@@ -11,6 +11,8 @@ export const Profile = () => {
   const { data: userProfile } = useSuspenseQuery({
     queryKey: CACHE_KEYS.me,
     queryFn: getUserInfoUsingGET,
+    retry: false,
+    meta: { ignoreToast: true },
   })
 
   return (

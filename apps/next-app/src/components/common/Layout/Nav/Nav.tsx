@@ -1,21 +1,18 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-import { forwardRef, Suspense } from 'react'
+import { ErrorBoundary, Suspense } from '@suspensive/react'
+import { useRouter } from 'next/navigation'
+import { forwardRef } from 'react'
 
 import LogoDesktopNoBackground from 'components/common/LogoDesktop'
 import { ROUTE } from 'constants/route'
-import { getAccessTokenFromCookie } from 'features/auth/token'
 import { Profile } from './Profile'
 
 import * as S from './Nav.style'
 
-const enableGoToSignUpButton = (pathname: string | null) =>
-  pathname === ROUTE.SIGN_UP || pathname === ROUTE.INTRODUCE
-
+// pages router용
 const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
   const router = useRouter()
-  const pathname = usePathname()
 
   return (
     <S.TopNavContainer ref={ref}>
@@ -23,17 +20,17 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
         <LogoDesktopNoBackground color={'var(--color-black)'} />
         <S.Feedoong>Feedoong</S.Feedoong>
       </S.LogoButton>
-      {enableGoToSignUpButton(pathname) ? (
-        <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
-          피둥 시작하기
-        </S.GoToSignUpButton>
-      ) : (
-        getAccessTokenFromCookie() && (
-          <Suspense>
-            <Profile />
-          </Suspense>
-        )
-      )}
+      <ErrorBoundary
+        fallback={
+          <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
+            피둥 시작하기
+          </S.GoToSignUpButton>
+        }
+      >
+        <Suspense>
+          <Profile />
+        </Suspense>
+      </ErrorBoundary>
     </S.TopNavContainer>
   )
 })

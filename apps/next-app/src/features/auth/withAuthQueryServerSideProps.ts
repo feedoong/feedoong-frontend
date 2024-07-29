@@ -1,16 +1,57 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
-import type { feedoongApi } from 'services/api'
 import type { UserProfile } from 'services/auth'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { getUserInfoUsingGET } from 'services/types/_generated/user'
+import { asyncLocalStorage } from 'shared/libs/context'
+import { isServer } from 'utils'
+import { getAccessTokenFromCookie } from './token'
 
-export type GetServerSidePropsContextWithAuthClient =
-  GetServerSidePropsContext & {
-    queryClient: QueryClient
-    api: ReturnType<typeof feedoongApi>
+export type GetServerSidePropsContextWithAuthClient = GetServerSidePropsContext
+
+// 서버 사이드 렌더링 시 컨텍스트를 설정하는 미들웨어
+export function withRequestContext(
+  handler: (context: GetServerSidePropsContext) => Promise<any>
+) {
+  return async (context: GetServerSidePropsContext) => {
+    if (isServer()) {
+      return asyncLocalStorage.run({ req: context.req }, () => handler(context))
+    }
+    return handler(context)
   }
+}
+
+// NOTE: prefetch 로직을 서버 컴포넌트에서 좀 더 적절히 구현하기
+export const withPrefetchUser = withRequestContext(async () => {
+  try {
+    if (!getAccessTokenFromCookie()) {
+      return {
+        props: {},
+      }
+    }
+
+    const queryClient = new QueryClient()
+
+    await queryClient.prefetchQuery({
+      queryKey: CACHE_KEYS.me,
+      queryFn: getUserInfoUsingGET,
+    })
+
+    const dehydratedState = JSON.parse(JSON.stringify(dehydrate(queryClient)))
+
+    return {
+      props: {
+        dehydratedState,
+      },
+    }
+  } catch (error) {
+    console.log(error)
+    return {
+      props: {},
+    }
+  }
+})
 
 export const withAuthQueryServerSideProps = (
   getServerSidePropsFunc?: GetServerSideProps
@@ -18,7 +59,6 @@ export const withAuthQueryServerSideProps = (
   return async (context: GetServerSidePropsContextWithAuthClient) => {
     try {
       const queryClient = new QueryClient()
-      context.queryClient = queryClient
 
       await queryClient.prefetchQuery<UserProfile>({
         queryKey: CACHE_KEYS.me,
@@ -42,7 +82,7 @@ export const withAuthQueryServerSideProps = (
         }
 
         const dehydratedState = JSON.parse(
-          JSON.stringify(dehydrate(context.queryClient))
+          JSON.stringify(dehydrate(queryClient))
         )
 
         return {
