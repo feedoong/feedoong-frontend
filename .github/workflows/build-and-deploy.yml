@@ -2,10 +2,6 @@ name: Build & Deploy Feedoong-frontend
 
 on:
   workflow_dispatch:
-  push:
-    branches: [dev]
-    paths:
-      - 'apps/next-app/**'
 
 jobs:
   build-and-push:
