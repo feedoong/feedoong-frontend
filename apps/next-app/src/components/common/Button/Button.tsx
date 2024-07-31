@@ -30,8 +30,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     <S.Container
       as={as}
       size={size}
-      buttonStyle={buttonStyle}
-      outline={outline}
+      $buttonStyle={buttonStyle}
+      $outline={outline}
       onClick={useDebounce((e) => onClick && onClick(e), 500)}
       ref={ref}
       {...rest}
