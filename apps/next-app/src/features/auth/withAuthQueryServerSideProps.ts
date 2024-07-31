@@ -1,9 +1,7 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
-import type { UserProfile } from 'services/auth'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getUserInfoUsingGET } from 'services/types/_generated/user'
+import { userQueries } from 'entities/user/api'
 import { asyncLocalStorage } from 'shared/libs/context'
 import { isServer } from 'utils'
 import { getAccessTokenFromCookie } from './token'
@@ -33,10 +31,7 @@ export const withPrefetchUser = withRequestContext(async () => {
 
     const queryClient = new QueryClient()
 
-    await queryClient.prefetchQuery({
-      queryKey: CACHE_KEYS.me,
-      queryFn: getUserInfoUsingGET,
-    })
+    await queryClient.prefetchQuery(userQueries.me())
 
     const dehydratedState = JSON.parse(JSON.stringify(dehydrate(queryClient)))
 
@@ -60,10 +55,7 @@ export const withAuthQueryServerSideProps = (
     try {
       const queryClient = new QueryClient()
 
-      await queryClient.prefetchQuery<UserProfile>({
-        queryKey: CACHE_KEYS.me,
-        queryFn: getUserInfoUsingGET,
-      })
+      await queryClient.prefetchQuery(userQueries.me())
 
       if (!getServerSidePropsFunc) {
         const dehydratedState = JSON.parse(

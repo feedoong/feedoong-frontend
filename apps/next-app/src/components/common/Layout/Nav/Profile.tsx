@@ -1,16 +1,14 @@
 'use client'
 import { useSuspenseQuery } from '@tanstack/react-query'
 
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getUserInfoUsingGET } from 'services/types/_generated/user'
+import { userQueries } from 'entities/user/api'
 import ProfilePopover from './ProfilePopover'
 
 import * as S from './Nav.style'
 
 export const Profile = () => {
-  const { data: userProfile } = useSuspenseQuery({
-    queryKey: CACHE_KEYS.me,
-    queryFn: getUserInfoUsingGET,
+  const { data: profile } = useSuspenseQuery({
+    ...userQueries.me(),
     retry: false,
     meta: { ignoreToast: true },
   })
@@ -18,13 +16,13 @@ export const Profile = () => {
   return (
     <ProfilePopover>
       <S.MyPageButton>
-        <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
-        {userProfile.profileImageUrl && (
+        <S.UserName>{`${profile.name}님, 안녕하세요!`}</S.UserName>
+        {profile.profileImageUrl && (
           <S.UserImage
             width={32}
             height={32}
             alt="프로필 사진"
-            src={userProfile.profileImageUrl}
+            src={profile.profileImageUrl}
             priority
           />
         )}

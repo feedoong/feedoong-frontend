@@ -1,7 +1,7 @@
 'use client'
-import { ErrorBoundary } from '@suspensive/react'
+import { ErrorBoundary, Suspense } from '@suspensive/react'
 import { useRouter } from 'next/navigation'
-import { forwardRef, Suspense } from 'react'
+import { forwardRef } from 'react'
 
 import * as S from 'components/common/Layout/Nav/Nav.style'
 import { Profile } from 'components/common/Layout/Nav/Profile'

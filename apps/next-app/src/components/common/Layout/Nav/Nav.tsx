@@ -27,7 +27,7 @@ const Nav = forwardRef<HTMLDivElement>(function TopNavBar(props, ref) {
           </S.GoToSignUpButton>
         }
       >
-        <Suspense>
+        <Suspense clientOnly>
           <Profile />
         </Suspense>
       </ErrorBoundary>

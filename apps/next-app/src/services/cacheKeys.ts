@@ -7,7 +7,7 @@ export const CACHE_KEYS = {
   channel: (id: number) => [...CACHE_KEYS.channels, id],
   preview: (url?: string) => ['channels', 'preview', url],
   signup: ['signup'],
-  me: ['me'],
+  me: ['user', 'me'],
   viewItem: (id: number) => ['viewItem', id],
   recommended: (slug: string[] = []) => ['feeds', 'recommended', ...slug],
   user: (username: string) => ['user', username],

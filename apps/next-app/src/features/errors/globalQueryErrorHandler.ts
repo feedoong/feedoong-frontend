@@ -3,6 +3,7 @@ import { AxiosError } from 'axios'
 
 import Toast from 'components/common/Toast'
 import { PRIVATE_ROUTE, ROUTE } from 'constants/route'
+import { userQueries } from 'entities/user/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
 import { RESPONSE_CODE } from 'types/common'
 import { isServer } from 'utils'
@@ -18,7 +19,7 @@ export const globalQueryErrorHandler = (
 
     if (isDestroyTokenError(code)) {
       destroyTokensClientSide()
-      queryClient.invalidateQueries({ queryKey: CACHE_KEYS.me })
+      queryClient.invalidateQueries(userQueries.me())
     }
     const isClient = !isServer()
     const ignoreToast = query.meta?.ignoreToast
