@@ -6,7 +6,10 @@ import Button from 'components/common/Button'
 import Flex from 'components/common/Flex'
 import { ModalLayout, useModal } from 'components/common/Modal'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { checkUrlAsDirectRss, submitRssUrl } from 'services/feeds'
+import {
+  getChannelPreviewViaRssFeedUsingGET,
+  registerChannelUsingPOST,
+} from 'services/types/_generated/channel'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 import BlogUrlInput from '../BlogUrlInput'
 import { ChannelToast, isRssUrlValid } from '../RssInputContainer.utils'
@@ -26,10 +29,11 @@ const useRssDirectInputModal = () => {
         return
       }
       setIsPreviewLoading(true)
-      const { url: siteUrl, feedUrl } = await checkUrlAsDirectRss({
-        homeUrl: rssDirectChannelUrl,
-        rssFeedUrl: rssDirectRssUrl,
-      })
+      const { url: siteUrl, feedUrl } =
+        await getChannelPreviewViaRssFeedUsingGET({
+          homeUrl: rssDirectChannelUrl,
+          rssFeedUrl: rssDirectRssUrl,
+        })
       mutateRss({ url: siteUrl, feedUrl })
     } catch (error) {
       if (isAxiosError(error)) {
@@ -45,7 +49,7 @@ const useRssDirectInputModal = () => {
   const { mutate: mutateRss, isPending: isRssSubmitting } = useMutation({
     mutationKey: ['/channels'], // 키 값 바꿔야 하나
 
-    mutationFn: submitRssUrl,
+    mutationFn: registerChannelUsingPOST,
     onSuccess: () => {
       setRssDirectChannelUrl('')
       setRssDirectRssUrl('')

@@ -8,5 +8,11 @@ export const FEED_ROUTE = {
 export const ROUTE = {
   INTRODUCE: '/introduce',
   SIGN_UP: '/signup',
+  MY_ACCOUNT: '/mypage/account',
   ...FEED_ROUTE,
 } as const
+
+export const PRIVATE_ROUTE = {
+  MY_FEED: ROUTE.MY_FEED,
+  MY_ACCOUNT: ROUTE.MY_ACCOUNT,
+}

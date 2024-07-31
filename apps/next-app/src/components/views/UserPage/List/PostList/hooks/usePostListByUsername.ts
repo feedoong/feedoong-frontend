@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 
 import { useCheckIsMyProfile } from 'features/user/useCheckIsMyProfile'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { getLikedPosts, getLikedPostsByUsername } from 'services/feeds'
+import { getLikesUsingGET } from 'services/types/_generated/item'
+import { getUserLikedItemsUsingGET } from 'services/types/_generated/user'
 
 const usePostListByUsername = (username?: string) => {
   const router = useRouter()
@@ -14,8 +15,14 @@ const usePostListByUsername = (username?: string) => {
     queryKey: [CACHE_KEYS.likedPosts, { page: currentPage }],
     queryFn: () =>
       isMyProfile
-        ? getLikedPosts(currentPage)
-        : getLikedPostsByUsername(currentPage, username),
+        ? getLikesUsingGET({
+            page: currentPage,
+            size: 10,
+          })
+        : getUserLikedItemsUsingGET(username!, {
+            page: currentPage,
+            size: 10,
+          }),
     enabled: !!username,
   })
 

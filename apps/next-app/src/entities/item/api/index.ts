@@ -1,23 +1,21 @@
 import { infiniteQueryOptions } from '@tanstack/react-query'
-import type { AxiosInstance } from 'axios'
 
-import { getFeeds, getFeedsServerSide } from 'services/feeds'
-// import { getItemsUsingGET } from 'services/types/_generated/item'
+import { getItemsUsingGET } from 'services/types/_generated/item'
 
 export const itemQueries = {
   all: () => ['item'],
-  list: (api?: AxiosInstance) =>
+  list: () =>
     infiniteQueryOptions({
       queryKey: [...itemQueries.all(), 'list'],
-      queryFn: ({ pageParam }) => {
-        if (api) {
-          return getFeedsServerSide(api)(pageParam)
-        }
-        return getFeeds(pageParam)
+      queryFn: ({ pageParam = 1 }) => {
+        return getItemsUsingGET({
+          page: pageParam,
+          size: 10,
+        })
       },
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
-        return lastPage.items.length === 10 ? lastPage.next : undefined
+        return lastPage.next
       },
     }),
 }

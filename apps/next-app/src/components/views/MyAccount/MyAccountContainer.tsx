@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useState } from 'react'
 
-import Dialog from 'components/common/Dialog'
-import Toast from 'components/common/Toast'
-import { deleteAccount } from 'services/account'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { destroyTokensClientSide } from 'utils/auth'
-import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
-import PageContainer from 'components/common/PageContainer'
-import { useGetUserProfile } from 'features/user/userProfile'
-import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
-import { logoutAction } from 'features/auth/logout'
-import Input from 'components/common/Input/Input'
 import Button from 'components/common/Button/Button'
+import Dialog from 'components/common/Dialog'
+import { copyToClipboard } from 'components/common/FeedItem/FeedItem.utils'
+import Input from 'components/common/Input/Input'
+import PageContainer from 'components/common/PageContainer'
+import Toast from 'components/common/Toast'
+import { logoutAction } from 'features/auth/logout'
+import { useGetUserProfile } from 'features/user/userProfile'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { deactivateUserUsingDELETE } from 'services/types/_generated/user'
+import { destroyTokensClientSide } from 'utils/auth'
+import { getFeedoongUrl } from '../UserPage/UserPageContainer.utils'
 
 import * as S from './MyAccountContainer.style'
 
@@ -23,7 +23,7 @@ const MyAccountContainer = () => {
   // const nickNameRef = useRef<HTMLInputElement>(null)
   const { mutate: deleteAccountAction } = useMutation({
     mutationKey: ['deleteAccount'],
-    mutationFn: deleteAccount,
+    mutationFn: deactivateUserUsingDELETE,
     onSuccess: () => {
       Toast.show({ content: 'Successfully delete account' })
       destroyTokensClientSide()

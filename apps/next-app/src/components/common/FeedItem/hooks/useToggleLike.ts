@@ -3,7 +3,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import Toast from 'components/common/Toast'
 import { itemQueries } from 'entities/item/api'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { likePost, unlikePost } from 'services/feeds'
+import {
+  likeUsingPOST,
+  unlikeUsingDELETE,
+} from 'services/types/_generated/like'
 
 // TODO: 추후에 useToggleLike 자체를 재작성해야 함. 임시로 인자 타입 변경
 const useToggleLike = (item: { id: number; isLiked: boolean }) => {
@@ -11,7 +14,7 @@ const useToggleLike = (item: { id: number; isLiked: boolean }) => {
 
   const { mutate: handleLike } = useMutation({
     mutationKey: CACHE_KEYS.likePost(item.id),
-    mutationFn: !item.isLiked ? likePost : unlikePost,
+    mutationFn: !item.isLiked ? likeUsingPOST : unlikeUsingDELETE,
     onSuccess: async (data) => {
       client.invalidateQueries(itemQueries.list())
       client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })

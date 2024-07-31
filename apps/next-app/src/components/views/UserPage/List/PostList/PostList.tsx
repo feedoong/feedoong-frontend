@@ -1,20 +1,22 @@
 import { useRouter } from 'next/router'
 
-import { ITEMS_PER_PAGE } from 'constants/pagination'
-import List from '..'
-import usePostListByUsername from './hooks/usePostListByUsername'
+import EmptyContents from 'components/common/EmptyContents'
+import FeedItem from 'components/common/FeedItem'
 import Flex from 'components/common/Flex'
 import Paging from 'components/common/Paging'
-import EmptyContents from 'components/common/EmptyContents'
 import { SkeletonPostType } from 'components/common/Skeleton'
-import FeedItem from 'components/common/FeedItem'
-import { useGetUsernameFromPath } from 'features/user/userProfile'
-import { getRefreshTokenFromCookie } from 'features/auth/token'
+import { ITEMS_PER_PAGE } from 'constants/pagination'
+import {
+  useGetUsernameFromPath,
+  useGetUserProfile,
+} from 'features/user/userProfile'
+import List from '..'
+import usePostListByUsername from './hooks/usePostListByUsername'
 
 const PostList = () => {
   const router = useRouter()
   const username = useGetUsernameFromPath()
-  const isSomeoneLoggedIn = !!getRefreshTokenFromCookie()
+  const { data: me } = useGetUserProfile()
 
   const { listData, isLoading, isEmptyList, totalCount } =
     usePostListByUsername(username)
@@ -34,7 +36,7 @@ const PostList = () => {
                   key={item.id}
                   type="post"
                   item={item}
-                  isPrivate={isSomeoneLoggedIn}
+                  isPrivate={!!me}
                 />
               ))
         }

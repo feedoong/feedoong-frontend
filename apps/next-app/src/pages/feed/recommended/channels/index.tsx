@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import RssInputView from 'components/views/RssInput'
 import FeedsContainerView from 'components/views/Feeds/FeedsContainer'
+import RssInputView from 'components/views/RssInput'
+import { withPrefetchUser } from 'features/auth/withAuthQueryServerSideProps'
 import { useGetUserProfile } from 'features/user/userProfile'
 
 const Home: NextPage = () => {
@@ -20,3 +21,5 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps = withPrefetchUser

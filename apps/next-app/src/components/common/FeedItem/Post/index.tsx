@@ -80,7 +80,7 @@ export const PrivatePostType = ({ item }: { item: PrivatePost }) => {
             src={item.isLiked ? Icons.Bookmark : Icons.BookmarkDeactive}
             width={16}
             height={16}
-            onClick={() => handleLike(String(item.id))}
+            onClick={() => handleLike(item.id)}
             priority
           />
         </CardActions>

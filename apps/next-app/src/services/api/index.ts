@@ -1,4 +1,4 @@
-import type { AxiosResponse } from 'axios'
+import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import Axios, { AxiosError } from 'axios'
 import humps from 'humps'
 import httpStatus from 'http-status-codes'
@@ -12,17 +12,19 @@ import {
 
 const { camelizeKeys } = humps
 
-export const feedoongApi = () => {
+export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
   const accessToken = getAccessTokenFromCookie()
 
   const _api = Axios.create({
     baseURL: getApiEndpoint(),
     validateStatus: (status) =>
       status >= httpStatus.OK && status < httpStatus.BAD_REQUEST, // 200 ~ 399
-    headers: {
-      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
-    },
   })
+
+  config.headers = {
+    ...config.headers,
+    Authorization: accessToken ? `Bearer ${accessToken}` : undefined,
+  }
 
   _api.interceptors.response.use(
     // try
@@ -54,9 +56,5 @@ export const feedoongApi = () => {
     return config
   })
 
-  return _api
+  return _api(config)
 }
-
-const api = feedoongApi()
-
-export default api

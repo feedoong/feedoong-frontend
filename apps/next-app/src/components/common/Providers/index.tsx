@@ -26,7 +26,8 @@ const Providers = ({ pageProps, children }: Props) => {
           },
         },
         queryCache: new QueryCache({
-          onError: (err: unknown) => globalQueryErrorHandler(err, queryClient),
+          onError: (err: unknown, query) =>
+            globalQueryErrorHandler(err, query, queryClient),
         }),
       })
   )

@@ -3,9 +3,12 @@ import { useState, type ChangeEvent } from 'react'
 
 import Notification from 'components/common/Notification'
 import { CACHE_KEYS } from 'services/cacheKeys'
-import { checkUrlAsRss, submitRssUrl } from 'services/feeds'
 import { getAxiosError, isAxiosError } from 'utils/errors'
 import { ChannelToast } from '../RssInputContainer.utils'
+import {
+  getChannelPreviewUsingGET,
+  registerChannelUsingPOST,
+} from 'services/types/_generated/channel'
 
 const useRssInput = () => {
   const client = useQueryClient()
@@ -16,7 +19,7 @@ const useRssInput = () => {
 
   const { mutate, isPending: isSubmitting } = useMutation({
     mutationKey: ['/channels'],
-    mutationFn: submitRssUrl,
+    mutationFn: registerChannelUsingPOST,
     onSuccess: () => {
       setUrl('')
       client.invalidateQueries({ queryKey: CACHE_KEYS.feeds })
@@ -55,7 +58,7 @@ const useRssInput = () => {
       e?.preventDefault()
 
       setIsPreviewLoading(true)
-      const { url: siteUrl, feedUrl } = await checkUrlAsRss(url)
+      const { url: siteUrl, feedUrl } = await getChannelPreviewUsingGET({ url })
 
       mutate({ url: siteUrl, feedUrl })
     } catch (error) {

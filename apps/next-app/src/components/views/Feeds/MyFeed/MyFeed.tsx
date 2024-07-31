@@ -1,19 +1,24 @@
+'use client'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { SkeletonPostType } from 'components/common/Skeleton'
-import { CACHE_KEYS } from 'services/cacheKeys'
-import { getFeeds } from 'services/feeds'
 import FeedItem from 'components/common/FeedItem'
 import Loading from 'components/common/Loading'
+import { SkeletonPostType } from 'components/common/Skeleton'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { getItemsUsingGET } from 'services/types/_generated/item'
 import * as S from '../FeedsContainer.style'
 
 const MyFeed = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isFetching } =
     useInfiniteQuery({
       queryKey: CACHE_KEYS.feeds,
-      queryFn: ({ pageParam = 1 }) => getFeeds(pageParam),
+      queryFn: ({ pageParam = 1 }) =>
+        getItemsUsingGET({
+          page: pageParam,
+          size: 10,
+        }),
       initialPageParam: 1,
       staleTime: 1000 * 60 * 5,
       getNextPageParam: (lastPage) =>

@@ -1,60 +1,32 @@
-import React, { forwardRef } from 'react'
-import { cookies } from 'next/headers'
+'use client'
+import { ErrorBoundary } from '@suspensive/react'
+import { useRouter } from 'next/navigation'
+import { forwardRef, Suspense } from 'react'
 
-import ProfilePopover from 'components/common/Layout/Nav/ProfilePopover'
-import { getApiEndpoint } from 'envs'
 import * as S from 'components/common/Layout/Nav/Nav.style'
-import { GoToSignUpButton } from './GoToSignUpButton'
+import { Profile } from 'components/common/Layout/Nav/Profile'
+import { ROUTE } from 'constants/route'
 import { LogoButton } from './LogoButton'
 
-async function getUserProfile() {
-  const cookieStore = cookies()
-  const accessToken = cookieStore.get('accessToken')
-  if (!accessToken) {
-    return null
-  }
-
-  const res = await fetch(`${getApiEndpoint()}/users/me`, {
-    headers: {
-      Authorization: `Bearer ${accessToken.value}`,
-    },
-  })
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  if (res.status !== 200) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-
-  return res.json()
-}
-
-const Nav = forwardRef<HTMLDivElement>(async function Nav(props, ref) {
-  const userProfile = await getUserProfile()
+// NOTE: 서버 컴포넌트로 만들면 클라 측에서 갱신이 안됨
+// app router용
+const Nav = forwardRef<HTMLDivElement>(function Nav(props, ref) {
+  const router = useRouter()
 
   return (
     <S.TopNavContainer ref={ref}>
       <LogoButton />
-
-      {userProfile?.name ? (
-        <ProfilePopover>
-          <S.MyPageButton>
-            <S.UserName>{`${userProfile.name}님, 안녕하세요!`}</S.UserName>
-            {userProfile.profileImageUrl && (
-              <S.UserImage
-                width={32}
-                height={32}
-                alt="프로필 사진"
-                src={userProfile.profileImageUrl}
-                priority
-              />
-            )}
-          </S.MyPageButton>
-        </ProfilePopover>
-      ) : (
-        <GoToSignUpButton />
-      )}
+      <ErrorBoundary
+        fallback={
+          <S.GoToSignUpButton onClick={() => router.push(ROUTE.SIGN_UP)}>
+            피둥 시작하기
+          </S.GoToSignUpButton>
+        }
+      >
+        <Suspense>
+          <Profile />
+        </Suspense>
+      </ErrorBoundary>
     </S.TopNavContainer>
   )
 })

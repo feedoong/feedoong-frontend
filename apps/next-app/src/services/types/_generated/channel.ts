@@ -13,8 +13,7 @@ import type {
   GetChannelPreviewViaRssFeedUsingGETParams,
   RecommendedChannelListResponse
 } from './apiDocumentation.schemas'
-// import { feedoongApi } from '../../api/index';
-import { feedoongApi } from '../../api/feedoongApi'
+import { feedoongApi } from '../../api/index';
 
 
 

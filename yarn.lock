@@ -1176,6 +1176,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@suspensive/react@npm:^2.10.0":
+  version: 2.10.0
+  resolution: "@suspensive/react@npm:2.10.0"
+  dependencies:
+    "@suspensive/utils": "npm:2.10.0"
+  peerDependencies:
+    react: ^18
+  checksum: 10c0/37d28394298a66ded5afe25b926304d77525cd1c13e2ff31ab50313a43c57fa3b763625bd5dc31e5168f17b4f7d72ea0b57022ed996543e1de2ec5532b324479
+  languageName: node
+  linkType: hard
+
+"@suspensive/utils@npm:2.10.0":
+  version: 2.10.0
+  resolution: "@suspensive/utils@npm:2.10.0"
+  peerDependencies:
+    react: ^18
+  checksum: 10c0/5589c1b12e5059cb2af98769d5ad57ee1011369fc308ba7b588aa75e22aa3ca5cd1130fd83b2c52632ffd856d9a9c2c99f98c8baf3a52ee99067266179b53c59
+  languageName: node
+  linkType: hard
+
 "@swc/counter@npm:^0.1.3":
   version: 0.1.3
   resolution: "@swc/counter@npm:0.1.3"
@@ -4042,6 +4062,7 @@ __metadata:
     "@emotion/is-prop-valid": "npm:^1.2.2"
     "@floating-ui/react-dom": "npm:^1.0.0"
     "@floating-ui/react-dom-interactions": "npm:^0.10.2"
+    "@suspensive/react": "npm:^2.10.0"
     "@tanstack/react-query": "npm:^5.50.1"
     "@tanstack/react-query-devtools": "npm:^5.32.1"
     "@toss/react": "npm:^1.3.6"

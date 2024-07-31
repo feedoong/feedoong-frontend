@@ -1,20 +1,20 @@
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 
 // import * as S from 'components/views/MyPost/PostContainer.style'
 
-import Flex from 'components/common/Flex'
 import FeedItem from 'components/common/FeedItem/FeedItem'
-import { getChannel } from 'services/feeds'
-import { CACHE_KEYS } from 'services/cacheKeys'
+import Flex from 'components/common/Flex'
+import LogoIcon from 'components/common/LogoIcon'
+import PageContainer from 'components/common/PageContainer'
 import Paging from 'components/common/Paging'
 import { SkeletonPostType } from 'components/common/Skeleton'
 import { ITEMS_PER_PAGE } from 'constants/pagination'
+import { CACHE_KEYS } from 'services/cacheKeys'
+import { getItemsOfSubscribedChannelUsingGET } from 'services/types/_generated/item'
 import { getWellKnownChannelImg } from 'utils'
-import PageContainer from 'components/common/PageContainer'
-import LogoIcon from 'components/common/LogoIcon'
 import ChannelSubscription from './ChannalSubscription'
 
 import * as S from './ChannelDetailContainer.style'
@@ -26,7 +26,11 @@ function PostContainer() {
   const [currentPage, setCurrentPage] = useState(1)
   const { data, isLoading } = useQuery({
     queryKey: [CACHE_KEYS.likedPosts, { page: currentPage, channel: id }],
-    queryFn: () => getChannel(id, currentPage),
+    queryFn: () =>
+      getItemsOfSubscribedChannelUsingGET(Number(id), {
+        page: currentPage,
+        size: 10,
+      }),
     enabled: !!id,
   })
 

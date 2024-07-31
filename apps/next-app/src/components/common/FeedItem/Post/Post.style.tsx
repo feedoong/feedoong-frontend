@@ -11,7 +11,6 @@ export const Container = styled.div`
   gap: 12px;
   border-radius: 20px;
   border-bottom-left-radius: 0px;
-  margin-bottom: 20px;
 `
 
 export const Title = styled.h2`
