@@ -10,6 +10,7 @@ import {
   getRefreshTokenFromCookie,
 } from 'features/auth/token'
 import tokenRefreshMutex from 'features/auth/tokenRefreshMutex'
+import { isAuthError } from 'features/auth/logout'
 
 const { camelizeKeys } = humps
 
@@ -39,17 +40,11 @@ export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
       if (error instanceof AxiosError) {
         const errorStatus = error.response?.status ?? 0
 
-        if (
-          [httpStatus.UNAUTHORIZED, httpStatus.FORBIDDEN].includes(errorStatus)
-        ) {
+        if (isAuthError(errorStatus)) {
           if (getRefreshTokenFromCookie() && tokenRefreshMutex) {
-            return tokenRefreshMutex.runExclusive(async () => {
-              await refreshAccessToken()
-              // TODO: 새 토큰을 넣어서 요청보내는 것 깔끔하게 처리
-              Object.assign(config.headers ?? {}, {
-                Authorization: `Bearer ${getAccessTokenFromCookie()}`,
-              })
-              return _api(config) // 새로운 토큰으로 재시도
+            return tokenRefreshMutex?.runExclusive(async () => {
+              const nextConfig = await refreshAccessToken(config)
+              return _api(nextConfig)
             })
           }
         }

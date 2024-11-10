@@ -1,3 +1,5 @@
+import type { AxiosRequestConfig } from 'axios'
+
 import {
   getRefreshTokenFromCookie,
   setAccessTokenToCookie,
@@ -18,7 +20,7 @@ export interface SignUpResponse extends UserProfile {
   refreshToken: string
 }
 
-export const refreshAccessToken = async () => {
+export const refreshAccessToken = async (config: AxiosRequestConfig) => {
   // TODO: 리프레시 토큰 만료시 로그아웃 처리도 필요
   const data = await reissueTokenUsingPOST({
     refreshToken: getRefreshTokenFromCookie(),
@@ -27,5 +29,9 @@ export const refreshAccessToken = async () => {
   setRefreshTokenToCookie(data.refreshToken)
   setAccessTokenToCookie(data.accessToken)
 
-  return data
+  Object.assign(config.headers ?? {}, {
+    Authorization: `Bearer ${data.accessToken}`,
+  })
+
+  return config
 }
