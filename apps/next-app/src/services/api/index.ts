@@ -44,7 +44,11 @@ export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
         ) {
           if (getRefreshTokenFromCookie() && tokenRefreshMutex) {
             return tokenRefreshMutex.runExclusive(async () => {
-              await refreshAccessToken(error, _api)
+              await refreshAccessToken()
+              // TODO: 새 토큰을 넣어서 요청보내는 것 깔끔하게 처리
+              Object.assign(config.headers ?? {}, {
+                Authorization: `Bearer ${getAccessTokenFromCookie()}`,
+              })
               return _api(config) // 새로운 토큰으로 재시도
             })
           }
