@@ -21,7 +21,7 @@ class Mutex {
     }
   }
 
-  isLocked() {
+  get isLocked() {
     return this.promise !== null
   }
 
