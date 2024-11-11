@@ -9,6 +9,8 @@ import {
   getAccessTokenFromCookie,
   getRefreshTokenFromCookie,
 } from 'features/auth/token'
+import tokenRefreshMutex from 'features/auth/tokenRefreshMutex'
+import { isAuthError } from 'features/auth/logout'
 
 const { camelizeKeys } = humps
 
@@ -38,12 +40,12 @@ export const feedoongApi = <T>(config: AxiosRequestConfig): Promise<T> => {
       if (error instanceof AxiosError) {
         const errorStatus = error.response?.status ?? 0
 
-        if (
-          [httpStatus.UNAUTHORIZED, httpStatus.FORBIDDEN].includes(errorStatus)
-        ) {
-          // 리프레시 토큰이 없을 경우 로그인 페이지로 리다이렉트 시켜야 함
-          if (getRefreshTokenFromCookie()) {
-            return refreshAccessToken(error, _api)
+        if (isAuthError(errorStatus)) {
+          if (getRefreshTokenFromCookie() && tokenRefreshMutex) {
+            return tokenRefreshMutex?.runExclusive(async () => {
+              const nextConfig = await refreshAccessToken(config)
+              return _api(nextConfig)
+            })
           }
         }
       }
